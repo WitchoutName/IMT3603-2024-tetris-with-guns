@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyl1o4ioclqe7"]
+
+[ext_resource type="Texture2D" uid="uid://d1owkgy7e6g26" path="res://Assets/tetraminos.png" id="1_gkhji"]
+
+[node name="ShapeJ" type="StaticBody2D"]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7.7486e-07, -25)
+scale = Vector2(0.431035, 0.431034)
+texture = ExtResource("1_gkhji")
+region_enabled = true
+region_rect = Rect2(20, 268, 348, 232)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(-1, 1)
+build_mode = 1
+polygon = PackedVector2Array(-75, -75, -25, -75, -25, -25, 75, -25, 75, 25, -75, 25)
