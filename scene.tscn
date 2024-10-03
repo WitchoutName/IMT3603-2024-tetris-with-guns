@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvvcu55djpmfd"]
+
+[ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entity/Tower/v2/Tower/tower.tscn" id="1_pfrtc"]
+[ext_resource type="Texture2D" uid="uid://bgnro7v351ynl" path="res://icon.svg" id="2_hahjy"]
+[ext_resource type="PackedScene" uid="uid://brtnik1qb3onx" path="res://Entity/TestPlayer.tscn" id="3_wje3p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anhks"]
+size = Vector2(502, 40)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Tower" parent="." instance=ExtResource("1_pfrtc")]
+position = Vector2(153, 554.705)
+scale = Vector2(0.5, 0.5)
+petrify_width = 0
+fall_speed = 8.2
+
+[node name="Tower2" parent="." instance=ExtResource("1_pfrtc")]
+visible = false
+position = Vector2(997, 554.705)
+scale = Vector2(0.5, 0.5)
+petrify_width = 0
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(570, 629)
+scale = Vector2(2.7, 0.345)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(0, 25)
+shape = SubResource("RectangleShape2D_anhks")
+one_way_collision_margin = 0.0
+
+[node name="Icon" type="Sprite2D" parent="Platform"]
+position = Vector2(0.500034, 26.8817)
+scale = Vector2(3.92969, 0.331821)
+texture = ExtResource("2_hahjy")
+
+[node name="TestPlayer" parent="." instance=ExtResource("3_wje3p")]
+position = Vector2(554, 506)
+scale = Vector2(0.32, 0.32)
