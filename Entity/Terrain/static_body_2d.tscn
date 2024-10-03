@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://tc6gkdx88pve"]
+
+[ext_resource type="Texture2D" uid="uid://bgnro7v351ynl" path="res://icon.svg" id="1_0vo38"]
+[ext_resource type="PackedScene" uid="uid://ccqcnw8132xn3" path="res://Entity/Player/player.tscn" id="2_k1q2m"]
+[ext_resource type="PackedScene" uid="uid://djhd2dlbebro6" path="res://Entity/Terrain/hazard.tscn" id="3_u6vct"]
+[ext_resource type="PackedScene" uid="uid://dsqrbxlbutluc" path="res://Entity/Objects/Pieces/piece.tscn" id="4_e22x7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nl13"]
+size = Vector2(689, 128)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(474, 231)
+scale = Vector2(5.375, 1)
+texture = ExtResource("1_0vo38")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(474.5, 232)
+shape = SubResource("RectangleShape2D_0nl13")
+
+[node name="Player" parent="." instance=ExtResource("2_k1q2m")]
+position = Vector2(172, 90)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("3_u6vct")]
+position = Vector2(606, 111)
+
+[node name="Piece" parent="." instance=ExtResource("4_e22x7")]
+position = Vector2(397, 136)
