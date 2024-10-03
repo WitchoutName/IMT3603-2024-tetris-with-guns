@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch3qi5k4wkwd0"]
+
+[ext_resource type="Script" path="res://Entity/Tower/v2/Tetraminos/tetramino.gd" id="1_8s7wu"]
+[ext_resource type="Texture2D" uid="uid://d1owkgy7e6g26" path="res://Assets/tetraminos.png" id="2_jwhbp"]
+
+[node name="ShapeT" type="StaticBody2D"]
+script = ExtResource("1_8s7wu")
+shape = 5
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 25)
+rotation = 3.14159
+scale = Vector2(0.426136, 0.430881)
+texture = ExtResource("2_jwhbp")
+region_enabled = true
+region_rect = Rect2(20, 1396, 352, 232)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 50)
+build_mode = 1
+polygon = PackedVector2Array(-74, -74, 74, -74, 74, -26, 24, -26, 24, 24, -24, 24, -25, -26, -74, -26)
