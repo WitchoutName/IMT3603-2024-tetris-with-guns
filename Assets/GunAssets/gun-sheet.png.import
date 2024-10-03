@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1owkgy7e6g26"
-path="res://.godot/imported/tetraminos.png-332ef42702b5009138514d042466e470.ctex"
+uid="uid://cf0cu6mjdhr0q"
+path="res://.godot/imported/gun-sheet.png-4eecfe759c8aba914bd3d14163c96487.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tetraminos.png"
-dest_files=["res://.godot/imported/tetraminos.png-332ef42702b5009138514d042466e470.ctex"]
+source_file="res://Assets/GunAssets/gun-sheet.png"
+dest_files=["res://.godot/imported/gun-sheet.png-4eecfe759c8aba914bd3d14163c96487.ctex"]
 
 [params]
 
