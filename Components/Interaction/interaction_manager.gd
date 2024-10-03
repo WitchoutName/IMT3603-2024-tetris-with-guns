@@ -1,5 +1,7 @@
 extends Node2D
 
+#IMPORTANT: Project -> Project Settings -> Globals -> Add interaction_manager
+
 @onready var player = get_tree().get_first_node_in_group("players") #Getting the players
 @onready var label = $Label #Getting the label
 
@@ -28,7 +30,7 @@ func _process(delta):
 	else:
 		label.hide()
 		
-#Sorting function finding nearest player
+#Sorting function finding nearest interacble to player
 func _sort_by_distance_to_player(area1, area2):
 	var area1_distance = player.global_position.distance_to(area1.global_position)
 	var area2_distance = player.global_position.distance_to(area2.global_position)

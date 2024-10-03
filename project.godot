@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="TetrisWithGuns"
-run/main_scene="res://Entity/Terrain/static_body_2d.tscn"
+run/main_scene="res://Scenes/Testing/boxes-interaction-test/static_body_2d.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-InteractionManager="*res://Entity/Components/interaction/interaction_manager.tscn"
+InteractionManager="*res://Components/Interaction/interaction_manager.tscn"
 
 [dotnet]
 

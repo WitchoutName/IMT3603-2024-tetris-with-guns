@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://ccqcnw8132xn3"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_b60ag"]
-[ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Entity/Components/Health/Health.tscn" id="2_51p1v"]
+[ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_51p1v"]
 [ext_resource type="Texture2D" uid="uid://crn5lue4hbroe" path="res://Assets/Temp_Player/Idle/thickIdleSheet.png" id="2_frpn7"]
-[ext_resource type="Script" path="res://Entity/Components/boxes/hurtbox.gd" id="4_ejg2s"]
+[ext_resource type="Script" path="res://Components/Boxes/hurtbox.gd" id="4_ejg2s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io1p0"]
 atlas = ExtResource("2_frpn7")
