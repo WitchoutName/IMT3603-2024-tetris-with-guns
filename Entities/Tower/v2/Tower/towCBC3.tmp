@@ -1,0 +1,50 @@
+[gd_scene load_steps=13 format=3 uid="uid://bg4cngm70t4x6"]
+
+[ext_resource type="Script" path="res://Entity/Tower/v1/Tower/tower.gd" id="1_6x66v"]
+[ext_resource type="Script" path="res://Entity/Tower/v1/Tower/tetramino_spawner.gd" id="2_d245e"]
+[ext_resource type="Texture2D" uid="uid://bgnro7v351ynl" path="res://icon.svg" id="2_qinop"]
+[ext_resource type="PackedScene" uid="uid://dxaquhilwfj3v" path="res://Entity/Tower/v1/Tetraminos/shape_i.tscn" id="3_gvutn"]
+[ext_resource type="PackedScene" uid="uid://bfkgkhqfc3883" path="res://Entity/Tower/v1/Tetraminos/shape_j.tscn" id="4_1msvq"]
+[ext_resource type="PackedScene" uid="uid://cb8u6hs4e80ol" path="res://Entity/Tower/v1/Tetraminos/shape_z.tscn" id="4_6x6nv"]
+[ext_resource type="PackedScene" uid="uid://dyl1o4ioclqe7" path="res://Entity/Tower/v1/Tetraminos/shape_l.tscn" id="5_62hdn"]
+[ext_resource type="PackedScene" uid="uid://d13ysmr2j0km" path="res://Entity/Tower/v1/Tetraminos/shape_o.tscn" id="6_4ogf5"]
+[ext_resource type="PackedScene" uid="uid://dxr2qt203ku6u" path="res://Entity/Tower/v1/Tetraminos/shape_s.tscn" id="7_30p3n"]
+[ext_resource type="PackedScene" uid="uid://k5e0evldnrai" path="res://Entity/Tower/v1/Tetraminos/shape_t.tscn" id="8_wnqyi"]
+[ext_resource type="Script" path="res://Entity/Tower/v1/Tower/tower_controller.gd" id="11_oc5n8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pydoe"]
+size = Vector2(1375, 40)
+
+[node name="Tower" type="Node2D"]
+position = Vector2(585, 530)
+script = ExtResource("1_6x66v")
+fall_speed = 3
+
+[node name="Platform" type="Area2D" parent="."]
+position = Vector2(0, -5)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(15, 25)
+shape = SubResource("RectangleShape2D_pydoe")
+one_way_collision_margin = 0.0
+
+[node name="Icon" type="Sprite2D" parent="Platform"]
+position = Vector2(17.2043, 26.8817)
+scale = Vector2(10.7969, 0.331821)
+texture = ExtResource("2_qinop")
+
+[node name="TetraminoSpawner" type="Node" parent="."]
+script = ExtResource("2_d245e")
+pieces = Array[PackedScene]([ExtResource("3_gvutn"), ExtResource("4_1msvq"), ExtResource("5_62hdn"), ExtResource("6_4ogf5"), ExtResource("7_30p3n"), ExtResource("8_wnqyi"), ExtResource("4_6x6nv")])
+
+[node name="TowerController" type="Node" parent="." node_paths=PackedStringArray("tower")]
+script = ExtResource("11_oc5n8")
+tower = NodePath("..")
+
+[node name="GroundMarker" type="Marker2D" parent="."]
+
+[node name="SpawnMarker" type="Marker2D" parent="."]
+position = Vector2(-15, -940)
+
+[node name="Tetraminos" type="Node" parent="."]

@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://ccqcnw8132xn3"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_b60ag"]
+[ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_51p1v"]
+[ext_resource type="Texture2D" uid="uid://crn5lue4hbroe" path="res://Assets/Temp_Player/Idle/thickIdleSheet.png" id="2_frpn7"]
+[ext_resource type="Script" path="res://Components/Boxes/hurtbox.gd" id="4_ejg2s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io1p0"]
+atlas = ExtResource("2_frpn7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwbe5"]
+atlas = ExtResource("2_frpn7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmbvy"]
+atlas = ExtResource("2_frpn7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jocim"]
+atlas = ExtResource("2_frpn7")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8qve"]
+atlas = ExtResource("2_frpn7")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iulah"]
+atlas = ExtResource("2_frpn7")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwkaw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io1p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwbe5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmbvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jocim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8qve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iulah")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3eljs"]
+height = 54.0
+
+[node name="Player" type="CharacterBody2D" groups=["players"]]
+position = Vector2(4, 0)
+script = ExtResource("1_b60ag")
+
+[node name="Health" parent="." instance=ExtResource("2_51p1v")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pwkaw")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 3)
+shape = SubResource("CapsuleShape2D_3eljs")
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("4_ejg2s")
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-2, 3)
+shape = SubResource("CapsuleShape2D_3eljs")
+
+[connection signal="death" from="Health" to="." method="_on_health_death"]

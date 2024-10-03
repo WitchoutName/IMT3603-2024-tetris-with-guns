@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://djhd2dlbebro6"]
+
+[ext_resource type="Texture2D" uid="uid://bgnro7v351ynl" path="res://icon.svg" id="1_bb6oi"]
+[ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="2_edmk7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxu1g"]
+size = Vector2(32, 59.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_heyy2"]
+size = Vector2(126, 131)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bb6oi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 33.75)
+shape = SubResource("RectangleShape2D_xxu1g")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_edmk7")
+hitbox_damage = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_heyy2")
