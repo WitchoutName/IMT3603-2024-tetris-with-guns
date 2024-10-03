@@ -2,12 +2,12 @@ extends Node2D
 
 var bulletScene = load("res://Entities/bullet.tscn")
 var casingScene = load("res://Entities/casing.tscn")
-var bulletSpeed = 1000
-var bps = 2
-var bulletDamage = 30
-var bulletSpread = 0.1
+@export var bulletSpeed = 1000
+@export var bps = 2
+@export var bulletDamage = 30
+@export var bulletSpread = 0.1
 var fireRate: float
-var timeUntilFire = 0
+@export var timeUntilFire = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
