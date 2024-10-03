@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpn3shiiv2u8l"]
+
+[ext_resource type="Texture2D" uid="uid://bkiujndt2b26k" path="res://Assets/GunAssets/casing.png" id="1_u4cm8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6netp"]
+size = Vector2(2, 1)
+
+[node name="casing" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_u4cm8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6netp")
+
+[node name="Timer" type="Timer" parent="."]

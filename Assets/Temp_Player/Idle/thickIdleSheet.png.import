@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1owkgy7e6g26"
-path="res://.godot/imported/tetraminos.png-332ef42702b5009138514d042466e470.ctex"
+uid="uid://crn5lue4hbroe"
+path="res://.godot/imported/thickIdleSheet.png-da6bf048163164e1e3d83d779049e9ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tetraminos.png"
-dest_files=["res://.godot/imported/tetraminos.png-332ef42702b5009138514d042466e470.ctex"]
+source_file="res://Assets/Temp_Player/Idle/thickIdleSheet.png"
+dest_files=["res://.godot/imported/thickIdleSheet.png-da6bf048163164e1e3d83d779049e9ba.ctex"]
 
 [params]
 

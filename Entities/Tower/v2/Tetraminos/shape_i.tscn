@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://ra0u50w7gahs"]
 
-[ext_resource type="Script" path="res://Entity/Tower/v2/Tetraminos/tetramino.gd" id="1_k7jbg"]
+[ext_resource type="Script" path="res://Entities/Tower/v2/Tetraminos/tetramino.gd" id="1_rml30"]
 [ext_resource type="Texture2D" uid="uid://d1owkgy7e6g26" path="res://Assets/tetraminos.png" id="2_4ic57"]
 
 [node name="ShapeI" type="StaticBody2D"]
-script = ExtResource("1_k7jbg")
+script = ExtResource("1_rml30")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
