@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b62gaquce8rnp"]
 
-[ext_resource type="Script" path="res://Entity/Tower/v2/Tetraminos/tetramino.gd" id="1_trqd3"]
+[ext_resource type="Script" path="res://Entities/Tower/v2/Tetraminos/tetramino.gd" id="1_trqd3"]
 [ext_resource type="Texture2D" uid="uid://d1owkgy7e6g26" path="res://Assets/tetraminos.png" id="2_yyvri"]
 
 [node name="ShapeJ" type="StaticBody2D"]

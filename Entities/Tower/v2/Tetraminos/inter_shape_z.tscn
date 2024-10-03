@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://pot2k2yn1kx3"]
 
-[ext_resource type="Script" path="res://Entity/Tower/v1/Tetraminos/inter_shape_z.gd" id="1_15cnb"]
+[ext_resource type="Script" path="res://Entities/Tower/v2/Tetraminos/inter_shape_z.gd" id="1_15cnb"]
 [ext_resource type="Texture2D" uid="uid://d1owkgy7e6g26" path="res://Assets/tetraminos.png" id="1_k8sf7"]
 [ext_resource type="PackedScene" uid="uid://d1573xume3rwr" path="res://Components/Interaction/Interaction_area/interaction_area.tscn" id="2_on7uw"]
 
