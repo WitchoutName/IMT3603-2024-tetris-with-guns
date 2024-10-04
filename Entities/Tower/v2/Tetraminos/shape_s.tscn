@@ -1,28 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://4et6a2esjn17"]
+[gd_scene load_steps=5 format=3 uid="uid://4et6a2esjn17"]
 
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tetraminos/tetramino.gd" id="1_soe7y"]
-[ext_resource type="Texture2D" uid="uid://d1owkgy7e6g26" path="res://Assets/tetraminos.png" id="2_8q28l"]
+[ext_resource type="Texture2D" uid="uid://bguuj01b7tamu" path="res://Assets/Tower/tetraminos.png" id="2_aycv1"]
+[ext_resource type="PackedScene" uid="uid://d1573xume3rwr" path="res://Components/Interaction/Interaction_area/interaction_area.tscn" id="3_yrxnc"]
 
-[node name="ShapeS" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7pkcl"]
+size = Vector2(176, 128)
+
+[node name="ShapeS" type="RigidBody2D"]
 script = ExtResource("1_soe7y")
 shape = 4
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.08616e-06, -25)
-scale = Vector2(0.426136, 0.431035)
-texture = ExtResource("2_8q28l")
-region_enabled = true
-region_rect = Rect2(20, 900, 352, 232)
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 rotation = -3.14159
 scale = Vector2(1, -1)
-polygon = PackedVector2Array(-74, -74, -24, -74, 24, -74, 24, -24, 74, -24, 74, 24, -24, 24, -24, -26, -74, -26)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
-rotation = -3.14159
-scale = Vector2(1, -1)
-build_mode = 1
 polygon = PackedVector2Array(-75, -75, -25, -75, 25, -75, 25, -25, 75, -25, 75, 25, -25, 25, -25, -25, -75, -25)
-disabled = true
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_yrxnc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_7pkcl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.0149299, -24.9886)
+rotation = 1.5708
+scale = Vector2(0.374486, 0.374068)
+texture = ExtResource("2_aycv1")
+region_enabled = true
+region_rect = Rect2(0, 266, 267, 401)

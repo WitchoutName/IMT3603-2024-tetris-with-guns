@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://my3rj42cgqey"]
+
+[ext_resource type="Script" path="res://Entities/Tower/v2/TetraminoRepulsor/tetramino_repulsor.gd" id="1_e7rry"]
+
+[node name="TetraminoRepulsor" type="Area2D"]
+script = ExtResource("1_e7rry")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

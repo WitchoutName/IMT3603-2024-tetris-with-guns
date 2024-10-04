@@ -1,8 +1,8 @@
 extends RigidBody2D
 
 @onready var interaction_area: InteractionArea = $InteractionArea
-var picked_up = false
-var player
+var picked_up: bool = false
+var player: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,16 +16,18 @@ func _process(delta):
 		global_position = player.global_position
 		
 
-func _on_interact():
+func _on_interact(_player: Player):
 	print("It works!")
 	$CollisionShape2D.disabled = true
 	picked_up = true
+	player = _player
 	
 	#Awaiting release in order to avoid triggering release
 	await wait_for_no_input()
 	
 	await release()
 	$CollisionShape2D.disabled = false
+	player = null
 
 func release():
 	while true:

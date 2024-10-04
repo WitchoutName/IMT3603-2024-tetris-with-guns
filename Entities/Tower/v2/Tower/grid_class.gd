@@ -1,24 +1,25 @@
 
 class_name GridClass
 
-static var DIMENSTIONS: Vector2 = Vector2(10, 20)
-static var PETRIFY_WIDTH: int = 6
-static var SPAWN_POINT: Vector2 = Vector2(5, 0)
+static var DIMENSTIONS: Vector2 = Vector2(8, 20)
+static var PETRIFY_WIDTH: int = 8
 var matrix: Array
 var size: Vector2
 var petrify_range: Vector2
+var last_petrified_index: int
 var active_piece: Tetramino2
 
 
 func _init(_size: Vector2 = DIMENSTIONS, petrify_width: int = PETRIFY_WIDTH):
 	size = _size
 	petrify_range = Vector2(size.x/2 - petrify_width/2, size.x/2 + petrify_width/2)
+	last_petrified_index = size.y
 	for x in range(_size.x):
 		matrix.append([])
 		for y in range(_size.y):
 			matrix[x].append(null)
 
-func attach_piece(piece: Tetramino2, position: Vector2 = SPAWN_POINT):
+func attach_piece(piece: Tetramino2, position: Vector2 = Vector2(size.x/2-1, 0)):
 	active_piece = piece
 	active_piece.data.position = position
 	active_piece.sync(size)
@@ -79,10 +80,31 @@ func dettach_piece():
 			var grid_x = active_piece.data.position.x + x
 			var grid_y = active_piece.data.position.y + y
 			matrix[grid_x][grid_y] = active_piece
+			
+			var piece_above: Tetramino2 = matrix[grid_x][grid_y-1] if grid_y-1 >= 0 else null
+			var piece_below: Tetramino2 = matrix[grid_x][grid_y+1] if grid_y+1 <= size.y-1 else null
+			
+			if piece_above and piece_above != active_piece:
+				if not piece_above in active_piece.data.pieces_above:
+					active_piece.data.pieces_above.append(piece_above)
+				if not active_piece in piece_above.data.pieces_below:
+					piece_above.data.pieces_below.append(active_piece)
+			if piece_below and piece_below != active_piece:
+				if not piece_below in active_piece.data.pieces_below:
+					active_piece.data.pieces_below.append(piece_below)
+				if not active_piece in piece_below.data.pieces_above:
+					piece_below.data.pieces_above.append(active_piece)
+			
 	active_piece = null
-	print("---start---")
-	print_grid()
-	print("----end----")
+	#print("---start---")
+	#print_grid()
+	#print("----end----")
+	
+func remove_piece(piece: Tetramino2):
+	for x in range(matrix.size()):
+		for y in range(matrix[x].size()):
+			if matrix[x][y] == piece:
+				matrix[x][y] = null
 
 func _is_colliding(piece_matrix: Array, position: Vector2) -> bool:
 	for x in range(piece_matrix.size()):
@@ -115,19 +137,23 @@ func print_grid() -> void:
 		print(row_string + "  ", y)  # Print the constructed row
 
 func get_complete_row() -> int:
-	for y in range(size.y-1, -1, -1):
-		print("row:", y)
+	for y in range(last_petrified_index-1, -1, -1):
+		#print("row:", y)
 		var is_complete = true
 		for x in range(petrify_range.x, petrify_range.y):
-			if y > 16: print("p: ", x)
+			#if y > 16: print("p: ", x)
 			var piece = matrix[x][y] 
 			if piece:
-				if not _is_piece_grounded(piece):
-					print("Not grounded")
+				if piece.is_petrified:
+					pass
+				elif not _is_piece_grounded(piece):
+					#print("Not grounded")
 					is_complete = false
 			else:
 				is_complete = false
-		if is_complete: return y
+		if is_complete:
+			last_petrified_index = y
+			return y
 	return -1
 
 func _is_piece_grounded(piece: Tetramino2): # Piece is grounded if at leat one part is above ground or petrified piece
@@ -141,7 +167,7 @@ func _is_piece_grounded(piece: Tetramino2): # Piece is grounded if at leat one p
 			var grid_y = piece.data.position.y + y
 			
 			if grid_y >= size.y-1:
-				print("Grounded on floor")
+				#print("Grounded on floor")
 				return true
 			var piece_below = matrix[grid_x][grid_y+1]
 			if piece_below and piece_below.is_petrified:
