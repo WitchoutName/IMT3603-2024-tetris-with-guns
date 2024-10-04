@@ -1,16 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvvcu55djpmfd"]
+[gd_scene load_steps=12 format=3 uid="uid://dvvcu55djpmfd"]
 
 [ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="1_pfrtc"]
-[ext_resource type="Texture2D" uid="uid://bgnro7v351ynl" path="res://icon.svg" id="2_hahjy"]
+[ext_resource type="Texture2D" uid="uid://c22t4f0l84tgo" path="res://icon.svg" id="2_hahjy"]
+[ext_resource type="PackedScene" uid="uid://ccqcnw8132xn3" path="res://Entities/Player/player.tscn" id="4_mdq4h"]
+[ext_resource type="PackedScene" uid="uid://4et6a2esjn17" path="res://Entities/Tower/v2/Tetraminos/shape_s.tscn" id="6_8p13x"]
+[ext_resource type="PackedScene" uid="uid://3wfb2f4sa68f" path="res://Entities/Tower/v2/Tetraminos/shape_j.tscn" id="6_vdxqc"]
+[ext_resource type="PackedScene" uid="uid://ra0u50w7gahs" path="res://Entities/Tower/v2/Tetraminos/shape_i.tscn" id="7_1i45h"]
+[ext_resource type="PackedScene" uid="uid://bjuwxo57a2sgx" path="res://Entities/Tower/v2/Tetraminos/shape_l.tscn" id="7_ff156"]
+[ext_resource type="PackedScene" uid="uid://b62gaquce8rnp" path="res://Entities/Tower/v2/Tetraminos/shape_o.tscn" id="8_kp4nd"]
+[ext_resource type="PackedScene" uid="uid://ch3qi5k4wkwd0" path="res://Entities/Tower/v2/Tetraminos/shape_t.tscn" id="9_6apwi"]
+[ext_resource type="PackedScene" uid="uid://cm8tbcww1ot3j" path="res://Entities/Tower/v2/Tetraminos/shape_z.tscn" id="10_cifx8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anhks"]
 size = Vector2(502, 40)
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(104.195, 280)
+scale = Vector2(0.525, 0.525)
 
 [node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2(570, 629)
-scale = Vector2(2.7, 0.345)
+scale = Vector2(3.795, 0.485)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
@@ -24,5 +34,62 @@ scale = Vector2(3.92969, 0.331821)
 texture = ExtResource("2_hahjy")
 
 [node name="Tower" parent="." instance=ExtResource("1_pfrtc")]
-position = Vector2(167, 537)
-scale = Vector2(0.585, 0.585)
+position = Vector2(128, 496)
+
+[node name="Player" parent="." instance=ExtResource("4_mdq4h")]
+position = Vector2(434, 552)
+scale = Vector2(1.755, 1.755)
+
+[node name="ShapeS" parent="." instance=ExtResource("6_8p13x")]
+position = Vector2(607.248, 430.476)
+
+[node name="ShapeS4" parent="." instance=ExtResource("6_8p13x")]
+position = Vector2(607.248, 430.476)
+
+[node name="ShapeI" parent="." instance=ExtResource("7_1i45h")]
+position = Vector2(879.628, 354.286)
+
+[node name="ShapeI4" parent="." instance=ExtResource("7_1i45h")]
+position = Vector2(879.628, 354.286)
+
+[node name="ShapeI2" parent="." instance=ExtResource("7_1i45h")]
+position = Vector2(748.2, -13.3333)
+
+[node name="ShapeI3" parent="." instance=ExtResource("7_1i45h")]
+position = Vector2(624.391, -43.8096)
+
+[node name="ShapeJ" parent="." instance=ExtResource("6_vdxqc")]
+position = Vector2(1051.06, 38.0952)
+
+[node name="ShapeJ4" parent="." instance=ExtResource("6_vdxqc")]
+position = Vector2(1051.06, 38.0952)
+
+[node name="ShapeJ2" parent="." instance=ExtResource("7_ff156")]
+position = Vector2(858.676, 38.0952)
+
+[node name="ShapeJ3" parent="." instance=ExtResource("7_ff156")]
+position = Vector2(858.676, 38.0952)
+
+[node name="ShapeO" parent="." instance=ExtResource("8_kp4nd")]
+position = Vector2(656.771, 196.19)
+
+[node name="ShapeO2" parent="." instance=ExtResource("8_kp4nd")]
+position = Vector2(656.771, 196.19)
+
+[node name="ShapeS2" parent="." instance=ExtResource("6_8p13x")]
+position = Vector2(1112.01, 268.571)
+
+[node name="ShapeS3" parent="." instance=ExtResource("6_8p13x")]
+position = Vector2(1112.01, 268.571)
+
+[node name="ShapeT" parent="." instance=ExtResource("9_6apwi")]
+position = Vector2(1100.58, 363.81)
+
+[node name="ShapeT2" parent="." instance=ExtResource("9_6apwi")]
+position = Vector2(1100.58, 363.81)
+
+[node name="ShapeZ" parent="." instance=ExtResource("10_cifx8")]
+position = Vector2(742.485, 569.524)
+
+[node name="ShapeZ2" parent="." instance=ExtResource("10_cifx8")]
+position = Vector2(742.485, 569.524)

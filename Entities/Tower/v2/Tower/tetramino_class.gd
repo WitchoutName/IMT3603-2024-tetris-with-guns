@@ -225,3 +225,5 @@ static func transpose_matrix(matrix: Array) -> Array:
 
 var position: Vector2
 var rotation: int
+var pieces_above: Array[Tetramino2]
+var pieces_below: Array[Tetramino2]

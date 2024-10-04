@@ -1,22 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://b62gaquce8rnp"]
+[gd_scene load_steps=5 format=3 uid="uid://b62gaquce8rnp"]
 
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tetraminos/tetramino.gd" id="1_trqd3"]
-[ext_resource type="Texture2D" uid="uid://d1owkgy7e6g26" path="res://Assets/tetraminos.png" id="2_yyvri"]
+[ext_resource type="Texture2D" uid="uid://bguuj01b7tamu" path="res://Assets/Tower/tetraminos.png" id="2_2wowj"]
+[ext_resource type="PackedScene" uid="uid://d1573xume3rwr" path="res://Components/Interaction/Interaction_area/interaction_area.tscn" id="3_8lj01"]
 
-[node name="ShapeJ" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rjgb"]
+size = Vector2(128, 128)
+
+[node name="ShapeO" type="RigidBody2D"]
 script = ExtResource("1_trqd3")
 shape = 3
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(25, 25)
-scale = Vector2(0.431035, 0.435345)
-texture = ExtResource("2_yyvri")
+scale = Vector2(0.374532, 0.374532)
+texture = ExtResource("2_2wowj")
 region_enabled = true
-region_rect = Rect2(140, 648, 232, 232)
+region_rect = Rect2(400, 1733, 267, 267)
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_8lj01")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(24, 24)
+shape = SubResource("RectangleShape2D_3rjgb")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(25, 25)
 rotation = -3.14159
-scale = Vector2(0.97, -0.97)
 polygon = PackedVector2Array(-50, -50, -50, 50, 50, 50, 50, -50)

@@ -1,10 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://byif3328hr2c6"]
+[gd_scene load_steps=25 format=3 uid="uid://byif3328hr2c6"]
 
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tower/tower.gd" id="1_hx4cm"]
-[ext_resource type="Texture2D" uid="uid://bgnro7v351ynl" path="res://icon.svg" id="2_3me5p"]
-[ext_resource type="Texture2D" uid="uid://buiy4uqhk4c06" path="res://Assets/OldComps/oldComputerSptiresheet.png" id="3_8byfq"]
+[ext_resource type="Texture2D" uid="uid://c22t4f0l84tgo" path="res://icon.svg" id="2_3me5p"]
+[ext_resource type="PackedScene" uid="uid://my3rj42cgqey" path="res://Entities/Tower/v2/TetraminoRepulsor/tetramino_repulsor.tscn" id="2_8wlgw"]
+[ext_resource type="Texture2D" uid="uid://buiy4uqhk4c06" path="res://Assets/Tower/OldComps/oldComputerSptiresheet.png" id="3_8byfq"]
+[ext_resource type="Script" path="res://Entities/Tower/v2/Tower/terminal.gd" id="3_px4sf"]
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tower/tetramino_spawner.gd" id="3_uw0xx"]
+[ext_resource type="Texture2D" uid="uid://bu7sni7uwk607" path="res://Assets/Common/white.png" id="4_3yw3x"]
 [ext_resource type="PackedScene" uid="uid://ra0u50w7gahs" path="res://Entities/Tower/v2/Tetraminos/shape_i.tscn" id="4_tgycw"]
+[ext_resource type="PackedScene" uid="uid://d1573xume3rwr" path="res://Components/Interaction/Interaction_area/interaction_area.tscn" id="4_vu7ru"]
 [ext_resource type="PackedScene" uid="uid://3wfb2f4sa68f" path="res://Entities/Tower/v2/Tetraminos/shape_j.tscn" id="5_xuhv1"]
 [ext_resource type="PackedScene" uid="uid://bjuwxo57a2sgx" path="res://Entities/Tower/v2/Tetraminos/shape_l.tscn" id="6_dahiv"]
 [ext_resource type="PackedScene" uid="uid://b62gaquce8rnp" path="res://Entities/Tower/v2/Tetraminos/shape_o.tscn" id="7_c6njf"]
@@ -12,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://ch3qi5k4wkwd0" path="res://Entities/Tower/v2/Tetraminos/shape_t.tscn" id="9_g4e60"]
 [ext_resource type="PackedScene" uid="uid://cm8tbcww1ot3j" path="res://Entities/Tower/v2/Tetraminos/shape_z.tscn" id="10_4eg7w"]
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tower/tower_controller.gd" id="11_rfkfq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xm1jy"]
+size = Vector2(512, 1044)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pydoe"]
 size = Vector2(502, 40)
@@ -56,10 +63,16 @@ animations = [{
 size = Vector2(86, 55)
 
 [node name="Tower" type="Node2D"]
-position = Vector2(585, 530)
+position = Vector2(585, 646.735)
 script = ExtResource("1_hx4cm")
-petrify_width = 6
-fall_speed = 7.5
+
+[node name="TetraminoRepulsor" parent="." instance=ExtResource("2_8wlgw")]
+force = Vector2(225, -600)
+max_velocity = 700.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TetraminoRepulsor"]
+position = Vector2(-2, -506.735)
+shape = SubResource("RectangleShape2D_xm1jy")
 
 [node name="TowerBase" type="StaticBody2D" parent="."]
 scale = Vector2(1, 0.485)
@@ -75,17 +88,21 @@ position = Vector2(0.500034, 26.8817)
 scale = Vector2(3.92969, 0.331821)
 texture = ExtResource("2_3me5p")
 
-[node name="Terminal" type="Area2D" parent="."]
+[node name="Terminal" type="Node2D" parent="."]
 position = Vector2(0, 133)
 scale = Vector2(1.915, 1.915)
+script = ExtResource("3_px4sf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Terminal"]
 position = Vector2(0, -21)
 scale = Vector2(1.26, 1.26)
 sprite_frames = SubResource("SpriteFrames_wct1g")
-frame_progress = 0.639332
+frame_progress = 0.608911
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Terminal"]
+[node name="InteractionArea" parent="Terminal" instance=ExtResource("4_vu7ru")]
+interaction_group = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terminal/InteractionArea"]
 position = Vector2(-1, -25)
 shape = SubResource("RectangleShape2D_4o85y")
 
@@ -104,29 +121,28 @@ position = Vector2(0.500034, 26.8817)
 scale = Vector2(3.92969, 0.331821)
 texture = ExtResource("2_3me5p")
 
-[node name="Bg" type="Sprite2D" parent="."]
-visible = false
+[node name="PetrifyZone" type="Sprite2D" parent="."]
+modulate = Color(0.56, 0.30912, 0.2016, 0.254902)
 position = Vector2(-3.05176e-05, -500)
-scale = Vector2(3.91406, 7.8125)
-texture = ExtResource("2_3me5p")
+scale = Vector2(500, 1000)
+texture = ExtResource("4_3yw3x")
 
 [node name="TetraminoSpawner" type="Node" parent="."]
 script = ExtResource("3_uw0xx")
+enabled = false
 pieces = Array[PackedScene]([ExtResource("4_tgycw"), ExtResource("5_xuhv1"), ExtResource("6_dahiv"), ExtResource("7_c6njf"), ExtResource("8_yipkm"), ExtResource("9_g4e60"), ExtResource("10_4eg7w")])
 
 [node name="TowerController" type="Node" parent="." node_paths=PackedStringArray("tower")]
 script = ExtResource("11_rfkfq")
 tower = NodePath("..")
-
-[node name="GroundMarker" type="Marker2D" parent="."]
-
-[node name="SpawnMarker" type="Marker2D" parent="."]
-position = Vector2(-15, -940)
-
-[node name="Tetraminos" type="Node" parent="."]
+enabled = false
 
 [node name="MoveDownTimer" type="Timer" parent="."]
 wait_time = 0.115
 autostart = true
 
+[node name="Tetraminos" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="Terminal/InteractionArea" to="Terminal" method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="Terminal/InteractionArea" to="Terminal" method="_on_interaction_area_body_exited"]
 [connection signal="timeout" from="MoveDownTimer" to="." method="_on_move_down_timer_timeout"]

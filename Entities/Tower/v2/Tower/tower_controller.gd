@@ -1,6 +1,7 @@
 extends Node
 
-@export 	var tower: Tower2
+@export var tower: Tower2
+@export var enabled: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,7 +10,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if tower.active_piece:
+	if enabled and tower.active_piece:
 		if Input.is_action_just_pressed("tower_move_left"):
 			tower.ap_move_left()
 		if Input.is_action_just_pressed("tower_move_right"):
