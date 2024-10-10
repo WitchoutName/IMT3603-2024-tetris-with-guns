@@ -11,7 +11,7 @@ func update(delta):
 		return STATES.IDLE
 	if Player.dash_input and Player.can_dash:
 		return STATES.DASH
-	if Player.input_jump_actuation and can_jump:
+	if Player.jump_input_actuation and can_jump:
 		return STATES.JUMP
 	return null
 	
