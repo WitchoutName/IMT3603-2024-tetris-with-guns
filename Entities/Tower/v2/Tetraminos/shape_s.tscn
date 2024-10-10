@@ -18,6 +18,9 @@ scale = Vector2(1, -1)
 polygon = PackedVector2Array(-75, -75, -25, -75, 25, -75, 25, -25, 75, -25, 75, 25, -25, 25, -25, -25, -75, -25)
 
 [node name="InteractionArea" parent="." instance=ExtResource("3_yrxnc")]
+action_name = null
+interaction_group = null
+enabled = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(0, -24)

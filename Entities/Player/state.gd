@@ -1,6 +1,6 @@
 extends Node
 
-var STATES = null
+var STATES: PlayerStates = null
 var Player = null
 	
 func enter_state():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://djt62kv6cjpl3"]
+[gd_scene load_steps=2 format=3 uid="uid://b6c4ool2kanqk"]
 
 [ext_resource type="Script" path="res://Entities/Player/JUMP.gd" id="1_0fatc"]
 

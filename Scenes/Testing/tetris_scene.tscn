@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvvcu55djpmfd"]
+[gd_scene load_steps=13 format=3 uid="uid://dvvcu55djpmfd"]
 
 [ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="1_pfrtc"]
 [ext_resource type="Texture2D" uid="uid://c22t4f0l84tgo" path="res://icon.svg" id="2_hahjy"]
 [ext_resource type="PackedScene" uid="uid://ccqcnw8132xn3" path="res://Entities/Player/player.tscn" id="4_mdq4h"]
+[ext_resource type="Script" path="res://Entities/Player/player.gd" id="4_vt64c"]
 [ext_resource type="PackedScene" uid="uid://4et6a2esjn17" path="res://Entities/Tower/v2/Tetraminos/shape_s.tscn" id="6_8p13x"]
 [ext_resource type="PackedScene" uid="uid://3wfb2f4sa68f" path="res://Entities/Tower/v2/Tetraminos/shape_j.tscn" id="6_vdxqc"]
 [ext_resource type="PackedScene" uid="uid://ra0u50w7gahs" path="res://Entities/Tower/v2/Tetraminos/shape_i.tscn" id="7_1i45h"]
@@ -39,6 +40,7 @@ position = Vector2(128, 496)
 [node name="Player" parent="." instance=ExtResource("4_mdq4h")]
 position = Vector2(434, 552)
 scale = Vector2(1.755, 1.755)
+script = ExtResource("4_vt64c")
 
 [node name="ShapeS" parent="." instance=ExtResource("6_8p13x")]
 position = Vector2(607.248, 430.476)

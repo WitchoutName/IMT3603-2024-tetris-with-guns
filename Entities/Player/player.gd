@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity_value = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -22,8 +23,14 @@ var can_dash = true
 var current_state = null
 var prev_state = null
 
+#tetris
+var tower: Tower2
+var is_controlling_tower: bool = false
+var piece_catied: Tetramino2
+var move_direction: float
+
 #nodes
-@onready var STATES = $STATES
+@onready var STATES: PlayerStates = $STATES
 @onready var Raycasts = $Raycasts
 
 
@@ -34,15 +41,26 @@ func _ready():
 		prev_state = STATES.IDLE
 		current_state = STATES.IDLE
 
-func _physics_process(delta):
-	player_input()
+func _physics_process(delta):	
+	if is_controlling_tower: _handle_tower_input()
+	else: player_input()
+	
 	change_state(current_state.update(delta))
 	move_and_slide()
 	#default_move(delta)
+	
+func _handle_tower_input():
+	if tower.active_piece:
+		if Input.is_action_just_pressed("tower_move_left"):
+			tower.ap_move_left()
+		if Input.is_action_just_pressed("tower_move_right"):
+			tower.ap_move_right()
+		if Input.is_action_just_pressed("tower_rotate"):
+			tower.ap_rotate()
 
 func gravity(delta):
 	if not is_on_floor():
-		velocity += gravity_value * delta
+		velocity.y += gravity_value * delta
 
 func change_state(input_state):
 	if input_state != null:

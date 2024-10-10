@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbwe1m1uyi0de"]
+[gd_scene load_steps=2 format=3 uid="uid://dctd6v8avpg2n"]
 
 [ext_resource type="Script" path="res://Entities/Player/IDLE.gd" id="1_5nqy5"]
 

@@ -6,7 +6,7 @@ func update(delta):
 		return STATES.MOVE
 	if Player.jump_input_actuation == true:
 		return STATES.JUMP
-	if Player.velocity>0:
+	if Player.velocity.y > 0:
 		return STATES.FALL
 	if Player.dash_input and Player.can_dash:
 		return STATES.DASH

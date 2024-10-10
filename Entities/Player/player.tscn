@@ -1,19 +1,17 @@
-[gd_scene load_steps=23 format=3 uid="uid://ccqcnw8132xn3"]
+[gd_scene load_steps=21 format=3 uid="uid://ccqcnw8132xn3"]
 
-[ext_resource type="Script" path="res://Entities/Player/PLAYER.gd" id="1_yj4pq"]
+[ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_b60ag"]
 [ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_qk4a2"]
 [ext_resource type="Texture2D" uid="uid://crn5lue4hbroe" path="res://Assets/Temp_Player/Idle/thickIdleSheet.png" id="3_dasr1"]
 [ext_resource type="Script" path="res://Components/Boxes/hurtbox.gd" id="4_0vliq"]
 [ext_resource type="Script" path="res://Entities/Player/STATES.gd" id="5_4wxoe"]
-[ext_resource type="PackedScene" uid="uid://5gl2ib413ayx" path="res://Entities/Player/FALL.tscn" id="6_h8lf8"]
-[ext_resource type="Script" path="res://Entities/Player/FALL.gd" id="7_6840l"]
-[ext_resource type="PackedScene" uid="uid://bbwe1m1uyi0de" path="res://Entities/Player/IDLE.tscn" id="8_ssjbc"]
-[ext_resource type="Script" path="res://Entities/Player/IDLE.gd" id="9_emhwb"]
-[ext_resource type="PackedScene" uid="uid://j28rv1n10uhk" path="res://Entities/Player/MOVE.tscn" id="10_0eubm"]
-[ext_resource type="Script" path="res://Entities/Player/MOVE.gd" id="11_7py2n"]
-[ext_resource type="PackedScene" uid="uid://djt62kv6cjpl3" path="res://Entities/Player/JUMP.tscn" id="12_rsy0m"]
-[ext_resource type="PackedScene" uid="uid://bdpgiyuxyth8k" path="res://Entities/Player/DASH.tscn" id="13_gbmsj"]
-[ext_resource type="PackedScene" uid="uid://dcsr0j80l8umk" path="res://Entities/Player/SLIDE.tscn" id="14_o0klo"]
+[ext_resource type="PackedScene" uid="uid://cy6x818dvugor" path="res://Entities/Player/FALL.tscn" id="6_h8lf8"]
+[ext_resource type="PackedScene" uid="uid://dctd6v8avpg2n" path="res://Entities/Player/IDLE.tscn" id="8_ssjbc"]
+[ext_resource type="PackedScene" uid="uid://cxqlc716bahwr" path="res://Entities/Player/MOVE.tscn" id="10_0eubm"]
+[ext_resource type="Script" path="res://Entities/Player/SLIDE.gd" id="12_onf3n"]
+[ext_resource type="PackedScene" uid="uid://b6c4ool2kanqk" path="res://Entities/Player/JUMP.tscn" id="12_rsy0m"]
+[ext_resource type="PackedScene" uid="uid://caiga5uv5evtk" path="res://Entities/Player/DASH.tscn" id="13_gbmsj"]
+[ext_resource type="PackedScene" uid="uid://ct16ftajdtqby" path="res://Entities/Player/SLIDE.tscn" id="14_o0klo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io1p0"]
 atlas = ExtResource("3_dasr1")
@@ -70,7 +68,7 @@ height = 54.0
 
 [node name="Player" type="CharacterBody2D" groups=["players"]]
 position = Vector2(4, 0)
-script = ExtResource("1_yj4pq")
+script = ExtResource("1_b60ag")
 
 [node name="Health" parent="." instance=ExtResource("2_qk4a2")]
 
@@ -97,19 +95,17 @@ shape = SubResource("CapsuleShape2D_3eljs")
 script = ExtResource("5_4wxoe")
 
 [node name="FALL" parent="STATES" instance=ExtResource("6_h8lf8")]
-script = ExtResource("7_6840l")
 
 [node name="IDLE" parent="STATES" instance=ExtResource("8_ssjbc")]
-script = ExtResource("9_emhwb")
 
 [node name="MOVE" parent="STATES" instance=ExtResource("10_0eubm")]
-script = ExtResource("11_7py2n")
 
 [node name="JUMP" parent="STATES" instance=ExtResource("12_rsy0m")]
 
 [node name="DASH" parent="STATES" instance=ExtResource("13_gbmsj")]
 
 [node name="SLIDE" parent="STATES" instance=ExtResource("14_o0klo")]
+script = ExtResource("12_onf3n")
 
 [node name="Raycasts" type="Node" parent="."]
 
