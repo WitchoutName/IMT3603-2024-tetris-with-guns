@@ -65,6 +65,7 @@ size = Vector2(86, 55)
 [node name="Tower" type="Node2D"]
 position = Vector2(585, 646.735)
 script = ExtResource("1_hx4cm")
+fall_speed = 8.5
 
 [node name="TetraminoRepulsor" parent="." instance=ExtResource("2_8wlgw")]
 force = Vector2(225, -600)
