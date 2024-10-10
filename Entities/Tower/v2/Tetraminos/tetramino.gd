@@ -77,12 +77,14 @@ func _set__player(value: Player):
 	
 func _on_interact(_player: Player):
 	if tower: tower.steal(self)
-	attach(_player)
-	#Awaiting release in order to avoid triggering release
-	await _wait_for_no_input()
-	
-	await _wait_for_no_release()
-	release()
+	if player:	release()
+	else: 	attach(_player)
+		
+	##Awaiting release in order to avoid triggering release
+	#await _wait_for_no_input()
+	#
+	#await _wait_for_no_release()
+
 
 func _wait_for_no_release():
 	while true:
@@ -117,6 +119,7 @@ func release():
 	if player:
 		$CollisionPolygon2D.disabled = false
 		player.piece_catied = null
+		picked_up = true
 		player = null
 		is_tetris_mode = false
 
