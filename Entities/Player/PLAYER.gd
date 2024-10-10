@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Player
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity_value = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -18,6 +18,12 @@ var last_direction = Vector2.RIGHT
 #mechanics
 var can_dash = true
 
+#tetris
+var tower: Tower2
+var is_controlling_tower: bool = false
+var piece_catied: Tetramino2
+var move_direction: float
+
 #states
 var current_state = null
 var prev_state = null
@@ -35,14 +41,26 @@ func _ready():
 		current_state = STATES.IDLE
 
 func _physics_process(delta):
-	player_input()
+	
+	if is_controlling_tower: _handle_tower_input()
+	else: player_input()
+	
 	change_state(current_state.update(delta))
 	move_and_slide()
 	#default_move(delta)
 
+func _handle_tower_input():
+	if tower.active_piece:
+		if Input.is_action_just_pressed("tower_move_left"):
+			tower.ap_move_left()
+		if Input.is_action_just_pressed("tower_move_right"):
+			tower.ap_move_right()
+		if Input.is_action_just_pressed("tower_rotate"):
+			tower.ap_rotate()
+
 func gravity(delta):
 	if not is_on_floor():
-		velocity += gravity_value * delta
+		velocity += get_gravity() * delta
 
 func change_state(input_state):
 	if input_state != null:
@@ -68,10 +86,10 @@ func player_input():
 		movement_input.x += 1
 	if Input.is_action_pressed("MoveLeft"):
 		movement_input.x -= 1
-	if Input.is_action_pressed("MoveUp"):
-		movement_input.y -= 1
-	if Input.is_action_pressed("MoveDown"):
-		movement_input.y += 1
+	#if Input.is_action_pressed("MoveUp"):
+		#movement_input.y -= 1
+	#if Input.is_action_pressed("MoveDown"):
+		#movement_input.y += 1
 		
 	# Jumps
 	if Input.is_action_pressed("Jump"):
@@ -84,10 +102,10 @@ func player_input():
 		jump_input_actuation = false
 	
 	#Climb
-	if Input.is_action_pressed("Climb"):
-		climb_input = true
-	else: 
-		climb_input = false	
+	#if Input.is_action_pressed("Climb"):
+		#climb_input = true
+	#else: 
+		#climb_input = false	
 		
 	#dash
 	if Input.is_action_just_pressed("Dash"):
