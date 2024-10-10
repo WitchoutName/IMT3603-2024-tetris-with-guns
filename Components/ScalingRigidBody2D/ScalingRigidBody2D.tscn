@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d6aiqv616ghn"]
+
+[ext_resource type="Script" path="res://Components/ScalingRigidBody2D/scaling_rigid_body_2d.gd" id="1_0wvjt"]
+
+[node name="ScalingRigidBody2d" type="RigidBody2D"]
+script = ExtResource("1_0wvjt")

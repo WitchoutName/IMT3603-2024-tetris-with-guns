@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dsqrbxlbutluc"]
 
-[ext_resource type="Script" path="res://Entity/Objects/Pieces/piece.gd" id="1_0ryy2"]
-[ext_resource type="Texture2D" uid="uid://d1owkgy7e6g26" path="res://Assets/tetraminos.png" id="2_8i34e"]
+[ext_resource type="Script" path="res://Entities/Objects/Pieces/piece.gd" id="1_0ryy2"]
+[ext_resource type="Texture2D" uid="uid://bguuj01b7tamu" path="res://Assets/Tower/tetraminos.png" id="2_8i34e"]
 [ext_resource type="PackedScene" uid="uid://d1573xume3rwr" path="res://Components/Interaction/Interaction_area/interaction_area.tscn" id="3_t37tb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8s16"]
@@ -16,10 +16,11 @@ script = ExtResource("1_0ryy2")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+position = Vector2(-2.38419e-07, 2.38419e-07)
+scale = Vector2(0.209738, 0.209738)
 texture = ExtResource("2_8i34e")
 region_enabled = true
-region_rect = Rect2(139.895, 647.952, 231.947, 231.43)
+region_rect = Rect2(400, 1733, 267, 267)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.25, 0.25)
@@ -29,6 +30,8 @@ shape = SubResource("RectangleShape2D_h8s16")
 scale = Vector2(0.25, 0.25)
 collision_layer = 0
 action_name = "Pick Up"
+interaction_group = null
+enabled = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 scale = Vector2(0.25, 0.25)

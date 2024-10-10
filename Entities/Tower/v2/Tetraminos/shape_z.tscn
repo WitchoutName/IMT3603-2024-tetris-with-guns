@@ -1,19 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm8tbcww1ot3j"]
+[gd_scene load_steps=5 format=3 uid="uid://cm8tbcww1ot3j"]
 
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tetraminos/tetramino.gd" id="1_i01dk"]
-[ext_resource type="Texture2D" uid="uid://d1owkgy7e6g26" path="res://Assets/tetraminos.png" id="2_dilvr"]
+[ext_resource type="Texture2D" uid="uid://bguuj01b7tamu" path="res://Assets/Tower/tetraminos.png" id="2_scdsf"]
+[ext_resource type="PackedScene" uid="uid://d1573xume3rwr" path="res://Components/Interaction/Interaction_area/interaction_area.tscn" id="3_n4c5o"]
 
-[node name="ShapeZ" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujwf5"]
+size = Vector2(125, 176)
+
+[node name="ShapeZ" type="RigidBody2D"]
 script = ExtResource("1_i01dk")
 shape = 6
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-4.41617e-06, -25)
-scale = Vector2(0.426136, 0.431034)
-texture = ExtResource("2_dilvr")
+position = Vector2(-1.00136e-05, -24.9257)
+rotation = -1.5708
+scale = Vector2(0.374359, 0.373946)
+texture = ExtResource("2_scdsf")
 region_enabled = true
-region_rect = Rect2(20, 1148, 352, 232)
+region_rect = Rect2(0, 1333, 267, 401)
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_n4c5o")]
+action_name = null
+interaction_group = null
+enabled = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(1, -24.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ujwf5")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-74, -74, -24, -74, 24, -74, 24, -24, 74, -24, 74, 24, -24, 24, -24, -26, -74, -26)
+polygon = PackedVector2Array(-75, -75, 25, -75, 25, -25, 75, -25, 75, 25, -25, 25, -25, -25, -75, -25)
