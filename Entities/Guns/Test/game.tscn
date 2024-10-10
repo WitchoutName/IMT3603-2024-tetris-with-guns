@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://d2g0x7jadl82c"]
 
-[ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol.tscn" id="1_qo22m"]
+[ext_resource type="PackedScene" uid="uid://ba7jl2dq2bfc4" path="res://Entities/Guns/assault_rifle.tscn" id="1_41vdp"]
 
 [node name="Game" type="Node2D"]
 
-[node name="Pistol" parent="." instance=ExtResource("1_qo22m")]
-position = Vector2(-118, 0)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="assault_rifle" parent="." instance=ExtResource("1_41vdp")]
+position = Vector2(-109, 3)

@@ -1,25 +1,20 @@
-extends Node2D
+extends "res://Components/WeaponScripts/gun.gd"
 
-var bulletScene = load("res://Entities/bullet.tscn")
-var casingScene = load("res://Entities/casing.tscn")
-@export var bulletSpeed = 1000
-@export var bps = 2
-@export var bulletDamage = 30
-@export var bulletSpread = 0.1
-var fireRate: float
-@export var timeUntilFire = 0
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	fireRate = 1 / bps
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _init() -> void:
+	bulletSpeed = 1000
+	bps = 10
+	bulletDamage = 30
+	bulletSpread = 0.1
+	timeUntilFire = 0
+	maxMag = 30
+	currentMag = maxMag
+	reloadTime = 1
 	
-	look_at(get_global_mouse_position())
 	
-	if Input.is_action_just_pressed("click") and timeUntilFire > fireRate:
+
+func shoot(delta: float) -> void:
+	
+	if Input.is_action_pressed("click") and timeUntilFire > fireRate and currentMag > 0 and !isReloading:
 		var bullet = bulletScene.instantiate()
 		var casing = casingScene.instantiate()
 		if $AnimatedSprite2D.is_playing():
@@ -37,9 +32,7 @@ func _process(delta: float) -> void:
 		casing.position = $Eject.global_position
 		casing.linear_velocity = casing.transform.y * -150
 		timeUntilFire = 0
+		currentMag -= 1
 		
-		
-	
 	else:
 		timeUntilFire += delta
-		
