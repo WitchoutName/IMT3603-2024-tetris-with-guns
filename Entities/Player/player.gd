@@ -1,45 +1,99 @@
 extends CharacterBody2D
-class_name Player
 
-const SPEED = 250.0
-const JUMP_VELOCITY = -600.0
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity_value = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-var tower: Tower2
-var is_controlling_tower: bool = false
-var piece_catied: Tetramino2
-var move_direction: float
+# player input
+var movement_input = Vector2.ZERO
+var jump_input = false
+var jump_input_actuation = false
+var climb_input = false
+var dash_input = false
+
+#player movement
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+var last_direction = Vector2.RIGHT
+
+#mechanics
+var can_dash = true
+
+#states
+var current_state = null
+var prev_state = null
+
+#nodes
+@onready var STATES = $STATES
+@onready var Raycasts = $Raycasts
+
+
+func _ready():
+	for state in STATES.get_children():
+		state.STATES = STATES
+		state.Player = self
+		prev_state = STATES.IDLE
+		current_state = STATES.IDLE
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	move_direction = 0
-	
-	if is_controlling_tower: _handle_tower_input()
-	else: _handle_move_input()
-	
-	if move_direction:
-		velocity.x = move_direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	player_input()
+	change_state(current_state.update(delta))
 	move_and_slide()
+	#default_move(delta)
 
-func _handle_move_input():
-		# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	move_direction = Input.get_axis("ui_left", "ui_right")
+func gravity(delta):
+	if not is_on_floor():
+		velocity += gravity_value * delta
 
-func _handle_tower_input():
-	if tower.active_piece:
-		if Input.is_action_just_pressed("tower_move_left"):
-			tower.ap_move_left()
-		if Input.is_action_just_pressed("tower_move_right"):
-			tower.ap_move_right()
-		if Input.is_action_just_pressed("tower_rotate"):
-			tower.ap_rotate()
+func change_state(input_state):
+	if input_state != null:
+		prev_state = current_state
+		current_state = input_state
+		
+		prev_state.exit_state()
+		current_state.enter_state()
+
+func get_next_to_wall():
+	for raycast in Raycasts.get_children():
+		raycast.force_raycast_update()
+		if raycast.is_colliding():
+			if raycast.target_position.x > 0:
+				return Vector2.RIGHT
+			else:
+				return Vector2.LEFT
+	return null
+
+func player_input():
+	movement_input = Vector2.ZERO
+	if Input.is_action_pressed("MoveRight"):
+		movement_input.x += 1
+	if Input.is_action_pressed("MoveLeft"):
+		movement_input.x -= 1
+	if Input.is_action_pressed("MoveUp"):
+		movement_input.y -= 1
+	if Input.is_action_pressed("MoveDown"):
+		movement_input.y += 1
+		
+	# Jumps
+	if Input.is_action_pressed("Jump"):
+		jump_input = true
+	else: 
+		jump_input = false
+	if Input.is_action_just_pressed("Jump"):
+		jump_input_actuation = true
+	else:
+		jump_input_actuation = false
+	
+	#Climb
+	if Input.is_action_pressed("Climb"):
+		climb_input = true
+	else: 
+		climb_input = false	
+		
+	#dash
+	if Input.is_action_just_pressed("Dash"):
+		dash_input = true
+	else: 
+		dash_input = false 
 
 
 func _on_health_death():
