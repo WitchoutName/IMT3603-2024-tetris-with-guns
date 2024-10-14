@@ -1,0 +1,417 @@
+[gd_scene load_steps=23 format=3 uid="uid://b4ei5at3crh8c"]
+
+[ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="1_7minn"]
+[ext_resource type="PackedScene" uid="uid://ccqcnw8132xn3" path="res://Entities/Player/player.tscn" id="2_q37fd"]
+[ext_resource type="PackedScene" uid="uid://b62gaquce8rnp" path="res://Entities/Tower/v2/Tetraminos/shape_o.tscn" id="3_psiqe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evea7"]
+size = Vector2(529.25, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_382yy"]
+size = Vector2(1492, 28.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hafw"]
+size = Vector2(166.25, 10.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66dp0"]
+size = Vector2(103.25, 11.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjh1d"]
+size = Vector2(133.048, 9.98901)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ys0cq"]
+size = Vector2(168, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vta1x"]
+size = Vector2(53, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltmcj"]
+size = Vector2(647.074, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hirli"]
+size = Vector2(167, 3.5)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bba2m"]
+a = Vector2(-29, 35)
+b = Vector2(12.8169, 2.23975)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2q2ny"]
+a = Vector2(35.5, 41.5)
+b = Vector2(-6, 9.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_00k0o"]
+radius = 33.3766
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fp4ds"]
+size = Vector2(381, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ss8ql"]
+size = Vector2(373.845, 14.2426)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnytc"]
+size = Vector2(166, 7.53589)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndyh3"]
+size = Vector2(337, 12)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2ft8c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbsdp"]
+size = Vector2(4051, 6.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckep6"]
+size = Vector2(4053, 150)
+
+[node name="World" type="Node2D"]
+position = Vector2(-1, 0)
+
+[node name="leftTeam" type="Node2D" parent="."]
+position = Vector2(570, 242)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="leftTeam"]
+position = Vector2(2, 61)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leftTeam/StaticBody2D"]
+position = Vector2(-304.625, 363)
+shape = SubResource("RectangleShape2D_evea7")
+
+[node name="Panel" type="Panel" parent="leftTeam/StaticBody2D/CollisionShape2D"]
+offset_left = -263.0
+offset_top = -18.0
+offset_right = 265.0
+offset_bottom = 21.0
+
+[node name="Tower" parent="leftTeam" instance=ExtResource("1_7minn")]
+position = Vector2(-407, 328)
+scale = Vector2(0.585, 0.585)
+
+[node name="spawnPoint" type="Marker2D" parent="leftTeam"]
+position = Vector2(-150, 315)
+
+[node name="Player" parent="leftTeam/spawnPoint" instance=ExtResource("2_q37fd")]
+position = Vector2(2, 52)
+
+[node name="arena" type="Node2D" parent="."]
+position = Vector2(1408, 284)
+
+[node name="MiddleLevelBody" type="StaticBody2D" parent="arena"]
+position = Vector2(11, 251)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arena/MiddleLevelBody"]
+position = Vector2(20, 128.75)
+shape = SubResource("RectangleShape2D_382yy")
+
+[node name="Panel" type="Panel" parent="arena/MiddleLevelBody/CollisionShape2D"]
+offset_left = -746.0
+offset_top = -15.75
+offset_right = 747.0
+offset_bottom = 15.25
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="arena/MiddleLevelBody"]
+position = Vector2(299, -18)
+shape = SubResource("RectangleShape2D_5hafw")
+
+[node name="Panel" type="Panel" parent="arena/MiddleLevelBody/CollisionShape2D3"]
+offset_left = -81.0
+offset_top = -5.0
+offset_right = 84.0
+offset_bottom = 7.0
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="arena/MiddleLevelBody"]
+position = Vector2(427, 38)
+shape = SubResource("RectangleShape2D_66dp0")
+
+[node name="Panel" type="Panel" parent="arena/MiddleLevelBody/CollisionShape2D5"]
+offset_left = -52.0
+offset_top = -6.0
+offset_right = 51.0
+offset_bottom = 6.0
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="arena/MiddleLevelBody"]
+position = Vector2(-252.875, -19.0625)
+shape = SubResource("RectangleShape2D_5hafw")
+
+[node name="Panel" type="Panel" parent="arena/MiddleLevelBody/CollisionShape2D6"]
+offset_left = -83.0
+offset_top = -5.0
+offset_right = 85.0
+offset_bottom = 5.0
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="arena/MiddleLevelBody"]
+position = Vector2(-373, 41)
+shape = SubResource("RectangleShape2D_66dp0")
+
+[node name="Panel" type="Panel" parent="arena/MiddleLevelBody/CollisionShape2D7"]
+offset_left = -52.0
+offset_top = -6.0
+offset_right = 52.0
+offset_bottom = 6.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="arena/MiddleLevelBody"]
+position = Vector2(-117, 14)
+rotation = 0.523598
+shape = SubResource("RectangleShape2D_wjh1d")
+
+[node name="Panel" type="Panel" parent="arena/MiddleLevelBody/CollisionShape2D2"]
+offset_left = -67.0
+offset_top = -5.0
+offset_right = 67.0
+offset_bottom = 6.0
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="arena/MiddleLevelBody"]
+position = Vector2(171, 14)
+rotation = 2.61799
+shape = SubResource("RectangleShape2D_wjh1d")
+
+[node name="Panel" type="Panel" parent="arena/MiddleLevelBody/CollisionShape2D4"]
+offset_left = -67.0
+offset_top = -6.0
+offset_right = 66.0
+offset_bottom = 6.0
+
+[node name="GunPlatformLeft" type="CollisionShape2D" parent="arena/MiddleLevelBody"]
+position = Vector2(-501, -90)
+shape = SubResource("RectangleShape2D_ys0cq")
+
+[node name="SpawnGuns" type="Marker2D" parent="arena/MiddleLevelBody/GunPlatformLeft"]
+position = Vector2(-45, -24)
+
+[node name="Panel" type="Panel" parent="arena/MiddleLevelBody/GunPlatformLeft"]
+offset_left = -85.0
+offset_top = -7.0
+offset_right = 85.0
+offset_bottom = 7.0
+
+[node name="GunPlatformRight" type="CollisionShape2D" parent="arena/MiddleLevelBody"]
+position = Vector2(552, -77)
+shape = SubResource("RectangleShape2D_ys0cq")
+
+[node name="SpawnGuns" type="Marker2D" parent="arena/MiddleLevelBody/GunPlatformRight"]
+position = Vector2(51, -25)
+
+[node name="Panel" type="Panel" parent="arena/MiddleLevelBody/GunPlatformRight"]
+offset_left = -83.0
+offset_top = -6.0
+offset_right = 84.0
+offset_bottom = 6.0
+
+[node name="GunPlatformMiddle" type="CollisionShape2D" parent="arena/MiddleLevelBody"]
+position = Vector2(26, -53)
+shape = SubResource("RectangleShape2D_vta1x")
+
+[node name="SpawnGuns" type="Marker2D" parent="arena/MiddleLevelBody/GunPlatformMiddle"]
+position = Vector2(0, -39)
+
+[node name="Panel" type="Panel" parent="arena/MiddleLevelBody/GunPlatformMiddle"]
+offset_left = -27.0
+offset_top = -17.0
+offset_right = 27.0
+offset_bottom = 18.0
+
+[node name="LowerLevelBody" type="StaticBody2D" parent="arena"]
+position = Vector2(31, 432)
+
+[node name="LeftPlatform" type="CollisionShape2D" parent="arena/LowerLevelBody"]
+position = Vector2(-598, 208)
+shape = SubResource("RectangleShape2D_ltmcj")
+
+[node name="Panel" type="Panel" parent="arena/LowerLevelBody/LeftPlatform"]
+offset_left = -325.0
+offset_top = -13.0
+offset_right = 324.0
+offset_bottom = 12.0
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftUpperPlatform" type="CollisionShape2D" parent="arena/LowerLevelBody"]
+position = Vector2(-212, 51)
+shape = SubResource("RectangleShape2D_hirli")
+
+[node name="Panel" type="Panel" parent="arena/LowerLevelBody/LeftUpperPlatform"]
+offset_left = -83.0
+offset_top = -4.0
+offset_right = 84.0
+offset_bottom = 3.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SpawnGuns" type="Marker2D" parent="arena/LowerLevelBody/LeftUpperPlatform"]
+position = Vector2(37, -20)
+
+[node name="RightPlatform" type="CollisionShape2D" parent="arena/LowerLevelBody"]
+position = Vector2(609, 206)
+shape = SubResource("RectangleShape2D_ltmcj")
+
+[node name="Panel" type="Panel" parent="arena/LowerLevelBody/RightPlatform"]
+offset_left = -325.0
+offset_top = -12.0
+offset_right = 323.0
+offset_bottom = 12.0
+metadata/_edit_use_anchors_ = true
+
+[node name="RightUpperPlatform" type="CollisionShape2D" parent="arena/LowerLevelBody"]
+position = Vector2(212, 52)
+shape = SubResource("RectangleShape2D_hirli")
+
+[node name="Panel" type="Panel" parent="arena/LowerLevelBody/RightUpperPlatform"]
+offset_left = -84.0
+offset_top = -3.0
+offset_right = 86.0
+offset_bottom = 3.0
+metadata/_edit_use_anchors_ = true
+
+[node name="SpawnGuns" type="Marker2D" parent="arena/LowerLevelBody/RightUpperPlatform"]
+position = Vector2(-45, -21)
+
+[node name="LeftSlope" type="CollisionShape2D" parent="arena/LowerLevelBody"]
+position = Vector2(-321, 47)
+scale = Vector2(2, 2)
+shape = SubResource("SegmentShape2D_bba2m")
+one_way_collision_margin = 0.0
+
+[node name="Panel" type="Panel" parent="arena/LowerLevelBody/LeftSlope"]
+offset_left = 12.0
+offset_top = 1.0
+offset_right = 15.0
+offset_bottom = 54.0
+rotation = 0.907571
+metadata/_edit_use_anchors_ = true
+
+[node name="RightSlope" type="CollisionShape2D" parent="arena/LowerLevelBody"]
+position = Vector2(308, 32)
+scale = Vector2(2, 2)
+shape = SubResource("SegmentShape2D_2q2ny")
+
+[node name="Panel" type="Panel" parent="arena/LowerLevelBody/RightSlope"]
+offset_left = -7.0
+offset_top = 10.5
+offset_right = -4.0
+offset_bottom = 62.5
+rotation = -0.916298
+metadata/_edit_use_anchors_ = true
+
+[node name="MiddleUpperPlatform" type="CollisionShape2D" parent="arena/LowerLevelBody"]
+position = Vector2(2, 65)
+shape = SubResource("CircleShape2D_00k0o")
+
+[node name="Panel" type="Panel" parent="arena/LowerLevelBody/MiddleUpperPlatform"]
+offset_left = -23.0
+offset_top = -21.0
+offset_right = 23.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arena/LowerLevelBody"]
+position = Vector2(-4, 207)
+shape = SubResource("RectangleShape2D_fp4ds")
+
+[node name="Panel" type="Panel" parent="arena/LowerLevelBody/CollisionShape2D"]
+offset_left = -191.0
+offset_top = -12.0
+offset_right = 190.0
+offset_bottom = 13.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="arena/LowerLevelBody"]
+position = Vector2(-780.174, 68.8257)
+rotation = 0.785397
+shape = SubResource("RectangleShape2D_ss8ql")
+
+[node name="Panel" type="Panel" parent="arena/LowerLevelBody/CollisionShape2D2"]
+offset_left = -187.0
+offset_top = -8.0
+offset_right = 186.0
+offset_bottom = 7.0
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="arena/LowerLevelBody"]
+position = Vector2(790, 72)
+rotation = 2.35619
+shape = SubResource("RectangleShape2D_ss8ql")
+
+[node name="Panel" type="Panel" parent="arena/LowerLevelBody/CollisionShape2D3"]
+offset_left = -188.0
+offset_top = -9.0
+offset_right = 188.0
+offset_bottom = 7.0
+
+[node name="ShapeO" parent="arena" instance=ExtResource("3_psiqe")]
+position = Vector2(-937, 284)
+
+[node name="UpperLevelBody" type="StaticBody2D" parent="arena"]
+position = Vector2(39, -85)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arena/UpperLevelBody"]
+position = Vector2(-278, 146)
+rotation = -0.523598
+shape = SubResource("RectangleShape2D_jnytc")
+
+[node name="Panel" type="Panel" parent="arena/UpperLevelBody/CollisionShape2D"]
+offset_left = -84.4519
+offset_top = -3.72493
+offset_right = 82.5481
+offset_bottom = 5.27507
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="arena/UpperLevelBody"]
+position = Vector2(263, 159)
+rotation = 0.523598
+shape = SubResource("RectangleShape2D_jnytc")
+
+[node name="Panel" type="Panel" parent="arena/UpperLevelBody/CollisionShape2D2"]
+offset_left = -84.4878
+offset_top = -4.33725
+offset_right = 83.5122
+offset_bottom = 4.66275
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="arena/UpperLevelBody"]
+position = Vector2(-4, 157)
+shape = SubResource("RectangleShape2D_ndyh3")
+
+[node name="Panel" type="Panel" parent="arena/UpperLevelBody/CollisionShape2D3"]
+offset_left = -170.0
+offset_top = -7.0
+offset_right = 169.0
+offset_bottom = 7.0
+
+[node name="PieceSpawn" type="Marker2D" parent="arena/UpperLevelBody/CollisionShape2D3"]
+position = Vector2(-4, -34)
+
+[node name="rightTeam" type="Node2D" parent="."]
+position = Vector2(2461, 242)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="rightTeam"]
+position = Vector2(2, 61)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rightTeam/StaticBody2D"]
+position = Vector2(158, 365)
+shape = SubResource("RectangleShape2D_evea7")
+
+[node name="Panel" type="Panel" parent="rightTeam/StaticBody2D/CollisionShape2D"]
+offset_left = -267.0
+offset_top = -19.0
+offset_right = 264.0
+offset_bottom = 20.0
+
+[node name="Tower" parent="rightTeam" instance=ExtResource("1_7minn")]
+position = Vector2(278, 328)
+scale = Vector2(0.585, 0.585)
+
+[node name="spawnPoint" type="Marker2D" parent="rightTeam"]
+position = Vector2(6, 316)
+
+[node name="Player" parent="rightTeam/spawnPoint" instance=ExtResource("2_q37fd")]
+position = Vector2(2, 55)
+
+[node name="death" type="Node2D" parent="."]
+
+[node name="OutOfMapDeaeth" type="StaticBody2D" parent="death"]
+position = Vector2(1444, 1298)
+physics_material_override = SubResource("PhysicsMaterial_2ft8c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death/OutOfMapDeaeth"]
+position = Vector2(-7, -195.75)
+shape = SubResource("RectangleShape2D_kbsdp")
+
+[node name="Area2D" type="Area2D" parent="death/OutOfMapDeaeth"]
+position = Vector2(-28, -100)
+
+[node name="DeathBox" type="CollisionShape2D" parent="death/OutOfMapDeaeth/Area2D"]
+position = Vector2(25.5, -171)
+shape = SubResource("RectangleShape2D_ckep6")

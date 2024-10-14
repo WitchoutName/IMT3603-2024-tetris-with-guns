@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://tc6gkdx88pve"]
 
-[ext_resource type="Texture2D" uid="uid://bgnro7v351ynl" path="res://icon.svg" id="1_0vo38"]
-[ext_resource type="PackedScene" uid="uid://ccqcnw8132xn3" path="res://Entity/Player/player.tscn" id="2_k1q2m"]
+[ext_resource type="Texture2D" uid="uid://c22t4f0l84tgo" path="res://icon.svg" id="1_0vo38"]
+[ext_resource type="PackedScene" uid="uid://ccqcnw8132xn3" path="res://Entities/Player/player.tscn" id="2_k1q2m"]
 [ext_resource type="PackedScene" uid="uid://djhd2dlbebro6" path="res://Scenes/Testing/boxes-interaction-test/hazard.tscn" id="3_u6vct"]
-[ext_resource type="PackedScene" uid="uid://dsqrbxlbutluc" path="res://Entity/Objects/Pieces/piece.tscn" id="4_e22x7"]
+[ext_resource type="PackedScene" uid="uid://dsqrbxlbutluc" path="res://Entities/Objects/Pieces/piece.tscn" id="4_e22x7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nl13"]
 size = Vector2(689, 128)
