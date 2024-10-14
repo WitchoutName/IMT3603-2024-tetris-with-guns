@@ -88,9 +88,6 @@ scale = Vector2(0.585, 0.585)
 [node name="spawnPoint" type="Marker2D" parent="leftTeam"]
 position = Vector2(-150, 315)
 
-[node name="Player" parent="leftTeam/spawnPoint" instance=ExtResource("2_q37fd")]
-position = Vector2(2, 52)
-
 [node name="arena" type="Node2D" parent="."]
 position = Vector2(1408, 284)
 
@@ -396,9 +393,6 @@ scale = Vector2(0.585, 0.585)
 [node name="spawnPoint" type="Marker2D" parent="rightTeam"]
 position = Vector2(6, 316)
 
-[node name="Player" parent="rightTeam/spawnPoint" instance=ExtResource("2_q37fd")]
-position = Vector2(2, 55)
-
 [node name="death" type="Node2D" parent="."]
 
 [node name="OutOfMapDeaeth" type="StaticBody2D" parent="death"]
@@ -415,3 +409,6 @@ position = Vector2(-28, -100)
 [node name="DeathBox" type="CollisionShape2D" parent="death/OutOfMapDeaeth/Area2D"]
 position = Vector2(25.5, -171)
 shape = SubResource("RectangleShape2D_ckep6")
+
+[node name="Player" parent="." instance=ExtResource("2_q37fd")]
+position = Vector2(353, 612)
