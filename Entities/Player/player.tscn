@@ -90,6 +90,7 @@ position = Vector2(-2, 3)
 shape = SubResource("CapsuleShape2D_3eljs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.75, 0.75)
 
 [node name="STATES" type="Node2D" parent="."]
 script = ExtResource("5_4wxoe")

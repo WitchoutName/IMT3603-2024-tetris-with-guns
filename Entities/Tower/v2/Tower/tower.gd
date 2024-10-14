@@ -6,6 +6,7 @@ class_name Tower2
 @export var petrify_width: int = 6
 @export_range(1, 10, 0.1) var fall_speed: float = 7.5
 var grid: GridClass
+var piece_queue: Array[Tetramino2]
 
 signal win()
 
@@ -19,9 +20,12 @@ func _process(delta: float) -> void:
 	pass
 
 func ap_insert(piece: Tetramino2):
-	active_piece = piece
-	piece.interaction_area.enabled = false
-	grid.attach_piece(piece)
+	if active_piece or len(piece_queue) > 0:
+		piece_queue.append(piece)
+	else:
+		active_piece = piece
+		piece.interaction_area.enabled = false
+		grid.attach_piece(piece)
 
 func ap_move_left(): # ap -> active piece
 	grid.move_left()
@@ -41,7 +45,11 @@ func _on_move_down_timer_timeout() -> void:
 		if not grid.move_down():
 			grid.dettach_piece()
 			active_piece.interaction_area.enabled = true
-			active_piece = null
+			if len(piece_queue) > 0:
+				active_piece = piece_queue.pop_at(0)
+				active_piece.interaction_area.enabled = false
+				grid.attach_piece(active_piece)
+			else: active_piece = null
 			if  grid.is_win_state():
 				_on_win()
 				return
