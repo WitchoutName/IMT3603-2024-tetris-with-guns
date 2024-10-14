@@ -50,7 +50,7 @@ func _physics_process(delta):
 	#default_move(delta)
 
 func _handle_tower_input():
-	if tower.active_piece:
+	if tower and tower.active_piece:
 		if Input.is_action_just_pressed("tower_move_left"):
 			tower.ap_move_left()
 		if Input.is_action_just_pressed("tower_move_right"):
