@@ -11,7 +11,7 @@ var climb_input = false
 var dash_input = false
 
 #player movement
-const SPEED = 300.0
+const SPEED = 70.0
 const JUMP_VELOCITY = -400.0
 var last_direction = Vector2.RIGHT
 
