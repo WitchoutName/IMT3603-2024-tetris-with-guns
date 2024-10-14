@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buiy4uqhk4c06"
-path="res://.godot/imported/oldComputerSptiresheet.png-631c93a5e75f642ace77d7f21668f983.ctex"
+uid="uid://bu7sni7uwk607"
+path="res://.godot/imported/white.png-fd71518b2094bf399f695202cb3962f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/OldComps/oldComputerSptiresheet.png"
-dest_files=["res://.godot/imported/oldComputerSptiresheet.png-631c93a5e75f642ace77d7f21668f983.ctex"]
+source_file="res://Assets/Common/white.png"
+dest_files=["res://.godot/imported/white.png-fd71518b2094bf399f695202cb3962f6.ctex"]
 
 [params]
 
