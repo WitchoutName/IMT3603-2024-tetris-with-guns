@@ -30,8 +30,6 @@ shape = SubResource("RectangleShape2D_h8s16")
 scale = Vector2(0.25, 0.25)
 collision_layer = 0
 action_name = "Pick Up"
-interaction_group = null
-enabled = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 scale = Vector2(0.25, 0.25)

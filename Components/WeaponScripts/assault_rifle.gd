@@ -20,14 +20,14 @@ func shoot(delta: float) -> void:
 		if $AnimatedSprite2D.is_playing():
 			$AnimatedSprite2D.stop()
 		
-		owner.add_child(bullet)
+		get_tree().root.add_child(bullet)
 		bullet.rotation = $Barrel.global_rotation + randf_range(-bulletSpread,bulletSpread)
 		bullet.position = $Barrel.global_position
 		bullet.linear_velocity = bullet.transform.x * bulletSpeed
 		
 		
 		$AnimatedSprite2D.play("Fire")
-		owner.add_child(casing)
+		get_tree().root.add_child(casing)
 		casing.rotation = $Eject.global_rotation + randf_range(-0.25, 0)
 		casing.position = $Eject.global_position
 		casing.linear_velocity = casing.transform.y * -150

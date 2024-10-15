@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://djhd2dlbebro6"]
 
-[ext_resource type="Texture2D" uid="uid://bgnro7v351ynl" path="res://icon.svg" id="1_bb6oi"]
+[ext_resource type="Texture2D" uid="uid://c22t4f0l84tgo" path="res://icon.svg" id="1_bb6oi"]
 [ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="2_edmk7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxu1g"]

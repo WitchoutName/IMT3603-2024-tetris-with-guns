@@ -48,3 +48,4 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if is_instance_of(body, Player):
 		var player = body as Player
 		player.tower = null
+		player.is_controlling_tower = false

@@ -11,8 +11,8 @@ var climb_input = false
 var dash_input = false
 
 #player movement
-const SPEED = 70.0
-const JUMP_VELOCITY = -400.0
+@export var SPEED = 70.0
+@export var JUMP_VELOCITY = -400.0
 var last_direction = Vector2.RIGHT
 
 #mechanics
@@ -70,7 +70,7 @@ func change_state(input_state):
 		prev_state.exit_state()
 		current_state.enter_state()
 
-func get_next_to_wall():
+func get_next_to_wall() -> Vector2:
 	for raycast in Raycasts.get_children():
 		raycast.force_raycast_update()
 		if raycast.is_colliding():
@@ -78,7 +78,7 @@ func get_next_to_wall():
 				return Vector2.RIGHT
 			else:
 				return Vector2.LEFT
-	return null
+	return Vector2.ZERO
 
 func player_input():
 	movement_input = Vector2.ZERO
