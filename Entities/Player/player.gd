@@ -31,7 +31,16 @@ var prev_state = null
 #nodes
 @onready var STATES = $STATES
 @onready var Raycasts = $Raycasts
+@onready var health = $Health
 
+#Respawn handling
+const RESPAWN_TIME = 5
+var spawned = true 
+var should_respawn = true
+
+#Gun handling
+var equiped_gun: Gun
+var gun_picked_up = false
 
 func _ready():
 	for state in STATES.get_children():
@@ -41,13 +50,20 @@ func _ready():
 		current_state = STATES.IDLE
 
 func _physics_process(delta):
+	if spawned:
+		if not $AnimatedSprite2D.visible:
+			$AnimatedSprite2D.visible = true
+		if is_controlling_tower: _handle_tower_input()
+		else: player_input()
 	
-	if is_controlling_tower: _handle_tower_input()
-	else: player_input()
-	
-	change_state(current_state.update(delta))
-	move_and_slide()
-	#default_move(delta)
+		change_state(current_state.update(delta))
+		move_and_slide()
+		#default_move(delta)
+		if equiped_gun:
+			equiped_gun.global_position = global_position
+	else:
+		if $AnimatedSprite2D.visible:
+			$AnimatedSprite2D.visible = false
 
 func _handle_tower_input():
 	if tower and tower.active_piece:
@@ -113,7 +129,22 @@ func player_input():
 	else: 
 		dash_input = false 
 
-
 func _on_health_death():
-	queue_free()
-	#Further death logic will be implemented here
+	spawned = false
+
+func spawn():
+	spawned = true
+
+func respawn():
+	if not should_respawn:
+		return
+	#Wait five seconds
+	await get_tree().create_timer(5).timeout
+	health.set_health(health.max_health)
+	spawn()
+
+func equip_gun(gun):
+	equiped_gun = gun
+
+func unequip_gun():
+	equiped_gun = null

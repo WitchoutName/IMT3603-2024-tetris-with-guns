@@ -1,4 +1,5 @@
 extends Node2D
+class_name Gun
 
 var bulletScene = load("res://Entities/Guns/bullet.tscn")
 var casingScene = load("res://Entities/Guns/casing.tscn")
@@ -15,27 +16,40 @@ var isReloading = false
 var maxRecoil: float
 var currentRecoil = 0.0
 
+#Equip handling
+@onready var interaction_area: InteractionArea = $InteractionArea
+var active = false
+var player
+var start_orientation
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fireRate = 1.0 / bps
+	interaction_area.interact = Callable(self, "_on_interact")
+	start_orientation = rotation
 	_init()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("drop"):
+		_drop()
+	
+	if active:
+		look_at(get_global_mouse_position())
 
-	look_at(get_global_mouse_position())
-
 	
-	if get_global_mouse_position().x < position.x:
-		scale.y = -1
-	elif get_global_mouse_position().x > position.x:
-		scale.y = 1
+		if get_global_mouse_position().x < position.x:
+			scale.y = -1
+		elif get_global_mouse_position().x > position.x:
+			scale.y = 1
 	
-	shoot(delta)
+		shoot(delta)
 	
-	if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("click") and currentMag == 0):
-		reload()
+		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("click") and currentMag == 0):
+			reload()
+	else:
+		pass
 	
 
 func _init() -> void:
@@ -82,3 +96,28 @@ func shoot(delta):
 		currentRecoil = clamp(currentRecoil + (maxRecoil * 0.1), 0.0, maxRecoil)
 	else:
 		timeUntilFire += delta
+
+#On player interaction
+func _on_interact(interacted_player: Player):
+	player = interacted_player
+	if player.equiped_gun: #If the player already has a gun
+		await player.equiped_gun._drop() #Dropping it, so that the current can be picked up
+	player.health.connect("death", Callable(self, "_drop")) #Connecting drop to death signal
+	active = true
+	player.equip_gun(self)
+	interaction_area.enabled = false 
+	interaction_area.force_remove() #We have to force remove it from the manager
+
+#Handles the weapon drop
+func _drop():
+	rotation = start_orientation
+	active = false
+	#Disconnecting from death signal
+	if player && player.health.is_connected("death", Callable(self, "_respawn_player")):
+			player.health.disconnect("death", Callable(self, "_respawn_player"))
+	if player:
+		player.unequip_gun()
+	if player && player.spawned: #If the player is spawned we make the gun interactble again 
+		interaction_area.force_add()
+	player = null
+	interaction_area.enabled = true
