@@ -3,7 +3,7 @@ extends "state.gd"
 @export var climb_speed = 50
 @export var slide_friction = .7
 
-func upedate(delta):
+func update(delta):
 	slide_movement(delta)
 	if Player.get_next_to_wall == 0:
 		return STATES.FALL
