@@ -1,10 +1,10 @@
 extends "state.gd"
 
 var dash_direction = Vector2.ZERO
-var dash_speed = 240
+@export var dash_speed = 340
 var dashing = false
 
-@export var dash_duration = .2
+@export var dash_duration = .15
 @onready var DashDuration_timer = $DashDuration
 
 func update(delta):

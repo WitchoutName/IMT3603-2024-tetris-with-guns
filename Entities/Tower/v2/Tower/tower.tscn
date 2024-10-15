@@ -101,9 +101,7 @@ sprite_frames = SubResource("SpriteFrames_wct1g")
 frame_progress = 0.608911
 
 [node name="InteractionArea" parent="Terminal" instance=ExtResource("4_vu7ru")]
-action_name = null
 interaction_group = 10
-enabled = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terminal/InteractionArea"]
 position = Vector2(-1, -25)

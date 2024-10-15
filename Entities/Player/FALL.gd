@@ -14,6 +14,8 @@ func update(delta):
 		return STATES.DASH
 	if Player.jump_input_actuation and can_jump:
 		return STATES.JUMP
+	if Player.get_next_to_wall() != Vector2.ZERO:
+		return STATES.SLIDE
 	return null
 	
 func enter_state():

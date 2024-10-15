@@ -1,11 +1,11 @@
 extends "state.gd"
 
 @export var climb_speed = 50
-@export var slide_friction = .7
+@export var slide_friction = .9
 
 func update(delta):
 	slide_movement(delta)
-	if Player.get_next_to_wall == 0:
+	if Player.get_next_to_wall() == Vector2.ZERO:
 		return STATES.FALL
 	if Player.jump_input_actuation:
 		return STATES.JUMP

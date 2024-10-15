@@ -21,9 +21,6 @@ region_enabled = true
 region_rect = Rect2(400, 0, 134, 534)
 
 [node name="InteractionArea" parent="." instance=ExtResource("3_scb4s")]
-action_name = null
-interaction_group = null
-enabled = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(0, 24)

@@ -1,6 +1,7 @@
 extends "state.gd"
 
 func update(delta):
+	player_movement()
 	Player.gravity(delta)
 	if Player.movement_input.x != 0:
 		return STATES.MOVE
