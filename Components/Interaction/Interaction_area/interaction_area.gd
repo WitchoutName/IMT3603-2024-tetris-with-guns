@@ -20,3 +20,9 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	if is_instance_of(body, Player): #Checking for player
 		InteractionManager.remove_area(self)
+
+func force_remove():
+	InteractionManager.remove_area(self)
+
+func force_add():
+	InteractionManager.add_area(self)
