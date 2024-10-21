@@ -17,4 +17,4 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_enter_game_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Testing/tetris_scene.tscn")
+	get_tree().change_scene_to_file("res://Scenes/world.tscn")

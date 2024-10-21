@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ccqcnw8132xn3"]
+[gd_scene load_steps=21 format=3 uid="uid://ccqcnw8132xn3"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_6ark4"]
 [ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_qk4a2"]
@@ -11,8 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://b6c4ool2kanqk" path="res://Entities/Player/JUMP.tscn" id="12_rsy0m"]
 [ext_resource type="Script" path="res://Entities/Player/SLIDE.gd" id="12_wmgkx"]
 [ext_resource type="PackedScene" uid="uid://caiga5uv5evtk" path="res://Entities/Player/DASH.tscn" id="13_gbmsj"]
-[ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol.tscn" id="13_r3x2d"]
-[ext_resource type="PackedScene" uid="uid://ba7jl2dq2bfc4" path="res://Entities/Guns/assault_rifle.tscn" id="14_iqylw"]
 [ext_resource type="PackedScene" uid="uid://ct16ftajdtqby" path="res://Entities/Player/SLIDE.tscn" id="14_o0klo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io1p0"]
@@ -133,11 +131,5 @@ position = Vector2(-9, 23)
 rotation = 1.0472
 target_position = Vector2(-1.99999, 3.4641)
 hit_from_inside = true
-
-[node name="Pistol" parent="." instance=ExtResource("13_r3x2d")]
-position = Vector2(6, -6)
-
-[node name="assault_rifle" parent="." instance=ExtResource("14_iqylw")]
-position = Vector2(-3.455, -9.055)
 
 [connection signal="death" from="Health" to="." method="_on_health_death"]

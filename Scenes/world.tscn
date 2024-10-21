@@ -1,8 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://b4ei5at3crh8c"]
+[gd_scene load_steps=26 format=3 uid="uid://b4ei5at3crh8c"]
 
 [ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="1_7minn"]
 [ext_resource type="PackedScene" uid="uid://ccqcnw8132xn3" path="res://Entities/Player/player.tscn" id="2_q37fd"]
 [ext_resource type="PackedScene" uid="uid://b62gaquce8rnp" path="res://Entities/Tower/v2/Tetraminos/shape_o.tscn" id="3_psiqe"]
+[ext_resource type="PackedScene" uid="uid://bxarkfpbrqrvt" path="res://Entities/Player/SpawnPoint/spawn_point.tscn" id="4_0lhum"]
+[ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol.tscn" id="4_hlu8q"]
+[ext_resource type="PackedScene" uid="uid://bic5nels0gapo" path="res://Scenes/HUD/HUD.tscn" id="6_y1pgk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evea7"]
 size = Vector2(529.25, 38)
@@ -412,3 +415,15 @@ shape = SubResource("RectangleShape2D_ckep6")
 
 [node name="Player" parent="." instance=ExtResource("2_q37fd")]
 position = Vector2(353, 612)
+
+[node name="SpawnPoint" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_0lhum")]
+position = Vector2(324, 646)
+player = NodePath("../Player")
+
+[node name="Pistol2" parent="." instance=ExtResource("4_hlu8q")]
+position = Vector2(641, 610)
+
+[node name="Pistol" parent="." instance=ExtResource("4_hlu8q")]
+position = Vector2(784, 610)
+
+[node name="HUD" parent="." instance=ExtResource("6_y1pgk")]
