@@ -98,7 +98,6 @@ position = Vector2(-762.276, -548.572)
 
 [node name="Platform6" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-1482.28, 278.095)
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform6"]
@@ -113,7 +112,6 @@ texture = ExtResource("2_hahjy")
 
 [node name="Platform14" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-832.752, -17.1428)
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform14"]
@@ -128,7 +126,6 @@ texture = ExtResource("2_hahjy")
 
 [node name="Platform15" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-105.133, -167.619)
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform15"]
@@ -143,7 +140,6 @@ texture = ExtResource("2_hahjy")
 
 [node name="Platform11" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-827.038, -495.238)
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform11"]
@@ -158,7 +154,6 @@ texture = ExtResource("2_hahjy")
 
 [node name="Platform16" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-627.038, -984.762)
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform16"]
@@ -173,7 +168,6 @@ texture = ExtResource("2_hahjy")
 
 [node name="Platform9" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-1714.66, -32.3809)
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform9"]
@@ -188,7 +182,6 @@ texture = ExtResource("2_hahjy")
 
 [node name="Platform12" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-1718.47, -784.762)
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform12"]
@@ -203,7 +196,6 @@ texture = ExtResource("2_hahjy")
 
 [node name="Platform5" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-1510.85, 120)
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform5"]
@@ -219,7 +211,6 @@ texture = ExtResource("2_hahjy")
 [node name="Platform10" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-1459.42, -491.429)
 rotation = 1.5708
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform10"]
@@ -235,7 +226,6 @@ texture = ExtResource("2_hahjy")
 [node name="Platform13" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-371.8, -708.572)
 rotation = 1.5708
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform13"]
@@ -251,7 +241,6 @@ texture = ExtResource("2_hahjy")
 [node name="Platform17" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-369.895, -575.238)
 rotation = 1.5708
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform17"]
@@ -267,7 +256,6 @@ texture = ExtResource("2_hahjy")
 [node name="Platform18" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-228.943, 120)
 rotation = 1.5708
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform18"]
@@ -283,7 +271,6 @@ texture = ExtResource("2_hahjy")
 [node name="Platform19" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-552.752, -230.476)
 rotation = 1.5708
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform19"]
@@ -299,7 +286,6 @@ texture = ExtResource("2_hahjy")
 [node name="Platform21" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-1246.09, -253.333)
 rotation = 1.5708
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform21"]
@@ -315,7 +301,6 @@ texture = ExtResource("2_hahjy")
 [node name="Platform22" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-1036.56, -234.286)
 rotation = 1.5708
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform22"]
@@ -331,7 +316,6 @@ texture = ExtResource("2_hahjy")
 [node name="Platform4" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-1251.8, 384.762)
 rotation = 1.5708
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform4"]
@@ -347,7 +331,6 @@ texture = ExtResource("2_hahjy")
 [node name="Platform3" type="StaticBody2D" parent="Platforms"]
 position = Vector2(-1036.56, 264.762)
 rotation = 1.5708
-scale = Vector2(1, 1)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform3"]
