@@ -1,4 +1,5 @@
 [gd_scene load_steps=22 format=3 uid="uid://ccqcnw8132xn3"]
+[gd_scene load_steps=22 format=3 uid="uid://ccqcnw8132xn3"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_6ark4"]
 [ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_qk4a2"]
@@ -67,7 +68,14 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3eljs"]
 height = 54.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oqrt1"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
 [node name="Player" type="CharacterBody2D" groups=["players"]]
+collision_layer = 16252928
+collision_priority = 2.0
 script = ExtResource("1_6ark4")
 SPEED = 400.0
 
@@ -135,5 +143,8 @@ position = Vector2(-9, 23)
 rotation = 1.0472
 target_position = Vector2(-1.99999, 3.4641)
 hit_from_inside = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_oqrt1")
 
 [connection signal="death" from="Health" to="." method="_on_health_death"]

@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name PlayerSpawnPoint
+
 #Player reference
 @export var player: Player
 #Using a collision shape to get the correct coordinates for player spawn
@@ -21,8 +23,14 @@ func _respawn_player():
 
 func assign_player(p: Player):
 	player = p
+	if player && !player.health.is_connected("death", Callable(self, "_respawn_player")):
+		player.health.connect("death", Callable(self, "_respawn_player"))
+
+func reset():
+	_respawn_player()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if player && !player.health.is_connected("death", Callable(self, "_respawn_player")):
-		player.health.connect("death", Callable(self, "_respawn_player"))
+	#if player && !player.health.is_connected("death", Callable(self, "_respawn_player")):
+		#player.health.connect("death", Callable(self, "_respawn_player"))
+	pass

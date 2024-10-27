@@ -28,6 +28,8 @@ func _ready() -> void:
 	fireRate = 1.0 / bps
 	interaction_area.interact = Callable(self, "_on_interact")
 	start_orientation = rotation
+	interaction_area.interact = Callable(self, "_on_interact")
+	start_orientation = rotation
 	_init()
 
 
@@ -43,7 +45,12 @@ func _process(delta: float) -> void:
 			scale.y = 1
 	
 		shoot(delta)
+		shoot(delta)
 	
+		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("click") and currentMag == 0):
+			reload()
+	else:
+		pass
 		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("click") and currentMag == 0):
 			reload()
 	else:

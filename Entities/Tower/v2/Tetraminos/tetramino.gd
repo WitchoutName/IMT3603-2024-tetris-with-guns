@@ -109,11 +109,12 @@ func scale(factor: Vector2):
 			child.transform.origin = base_scales[child][1] * factor
 
 func attach(_player: Player):
-	$CollisionPolygon2D.disabled = true
-	freeze = true
-	picked_up = true
-	player = _player
-	player.piece_catied = self
+	if _player:
+		$CollisionPolygon2D.disabled = true
+		freeze = true
+		picked_up = true
+		player = _player
+		player.piece_catied = self
 
 func release():
 	if player:
