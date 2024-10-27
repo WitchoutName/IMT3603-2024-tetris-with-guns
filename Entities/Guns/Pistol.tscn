@@ -90,7 +90,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_f75oi"]
 radius = 59.0085
 
-[node name="Pistol" type="Node2D"]
+[node name="Pistol" type="Node2D" groups=["one-handed"]]
 script = ExtResource("1_xmxuh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

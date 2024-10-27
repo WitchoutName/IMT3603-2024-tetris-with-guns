@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbsw503oi27ec"]
+
+[ext_resource type="Texture2D" uid="uid://dd1173e46enyk" path="res://Assets/ItemAssets/grenades_by_mtk.png" id="1_3epi7"]
+[ext_resource type="Script" path="res://Components/ItemScripts/granade.gd" id="1_kci8n"]
+[ext_resource type="PackedScene" uid="uid://ca84xeumpvio6" path="res://Entities/Items/granade-thrown.tscn" id="2_2p4ps"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="2_8gp4h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nvi1s"]
+radius = 59.0
+
+[node name="Granade" type="Node2D" groups=["item"]]
+script = ExtResource("1_kci8n")
+granade_obj = ExtResource("2_2p4ps")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3epi7")
+region_enabled = true
+region_rect = Rect2(2.071, 0.882, 12.013, 14.234)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+script = ExtResource("2_8gp4h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_nvi1s")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

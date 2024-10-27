@@ -21,6 +21,7 @@ var currentRecoil = 0.0
 var active = false
 var player
 var start_orientation
+var fire_mode = "click"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,9 +33,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("drop"):
-		_drop()
-	
 	if active:
 		look_at(get_global_mouse_position())
 
@@ -74,7 +72,7 @@ func reload():
 
 func shoot(delta):
 	
-	if Input.is_action_just_pressed("click") and timeUntilFire > fireRate and currentMag > 0 and !isReloading:
+	if Input.is_action_just_pressed(fire_mode) and timeUntilFire > fireRate and currentMag > 0 and !isReloading:
 		var bullet = bulletScene.instantiate()
 		var casing = casingScene.instantiate()
 		if $AnimatedSprite2D.is_playing():
@@ -100,11 +98,13 @@ func shoot(delta):
 #On player interaction
 func _on_interact(interacted_player: Player):
 	player = interacted_player
-	if player.equiped_gun: #If the player already has a gun
-		await player.equiped_gun._drop() #Dropping it, so that the current can be picked up
+	fire_mode = player.inventory.get_fire_mode() #Getting which fire mode to use
+	if !fire_mode: #If null returned - slot 3 selected, weapon is not equiped
+		fire_mode = "click1"
+		return
 	player.health.connect("death", Callable(self, "_drop")) #Connecting drop to death signal
 	active = true
-	player.equip_gun(self)
+	player.equip_item(self)
 	interaction_area.enabled = false 
 	interaction_area.force_remove() #We have to force remove it from the manager
 
@@ -115,8 +115,6 @@ func _drop():
 	#Disconnecting from death signal
 	if player && player.health.is_connected("death", Callable(self, "_respawn_player")):
 			player.health.disconnect("death", Callable(self, "_respawn_player"))
-	if player:
-		player.unequip_gun()
 	if player && player.spawned: #If the player is spawned we make the gun interactble again 
 		interaction_area.force_add()
 	player = null

@@ -1,10 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://b4ei5at3crh8c"]
+[gd_scene load_steps=27 format=3 uid="uid://b4ei5at3crh8c"]
 
 [ext_resource type="Script" path="res://Scenes/base_map.gd" id="1_5j34a"]
 [ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="1_7minn"]
 [ext_resource type="PackedScene" uid="uid://b62gaquce8rnp" path="res://Entities/Tower/v2/Tetraminos/shape_o.tscn" id="3_psiqe"]
 [ext_resource type="PackedScene" uid="uid://bxarkfpbrqrvt" path="res://Entities/Player/SpawnPoint/spawn_point.tscn" id="4_0lhum"]
 [ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol.tscn" id="4_hlu8q"]
+[ext_resource type="PackedScene" uid="uid://ba7jl2dq2bfc4" path="res://Entities/Guns/assault_rifle.tscn" id="6_yw73w"]
+[ext_resource type="PackedScene" uid="uid://dbsw503oi27ec" path="res://Entities/Items/granade.tscn" id="7_cwoly"]
 [ext_resource type="PackedScene" uid="uid://bic5nels0gapo" path="res://Scenes/HUD/HUD.tscn" id="6_y1pgk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evea7"]
@@ -422,9 +424,15 @@ position = Vector2(324, 646)
 player = NodePath("../Player")
 
 [node name="Pistol2" parent="." instance=ExtResource("4_hlu8q")]
-position = Vector2(641, 610)
+position = Vector2(878, 612)
 
 [node name="Pistol" parent="." instance=ExtResource("4_hlu8q")]
 position = Vector2(784, 610)
+
+[node name="assault_rifle" parent="." instance=ExtResource("6_yw73w")]
+position = Vector2(972, 614)
+
+[node name="Granade" parent="." instance=ExtResource("7_cwoly")]
+position = Vector2(1186, 623)
 
 [node name="HUD" parent="." instance=ExtResource("6_y1pgk")]
