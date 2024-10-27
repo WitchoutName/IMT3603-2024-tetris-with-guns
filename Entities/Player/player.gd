@@ -32,15 +32,12 @@ var prev_state = null
 @onready var STATES = $STATES
 @onready var Raycasts = $Raycasts
 @onready var health = $Health
+@onready var inventory = $Inventory
 
 #Respawn handling
 const RESPAWN_TIME = 5
 var spawned = true 
 var should_respawn = true
-
-#Gun handling
-var equiped_gun: Gun
-var gun_picked_up = false
 
 func _ready():
 	for state in STATES.get_children():
@@ -59,8 +56,6 @@ func _physics_process(delta):
 		change_state(current_state.update(delta))
 		move_and_slide()
 		#default_move(delta)
-		if equiped_gun:
-			equiped_gun.global_position = global_position
 	else:
 		if $AnimatedSprite2D.visible:
 			$AnimatedSprite2D.visible = false
@@ -130,6 +125,7 @@ func player_input():
 		dash_input = false 
 
 func _on_health_death():
+	inventory.unequip_everything()
 	spawned = false
 
 func spawn():
@@ -143,8 +139,8 @@ func respawn():
 	health.set_health(health.max_health)
 	spawn()
 
-func equip_gun(gun):
-	equiped_gun = gun
+func equip_item(item):
+	inventory.equip_item(item)
 
-func unequip_gun():
-	equiped_gun = null
+func unequip_item():
+	inventory.unequip_item()

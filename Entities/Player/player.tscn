@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://ccqcnw8132xn3"]
+[gd_scene load_steps=22 format=3 uid="uid://ccqcnw8132xn3"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_6ark4"]
 [ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_qk4a2"]
 [ext_resource type="Texture2D" uid="uid://crn5lue4hbroe" path="res://Assets/Temp_Player/Idle/thickIdleSheet.png" id="3_dasr1"]
+[ext_resource type="Script" path="res://Components/Inventory/inventory.gd" id="3_tef5q"]
 [ext_resource type="Script" path="res://Components/Boxes/hurtbox.gd" id="4_0vliq"]
 [ext_resource type="Script" path="res://Entities/Player/STATES.gd" id="5_4wxoe"]
 [ext_resource type="PackedScene" uid="uid://cy6x818dvugor" path="res://Entities/Player/FALL.tscn" id="6_h8lf8"]
@@ -71,6 +72,9 @@ script = ExtResource("1_6ark4")
 SPEED = 400.0
 
 [node name="Health" parent="." instance=ExtResource("2_qk4a2")]
+
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("3_tef5q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.935, -3.28)
