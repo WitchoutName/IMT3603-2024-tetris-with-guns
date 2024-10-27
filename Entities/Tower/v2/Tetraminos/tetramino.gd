@@ -66,7 +66,7 @@ func _set__player(value: Player):
 		player.add_child(self)
 		position = Vector2(0, 0)
 		scale(Vector2(0.25, 0.25))
-	else:
+	elif player: 
 		var root = get_tree().root
 		player.remove_child(self)
 		root.get_children()[1].add_child(self)

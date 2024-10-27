@@ -28,6 +28,9 @@ var move_direction: float
 var current_state = null
 var prev_state = null
 
+#networking
+var player_peer: PlayerPeer
+
 #nodes
 @onready var STATES = $STATES
 @onready var Raycasts = $Raycasts

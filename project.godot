@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="TetrisWithGuns"
-run/main_scene="res://Scenes/Testing/tetris_scene.tscn"
+run/main_scene="res://Scenes/Menu/lobby/connection_lobby.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 InteractionManager="*res://Components/Interaction/interaction_manager.tscn"
+GameManager="*res://Components/State/game_manager.gd"
 RigidBodyAutoScaler="*res://addons/rigidbody_auto_scaler/RigidBodyAutoScaler.gd"
 
 [dotnet]
