@@ -13,7 +13,6 @@ var interact: Callable = func(player):
 
 
 func _on_body_entered(body):
-	print(body)
 	if enabled and is_instance_of(body, Player): #Checking for player
 		InteractionManager.add_area(self)
 

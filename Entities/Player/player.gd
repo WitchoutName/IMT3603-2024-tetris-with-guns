@@ -24,6 +24,9 @@ var is_controlling_tower: bool = false
 var piece_catied: Tetramino2
 var move_direction: float
 
+#networking
+var player_peer: PlayerPeer
+
 #states
 var current_state = null
 var prev_state = null
