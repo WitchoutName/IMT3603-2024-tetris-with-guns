@@ -53,8 +53,6 @@ func _process(delta: float) -> void:
 		pass
 		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("click") and currentMag == 0):
 			reload()
-	else:
-		pass
 	
 
 func _init() -> void:
