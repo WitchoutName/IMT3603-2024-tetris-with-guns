@@ -14,6 +14,56 @@
 [ext_resource type="PackedScene" uid="uid://caiga5uv5evtk" path="res://Entities/Player/DASH.tscn" id="13_gbmsj"]
 [ext_resource type="PackedScene" uid="uid://ct16ftajdtqby" path="res://Entities/Player/SLIDE.tscn" id="14_o0klo"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_io1p0"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwbe5"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmbvy"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jocim"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8qve"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iulah"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwkaw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io1p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwbe5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmbvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jocim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8qve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iulah")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3eljs"]
 height = 54.0
 
