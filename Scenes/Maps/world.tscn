@@ -91,7 +91,7 @@ position = Vector2(-407, 328)
 scale = Vector2(0.585, 0.585)
 
 [node name="spawnPoint" type="Marker2D" parent="leftTeam"]
-position = Vector2(-209, 346)
+position = Vector2(278, 83)
 
 [node name="arena" type="Node2D" parent="."]
 position = Vector2(1408, 284)
@@ -425,8 +425,6 @@ position = Vector2(784, 610)
 
 [node name="PlayersGroup" type="Node2D" parent="."]
 
-[node name="PlayerMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-
 [node name="Pistol3" parent="." instance=ExtResource("4_hlu8q")]
 position = Vector2(878, 612)
 
@@ -440,3 +438,10 @@ position = Vector2(972, 614)
 position = Vector2(1186, 623)
 
 [node name="HUD2" parent="." instance=ExtResource("6_y1pgk")]
+
+[node name="BulletGroup" type="Node2D" parent="."]
+
+[node name="BulletMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
+spawn_path = NodePath("../BulletGroup")
+spawn_limit = 10000

@@ -36,11 +36,15 @@ var prev_state = null
 @onready var Raycasts = $Raycasts
 @onready var health = $Health
 @onready var inventory = $Inventory
+@onready var Camera = $Camera2D
 
 #Respawn handling
 const RESPAWN_TIME = 5
 var spawned = true 
 var should_respawn = true
+
+func _enter_tree() -> void:
+	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
 	for state in STATES.get_children():
@@ -48,8 +52,11 @@ func _ready():
 		state.Player = self
 		prev_state = STATES.IDLE
 		current_state = STATES.IDLE
+	if player_peer:
+		$Username.text = player_peer.username
 
 func _physics_process(delta):
+	if not is_multiplayer_authority() and player_peer: return
 	if spawned:
 		if not $AnimatedSprite2D.visible:
 			$AnimatedSprite2D.visible = true
@@ -142,8 +149,13 @@ func respawn():
 	health.set_health(health.max_health)
 	spawn()
 
-func equip_item(item):
-	inventory.equip_item(item)
+func equip_gun(gun):
+	pass
+	#equiped_gun = gun
+	#if player_peer:
+		#gun.set_multiplayer_authority(player_peer.id)
 
-func unequip_item():
-	inventory.unequip_item()
+func unequip_gun():
+	pass
+	#equiped_gun.set_multiplayer_authority(1)
+	#equiped_gun = null

@@ -18,6 +18,7 @@ region_enabled = true
 region_rect = Rect2(2.071, 0.882, 12.013, 14.234)
 
 [node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 16252929
 script = ExtResource("2_8gp4h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]

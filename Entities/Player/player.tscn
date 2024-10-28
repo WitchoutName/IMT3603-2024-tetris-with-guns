@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ccqcnw8132xn3"]
+[gd_scene load_steps=24 format=3 uid="uid://ccqcnw8132xn3"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_6ark4"]
 [ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_qk4a2"]
@@ -70,7 +70,10 @@ height = 54.0
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g1lb6"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/replication_mode = 1
+properties/0/replication_mode = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_uxlqq"]
+font_size = 14
 
 [node name="Player" type="CharacterBody2D" groups=["players"]]
 script = ExtResource("1_6ark4")
@@ -143,5 +146,15 @@ hit_from_inside = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_g1lb6")
+
+[node name="Username" type="Label" parent="."]
+offset_left = -46.0
+offset_top = -44.0
+offset_right = 48.0
+offset_bottom = -24.0
+text = "username"
+label_settings = SubResource("LabelSettings_uxlqq")
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [connection signal="death" from="Health" to="." method="_on_health_death"]

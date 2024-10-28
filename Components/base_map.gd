@@ -2,6 +2,7 @@ extends Node2D
 class_name BaseMap
 
 var teams: Array[Team]
+var bullet_group: Node2D
 
 
 var SPAWN_POINT = load("res://Entities/Player/SpawnPoint/spawn_point.tscn")
@@ -36,6 +37,8 @@ func init() -> void:
 			
 		if player_peer.id == multiplayer.get_unique_id():
 			InteractionManager.player = player
+		else:
+			player.Camera.queue_free()
 		
 		#player.synchroniser.set_multiplayer_authority(player_peer.id)
 

@@ -70,7 +70,7 @@ func register_player(id: int, name: String):
 @rpc("any_peer", "call_local")
 func player_change_team(player_id: int, team: int):
 	GameManager.player_change_team(player_id, team)
-	GameManager.sync_players()
+	GameManager.player_change_team.rpc(player_id, team)
 	update_team_labels()
 	lobby_log("Player '" + GameManager._players[player_id].username + "' changed to team to Team " + str(team))
 	

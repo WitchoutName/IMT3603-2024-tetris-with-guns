@@ -2,5 +2,5 @@ extends RigidBody2D
 
 
 func _ready() -> void:
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	queue_free()

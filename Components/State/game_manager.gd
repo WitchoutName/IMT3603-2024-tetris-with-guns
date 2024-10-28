@@ -10,6 +10,7 @@ enum GameState {
 
 var game_state = GameState.CONNECTION_LOBBY
 var lobby: ConnectionLobby
+var map: BaseMap
 var _players: Dictionary = {}
 
 var players: Array:
@@ -76,7 +77,7 @@ func _sync_players_fake():
 
 @rpc("authority", "call_local", "reliable")
 func start_game():
-	var map: BaseMap = load("res://Scenes/Maps/world.tscn").instantiate()
+	map = load("res://Scenes/Maps/world.tscn").instantiate()
 	get_tree().root.add_child(map)
 	lobby.hide()
 	map.init()

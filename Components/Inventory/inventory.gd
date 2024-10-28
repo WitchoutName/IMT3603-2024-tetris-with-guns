@@ -5,7 +5,7 @@ enum ItemSlot { RIGHT_HAND, LEFT_HAND, ITEM_SLOT }
 
 var current_slot = ItemSlot.RIGHT_HAND
 
-@onready var player = get_parent()
+@onready var player: Player = get_parent()
 
 #The inventory slots
 var right_hand = null
@@ -34,7 +34,9 @@ func _process(delta):
 func switch_slot(slot: ItemSlot):
 	current_slot = slot
 
-func equip_item(item):
+@rpc("any_peer")
+func equip_item(item: Node2D):
+	item.set_multiplayer_authority(player.player_peer.id)
 	if item.is_in_group("one-handed"):
 		#No matter the slot, if current weapon is two handed, it needs to be dropped
 		if right_hand && right_hand.is_in_group("two-handed"):
@@ -69,21 +71,26 @@ func equip_item(item):
 			item_slot._drop()
 		item_slot = item
 
+@rpc("any_peer")
 func unequip_item():
 	match current_slot:
 		ItemSlot.RIGHT_HAND:
 			if right_hand:
+				right_hand.set_multiplayer_authority(1)
 				right_hand._drop()
 				right_hand = null
 		ItemSlot.LEFT_HAND:
 			if right_hand && right_hand.is_in_group("two-handed"): #Allowing for weapon switch when two handing
+				right_hand.set_multiplayer_authority(1)
 				right_hand._drop()
 				right_hand = null
 			elif left_hand:
+				left_hand.set_multiplayer_authority(1)
 				left_hand._drop()
 				left_hand = null 
 		ItemSlot.ITEM_SLOT:
 			if item_slot:
+				item_slot.set_multiplayer_authority(1)
 				item_slot._drop()
 				item_slot = null
 		_:

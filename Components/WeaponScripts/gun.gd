@@ -19,7 +19,7 @@ var currentRecoil = 0.0
 #Equip handling
 @onready var interaction_area: InteractionArea = $InteractionArea
 var active = false
-var player
+var player: Player
 var start_orientation
 var fire_mode = "click"
 
@@ -83,7 +83,8 @@ func shoot(delta):
 		if $AnimatedSprite2D.is_playing():
 			$AnimatedSprite2D.stop()
 		
-		get_tree().root.add_child(bullet)
+		bullet.set_multiplayer_authority(multiplayer.get_unique_id())
+		GameManager.map.bullet_group.add_child(bullet, true)
 		bullet.rotation = $Barrel.global_rotation + randf_range(-bulletSpread,bulletSpread)
 		bullet.position = $Barrel.global_position
 		bullet.linear_velocity = bullet.transform.x * bulletSpeed
@@ -101,25 +102,32 @@ func shoot(delta):
 		timeUntilFire += delta
 
 #On player interaction
+@rpc("any_peer")
+#func _on_interact(player_id: int):
 func _on_interact(interacted_player: Player):
+	set_multiplayer_authority(interacted_player.player_peer.id)
+	#player = GameManager._players[player_id].entity
 	player = interacted_player
 	fire_mode = player.inventory.get_fire_mode() #Getting which fire mode to use
 	if !fire_mode: #If null returned - slot 3 selected, weapon is not equiped
 		fire_mode = "click1"
 		return
-	player.health.connect("death", Callable(self, "_drop")) #Connecting drop to death signal
+	if not player.health.is_connected("death", _drop):
+		player.health.connect("death", _drop) #Connecting drop to death signal
 	active = true
-	player.equip_item(self)
+	player.inventory.equip_item(self)
 	interaction_area.enabled = false 
 	interaction_area.force_remove() #We have to force remove it from the manager
 
 #Handles the weapon drop
+@rpc("authority")
 func _drop():
+	set_multiplayer_authority(1)
 	rotation = start_orientation
 	active = false
 	#Disconnecting from death signal
-	if player && player.health.is_connected("death", Callable(self, "_respawn_player")):
-			player.health.disconnect("death", Callable(self, "_respawn_player"))
+	if player && player.health.is_connected("death", _drop):
+			player.health.disconnect("death", _drop)
 	if player && player.spawned: #If the player is spawned we make the gun interactble again 
 		interaction_area.force_add()
 	player = null
