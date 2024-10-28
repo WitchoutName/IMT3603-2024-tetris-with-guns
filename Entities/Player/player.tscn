@@ -1,8 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://ccqcnw8132xn3"]
+[gd_scene load_steps=14 format=3 uid="uid://ccqcnw8132xn3"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_6ark4"]
 [ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_qk4a2"]
-[ext_resource type="Texture2D" uid="uid://crn5lue4hbroe" path="res://Assets/Temp_Player/Idle/thickIdleSheet.png" id="3_dasr1"]
+[ext_resource type="PackedScene" uid="uid://bagqr8g0r0qa6" path="res://Assets/PlayerModel/playermodel.tscn" id="3_ycypm"]
 [ext_resource type="Script" path="res://Components/Boxes/hurtbox.gd" id="4_0vliq"]
 [ext_resource type="Script" path="res://Entities/Player/STATES.gd" id="5_4wxoe"]
 [ext_resource type="PackedScene" uid="uid://cy6x818dvugor" path="res://Entities/Player/FALL.tscn" id="6_h8lf8"]
@@ -13,56 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://caiga5uv5evtk" path="res://Entities/Player/DASH.tscn" id="13_gbmsj"]
 [ext_resource type="PackedScene" uid="uid://ct16ftajdtqby" path="res://Entities/Player/SLIDE.tscn" id="14_o0klo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_io1p0"]
-atlas = ExtResource("3_dasr1")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nwbe5"]
-atlas = ExtResource("3_dasr1")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tmbvy"]
-atlas = ExtResource("3_dasr1")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jocim"]
-atlas = ExtResource("3_dasr1")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n8qve"]
-atlas = ExtResource("3_dasr1")
-region = Rect2(256, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iulah"]
-atlas = ExtResource("3_dasr1")
-region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pwkaw"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_io1p0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nwbe5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tmbvy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jocim")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n8qve")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iulah")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3eljs"]
 height = 54.0
 
@@ -72,10 +22,9 @@ SPEED = 400.0
 
 [node name="Health" parent="." instance=ExtResource("2_qk4a2")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.935, -3.28)
-sprite_frames = SubResource("SpriteFrames_pwkaw")
-animation = &"Idle"
+[node name="Animation" parent="." instance=ExtResource("3_ycypm")]
+position = Vector2(-15.45, -15.985)
+scale = Vector2(0.055, 0.055)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3eljs")
