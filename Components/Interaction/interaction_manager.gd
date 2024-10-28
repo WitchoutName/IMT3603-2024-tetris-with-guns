@@ -2,7 +2,7 @@ extends Node2D
 
 #IMPORTANT: Project -> Project Settings -> Globals -> Add interaction_manager
 
-@onready var player = get_tree().get_first_node_in_group("players") #Getting the players
+@onready var player: Player = get_tree().get_first_node_in_group("players") #Getting the players
 @onready var label = $Label #Getting the label
 
 const base_text = "[E] to " #Always present text start 

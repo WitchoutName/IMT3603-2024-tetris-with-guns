@@ -1,16 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxarkfpbrqrvt"]
+[gd_scene load_steps=2 format=3 uid="uid://bxarkfpbrqrvt"]
 
 [ext_resource type="Script" path="res://Entities/Player/SpawnPoint/spawn_point.gd" id="1_x7oti"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5d7xq"]
-height = 54.0
-
-[node name="SpawnPoint" type="Node2D"]
+[node name="SpawnPoint" type="Node2D" groups=["PlayerSpawners"]]
 script = ExtResource("1_x7oti")
 
-[node name="Coordinates" type="CollisionShape2D" parent="."]
+[node name="Coordinates" type="Node2D" parent="."]
 position = Vector2(0, -27)
-shape = SubResource("CapsuleShape2D_5d7xq")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0

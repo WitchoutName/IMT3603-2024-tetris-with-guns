@@ -24,6 +24,9 @@ var is_controlling_tower: bool = false
 var piece_catied: Tetramino2
 var move_direction: float
 
+#networking
+var player_peer: PlayerPeer
+
 #states
 var current_state = null
 var prev_state = null
@@ -32,15 +35,16 @@ var prev_state = null
 @onready var STATES = $STATES
 @onready var Raycasts = $Raycasts
 @onready var health = $Health
+@onready var inventory = $Inventory
+@onready var Camera = $Camera2D
 
 #Respawn handling
 const RESPAWN_TIME = 5
 var spawned = true 
 var should_respawn = true
 
-#Gun handling
-var equiped_gun: Gun
-var gun_picked_up = false
+func _enter_tree() -> void:
+	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
 	for state in STATES.get_children():
@@ -48,8 +52,11 @@ func _ready():
 		state.Player = self
 		prev_state = STATES.IDLE
 		current_state = STATES.IDLE
+	if player_peer:
+		$Username.text = player_peer.username
 
 func _physics_process(delta):
+	if not is_multiplayer_authority() and player_peer: return
 	if spawned:
 		if not $AnimatedSprite2D.visible:
 			$AnimatedSprite2D.visible = true
@@ -59,8 +66,6 @@ func _physics_process(delta):
 		change_state(current_state.update(delta))
 		move_and_slide()
 		#default_move(delta)
-		if equiped_gun:
-			equiped_gun.global_position = global_position
 	else:
 		if $AnimatedSprite2D.visible:
 			$AnimatedSprite2D.visible = false
@@ -130,6 +135,7 @@ func player_input():
 		dash_input = false 
 
 func _on_health_death():
+	inventory.unequip_everything()
 	spawned = false
 
 func spawn():
@@ -144,7 +150,12 @@ func respawn():
 	spawn()
 
 func equip_gun(gun):
-	equiped_gun = gun
+	pass
+	#equiped_gun = gun
+	#if player_peer:
+		#gun.set_multiplayer_authority(player_peer.id)
 
 func unequip_gun():
-	equiped_gun = null
+	pass
+	#equiped_gun.set_multiplayer_authority(1)
+	#equiped_gun = null

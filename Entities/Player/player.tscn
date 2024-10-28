@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://ccqcnw8132xn3"]
+[gd_scene load_steps=24 format=3 uid="uid://ccqcnw8132xn3"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_6ark4"]
 [ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_qk4a2"]
-[ext_resource type="PackedScene" uid="uid://bagqr8g0r0qa6" path="res://Assets/PlayerModel/playermodel.tscn" id="3_ycypm"]
+[ext_resource type="Texture2D" uid="uid://crn5lue4hbroe" path="res://Assets/Temp_Player/Idle/thickIdleSheet.png" id="3_dasr1"]
+[ext_resource type="Script" path="res://Components/Inventory/inventory.gd" id="3_tef5q"]
 [ext_resource type="Script" path="res://Components/Boxes/hurtbox.gd" id="4_0vliq"]
 [ext_resource type="Script" path="res://Entities/Player/STATES.gd" id="5_4wxoe"]
 [ext_resource type="PackedScene" uid="uid://cy6x818dvugor" path="res://Entities/Player/FALL.tscn" id="6_h8lf8"]
@@ -16,15 +17,27 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3eljs"]
 height = 54.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g1lb6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_uxlqq"]
+font_size = 14
+
 [node name="Player" type="CharacterBody2D" groups=["players"]]
 script = ExtResource("1_6ark4")
 SPEED = 400.0
 
 [node name="Health" parent="." instance=ExtResource("2_qk4a2")]
 
-[node name="Animation" parent="." instance=ExtResource("3_ycypm")]
-position = Vector2(-15.45, -15.985)
-scale = Vector2(0.055, 0.055)
+[node name="Inventory" type="Node" parent="."]
+script = ExtResource("3_tef5q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.935, -3.28)
+sprite_frames = SubResource("SpriteFrames_pwkaw")
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3eljs")
@@ -80,5 +93,18 @@ position = Vector2(-9, 23)
 rotation = 1.0472
 target_position = Vector2(-1.99999, 3.4641)
 hit_from_inside = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_g1lb6")
+
+[node name="Username" type="Label" parent="."]
+offset_left = -46.0
+offset_top = -44.0
+offset_right = 48.0
+offset_bottom = -24.0
+text = "username"
+label_settings = SubResource("LabelSettings_uxlqq")
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [connection signal="death" from="Health" to="." method="_on_health_death"]
