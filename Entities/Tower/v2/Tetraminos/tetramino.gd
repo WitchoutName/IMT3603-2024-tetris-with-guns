@@ -1,6 +1,9 @@
 extends RigidBody2D
 class_name Tetramino2
 
+# Declare the picked_up signal
+signal piece_picked_up  
+
 # RigidBody mode
 @onready var interaction_area: InteractionArea = $InteractionArea
 var picked_up: bool = false
@@ -20,6 +23,7 @@ var is_petrified: bool = false:
 	set = _set__is_petrified
 var console_color: String
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Init of the tetris variables
@@ -37,6 +41,9 @@ func _ready() -> void:
 	interaction_area.interact = Callable(self, "_on_interact") #Assigning interact function
 	mass = 0.25
 	linear_damp = 1
+
+
+
 
 func sync(grid_size: Vector2):
 	"""
@@ -76,14 +83,23 @@ func _set__player(value: Player):
 
 	
 func _on_interact(_player: Player):
-	if tower: tower.steal(self)
-	if player:	release()
-	else: 	attach(_player)
+	if tower: 
+		tower.steal(self)
 		
+	if player:
+		release()
+	else: 
+		attach(_player)
+		#This is for spawning pieces
+		emit_signal("piece_picked_up")
 	##Awaiting release in order to avoid triggering release
 	#await _wait_for_no_input()
 	#
 	#await _wait_for_no_release()
+	
+	
+	
+	
 
 
 func _wait_for_no_release():
@@ -114,6 +130,10 @@ func attach(_player: Player):
 	picked_up = true
 	player = _player
 	player.piece_catied = self
+	
+	
+	
+	
 
 func release():
 	if player:
@@ -122,6 +142,7 @@ func release():
 		picked_up = true
 		player = null
 		is_tetris_mode = false
+		
 
 
 func _set__tower(value: Tower2):
