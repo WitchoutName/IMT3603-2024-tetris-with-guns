@@ -20,13 +20,14 @@ var current_piece: Node = null
 
 func _ready() -> void:
 	# Configure and add the timer
-	spawn_timer.wait_time = respawn_time
+	spawn_timer.wait_time = 1.0
 	spawn_timer.one_shot = true
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	add_child(spawn_timer)
 
 	# Spawn the first piece
 	spawn_random_piece()
+
 
 # Function to spawn a random piece from the spawnable_items array
 func spawn_random_piece() -> void:
@@ -63,7 +64,7 @@ func select_random_weighted_item() -> PackedScene:
 
 # Called when a piece is picked up
 func _on_piece_picked_up() -> void:
-	spawn_timer.start()  
+	spawn_timer.start(randi_range(1,10))  
 	is_piece_active = true  
 
 # Called when the spawn timer times out
