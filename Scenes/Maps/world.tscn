@@ -66,7 +66,7 @@ size = Vector2(4051, 6.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckep6"]
 size = Vector2(4053, 150)
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" groups=["maps"]]
 position = Vector2(-1, 0)
 script = ExtResource("1_mjvhr")
 

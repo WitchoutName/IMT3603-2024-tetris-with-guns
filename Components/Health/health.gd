@@ -24,6 +24,7 @@ func get_max_health() -> int:
 #Sets health to a new value
 func set_health(new_value: int):
 	health = new_value
+	health_changed.emit(new_value)
 
 #Sets max_health to a new value
 func set_max_health(new_value: int):
@@ -33,7 +34,7 @@ func set_max_health(new_value: int):
 func take_damage(damage: int):
 	if invunerability == false:
 		health -= damage
-	health_changed.emit(damage)
+	health_changed.emit(-damage)
 	
 	if health <= 0: #Health 0 or bellow means death
 		death.emit()
@@ -44,7 +45,10 @@ func heal_up_to_max_health(healing: int):
 		health = max_health
 	else:
 		health += healing
+	
+	health_changed.emit(healing)
 
 #Healing that will allow healing over max_health
 func heal_over_max_health(healing: int):
 	health += healing
+	health_changed.emit(healing)
