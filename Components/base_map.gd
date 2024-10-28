@@ -3,10 +3,10 @@ class_name BaseMap
 
 var teams: Array[Team]
 var bullet_group: Node2D
+signal map_setup_finished
 
-
-var SPAWN_POINT = load("res://Entities/Player/SpawnPoint/spawn_point.tscn")
-var PLAYER = load("res://Entities/Player/player.tscn")
+var SPAWN_POINT = preload("res://Entities/Player/SpawnPoint/spawn_point.tscn")
+var PLAYER = preload("res://Entities/Player/player.tscn")
 
 func init() -> void:
 	var player_peers = GameManager.players
@@ -42,7 +42,7 @@ func init() -> void:
 		
 		#player.synchroniser.set_multiplayer_authority(player_peer.id)
 
-		
+	map_setup_finished.emit()
 
 
 func _ready() -> void:

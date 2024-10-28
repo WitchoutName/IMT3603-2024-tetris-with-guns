@@ -3,29 +3,41 @@
 
 extends Node2D
 
-# Declare variables for the UI elements
-var team_score_blue
-var team_score_red
-var timer_label
-var health_bar
-var shield_bar
-var weapon_icon1
-var weapon_icon2
-var ammo_label
+# Declare variables for the UI elements and get references
+@onready var team_score_blue = $Display/TopPanel/TeamScoreBlue
+@onready var team_score_red = $Display/TopPanel/TeamScoreRed
+@onready var timer_label = $Display/TopPanel/Timer
+@onready var health_bar = $Display/BottomLeft/HealthBar
+@onready var shield_bar = $Display/BottomLeft/ShieldBar
+@onready var weapon_icon1 = $Display/BottomRight/WeaponIcon1
+@onready var weapon_icon2 = $Display/BottomRight/WeaponIcon2
+@onready var ammo_label = $Display/BottomRight/Ammo
+
+#Reference to the player node
+var player: Player
 
 func _ready():
-	# Get references to UI elements
-	team_score_blue = $Display/TopPanel/TeamScoreBlue
-	team_score_red = $Display/TopPanel/TeamScoreRed
-	timer_label = $Display/TopPanel/Timer
-	health_bar = $Display/BottomLeft/HealthBar
-	shield_bar = $Display/BottomLeft/ShieldBar
-	weapon_icon1 = $Display/BottomRight/WeaponIcon1
-	weapon_icon2 = $Display/BottomRight/WeaponIcon2
-	ammo_label = $Display/BottomRight/Ammo
+	var map = get_map()
+	map.connect("map_setup_finished", Callable(self, "get_references"))
+	
 
-	# Set dummy values for testing
-	set_dummy_values()
+func get_map():
+	var current_node = self
+	while current_node:
+		if current_node.is_in_group("maps"):
+			return current_node
+		current_node = current_node.get_parent()
+	return null  # Return null if no "map" node is found
+
+func get_references():
+	player = GameManager.get_my_player()
+	
+	#Connecting player signals to health
+	player.health.connect("health_changed", Callable(self, "_on_health_change"))
+	player.health.connect("death", Callable(self, "_on_health_change"))
+	player.connect("respawned", Callable(self, "_on_health_change"))
+	
+	initialize()
 
 # Function to update team scores
 func update_team_scores(blue_score: int, red_score: int):
@@ -47,10 +59,14 @@ func update_timer(time_left: int):
 	if timer_label != null:
 		timer_label.text = "%02d:%02d" % [minutes, seconds]
 
+func _on_health_change():
+	var health = player.health.get_current_health()
+	update_health(health)
+
 # Function to update health
 func update_health(health: int):
 	if health_bar != null:
-		health_bar.value = health
+		health_bar.value = health if health >= 0 else 0
 		if health_bar.get_child_count() > 0 and health_bar.get_child(0) is Label:
 			var health_label_node = health_bar.get_child(0)
 			health_label_node.text = str(health) + " / 100"
@@ -83,10 +99,10 @@ func _process(delta):
 	pass  # This will be filled in with actual game logic later
 
 # Function to set dummy values for testing
-func set_dummy_values():
+func initialize():
 	update_team_scores(8, 6)
 	update_timer(300)
-	update_health(87)
+	update_health(player.health.get_current_health())
 	update_shield(44)
 	update_ammo(17, 30)
 	highlight_weapon(1)

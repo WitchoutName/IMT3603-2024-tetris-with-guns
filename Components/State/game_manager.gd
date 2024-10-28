@@ -8,6 +8,8 @@ enum GameState {
 	WIN
 }
 
+signal game_started
+
 var game_state = GameState.CONNECTION_LOBBY
 var lobby: ConnectionLobby
 var map: BaseMap
@@ -24,6 +26,9 @@ var team2: Array:
 	
 var my_player: Player:
 	get: return _players[my_id].entity
+
+func get_my_player() -> Player:
+	return _players[my_id].entity
 
 
 @rpc("authority", "call_local", "reliable")
@@ -86,3 +91,4 @@ func start_game():
 	get_tree().root.add_child(map)
 	lobby.hide()
 	map.init()
+	game_started.emit()
