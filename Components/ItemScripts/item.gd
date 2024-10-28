@@ -31,13 +31,14 @@ func _process(delta):
 
 #On player interaction
 func _on_interact(interacted_player: Player):
-	player = interacted_player
-	player.health.connect("death", Callable(self, "_drop")) #Connecting drop to death signal
-	active = true
-	player.inventory.equip_item(self)
-	sprite.hide()
-	interaction_area.enabled = false 
-	interaction_area.force_remove() #We have to force remove it from the manager
+	if interacted_player:
+		player = interacted_player
+		player.health.connect("death", Callable(self, "_drop")) #Connecting drop to death signal
+		active = true
+		player.inventory.equip_item(self)
+		sprite.hide()
+		interaction_area.enabled = false 
+		interaction_area.force_remove() #We have to force remove it from the manager
 
 #Handles the weapon drop
 func _drop():

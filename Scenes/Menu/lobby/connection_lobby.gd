@@ -89,6 +89,7 @@ func host_game():
 		print("cannot host: ", error)
 		return
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
+	GameManager.my_id = peer.get_unique_id()
 	$StartGroup.visible = true
 	
 	multiplayer.set_multiplayer_peer(peer)
@@ -138,6 +139,7 @@ func _on_join_button_button_down() -> void:
 		if error != OK: return lobby_log("Could not connect")
 		peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 		print(peer.get_unique_id())
+		GameManager.my_id = peer.get_unique_id()
 		multiplayer.set_multiplayer_peer(peer)	
 		lobby_log_lines = []
 		$JoinGroup/JoinButton.disabled = true

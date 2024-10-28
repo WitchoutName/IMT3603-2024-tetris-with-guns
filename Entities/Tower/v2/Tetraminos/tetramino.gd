@@ -14,9 +14,9 @@ var base_scales: Dictionary = {} # dict[Node2D: Array[Vector2]]
 @export var shape: TetraminoClass.PIECE_SHAPE
 var matrix: Array
 var data: TetraminoClass
-var is_tetris_mode: bool = false:
+@export var is_tetris_mode: bool = false:
 	set = _set__is_tetris_mode
-var is_petrified: bool = false:
+@export var is_petrified: bool = false:
 	set = _set__is_petrified
 var console_color: String
 
