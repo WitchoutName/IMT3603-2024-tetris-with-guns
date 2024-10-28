@@ -1,8 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://b4ei5at3crh8c"]
+[gd_scene load_steps=27 format=3 uid="uid://b4ei5at3crh8c"]
 
-[ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="1_7minn"]
-[ext_resource type="PackedScene" uid="uid://ccqcnw8132xn3" path="res://Entities/Player/player.tscn" id="2_q37fd"]
-[ext_resource type="PackedScene" uid="uid://sla3csh23s6w" path="res://Entities/SpawnPieces.tscn" id="3_r01oa"]
+[ext_resource type="Script" path="res://Scenes/Maps/map1.gd" id="1_mjvhr"]
+[ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="2_hjvxx"]
+[ext_resource type="PackedScene" uid="uid://b62gaquce8rnp" path="res://Entities/Tower/v2/Tetraminos/shape_o.tscn" id="3_j374k"]
+[ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol.tscn" id="4_hlu8q"]
+[ext_resource type="PackedScene" uid="uid://bic5nels0gapo" path="res://Scenes/HUD/HUD.tscn" id="6_y1pgk"]
+[ext_resource type="PackedScene" uid="uid://ba7jl2dq2bfc4" path="res://Entities/Guns/assault_rifle.tscn" id="6_yw73w"]
+[ext_resource type="PackedScene" uid="uid://dbsw503oi27ec" path="res://Entities/Items/granade.tscn" id="7_cwoly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evea7"]
 size = Vector2(529.25, 38)
@@ -64,6 +68,7 @@ size = Vector2(4053, 150)
 
 [node name="World" type="Node2D"]
 position = Vector2(-1, 0)
+script = ExtResource("1_mjvhr")
 
 [node name="leftTeam" type="Node2D" parent="."]
 position = Vector2(570, 242)
@@ -81,12 +86,12 @@ offset_top = -18.0
 offset_right = 265.0
 offset_bottom = 21.0
 
-[node name="Tower" parent="leftTeam" instance=ExtResource("1_7minn")]
+[node name="Tower" parent="leftTeam" instance=ExtResource("2_hjvxx")]
 position = Vector2(-407, 328)
 scale = Vector2(0.585, 0.585)
 
 [node name="spawnPoint" type="Marker2D" parent="leftTeam"]
-position = Vector2(-150, 315)
+position = Vector2(278, 83)
 
 [node name="arena" type="Node2D" parent="."]
 position = Vector2(1408, 284)
@@ -317,6 +322,9 @@ offset_top = -9.0
 offset_right = 188.0
 offset_bottom = 7.0
 
+[node name="ShapeO" parent="arena" instance=ExtResource("3_j374k")]
+position = Vector2(-937, 284)
+
 [node name="UpperLevelBody" type="StaticBody2D" parent="arena"]
 position = Vector2(39, -85)
 
@@ -368,12 +376,12 @@ offset_top = -19.0
 offset_right = 264.0
 offset_bottom = 20.0
 
-[node name="Tower" parent="rightTeam" instance=ExtResource("1_7minn")]
+[node name="Tower" parent="rightTeam" instance=ExtResource("2_hjvxx")]
 position = Vector2(278, 328)
 scale = Vector2(0.585, 0.585)
 
 [node name="spawnPoint" type="Marker2D" parent="rightTeam"]
-position = Vector2(6, 316)
+position = Vector2(25, 358)
 
 [node name="death" type="Node2D" parent="."]
 
@@ -392,11 +400,33 @@ position = Vector2(-28, -100)
 position = Vector2(25.5, -171)
 shape = SubResource("RectangleShape2D_ckep6")
 
-[node name="Player" parent="." instance=ExtResource("2_q37fd")]
-position = Vector2(353, 612)
+[node name="Pistol2" parent="." instance=ExtResource("4_hlu8q")]
+position = Vector2(641, 610)
 
-[node name="SpawnPieces" parent="." instance=ExtResource("3_r01oa")]
-position = Vector2(786, 588)
+[node name="Pistol" parent="." instance=ExtResource("4_hlu8q")]
+position = Vector2(784, 610)
 
-[node name="SpawnPieces2" parent="." instance=ExtResource("3_r01oa")]
-position = Vector2(446, 598)
+[node name="HUD" parent="." instance=ExtResource("6_y1pgk")]
+
+[node name="PlayersGroup" type="Node2D" parent="."]
+
+[node name="Pistol3" parent="." instance=ExtResource("4_hlu8q")]
+position = Vector2(878, 612)
+
+[node name="Pistol4" parent="." instance=ExtResource("4_hlu8q")]
+position = Vector2(784, 610)
+
+[node name="assault_rifle" parent="." instance=ExtResource("6_yw73w")]
+position = Vector2(972, 614)
+
+[node name="Granade" parent="." instance=ExtResource("7_cwoly")]
+position = Vector2(1186, 623)
+
+[node name="HUD2" parent="." instance=ExtResource("6_y1pgk")]
+
+[node name="BulletGroup" type="Node2D" parent="."]
+
+[node name="BulletMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
+spawn_path = NodePath("../BulletGroup")
+spawn_limit = 10000

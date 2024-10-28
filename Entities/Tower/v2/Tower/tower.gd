@@ -56,8 +56,21 @@ func _on_move_down_timer_timeout() -> void:
 			grid.petrify_complete_row()
 
 func _on_win():
-	
 	emit_signal(win.get_name())
+
+func reset():
+	active_piece.queue_free()
+	active_piece = null
+	for piece in piece_queue:
+		piece.queue_free()
+	for x in grid.piece_matrix:
+		for y in x:
+			if y:
+				y.queue_free()
+				y = null	
+	grid = GridClass.new(tower_dimensions, petrify_width)
+	_init_bg()
+	$MoveDownTimer.wait_time = 1 - (fall_speed-1)/10
 
 
 func _init_bg():

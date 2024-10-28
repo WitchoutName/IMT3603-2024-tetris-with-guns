@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxarkfpbrqrvt"]
+
+[ext_resource type="Script" path="res://Entities/Player/SpawnPoint/spawn_point.gd" id="1_x7oti"]
+
+[node name="SpawnPoint" type="Node2D" groups=["PlayerSpawners"]]
+script = ExtResource("1_x7oti")
+
+[node name="Coordinates" type="Node2D" parent="."]
+position = Vector2(0, -27)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

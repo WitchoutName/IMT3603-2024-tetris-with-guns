@@ -73,7 +73,7 @@ func _set__player(value: Player):
 		player.add_child(self)
 		position = Vector2(0, 0)
 		scale(Vector2(0.25, 0.25))
-	else:
+	elif player: 
 		var root = get_tree().root
 		player.remove_child(self)
 		root.get_children()[1].add_child(self)
@@ -125,15 +125,12 @@ func scale(factor: Vector2):
 			child.transform.origin = base_scales[child][1] * factor
 
 func attach(_player: Player):
-	$CollisionPolygon2D.disabled = true
-	freeze = true
-	picked_up = true
-	player = _player
-	player.piece_catied = self
-	
-	
-	
-	
+	if _player:
+		$CollisionPolygon2D.disabled = true
+		freeze = true
+		picked_up = true
+		player = _player
+		player.piece_catied = self
 
 func release():
 	if player:

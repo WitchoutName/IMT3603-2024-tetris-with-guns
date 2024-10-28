@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdneyo7mpey32"]
+[gd_scene load_steps=17 format=3 uid="uid://bdneyo7mpey32"]
 
 [ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_xmxuh"]
 [ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/gun-sheet.png" id="2_1tu8d"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_s7v60"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awig3"]
 atlas = ExtResource("2_1tu8d")
@@ -86,7 +87,27 @@ animations = [{
 "speed": 35.0
 }]
 
-[node name="Pistol" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_f75oi"]
+radius = 59.0085
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tvqak"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath("AnimatedSprite2D:frame")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+properties/4/path = NodePath("AnimatedSprite2D:animation")
+properties/4/spawn = true
+properties/4/replication_mode = 2
+
+[node name="Pistol" type="Node2D" groups=["one-handed"]]
 script = ExtResource("1_xmxuh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -100,3 +121,17 @@ position = Vector2(31, -7)
 
 [node name="Eject" type="Node2D" parent="."]
 position = Vector2(6, -10)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16252929
+script = ExtResource("3_s7v60")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_f75oi")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_tvqak")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

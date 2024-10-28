@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://ba7jl2dq2bfc4"]
+[gd_scene load_steps=16 format=3 uid="uid://ba7jl2dq2bfc4"]
 
 [ext_resource type="Script" path="res://Components/WeaponScripts/assault_rifle.gd" id="1_j2v1e"]
 [ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/gun-sheet.png" id="2_s728a"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_ggxhp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awig3"]
 atlas = ExtResource("2_s728a")
@@ -86,7 +87,10 @@ animations = [{
 "speed": 35.0
 }]
 
-[node name="assault_rifle" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_e6ygm"]
+radius = 65.0308
+
+[node name="assault_rifle" type="Node2D" groups=["two-handed"]]
 script = ExtResource("1_j2v1e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -100,3 +104,12 @@ position = Vector2(31, -7)
 
 [node name="Eject" type="Node2D" parent="."]
 position = Vector2(6, -10)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+script = ExtResource("3_ggxhp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_e6ygm")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

@@ -5,7 +5,7 @@ extends Node
 @export var pieces: Array[PackedScene]
 
 var tower: Tower2
-@onready var spawn_marker = $"../SpawnMarker"
+#@onready var spawn_marker = $"../SpawnMarker"
 var counter: int = 0
 
 # Called when the node enters the scene tree for the first time.

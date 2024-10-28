@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="1_vdh3i"]
 
 [node name="InteractionArea" type="Area2D"]
+collision_mask = 16252929
 script = ExtResource("1_vdh3i")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
