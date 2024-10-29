@@ -59,8 +59,8 @@ func _ready():
 func _physics_process(delta):
 	if not is_multiplayer_authority() and player_peer: return
 	if spawned:
-		if not $AnimatedSprite2D.visible:
-			$AnimatedSprite2D.visible = true
+		if not $Animation.visible:
+			$Animation.visible = true
 		if is_controlling_tower: _handle_tower_input()
 		else: player_input()
 	
@@ -68,8 +68,8 @@ func _physics_process(delta):
 		move_and_slide()
 		#default_move(delta)
 	else:
-		if $AnimatedSprite2D.visible:
-			$AnimatedSprite2D.visible = false
+		if $Animation.visible:
+			$Animation.visible = false
 
 func _handle_tower_input():
 	if tower and tower.active_piece:

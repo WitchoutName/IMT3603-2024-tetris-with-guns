@@ -456,76 +456,78 @@ script = ExtResource("1_jd463")
 [node name="Body" type="Node2D" parent="CharacterContainer"]
 
 [node name="Head" type="Sprite2D" parent="CharacterContainer/Body"]
-position = Vector2(301, 2.99986)
+position = Vector2(305.619, -32.7967)
 rotation = -0.000135907
 texture = ExtResource("2_med0v")
 offset = Vector2(27, 377)
 
 [node name="TopBody" type="Sprite2D" parent="CharacterContainer/Body"]
-position = Vector2(300, 231)
+position = Vector2(304.619, 195.203)
 rotation = -0.000135907
 texture = ExtResource("3_vsc4l")
 offset = Vector2(28, 145)
 
 [node name="BotBody" type="Sprite2D" parent="CharacterContainer/Body"]
-position = Vector2(300, 472)
+position = Vector2(304.619, 436.203)
 texture = ExtResource("4_3uf6f")
 offset = Vector2(29, -101)
 
 [node name="TopArmR" type="Sprite2D" parent="CharacterContainer/Body"]
-position = Vector2(302.009, 63.9997)
-rotation = 0.221763
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(306.493, 28.2028)
+rotation = 1.8856
+scale = Vector2(1, 1)
 texture = ExtResource("5_nfvrb")
 offset = Vector2(27, 306)
 
 [node name="BotArmR" type="Sprite2D" parent="CharacterContainer/Body"]
-position = Vector2(408.992, 157.828)
-rotation = -0.6427
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(203.131, 126.008)
+rotation = -0.440435
+scale = Vector2(0.999995, 0.999995)
 texture = ExtResource("6_43b7p")
 offset = Vector2(-98, 239)
 
 [node name="TopArmL" type="Sprite2D" parent="CharacterContainer/Body"]
-position = Vector2(302.009, 63.9997)
-rotation = 0.311863
+position = Vector2(306.493, 28.2028)
+rotation = -0.828523
 scale = Vector2(1, 1)
 texture = ExtResource("5_nfvrb")
 offset = Vector2(-30, 307)
 flip_h = true
 
 [node name="BotArmL" type="Sprite2D" parent="CharacterContainer/Body"]
-position = Vector2(158.06, 90.09)
-rotation = 0.311863
-scale = Vector2(1, 1)
+position = Vector2(270.144, 169.919)
+rotation = -3.0275
+scale = Vector2(0.999997, 0.999997)
 texture = ExtResource("6_43b7p")
 offset = Vector2(99, 238)
 flip_h = true
 
 [node name="TopLegR" type="Sprite2D" parent="CharacterContainer/Body"]
-position = Vector2(300, 472)
-rotation = -0.182074
-scale = Vector2(0.999998, 0.999998)
+position = Vector2(304.619, 436.203)
+rotation = 0.643105
+scale = Vector2(0.999982, 0.999982)
 texture = ExtResource("7_ocyql")
 offset = Vector2(29, -102)
 
 [node name="BotLegR" type="Sprite2D" parent="CharacterContainer/Body"]
-position = Vector2(430.269, 610.706)
-rotation = 0.547003
-scale = Vector2(0.999998, 0.999998)
+position = Vector2(291.093, 626.016)
+rotation = 1.52962
+scale = Vector2(0.999982, 0.999982)
 texture = ExtResource("8_44jh0")
 offset = Vector2(-76, -264)
 
 [node name="TopLegL" type="Sprite2D" parent="CharacterContainer/Body"]
-position = Vector2(300, 472)
-rotation = -0.186699
+position = Vector2(304.619, 436.203)
+rotation = -1.11617
+scale = Vector2(0.999981, 0.999981)
 texture = ExtResource("7_ocyql")
 offset = Vector2(-28, -101)
 flip_h = true
 
 [node name="BotLegL" type="Sprite2D" parent="CharacterContainer/Body"]
-position = Vector2(229.471, 648.152)
-rotation = -0.0687151
+position = Vector2(403.577, 598.107)
+rotation = 0.437563
+scale = Vector2(0.999984, 0.999984)
 texture = ExtResource("8_44jh0")
 offset = Vector2(74, -261)
 flip_h = true
