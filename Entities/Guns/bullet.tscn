@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="3_xqk65"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1nx0a"]
-size = Vector2(21.3729, 3.58117)
+size = Vector2(26.7162, 7.16234)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02bnr"]
 size = Vector2(10, 4)
@@ -27,7 +27,7 @@ rotation = 1.5708
 texture = ExtResource("1_lxvfp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2.23517e-08)
+position = Vector2(1.78814e-07, 2.98023e-08)
 scale = Vector2(0.374305, 0.558477)
 shape = SubResource("RectangleShape2D_1nx0a")
 
@@ -44,3 +44,4 @@ shape = SubResource("RectangleShape2D_02bnr")
 replication_config = SubResource("SceneReplicationConfig_fojle")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timeout"]

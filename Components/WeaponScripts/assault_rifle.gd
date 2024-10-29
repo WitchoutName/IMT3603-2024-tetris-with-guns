@@ -9,7 +9,8 @@ func _init() -> void:
 	maxMag = 30
 	currentMag = maxMag
 	reloadTime = 1
-	
+	maxRecoil = 20.0
+	recoilIncrement = maxRecoil*0.1
 	
 
 func shoot(delta: float) -> void:
@@ -33,6 +34,7 @@ func shoot(delta: float) -> void:
 		casing.linear_velocity = casing.transform.y * -150
 		timeUntilFire = 0
 		currentMag -= 1
+		currentRecoil = clamp(currentRecoil + (maxRecoil * 0.1), 0.0, maxRecoil)
 		
 	else:
 		timeUntilFire += delta

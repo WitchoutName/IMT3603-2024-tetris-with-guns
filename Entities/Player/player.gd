@@ -42,6 +42,7 @@ var prev_state = null
 const RESPAWN_TIME = 5
 var spawned = true 
 var should_respawn = true
+signal respawned
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -147,6 +148,7 @@ func respawn():
 	#Wait five seconds
 	await get_tree().create_timer(5).timeout
 	health.set_health(health.max_health)
+	respawned.emit()
 	spawn()
 
 func equip_gun(gun):
