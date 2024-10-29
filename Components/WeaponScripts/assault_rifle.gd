@@ -15,7 +15,7 @@ func _init() -> void:
 
 func shoot(delta: float) -> void:
 	
-	if Input.is_action_pressed("click") and timeUntilFire > fireRate and currentMag > 0 and !isReloading:
+	if Input.is_action_pressed(fire_mode) and timeUntilFire > fireRate and currentMag > 0 and !isReloading:
 		var bullet = bulletScene.instantiate()
 		var casing = casingScene.instantiate()
 		if $AnimatedSprite2D.is_playing():

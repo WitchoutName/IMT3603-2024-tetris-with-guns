@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpn3shiiv2u8l"]
+[gd_scene load_steps=4 format=3 uid="uid://bpn3shiiv2u8l"]
 
+[ext_resource type="Script" path="res://Entities/Guns/casing.gd" id="1_5xh76"]
 [ext_resource type="Texture2D" uid="uid://bkiujndt2b26k" path="res://Assets/GunAssets/casing.png" id="1_u4cm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6netp"]
 size = Vector2(2, 1)
 
 [node name="casing" type="RigidBody2D"]
+script = ExtResource("1_5xh76")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_u4cm8")

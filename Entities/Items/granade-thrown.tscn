@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca84xeumpvio6"]
+
+[ext_resource type="Texture2D" uid="uid://dd1173e46enyk" path="res://Assets/ItemAssets/grenades_by_mtk.png" id="1_3epi7"]
+[ext_resource type="Script" path="res://Entities/Items/granade_thrown.gd" id="1_ueg0p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcaps"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_luxu7"]
+radius = 82.0061
+
+[node name="Granade" type="RigidBody2D"]
+script = ExtResource("1_ueg0p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3epi7")
+region_enabled = true
+region_rect = Rect2(2.07112, 0.88225, 12.013, 14.2344)
+
+[node name="ThrowCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_bcaps")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_luxu7")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

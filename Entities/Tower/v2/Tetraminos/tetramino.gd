@@ -1,6 +1,9 @@
 extends RigidBody2D
 class_name Tetramino2
 
+# Declare the picked_up signal
+signal piece_picked_up  
+
 # RigidBody mode
 @onready var interaction_area: InteractionArea = $InteractionArea
 var picked_up: bool = false
@@ -14,11 +17,12 @@ var base_scales: Dictionary = {} # dict[Node2D: Array[Vector2]]
 @export var shape: TetraminoClass.PIECE_SHAPE
 var matrix: Array
 var data: TetraminoClass
-var is_tetris_mode: bool = false:
+@export var is_tetris_mode: bool = false:
 	set = _set__is_tetris_mode
-var is_petrified: bool = false:
+@export var is_petrified: bool = false:
 	set = _set__is_petrified
 var console_color: String
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,6 +41,9 @@ func _ready() -> void:
 	interaction_area.interact = Callable(self, "_on_interact") #Assigning interact function
 	mass = 0.25
 	linear_damp = 1
+
+
+
 
 func sync(grid_size: Vector2):
 	"""
@@ -66,7 +73,7 @@ func _set__player(value: Player):
 		player.add_child(self)
 		position = Vector2(0, 0)
 		scale(Vector2(0.25, 0.25))
-	else:
+	elif player: 
 		var root = get_tree().root
 		player.remove_child(self)
 		root.get_children()[1].add_child(self)
@@ -76,14 +83,23 @@ func _set__player(value: Player):
 
 	
 func _on_interact(_player: Player):
-	if tower: tower.steal(self)
-	if player:	release()
-	else: 	attach(_player)
+	if tower: 
+		tower.steal(self)
 		
+	if player:
+		release()
+	else: 
+		attach(_player)
+		#This is for spawning pieces
+		emit_signal("piece_picked_up")
 	##Awaiting release in order to avoid triggering release
 	#await _wait_for_no_input()
 	#
 	#await _wait_for_no_release()
+	
+	
+	
+	
 
 
 func _wait_for_no_release():
@@ -109,11 +125,12 @@ func scale(factor: Vector2):
 			child.transform.origin = base_scales[child][1] * factor
 
 func attach(_player: Player):
-	$CollisionPolygon2D.disabled = true
-	freeze = true
-	picked_up = true
-	player = _player
-	player.piece_catied = self
+	if _player:
+		$CollisionPolygon2D.disabled = true
+		freeze = true
+		picked_up = true
+		player = _player
+		player.piece_catied = self
 
 func release():
 	if player:
@@ -122,6 +139,7 @@ func release():
 		picked_up = true
 		player = null
 		is_tetris_mode = false
+		
 
 
 func _set__tower(value: Tower2):
