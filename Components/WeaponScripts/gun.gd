@@ -14,7 +14,9 @@ var currentMag = maxMag
 var reloadTime: int
 var isReloading = false
 var maxRecoil: float
+var recoilIncrement: float
 var currentRecoil = 0.0
+
 
 #Equip handling
 @onready var interaction_area: InteractionArea = $InteractionArea
@@ -22,13 +24,26 @@ var active = false
 var player
 var start_orientation
 
+func _init() -> void:
+	bulletSpeed = 1000
+	bps = 5
+	bulletDamage = 30
+	bulletSpread = 0.01
+	timeUntilFire = 0
+	maxMag = 7
+	currentMag = maxMag
+	reloadTime = 1
+	maxRecoil = 20.0
+	recoilIncrement = maxRecoil * 0.2
+	
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fireRate = 1.0 / bps
 	interaction_area.interact = Callable(self, "_on_interact")
 	start_orientation = rotation
 	_init()
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -37,13 +52,15 @@ func _process(delta: float) -> void:
 	
 	if active:
 		look_at(get_global_mouse_position())
-
+		
 	
 		if get_global_mouse_position().x < position.x:
 			scale.y = -1
+			rotation += deg_to_rad(currentRecoil)
 		elif get_global_mouse_position().x > position.x:
 			scale.y = 1
-	
+			rotation -= deg_to_rad(currentRecoil)
+		
 		shoot(delta)
 	
 		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("click") and currentMag == 0):
@@ -51,17 +68,10 @@ func _process(delta: float) -> void:
 	else:
 		pass
 	
-
-func _init() -> void:
-	bulletSpeed = 1000
-	bps = 5
-	bulletDamage = 30
-	bulletSpread = 0.1
-	timeUntilFire = 0
-	maxMag = 7
-	currentMag = maxMag
-	reloadTime = 1
-	maxRecoil = 10.0
+func _physics_process(delta: float) -> void:
+	if not $AnimatedSprite2D.is_playing():
+		currentRecoil = clamp(currentRecoil - recoilIncrement, 0.0, maxRecoil)
+		
 
 func reload():
 	if !isReloading:
@@ -93,7 +103,7 @@ func shoot(delta):
 		casing.linear_velocity = casing.transform.y * -150
 		timeUntilFire = 0
 		currentMag -= 1
-		currentRecoil = clamp(currentRecoil + (maxRecoil * 0.1), 0.0, maxRecoil)
+		currentRecoil = clamp(currentRecoil + recoilIncrement, 0.0, maxRecoil)
 	else:
 		timeUntilFire += delta
 

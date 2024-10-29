@@ -1,11 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2g0x7jadl82c"]
+[gd_scene load_steps=6 format=3 uid="uid://d2g0x7jadl82c"]
 
 [ext_resource type="PackedScene" uid="uid://ba7jl2dq2bfc4" path="res://Entities/Guns/assault_rifle.tscn" id="1_41vdp"]
+[ext_resource type="PackedScene" uid="uid://ccqcnw8132xn3" path="res://Entities/Player/player.tscn" id="2_awxnr"]
+[ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol.tscn" id="3_6lfle"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2oupp"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gwonn"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="assault_rifle" parent="." instance=ExtResource("1_41vdp")]
-position = Vector2(-109, 3)
+position = Vector2(-36, 43)
+
+[node name="Player" parent="." instance=ExtResource("2_awxnr")]
+position = Vector2(-75, 31)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_2oupp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 67)
+shape = SubResource("WorldBoundaryShape2D_gwonn")
+
+[node name="Pistol" parent="." instance=ExtResource("3_6lfle")]
+position = Vector2(67, 43)
