@@ -21,7 +21,8 @@ func shoot(delta: float) -> void:
 		if $AnimatedSprite2D.is_playing():
 			$AnimatedSprite2D.stop()
 		
-		get_tree().root.add_child(bullet)
+		bullet.set_multiplayer_authority(multiplayer.get_unique_id())
+		GameManager.map.bullet_group.add_child(bullet, true)
 		bullet.rotation = $Barrel.global_rotation + randf_range(-bulletSpread,bulletSpread)
 		bullet.position = $Barrel.global_position
 		bullet.linear_velocity = bullet.transform.x * bulletSpeed

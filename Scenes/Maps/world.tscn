@@ -1,12 +1,13 @@
-[gd_scene load_steps=27 format=3 uid="uid://b4ei5at3crh8c"]
+[gd_scene load_steps=28 format=3 uid="uid://b4ei5at3crh8c"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/map1.gd" id="1_mjvhr"]
 [ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="2_hjvxx"]
 [ext_resource type="PackedScene" uid="uid://sla3csh23s6w" path="res://Entities/SpawnPieces.tscn" id="3_yhmyo"]
 [ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol.tscn" id="4_hlu8q"]
 [ext_resource type="PackedScene" uid="uid://bic5nels0gapo" path="res://Scenes/HUD/HUD.tscn" id="6_y1pgk"]
-[ext_resource type="PackedScene" uid="uid://ba7jl2dq2bfc4" path="res://Entities/Guns/assault_rifle.tscn" id="6_yw73w"]
+[ext_resource type="PackedScene" uid="uid://bxnphhdmwl7pq" path="res://Entities/Guns/assault_rifle.tscn" id="6_yw73w"]
 [ext_resource type="PackedScene" uid="uid://dbsw503oi27ec" path="res://Entities/Items/granade.tscn" id="7_cwoly"]
+[ext_resource type="PackedScene" uid="uid://djjs5uqduv8ij" path="res://Entities/Guns/shotgun.tscn" id="8_h875w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evea7"]
 size = Vector2(529.25, 38)
@@ -410,14 +411,14 @@ position = Vector2(784, 610)
 
 [node name="PlayersGroup" type="Node2D" parent="."]
 
+[node name="Assault Rifle" parent="." instance=ExtResource("6_yw73w")]
+position = Vector2(1045, 549)
+
 [node name="Pistol3" parent="." instance=ExtResource("4_hlu8q")]
 position = Vector2(878, 612)
 
 [node name="Pistol4" parent="." instance=ExtResource("4_hlu8q")]
 position = Vector2(784, 610)
-
-[node name="assault_rifle" parent="." instance=ExtResource("6_yw73w")]
-position = Vector2(972, 614)
 
 [node name="Granade" parent="." instance=ExtResource("7_cwoly")]
 position = Vector2(1186, 623)
@@ -430,3 +431,6 @@ position = Vector2(1186, 623)
 _spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
 spawn_path = NodePath("../BulletGroup")
 spawn_limit = 10000
+
+[node name="Shotgun" parent="." instance=ExtResource("8_h875w")]
+position = Vector2(1165, 487)
