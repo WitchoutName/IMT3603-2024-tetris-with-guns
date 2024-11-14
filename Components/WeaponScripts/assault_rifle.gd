@@ -5,24 +5,19 @@ func _init() -> void:
 	bps = 10
 	bulletDamage = 30
 	bulletSpread = 0.1
-	timeUntilFire = 0
-	maxMag = 30
-	currentMag = maxMag
-	reloadTime = 1
-	maxRecoil = 20.0
-	recoilIncrement = maxRecoil*0.1
+	timeSinceFired = 0
+	mag_size = 30
+	ammo_in_mag = mag_size
+	reloadInterval = 1
 	
-
-func shoot(delta: float) -> void:
-	
-	if Input.is_action_pressed(fire_mode) and timeUntilFire > fireRate and currentMag > 0 and !isReloading:
+@rpc("any_peer", "call_local")
+func shoot():
 		var bullet = bulletScene.instantiate()
 		var casing = casingScene.instantiate()
 		if $AnimatedSprite2D.is_playing():
 			$AnimatedSprite2D.stop()
 		
-		bullet.set_multiplayer_authority(multiplayer.get_unique_id())
-		GameManager.map.bullet_group.add_child(bullet, true)
+		get_tree().root.add_child(bullet)
 		bullet.rotation = $Barrel.global_rotation + randf_range(-bulletSpread,bulletSpread)
 		bullet.position = $Barrel.global_position
 		bullet.linear_velocity = bullet.transform.x * bulletSpeed
@@ -33,9 +28,12 @@ func shoot(delta: float) -> void:
 		casing.rotation = $Eject.global_rotation + randf_range(-0.25, 0)
 		casing.position = $Eject.global_position
 		casing.linear_velocity = casing.transform.y * -150
-		timeUntilFire = 0
-		currentMag -= 1
-		currentRecoil = clamp(currentRecoil + (maxRecoil * 0.1), 0.0, maxRecoil)
-		
+		timeSinceFired = 0
+		ammo_in_mag -= 1
+
+func shooting_logic(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	if Input.is_action_pressed(fire_mode) and timeSinceFired > fireRate and ammo_in_mag > 0 and !isReloading:
+		shoot.rpc_id(1)
 	else:
-		timeUntilFire += delta
+		timeSinceFired += delta

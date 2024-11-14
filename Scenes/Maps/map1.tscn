@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b4ei5at3crh8c"]
+[gd_scene load_steps=27 format=3 uid="uid://b4ei5at3crh8c"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/map1.gd" id="1_dj61j"]
 [ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="2_u7lpa"]
@@ -66,7 +66,6 @@ size = Vector2(4051, 6.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckep6"]
 size = Vector2(4053, 150)
 
-[node name="World" type="Node2D" groups=["maps"]]
 [node name="World" type="Node2D" groups=["maps"]]
 position = Vector2(-1, 0)
 script = ExtResource("1_dj61j")
@@ -401,39 +400,23 @@ position = Vector2(-28, -100)
 position = Vector2(25.5, -171)
 shape = SubResource("RectangleShape2D_ckep6")
 
-[node name="Pistol2" parent="." instance=ExtResource("4_hlu8q")]
-position = Vector2(641, 610)
-
-[node name="Pistol" parent="." instance=ExtResource("4_hlu8q")]
-position = Vector2(784, 610)
-
 [node name="HUD" parent="." instance=ExtResource("4_eoxln")]
 
 [node name="PlayersGroup" type="Node2D" parent="."]
 
-[node name="Assault Rifle" parent="." instance=ExtResource("6_yw73w")]
-position = Vector2(1045, 549)
-
-[node name="Pistol3" parent="." instance=ExtResource("4_hlu8q")]
-position = Vector2(878, 612)
-
-[node name="Pistol4" parent="." instance=ExtResource("4_hlu8q")]
-position = Vector2(784, 610)
+[node name="ItemsGroup" type="Node2D" parent="."]
 
 [node name="Granade" parent="ItemsGroup" instance=ExtResource("5_8q08b")]
 position = Vector2(1186, 623)
 
-[node name="HUD2" parent="." instance=ExtResource("6_y1pgk")]
+[node name="BulletsGroup" type="Node2D" parent="."]
 
-[node name="BulletGroup" type="Node2D" parent="."]
+[node name="TetraminoGroup" type="Node2D" parent="."]
 
 [node name="BulletMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
-spawn_path = NodePath("../BulletGroup")
+spawn_path = NodePath("../BulletsGroup")
 spawn_limit = 10000
-
-[node name="Shotgun" parent="." instance=ExtResource("8_h875w")]
-position = Vector2(1165, 487)
 
 [node name="TertraminoMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")

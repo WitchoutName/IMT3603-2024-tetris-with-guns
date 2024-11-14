@@ -14,9 +14,9 @@ var game_state = GameState.CONNECTION_LOBBY
 var lobby: ConnectionLobby
 var map: BaseMap
 var my_id: int
-var _players: Dictionary = {}
+var _players: Dictionary = {} # Dictionary[int, PLayerPeer]
 
-var players: Array:
+var players: Array: # Array[PlayerPeer]
 	get: return _players.values()
 
 var team1: Array:
@@ -77,7 +77,7 @@ func _sync_players(ids, names):
 	
 @rpc("authority", "call_remote", "reliable")
 func _sync_players_fake():
-	print(multiplayer.get_unique_id(), "_sync_players_fake")
+	pass
 	#for id in _players.keys().filter(func(k): return k not in ids):
 		#remove_player(id)
 	#for id in ids.filter(func(k): return k not in _players.keys()):
@@ -87,7 +87,7 @@ func _sync_players_fake():
 @rpc("authority", "call_local", "reliable")
 func start_game():
 	game_state = GameState.PLAYING
-	map = load("res://Scenes/Maps/world.tscn").instantiate()
+	map = load("res://Scenes/Maps/map1.tscn").instantiate()
 	get_tree().root.add_child(map)
 	lobby.hide()
 	map.init()

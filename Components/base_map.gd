@@ -27,7 +27,7 @@ func init() -> void:
 		player.name = str(player_peer.id)
 		player.player_peer = player_peer
 		player_peer.entity = player
-		$PlayersGroup.add_child(player)
+		player_group.add_child(player)
 		player.global_position = team.spawn_point.global_position
 		team.spawn_point.add_child(spawn_point)
 		spawn_point.assign_player(player)
@@ -49,7 +49,7 @@ func init() -> void:
 
 
 func _ready() -> void:
-	pass
+	print("[map] READY")
 
 func reset():
 	for team in teams:
