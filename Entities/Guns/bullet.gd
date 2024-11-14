@@ -12,7 +12,8 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_body_entered(body: Node) -> void:
-	queue_free()
-		
-func _on_timeout():
+#	if is_instance_of(body, Player):
+#		queue_free()
+#	elif is_instance_of(body, Tetramino2):
+#		queue_free()
 	queue_free()

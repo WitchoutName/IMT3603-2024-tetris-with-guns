@@ -109,6 +109,17 @@ properties/4/replication_mode = 2
 
 [node name="Pistol" type="Node2D" groups=["one-handed"]]
 script = ExtResource("1_xmxuh")
+<<<<<<<< Updated upstream:Entities/Guns/Pistol.tscn
+========
+bulletSpeed = 1000
+bps = 7
+bulletDamage = 25
+bulletSpread = 0.1
+ammo_reserve = 20
+mag_size = 7
+ammo_in_mag = 7
+reloadInterval = 0.8
+>>>>>>>> Stashed changes:Entities/Guns/Pistol/Pistol.tscn
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r2d48")

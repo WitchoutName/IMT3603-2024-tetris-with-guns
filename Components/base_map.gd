@@ -2,7 +2,10 @@ extends Node2D
 class_name BaseMap
 
 var teams: Array[Team]
-var bullet_group: Node2D
+@onready var bullet_group: Node2D = $BulletsGroup
+@onready var player_group: Node2D = $PlayersGroup
+@onready var item_group: Node2D = $ItemsGroup
+@onready var tetramino_group: Node2D = $TetraminoGroup
 signal map_setup_finished
 
 var SPAWN_POINT = preload("res://Entities/Player/SpawnPoint/spawn_point.tscn")
