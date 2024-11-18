@@ -30,6 +30,8 @@ var my_player: Player:
 func get_my_player() -> Player:
 	return _players[my_id].entity
 
+func get_my_team_index() -> int:
+	return _players[my_id].team - 1
 
 @rpc("authority", "call_local", "reliable")
 func add_player(id: int, name: String):
@@ -84,11 +86,28 @@ func _sync_players_fake():
 		#var i = ids.find(id)
 		#add_player(id, names[i])
 
-@rpc("authority", "call_local", "reliable")
+@rpc("call_local", "reliable")
 func start_game():
 	game_state = GameState.PLAYING
 	map = load("res://Scenes/Maps/map2.tscn").instantiate()
 	get_tree().root.add_child(map)
 	lobby.hide()
 	map.init()
+	for team in map.teams:
+		team.tower.win.connect(_on_team_win)
 	game_started.emit()
+
+func _on_team_win(tower):
+	for team in map.teams:
+		if team.tower == tower:
+			team.score += 1
+			
+			if team.score >= 1:
+				game_state = GameState.WIN
+			
+				await map.write_round_end_text(team)
+				map.queue_free()
+				map = null
+				lobby.show()
+				
+				game_state = GameState.CONNECTION_LOBBY

@@ -56,14 +56,20 @@ func _on_move_down_timer_timeout() -> void:
 			grid.petrify_complete_row()
 
 func _on_win():
-	emit_signal(win.get_name())
+	_emit_win.rpc()
+	_emit_win()
+
+@rpc("reliable", "any_peer")
+func _emit_win():
+	emit_signal(win.get_name(), self)
 
 func reset():
-	active_piece.queue_free()
+	if active_piece:
+		active_piece.queue_free()
 	active_piece = null
 	for piece in piece_queue:
 		piece.queue_free()
-	for x in grid.piece_matrix:
+	for x in grid.matrix:
 		for y in x:
 			if y:
 				y.queue_free()
