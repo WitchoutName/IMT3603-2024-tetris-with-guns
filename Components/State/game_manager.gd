@@ -87,7 +87,7 @@ func _sync_players_fake():
 @rpc("authority", "call_local", "reliable")
 func start_game():
 	game_state = GameState.PLAYING
-	map = load("res://Scenes/Maps/map1.tscn").instantiate()
+	map = load("res://Scenes/Maps/map2.tscn").instantiate()
 	get_tree().root.add_child(map)
 	lobby.hide()
 	map.init()

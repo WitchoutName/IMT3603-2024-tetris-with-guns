@@ -17,7 +17,7 @@ extends Node2D
 var player: Player
 
 func _ready():
-	var map = get_map()
+	var map = GameManager.map
 	map.connect("map_setup_finished", Callable(self, "get_references"))
 	
 
