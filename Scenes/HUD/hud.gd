@@ -1,6 +1,3 @@
-# This script will create a HUD in Godot for a 2D fighter game similar to the provided image.
-# We assume that you have already set up the scene with the required control nodes.
-
 extends Node2D
 
 # Declare variables for the UI elements and get references
@@ -13,14 +10,27 @@ extends Node2D
 @onready var weapon_icon2 = $Display/BottomRight/WeaponIcon2
 @onready var ammo_label = $Display/BottomRight/Ammo
 
-#Reference to the player node
+#Reference to the player and health node
 var player: Player
+var health: Health
+#@export var health: Health
 
 func _ready():
-	var map = GameManager.map
+
+	if not is_instance_valid(health_bar):
+		print("Error: HealthBar is not valid!")
+		return
+
+	var map = get_map()
+	if map == null:
+		print("Error: Map node not found!")
+		return
+
+
+	#var map = GameManager.map
+
 	map.connect("map_setup_finished", Callable(self, "get_references"))
 	
-
 func get_map():
 	var current_node = self
 	while current_node:
@@ -31,6 +41,14 @@ func get_map():
 
 func get_references():
 	player = GameManager.get_my_player()
+	if player == null:
+		print("Player not found!")
+		return
+	
+	health = player.get_node("Health") 
+	if health == null:
+		print("Health node not found!")
+		return
 	
 	#Connecting player signals to health
 	player.health.connect("health_changed", Callable(self, "_on_health_change"))
@@ -60,13 +78,13 @@ func update_timer(time_left: int):
 		timer_label.text = "%02d:%02d" % [minutes, seconds]
 
 func _on_health_change():
-	var health = player.health.get_current_health()
-	update_health(health)
+	if health != null:
+		update_health(health.get_current_health())
 
 # Function to update health
 func update_health(health: int):
 	if health_bar != null:
-		health_bar.value = health if health >= 0 else 0
+		health_bar.value = max(0, health)
 		if health_bar.get_child_count() > 0 and health_bar.get_child(0) is Label:
 			var health_label_node = health_bar.get_child(0)
 			health_label_node.text = str(health) + " / 100"
@@ -94,6 +112,32 @@ func highlight_weapon(weapon_number: int):
 			weapon_icon1.modulate = Color(0.5, 0.5, 0.5, 1)  # Dim (gray)
 			weapon_icon2.modulate = Color(1, 1, 1, 1)  # Highlight (white)
 
+# Function to update the weapon icon when a gun is picked up
+func _on_gun_picked_up(gun_node: Node):
+	print("Received gun_picked_up signal for gun node: ", gun_node)
+
+	if gun_node.has_node("AnimatedSprite2D"):
+		var animated_sprite = gun_node.get_node("AnimatedSprite2D")
+		if animated_sprite is AnimatedSprite2D:
+			var current_texture = animated_sprite.frames.get_frame(animated_sprite.animation, animated_sprite.frame)
+			if current_texture != null:
+				print("Updating weapon icon with texture from AnimatedSprite2D")
+				weapon_icon1.texture = current_texture
+			else:
+				print("Error: Texture from AnimatedSprite2D is null!")
+		else:
+			print("Error: Node is not an AnimatedSprite2D")
+	elif gun_node is Sprite2D:
+		var sprite_texture = gun_node.texture
+		if sprite_texture != null:
+			print("Updating weapon icon with texture from Sprite2D")
+			weapon_icon1.texture = sprite_texture
+		else:
+			print("Error: Texture from Sprite2D is null!")
+	else:
+		print("Error: Weapon node is neither Sprite2D nor has AnimatedSprite2D")
+
+
 # Function to handle updates based on game state (e.g. health decrease, ammo usage)
 func _process(delta):
 	pass  # This will be filled in with actual game logic later
@@ -102,7 +146,8 @@ func _process(delta):
 func initialize():
 	update_team_scores(8, 6)
 	update_timer(300)
-	update_health(player.health.get_current_health())
+	if health != null:
+		update_health(health.get_current_health())
 	update_shield(44)
 	update_ammo(17, 30)
 	highlight_weapon(1)
