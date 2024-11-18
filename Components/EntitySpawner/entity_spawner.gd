@@ -42,7 +42,7 @@ func spawn():
 
 @rpc("authority", "call_local")
 func _sync_spawn(index: int):
-	var instance: Node2D = await entities[index].instantiate()
+	var instance: Node2D = entities[index].instantiate()
 	parent.add_child(instance)
 	instance.global_position = global_position
 
