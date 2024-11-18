@@ -24,7 +24,7 @@ func add_area(area: InteractionArea):
 	var can_interact = can_interact_dict.get_or_add(area.interaction_group, true)
 
 func remove_area(area: InteractionArea):
-	var array = active_areas_dict.get_or_add(area.interaction_group)
+	var array = active_areas_dict.get_or_add(area.interaction_group, [])
 	var index = array.find(area)
 	if index != -1:
 		array.remove_at(index)
@@ -67,7 +67,7 @@ func _input(event):
 				can_interact_dict[interactive_group] = false #Disallowing further interaction
 				label.hide() #Hiding text
 				
-				await array[0].interact.call(player) #Awaiting
+				array[0].remote_interact.rpc(player.player_peer.id)	
 				
 				can_interact_dict[interactive_group] = true
 				return

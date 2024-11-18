@@ -42,7 +42,6 @@ var prev_state = null
 const RESPAWN_TIME = 5
 var spawned = true 
 var should_respawn = true
-signal respawned
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -59,8 +58,8 @@ func _ready():
 func _physics_process(delta):
 	if not is_multiplayer_authority() and player_peer: return
 	if spawned:
-		if not $Animation.visible:
-			$Animation.visible = true
+		if not $AnimatedSprite2D.visible:
+			$AnimatedSprite2D.visible = true
 		if is_controlling_tower: _handle_tower_input()
 		else: player_input()
 	
@@ -68,8 +67,8 @@ func _physics_process(delta):
 		move_and_slide()
 		#default_move(delta)
 	else:
-		if $Animation.visible:
-			$Animation.visible = false
+		if $AnimatedSprite2D.visible:
+			$AnimatedSprite2D.visible = false
 
 func _handle_tower_input():
 	if tower and tower.active_piece:
@@ -148,7 +147,6 @@ func respawn():
 	#Wait five seconds
 	await get_tree().create_timer(5).timeout
 	health.set_health(health.max_health)
-	respawned.emit()
 	spawn()
 
 func equip_gun(gun):

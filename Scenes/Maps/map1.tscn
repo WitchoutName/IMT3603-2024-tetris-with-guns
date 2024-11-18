@@ -1,13 +1,12 @@
-[gd_scene load_steps=28 format=3 uid="uid://b4ei5at3crh8c"]
+[gd_scene load_steps=27 format=3 uid="uid://b4ei5at3crh8c"]
 
-[ext_resource type="Script" path="res://Scenes/Maps/map1.gd" id="1_mjvhr"]
-[ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="2_hjvxx"]
-[ext_resource type="PackedScene" uid="uid://sla3csh23s6w" path="res://Entities/SpawnPieces.tscn" id="3_yhmyo"]
-[ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol.tscn" id="4_hlu8q"]
-[ext_resource type="PackedScene" uid="uid://bic5nels0gapo" path="res://Scenes/HUD/HUD.tscn" id="6_y1pgk"]
-[ext_resource type="PackedScene" uid="uid://bxnphhdmwl7pq" path="res://Entities/Guns/assault_rifle.tscn" id="6_yw73w"]
-[ext_resource type="PackedScene" uid="uid://dbsw503oi27ec" path="res://Entities/Items/granade.tscn" id="7_cwoly"]
-[ext_resource type="PackedScene" uid="uid://djjs5uqduv8ij" path="res://Entities/Guns/shotgun.tscn" id="8_h875w"]
+[ext_resource type="Script" path="res://Scenes/Maps/map1.gd" id="1_dj61j"]
+[ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="2_u7lpa"]
+[ext_resource type="PackedScene" uid="uid://sla3csh23s6w" path="res://Entities/SpawnPieces.tscn" id="3_0erxw"]
+[ext_resource type="PackedScene" uid="uid://bic5nels0gapo" path="res://Scenes/HUD/HUD.tscn" id="4_eoxln"]
+[ext_resource type="PackedScene" uid="uid://dbsw503oi27ec" path="res://Entities/Items/granade.tscn" id="5_8q08b"]
+[ext_resource type="PackedScene" uid="uid://loey4c42d453" path="res://Components/EntitySpawner/WeaponSpawner.tscn" id="6_on5uq"]
+[ext_resource type="PackedScene" uid="uid://derfnsuaimarv" path="res://Components/EntitySpawner/TetramonoSpawner.tscn" id="7_65p13"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evea7"]
 size = Vector2(529.25, 38)
@@ -69,7 +68,7 @@ size = Vector2(4053, 150)
 
 [node name="World" type="Node2D" groups=["maps"]]
 position = Vector2(-1, 0)
-script = ExtResource("1_mjvhr")
+script = ExtResource("1_dj61j")
 
 [node name="leftTeam" type="Node2D" parent="."]
 position = Vector2(570, 242)
@@ -87,27 +86,18 @@ offset_top = -18.0
 offset_right = 265.0
 offset_bottom = 21.0
 
-[node name="Tower" parent="leftTeam" instance=ExtResource("2_hjvxx")]
+[node name="Tower" parent="leftTeam" instance=ExtResource("2_u7lpa")]
 position = Vector2(-407, 328)
 scale = Vector2(0.585, 0.585)
 
 [node name="spawnPoint" type="Marker2D" parent="leftTeam"]
-position = Vector2(170, 347)
+position = Vector2(-167, 356)
 
-[node name="SpawnPieces" parent="leftTeam" instance=ExtResource("3_yhmyo")]
+[node name="SpawnPieces" parent="leftTeam" instance=ExtResource("3_0erxw")]
 position = Vector2(-118, 362)
 
-[node name="SpawnPieces2" parent="leftTeam" instance=ExtResource("3_yhmyo")]
+[node name="SpawnPieces2" parent="leftTeam" instance=ExtResource("3_0erxw")]
 position = Vector2(304, 166)
-
-[node name="Pistol" parent="leftTeam" instance=ExtResource("4_hlu8q")]
-position = Vector2(206, 372)
-
-[node name="Shotgun" parent="leftTeam" instance=ExtResource("8_h875w")]
-position = Vector2(331, 375)
-
-[node name="Assault Rifle" parent="leftTeam" instance=ExtResource("6_yw73w")]
-position = Vector2(452, 376)
 
 [node name="arena" type="Node2D" parent="."]
 position = Vector2(1408, 284)
@@ -386,7 +376,7 @@ offset_top = -19.0
 offset_right = 264.0
 offset_bottom = 20.0
 
-[node name="Tower" parent="rightTeam" instance=ExtResource("2_hjvxx")]
+[node name="Tower" parent="rightTeam" instance=ExtResource("2_u7lpa")]
 position = Vector2(278, 328)
 scale = Vector2(0.585, 0.585)
 
@@ -410,18 +400,45 @@ position = Vector2(-28, -100)
 position = Vector2(25.5, -171)
 shape = SubResource("RectangleShape2D_ckep6")
 
-[node name="HUD" parent="." instance=ExtResource("6_y1pgk")]
+[node name="HUD" parent="." instance=ExtResource("4_eoxln")]
 
 [node name="PlayersGroup" type="Node2D" parent="."]
 
-[node name="Granade" parent="." instance=ExtResource("7_cwoly")]
+[node name="ItemsGroup" type="Node2D" parent="."]
+
+[node name="Granade" parent="ItemsGroup" instance=ExtResource("5_8q08b")]
 position = Vector2(1186, 623)
 
-[node name="HUD2" parent="." instance=ExtResource("6_y1pgk")]
+[node name="BulletsGroup" type="Node2D" parent="."]
 
-[node name="BulletGroup" type="Node2D" parent="."]
+[node name="TetraminoGroup" type="Node2D" parent="."]
 
 [node name="BulletMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
-spawn_path = NodePath("../BulletGroup")
+spawn_path = NodePath("../BulletsGroup")
 spawn_limit = 10000
+
+[node name="TertraminoMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
+spawn_path = NodePath("../TetraminoGroup")
+spawn_limit = 10000
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="WeaponSpawner" parent="Spawners" instance=ExtResource("6_on5uq")]
+position = Vector2(1445, 439)
+
+[node name="WeaponSpawner2" parent="Spawners" instance=ExtResource("6_on5uq")]
+position = Vector2(1285, 739)
+
+[node name="WeaponSpawner5" parent="Spawners" instance=ExtResource("6_on5uq")]
+position = Vector2(856, 415)
+
+[node name="WeaponSpawner3" parent="Spawners" instance=ExtResource("6_on5uq")]
+position = Vector2(1590, 742)
+
+[node name="WeaponSpawner4" parent="Spawners" instance=ExtResource("6_on5uq")]
+position = Vector2(2030, 425)
+
+[node name="EntitySpawner" parent="Spawners" instance=ExtResource("7_65p13")]
+position = Vector2(1443, 319)
