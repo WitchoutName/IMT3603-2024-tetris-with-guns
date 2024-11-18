@@ -28,7 +28,6 @@ var currentRecoil = 0.0
 
 @export var fullAuto = false
 
-
 #Equip handling
 @onready var interaction_area: InteractionArea = $InteractionArea
 var active = false
@@ -70,11 +69,11 @@ func _process(delta: float) -> void:
 			semiFire(delta)
 		
 	
-		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("click") and currentMag == 0):
+		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed(fire_mode) and currentMag == 0):
 			reload()
 	else:
 		pass
-		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("click") and currentMag == 0):
+		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed(fire_mode) and currentMag == 0):
 			reload()
 	
 func _physics_process(delta: float) -> void:
@@ -98,8 +97,9 @@ func semiFire(delta):
 	if Input.is_action_just_pressed(fire_mode):
 				shoot(delta)
 	else: timeUntilFire += delta
+	
 func shoot(delta):
-	print(timeUntilFire)
+	
 	if timeUntilFire > fireRate and currentMag > 0 and !isReloading:
 		var casing = casingScene.instantiate()
 		if $AnimatedSprite2D.is_playing():
@@ -110,6 +110,7 @@ func shoot(delta):
 			
 			
 			bullet.set_multiplayer_authority(multiplayer.get_unique_id())
+			bullet.set_damage(bulletDamage)
 			
 			if bulletAmount == 1:
 				bullet.rotation = global_rotation
