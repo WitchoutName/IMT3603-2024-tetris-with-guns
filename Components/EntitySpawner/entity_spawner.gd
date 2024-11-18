@@ -37,14 +37,16 @@ func spawn_logic():
 func spawn():
 	if multiplayer.is_server():
 		var index = RandomNumberGenerator.new().randi_range(0, len(entities)-1)	
-		_sync_spawn.rpc(index)
+		_sync_spawn.rpc_id(0, index)
 			
 
 @rpc("authority", "call_local")
 func _sync_spawn(index: int):
-	var instance: Node2D = entities[index].instantiate()
-	parent.add_child(instance)
-	instance.global_position = global_position
+	if parent:
+		var instance: Node2D = entities[index].instantiate()
+		instance.name = instance.name+"_"+str(instance.get_instance_id())
+		parent.add_child(instance)
+		instance.global_position = global_position
 
 
 func _on_timer_timeout():
