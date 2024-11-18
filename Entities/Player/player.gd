@@ -36,7 +36,7 @@ var prev_state = null
 @onready var Raycasts = $Raycasts
 @onready var health = $Health
 @onready var inventory = $Inventory
-@onready var Camera = $Camera2D
+@onready var Camera: Camera2D = $Camera2D
 
 #Respawn handling
 const RESPAWN_TIME = 5

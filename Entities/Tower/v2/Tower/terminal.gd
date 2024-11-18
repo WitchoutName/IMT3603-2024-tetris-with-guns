@@ -17,6 +17,7 @@ func _on_interact(player: Player):
 	if player.tower:
 		if not player.is_controlling_tower:
 			player.is_controlling_tower = true
+			player.Camera.position.y = -300
 			if player.piece_catied:
 				var piece = player.piece_catied
 				piece.release()
@@ -25,9 +26,10 @@ func _on_interact(player: Player):
 				piece.tower = tower
 				tower.add_child(piece)  # Add the instance to the tower node
 				tower.ap_insert(piece)
-		else: player.is_controlling_tower = false
-		
-		
+		else: 
+			player.is_controlling_tower = false
+			player.Camera.position.y = 0;
+
 func release():
 	while true:
 		if Input.is_action_just_pressed("interact"): #We wait for interaction again to release
@@ -49,3 +51,4 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 		var player = body as Player
 		player.tower = null
 		player.is_controlling_tower = false
+		player.Camera.position.y = 0;

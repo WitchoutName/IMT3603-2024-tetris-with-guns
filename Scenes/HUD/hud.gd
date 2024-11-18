@@ -16,6 +16,7 @@ var health: Health
 #@export var health: Health
 
 func _ready():
+
 	if not is_instance_valid(health_bar):
 		print("Error: HealthBar is not valid!")
 		return
@@ -24,6 +25,9 @@ func _ready():
 	if map == null:
 		print("Error: Map node not found!")
 		return
+
+
+	#var map = GameManager.map
 
 	map.connect("map_setup_finished", Callable(self, "get_references"))
 	

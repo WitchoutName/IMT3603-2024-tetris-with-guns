@@ -64,7 +64,7 @@ func _set__is_petrified(value: bool):
 func _set__is_tetris_mode(value: bool):
 	is_tetris_mode = value
 	freeze = value
-	scale(Vector2(0.52, 0.52) if value else Vector2(0.5, 0.5))
+	scale(Vector2(1, 1) if value else Vector2(0.5, 0.5))
 
 func _set__player(value: Player):
 	if value:

@@ -56,3 +56,23 @@ func reset():
 		team.tower.reset()
 		
 	get_tree().call_group("PlayerSpawners", "reset")
+
+func write_round_end_text(team: Team):
+	var canvas = CanvasLayer.new()
+	self.add_child(canvas)
+	
+	var label = Label.new()
+	if(teams[GameManager.get_my_team_index()] == team):
+		label.text = "Victory!"
+	else:
+		label.text = "Game Over!"
+
+	label.add_theme_color_override("font_color", Color(1, 0, 0))
+	
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	label.global_position += Vector2(0, -100)
+	canvas.add_child(label)
+	
+	await get_tree().create_timer(5).timeout
