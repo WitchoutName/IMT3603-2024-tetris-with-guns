@@ -1,1 +1,1 @@
-extends "res://Components/gun.gd"
+extends "res://Components/WeaponScripts/gun.gd"

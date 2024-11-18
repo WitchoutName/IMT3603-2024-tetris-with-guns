@@ -110,11 +110,8 @@ animations = [{
 [node name="BadPistol" type="Node2D" groups=["one-handed"]]
 script = ExtResource("1_xmxuh")
 bulletSpeed = 700
-bps = 10
 bulletDamage = 20
 bulletSpread = 0.15
-ammo_reserve = 8
-mag_size = 4
 reloadInterval = 1.2
 
 [node name="Barrel" type="Node2D" parent="."]

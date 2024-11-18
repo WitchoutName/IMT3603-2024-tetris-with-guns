@@ -18,9 +18,11 @@ var timeSinceFired: float = 0
 var currentAmmo: int
 
 
-@export var reloadTime = 1.0
+@export var reloadInterval = 1.0
 var isReloading = false
 var reloadTimer: Timer = Timer.new()
+
+@export var destructionInterval = 5
 var destructionTimer: Timer = Timer.new()
 
 @export var maxRecoil = 20.0
@@ -84,7 +86,7 @@ func _process(delta: float) -> void:
 			semiFire(delta)
 		
 	
-		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed(fire_mode) and currentAmmo =< 0):
+		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed(fire_mode) and currentAmmo <= 0):
 			if ammoReserve > 0:
 				reload()
 			else:
@@ -104,14 +106,13 @@ func reload():
 		
 func autoFire(delta):
 	if not is_multiplayer_authority(): return
-	if Input.is_action_pressed(fire_mode):
+	if Input.is_action_pressed(fire_mode) and timeSinceFired > fireRate and currentAmmo > 0 and !isReloading:
 		shoot.rpc_id(1, delta)
-	else:
-		timeSinceFired += delta
+	else: timeSinceFired += delta
 
 func semiFire(delta):
 	if not is_multiplayer_authority(): return
-	if Input.is_action_just_pressed(fire_mode):
+	if Input.is_action_just_pressed(fire_mode) and timeSinceFired > fireRate and currentAmmo > 0 and !isReloading:
 		shoot.rpc_id(1, delta)
 	else: timeSinceFired += delta
 
@@ -126,48 +127,46 @@ func _reaload_animation():
 
 @rpc("any_peer", "call_local")
 func shoot(delta):
-
-	if timeSinceFired > fireRate and currentMag > 0 and !isReloading:
-
-		var bullet = bulletScene.instantiate()
-		var casing = casingScene.instantiate()
-		if $AnimatedSprite2D.is_playing():
-			$AnimatedSprite2D.stop()
+	
+	var bullet
+	var casing = casingScene.instantiate()
+	if $AnimatedSprite2D.is_playing():
+		$AnimatedSprite2D.stop()
 		
-		for i in bulletAmount:
-			var bullet = bulletScene.instantiate()
+	for i in bulletAmount:
+		bullet = bulletScene.instantiate()
+		GameManager.map.bullet_group.add_child(bullet, true)
+			
+		bullet.set_multiplayer_authority(multiplayer.get_unique_id())
 			
 			
-			bullet.set_multiplayer_authority(multiplayer.get_unique_id())
-			bullet.set_damage(bulletDamage)
-			
-			if bulletAmount == 1:
-				bullet.rotation = global_rotation
+		if bulletAmount == 1:
+			bullet.rotation = global_rotation
 				
-			else:
-				var arcToRad = deg_to_rad(arc)
-				var increment = arcToRad / (bulletAmount - 1)
-				bullet.rotation = (global_rotation + increment * i - arcToRad / 2)
-				
-			bullet.position = $Barrel.global_position
+		else:
+			var arcToRad = deg_to_rad(arc)
+			var increment = arcToRad / (bulletAmount - 1)
+			bullet.rotation = (global_rotation + increment * i - arcToRad / 2)
 			
-			bullet.linear_velocity = bullet.transform.x * bulletSpeed
+		bullet.position = $Barrel.global_position
+		
+		bullet.linear_velocity = bullet.transform.x * bulletSpeed
 
-			bullet.hitbox.set_damage(bulletDamage)
+		bullet.hitbox.set_damage(bulletDamage)
 
-			GameManager.map.bullet_group.add_child(bullet, true)
+			
 
 		
 		
-		$AnimatedSprite2D.play("Fire")
-		
-		get_tree().root.add_child(casing)
-		casing.rotation = $Eject.global_rotation + randf_range(-0.25, 0)
-		casing.position = $Eject.global_position
-		casing.linear_velocity = casing.transform.y * -150
-		timeSinceFired = 0
-		currentAmmo -= 1
-		currentRecoil = clamp(currentRecoil + recoilIncrement, 0.0, maxRecoil)
+	$AnimatedSprite2D.play("Fire")
+	
+	get_tree().root.add_child(casing)
+	casing.rotation = $Eject.global_rotation + randf_range(-0.25, 0)
+	casing.position = $Eject.global_position
+	casing.linear_velocity = casing.transform.y * -150
+	timeSinceFired = 0
+	currentAmmo -= 1
+	currentRecoil = clamp(currentRecoil + recoilIncrement, 0.0, maxRecoil)
 
 	
 	
