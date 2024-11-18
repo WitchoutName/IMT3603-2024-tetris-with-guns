@@ -1,24 +1,6 @@
 extends Node2D
 class_name Gun
 
-<<<<<<< Updated upstream
-var bulletScene = load("res://Entities/Guns/bullet.tscn")
-var casingScene = load("res://Entities/Guns/casing.tscn")
-var bulletSpeed: int
-var bps: int
-var bulletDamage: int
-var bulletSpread: float
-var fireRate: float
-var timeUntilFire = 0
-var maxMag: int
-var currentMag = maxMag
-var reloadTime: int
-var isReloading = false
-var maxRecoil: float
-var recoilIncrement: float
-var currentRecoil = 0.0
-
-=======
 @export var bulletScene = load("res://Entities/Guns/bullet.tscn")
 @export var casingScene = load("res://Entities/Guns/casing.tscn")
 
@@ -45,7 +27,7 @@ var currentRecoil = 0.0
 @export_range(0,360) var arc: float = 0
 
 @export var fullAuto = false
->>>>>>> Stashed changes
+
 
 #Equip handling
 @onready var interaction_area: InteractionArea = $InteractionArea
@@ -55,25 +37,10 @@ var start_orientation
 var fire_mode = "click"
 
 func _init() -> void:
-<<<<<<< Updated upstream
-	bulletSpeed = 1000
-	bps = 5
-	bulletDamage = 30
-	bulletSpread = 0.01
-	timeUntilFire = 0
-	maxMag = 7
-	currentMag = maxMag
-	reloadTime = 1
-	maxRecoil = 20.0
-	recoilIncrement = maxRecoil * 0.2
-	
-	
-=======
 	fireRate = 1.0/bps
 	currentMag = maxMag
 	recoilIncrement = maxRecoil * 0.2
 
->>>>>>> Stashed changes
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fireRate = 1.0 / bps
