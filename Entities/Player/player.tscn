@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dctd6v8avpg2n" path="res://Entities/Player/IDLE.tscn" id="8_ssjbc"]
 [ext_resource type="PackedScene" uid="uid://cxqlc716bahwr" path="res://Entities/Player/MOVE.tscn" id="10_0eubm"]
 [ext_resource type="PackedScene" uid="uid://b6c4ool2kanqk" path="res://Entities/Player/JUMP.tscn" id="12_rsy0m"]
-[ext_resource type="Script" path="res://Entities/Player/SLIDE.gd" id="12_wmgkx"]
 [ext_resource type="PackedScene" uid="uid://caiga5uv5evtk" path="res://Entities/Player/DASH.tscn" id="13_gbmsj"]
+[ext_resource type="Script" path="res://Entities/Player/SLIDE.gd" id="13_w270y"]
 [ext_resource type="PackedScene" uid="uid://ct16ftajdtqby" path="res://Entities/Player/SLIDE.tscn" id="14_o0klo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io1p0"]
@@ -81,13 +81,19 @@ SPEED = 400.0
 
 [node name="Health" parent="." instance=ExtResource("2_qk4a2")]
 
-[node name="Inventory" type="Node" parent="."]
-script = ExtResource("3_tef5q")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.935, -3.28)
 sprite_frames = SubResource("SpriteFrames_pwkaw")
 animation = &"Idle"
+
+[node name="Inventory" type="Node2D" parent="."]
+script = ExtResource("3_tef5q")
+
+[node name="LeftHand" type="Node2D" parent="Inventory"]
+position = Vector2(-7, -7)
+
+[node name="RightHand" type="Node2D" parent="Inventory"]
+position = Vector2(7, -7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_3eljs")
@@ -97,6 +103,7 @@ script = ExtResource("4_0vliq")
 health = NodePath("../Health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-2, 3)
 shape = SubResource("CapsuleShape2D_3eljs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -117,7 +124,7 @@ script = ExtResource("5_4wxoe")
 dash_speed = 500
 
 [node name="SLIDE" parent="STATES" instance=ExtResource("14_o0klo")]
-script = ExtResource("12_wmgkx")
+script = ExtResource("13_w270y")
 
 [node name="Raycasts" type="Node2D" parent="."]
 

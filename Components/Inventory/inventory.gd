@@ -3,7 +3,7 @@ class_name Inventory
 
 enum ItemSlot { RIGHT_HAND, LEFT_HAND, ITEM_SLOT }
 
-var current_slot = ItemSlot.RIGHT_HAND
+var current_slot = ItemSlot.LEFT_HAND
 
 @onready var player: Player = get_parent()
 
@@ -13,44 +13,42 @@ var left_hand = null
 var item_slot = null
 
 func _input(event):
+	if not is_multiplayer_authority(): return
 	#Handling slot switching
 	if event.is_action_pressed("switch_to_slot_1"):
-		switch_slot(ItemSlot.RIGHT_HAND)
-	elif event.is_action_pressed("switch_to_slot_2"):
 		switch_slot(ItemSlot.LEFT_HAND)
+	elif event.is_action_pressed("switch_to_slot_2"):
+		switch_slot(ItemSlot.RIGHT_HAND)
 	elif event.is_action_pressed("switch_to_slot_3"):
 		switch_slot(ItemSlot.ITEM_SLOT)
 	elif event.is_action_pressed("drop"):
 		unequip_item()
 
 func _process(delta):
-	if left_hand:
-		left_hand.global_position = player.global_position
-		left_hand.global_position.x += 4
-	if right_hand:
-		right_hand.global_position = player.global_position
-		right_hand.global_position.x -= 4
+	pass
 
 func switch_slot(slot: ItemSlot):
 	current_slot = slot
 
-@rpc("any_peer")
+
 func equip_item(item: Node2D):
-	item.set_multiplayer_authority(player.player_peer.id)
 	if item.is_in_group("one-handed"):
 		#No matter the slot, if current weapon is two handed, it needs to be dropped
 		if right_hand && right_hand.is_in_group("two-handed"):
-			right_hand._drop()
+			right_hand.call_drop()
 			right_hand = null
 		match current_slot:
 			ItemSlot.RIGHT_HAND:
 				if right_hand:
-					await right_hand._drop()
+					right_hand.call_drop()
 				right_hand = item
+				item.change_parent($RightHand)
 			ItemSlot.LEFT_HAND:
 				if left_hand:
-					await left_hand._drop()
-				left_hand = item 
+					left_hand.call_drop()
+				left_hand = item
+				print(item.get_path())
+				item.change_parent($LeftHand)
 			ItemSlot.ITEM_SLOT:
 				pass
 			_:
@@ -61,37 +59,34 @@ func equip_item(item: Node2D):
 	elif item.is_in_group("two-handed"):
 		#Drop both weapons
 		if right_hand:
-			right_hand._drop()
+			right_hand.call_drop()
 		if left_hand:
-			left_hand._drop()
+			left_hand.call_drop()
 		left_hand = null
 		right_hand = item
+		item.change_parent($RightHand)
 	elif item.is_in_group("item"):
 		if item_slot:
-			item_slot._drop()
+			item_slot.call_drop()
 		item_slot = item
+		item.change_parent(player)
 
-@rpc("any_peer")
 func unequip_item():
 	match current_slot:
 		ItemSlot.RIGHT_HAND:
 			if right_hand:
-				right_hand.set_multiplayer_authority(1)
-				right_hand._drop()
+				right_hand.call_drop()
 				right_hand = null
 		ItemSlot.LEFT_HAND:
 			if right_hand && right_hand.is_in_group("two-handed"): #Allowing for weapon switch when two handing
-				right_hand.set_multiplayer_authority(1)
-				right_hand._drop()
+				right_hand.call_drop()
 				right_hand = null
 			elif left_hand:
-				left_hand.set_multiplayer_authority(1)
-				left_hand._drop()
+				left_hand.call_drop()
 				left_hand = null 
 		ItemSlot.ITEM_SLOT:
 			if item_slot:
-				item_slot.set_multiplayer_authority(1)
-				item_slot._drop()
+				item_slot.call_drop()
 				item_slot = null
 		_:
 			current_slot = ItemSlot.RIGHT_HAND
@@ -113,24 +108,22 @@ func get_fire_mode():
 		return "click3"
 	match current_slot:
 		ItemSlot.RIGHT_HAND:
-			return "click"
-		ItemSlot.LEFT_HAND:
 			return "click2"
+		ItemSlot.LEFT_HAND:
+			return "click"
 		_:
 			return null
 
 #Unequips everything
 func unequip_everything():
-	if right_hand:
-		right_hand._drop()
-		right_hand = null
-	if left_hand:
-		left_hand._drop()
-		left_hand = null 
-	if item_slot:
-		item_slot._drop()
-		item_slot = null
-		
+	for slot in [right_hand, left_hand, item_slot]:
+		if slot:
+			slot.call_drop()
+			slot.set_multiplayer_authority(1)
+	right_hand = null
+	left_hand = null
+	item_slot = null
+
 
 func clear_slot_right():
 	if right_hand:

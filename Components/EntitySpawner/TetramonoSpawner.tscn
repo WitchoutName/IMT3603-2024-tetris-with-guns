@@ -1,0 +1,29 @@
+[gd_scene load_steps=11 format=3 uid="uid://derfnsuaimarv"]
+
+[ext_resource type="Script" path="res://Components/EntitySpawner/tetramino_spawner.gd" id="1_4c1f7"]
+[ext_resource type="PackedScene" uid="uid://ra0u50w7gahs" path="res://Entities/Tower/v2/Tetraminos/shape_i.tscn" id="2_7j761"]
+[ext_resource type="Texture2D" uid="uid://wmh4spdlq5fj" path="res://Assets/Spawner/spawner.webp" id="2_skbjc"]
+[ext_resource type="PackedScene" uid="uid://3wfb2f4sa68f" path="res://Entities/Tower/v2/Tetraminos/shape_j.tscn" id="3_slwx7"]
+[ext_resource type="PackedScene" uid="uid://bjuwxo57a2sgx" path="res://Entities/Tower/v2/Tetraminos/shape_l.tscn" id="4_2k7qa"]
+[ext_resource type="PackedScene" uid="uid://b62gaquce8rnp" path="res://Entities/Tower/v2/Tetraminos/shape_o.tscn" id="5_rlpj0"]
+[ext_resource type="PackedScene" uid="uid://4et6a2esjn17" path="res://Entities/Tower/v2/Tetraminos/shape_s.tscn" id="6_lf7ew"]
+[ext_resource type="PackedScene" uid="uid://ch3qi5k4wkwd0" path="res://Entities/Tower/v2/Tetraminos/shape_t.tscn" id="7_ybyyc"]
+[ext_resource type="PackedScene" uid="uid://cm8tbcww1ot3j" path="res://Entities/Tower/v2/Tetraminos/shape_z.tscn" id="8_4mkg4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfyqv"]
+size = Vector2(47, 46)
+
+[node name="EntitySpawner" type="Area2D"]
+script = ExtResource("1_4c1f7")
+entities = Array[PackedScene]([ExtResource("2_7j761"), ExtResource("3_slwx7"), ExtResource("4_2k7qa"), ExtResource("5_rlpj0"), ExtResource("6_lf7ew"), ExtResource("7_ybyyc"), ExtResource("8_4mkg4")])
+interval = 30.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_wfyqv")
+
+[node name="Spawner" type="Sprite2D" parent="."]
+modulate = Color(0.394247, 0.496834, 0.347685, 1)
+position = Vector2(-2.38419e-07, -3.57628e-07)
+scale = Vector2(0.10125, 0.10125)
+texture = ExtResource("2_skbjc")

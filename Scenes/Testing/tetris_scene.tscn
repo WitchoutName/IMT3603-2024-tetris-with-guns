@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b62gaquce8rnp" path="res://Entities/Tower/v2/Tetraminos/shape_o.tscn" id="8_kp4nd"]
 [ext_resource type="PackedScene" uid="uid://ch3qi5k4wkwd0" path="res://Entities/Tower/v2/Tetraminos/shape_t.tscn" id="9_6apwi"]
 [ext_resource type="PackedScene" uid="uid://cm8tbcww1ot3j" path="res://Entities/Tower/v2/Tetraminos/shape_z.tscn" id="10_cifx8"]
-[ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol.tscn" id="11_8uaps"]
+[ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol/Pistol.tscn" id="11_8uaps"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_anhks"]
 size = Vector2(502, 40)

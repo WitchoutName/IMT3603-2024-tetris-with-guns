@@ -11,5 +11,3 @@ func _ready() -> void:
 	team2.spawn_point = $rightTeam/spawnPoint
 	team2.tower = $rightTeam/Tower
 	teams.append(team2)
-	
-	bullet_group = $BulletGroup

@@ -2,7 +2,10 @@ extends Node2D
 class_name BaseMap
 
 var teams: Array[Team]
-var bullet_group: Node2D
+@onready var bullet_group: Node2D = $BulletsGroup
+@onready var player_group: Node2D = $PlayersGroup
+@onready var item_group: Node2D = $ItemsGroup
+@onready var tetramino_group: Node2D = $TetraminoGroup
 signal map_setup_finished
 
 var SPAWN_POINT = preload("res://Entities/Player/SpawnPoint/spawn_point.tscn")
@@ -24,7 +27,7 @@ func init() -> void:
 		player.name = str(player_peer.id)
 		player.player_peer = player_peer
 		player_peer.entity = player
-		$PlayersGroup.add_child(player)
+		player_group.add_child(player)
 		player.global_position = team.spawn_point.global_position
 		team.spawn_point.add_child(spawn_point)
 		spawn_point.assign_player(player)
@@ -46,7 +49,7 @@ func init() -> void:
 
 
 func _ready() -> void:
-	pass
+	print("[map] READY")
 
 func reset():
 	for team in teams:
