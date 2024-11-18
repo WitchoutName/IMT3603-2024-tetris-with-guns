@@ -92,13 +92,22 @@ position = Vector2(-407, 328)
 scale = Vector2(0.585, 0.585)
 
 [node name="spawnPoint" type="Marker2D" parent="leftTeam"]
-position = Vector2(278, 83)
+position = Vector2(170, 347)
 
 [node name="SpawnPieces" parent="leftTeam" instance=ExtResource("3_yhmyo")]
 position = Vector2(-118, 362)
 
 [node name="SpawnPieces2" parent="leftTeam" instance=ExtResource("3_yhmyo")]
 position = Vector2(304, 166)
+
+[node name="Pistol" parent="leftTeam" instance=ExtResource("4_hlu8q")]
+position = Vector2(206, 372)
+
+[node name="Shotgun" parent="leftTeam" instance=ExtResource("8_h875w")]
+position = Vector2(331, 375)
+
+[node name="Assault Rifle" parent="leftTeam" instance=ExtResource("6_yw73w")]
+position = Vector2(452, 376)
 
 [node name="arena" type="Node2D" parent="."]
 position = Vector2(1408, 284)
@@ -401,24 +410,9 @@ position = Vector2(-28, -100)
 position = Vector2(25.5, -171)
 shape = SubResource("RectangleShape2D_ckep6")
 
-[node name="Pistol2" parent="." instance=ExtResource("4_hlu8q")]
-position = Vector2(641, 610)
-
-[node name="Pistol" parent="." instance=ExtResource("4_hlu8q")]
-position = Vector2(784, 610)
-
 [node name="HUD" parent="." instance=ExtResource("6_y1pgk")]
 
 [node name="PlayersGroup" type="Node2D" parent="."]
-
-[node name="Assault Rifle" parent="." instance=ExtResource("6_yw73w")]
-position = Vector2(1045, 549)
-
-[node name="Pistol3" parent="." instance=ExtResource("4_hlu8q")]
-position = Vector2(878, 612)
-
-[node name="Pistol4" parent="." instance=ExtResource("4_hlu8q")]
-position = Vector2(784, 610)
 
 [node name="Granade" parent="." instance=ExtResource("7_cwoly")]
 position = Vector2(1186, 623)
@@ -431,6 +425,3 @@ position = Vector2(1186, 623)
 _spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
 spawn_path = NodePath("../BulletGroup")
 spawn_limit = 10000
-
-[node name="Shotgun" parent="." instance=ExtResource("8_h875w")]
-position = Vector2(1165, 487)

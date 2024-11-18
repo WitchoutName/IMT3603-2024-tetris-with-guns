@@ -19,6 +19,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 2
 
 [node name="bullet" type="RigidBody2D"]
+collision_layer = 0
 gravity_scale = 0.0
 script = ExtResource("1_ff0um")
 

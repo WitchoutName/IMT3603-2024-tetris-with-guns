@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bxnphhdmwl7pq"]
 
-[ext_resource type="Script" path="res://Components/WeaponScripts/assault_rifle.gd" id="1_j2v1e"]
+[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_8fobd"]
 [ext_resource type="Texture2D" uid="uid://4rvsov3j3gp5" path="res://Assets/GunAssets/ak.png" id="2_yw3on"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_ggxhp"]
 
@@ -36,7 +36,10 @@ properties/4/spawn = true
 properties/4/replication_mode = 2
 
 [node name="Assault Rifle" type="Node2D" groups=["one-handed"]]
-script = ExtResource("1_j2v1e")
+script = ExtResource("1_8fobd")
+bps = 10.0
+maxMag = 30
+fullAuto = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_iyfes")

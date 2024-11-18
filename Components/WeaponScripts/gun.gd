@@ -1,6 +1,7 @@
 extends Node2D
 class_name Gun
 
+<<<<<<< Updated upstream
 var bulletScene = load("res://Entities/Guns/bullet.tscn")
 var casingScene = load("res://Entities/Guns/casing.tscn")
 var bulletSpeed: int
@@ -17,6 +18,34 @@ var maxRecoil: float
 var recoilIncrement: float
 var currentRecoil = 0.0
 
+=======
+@export var bulletScene = load("res://Entities/Guns/bullet.tscn")
+@export var casingScene = load("res://Entities/Guns/casing.tscn")
+
+@export var bulletSpeed = 1000
+
+@export var bps = 5.0
+var fireRate: float
+var timeUntilFire = 0
+
+@export var bulletDamage: int
+@export var bulletSpread = 0.01
+
+@export var maxMag = 7
+var currentMag: int
+
+@export var reloadTime = 1.0
+var isReloading = false
+
+@export var maxRecoil = 20.0
+var recoilIncrement: float
+var currentRecoil = 0.0
+
+@export var bulletAmount = 1
+@export_range(0,360) var arc: float = 0
+
+@export var fullAuto = false
+>>>>>>> Stashed changes
 
 #Equip handling
 @onready var interaction_area: InteractionArea = $InteractionArea
@@ -26,6 +55,7 @@ var start_orientation
 var fire_mode = "click"
 
 func _init() -> void:
+<<<<<<< Updated upstream
 	bulletSpeed = 1000
 	bps = 5
 	bulletDamage = 30
@@ -38,6 +68,12 @@ func _init() -> void:
 	recoilIncrement = maxRecoil * 0.2
 	
 	
+=======
+	fireRate = 1.0/bps
+	currentMag = maxMag
+	recoilIncrement = maxRecoil * 0.2
+
+>>>>>>> Stashed changes
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fireRate = 1.0 / bps
@@ -46,7 +82,6 @@ func _ready() -> void:
 	interaction_area.interact = Callable(self, "_on_interact")
 	start_orientation = rotation
 	_init()
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -57,12 +92,16 @@ func _process(delta: float) -> void:
 		if get_global_mouse_position().x < position.x:
 			scale.y = -1
 			rotation += deg_to_rad(currentRecoil)
+			
 		elif get_global_mouse_position().x > position.x:
 			scale.y = 1
 			rotation -= deg_to_rad(currentRecoil)
+			
+		if fullAuto:
+			autoFire(delta)
+		else:
+			semiFire(delta)
 		
-		shoot(delta)
-		shoot(delta)
 	
 		if Input.is_action_just_pressed("reload") or (Input.is_action_just_pressed("click") and currentMag == 0):
 			reload()
@@ -84,23 +123,43 @@ func reload():
 		isReloading = false
 		currentMag = maxMag
 		
-
-func shoot(delta):
+func autoFire(delta):
+	if Input.is_action_pressed(fire_mode):
+				shoot(delta)
 	
-	if Input.is_action_just_pressed(fire_mode) and timeUntilFire > fireRate and currentMag > 0 and !isReloading:
-		var bullet = bulletScene.instantiate()
+func semiFire(delta):
+	if Input.is_action_just_pressed(fire_mode):
+				shoot(delta)
+	else: timeUntilFire += delta
+func shoot(delta):
+	print(timeUntilFire)
+	if timeUntilFire > fireRate and currentMag > 0 and !isReloading:
 		var casing = casingScene.instantiate()
 		if $AnimatedSprite2D.is_playing():
 			$AnimatedSprite2D.stop()
 		
-		bullet.set_multiplayer_authority(multiplayer.get_unique_id())
-		GameManager.map.bullet_group.add_child(bullet, true)
-		bullet.rotation = $Barrel.global_rotation + randf_range(-bulletSpread,bulletSpread)
-		bullet.position = $Barrel.global_position
-		bullet.linear_velocity = bullet.transform.x * bulletSpeed
-		
+		for i in bulletAmount:
+			var bullet = bulletScene.instantiate()
+			
+			
+			bullet.set_multiplayer_authority(multiplayer.get_unique_id())
+			
+			if bulletAmount == 1:
+				bullet.rotation = global_rotation
+				
+			else:
+				var arcToRad = deg_to_rad(arc)
+				var increment = arcToRad / (bulletAmount - 1)
+				bullet.rotation = (global_rotation + increment * i - arcToRad / 2)
+				
+			
+			bullet.position = $Barrel.global_position
+			bullet.linear_velocity = bullet.transform.x * bulletSpeed
+			
+			GameManager.map.bullet_group.add_child(bullet, true)
 		
 		$AnimatedSprite2D.play("Fire")
+		
 		get_tree().root.add_child(casing)
 		casing.rotation = $Eject.global_rotation + randf_range(-0.25, 0)
 		casing.position = $Eject.global_position
@@ -108,9 +167,9 @@ func shoot(delta):
 		timeUntilFire = 0
 		currentMag -= 1
 		currentRecoil = clamp(currentRecoil + recoilIncrement, 0.0, maxRecoil)
-	else:
-		timeUntilFire += delta
-
+	
+	else: timeUntilFire += delta
+	
 #On player interaction
 @rpc("any_peer")
 #func _on_interact(player_id: int):
