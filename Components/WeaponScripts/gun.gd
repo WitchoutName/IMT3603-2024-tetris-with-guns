@@ -141,7 +141,7 @@ func shoot(delta):
 			
 			
 		if bulletAmount == 1:
-			bullet.rotation = global_rotation
+			bullet.rotation = global_rotation + (randf_range(-bulletSpread, bulletSpread))
 				
 		else:
 			var arcToRad = deg_to_rad(arc)

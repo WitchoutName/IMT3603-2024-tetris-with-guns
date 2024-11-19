@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://ba7jl2dq2bfc4"]
 
-[ext_resource type="Script" path="res://Components/WeaponScripts/assault_rifle.gd" id="1_j2v1e"]
+[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_u2y1v"]
 [ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/gun-sheet.png" id="2_s728a"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_ggxhp"]
 
@@ -91,7 +91,11 @@ animations = [{
 radius = 65.0308
 
 [node name="assault_rifle" type="Node2D" groups=["two-handed"]]
-script = ExtResource("1_j2v1e")
+script = ExtResource("1_u2y1v")
+bps = 10.0
+magSize = 30
+ammoReserve = 90
+fullAuto = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_r2d48")

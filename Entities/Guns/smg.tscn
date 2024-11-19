@@ -1,47 +1,47 @@
-[gd_scene load_steps=17 format=3 uid="uid://bdneyo7mpey32"]
+[gd_scene load_steps=17 format=3 uid="uid://d0w3c6u7dxcsq"]
 
-[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_xmxuh"]
-[ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/gun-sheet.png" id="2_1tu8d"]
-[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_s7v60"]
+[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_2n5i8"]
+[ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/gun-sheet.png" id="2_q3mia"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_xw2wg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awig3"]
-atlas = ExtResource("2_1tu8d")
+atlas = ExtResource("2_q3mia")
 region = Rect2(0, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a3vbd"]
-atlas = ExtResource("2_1tu8d")
+atlas = ExtResource("2_q3mia")
 region = Rect2(57, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_thsm6"]
-atlas = ExtResource("2_1tu8d")
+atlas = ExtResource("2_q3mia")
 region = Rect2(114, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvfps"]
-atlas = ExtResource("2_1tu8d")
+atlas = ExtResource("2_q3mia")
 region = Rect2(171, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rg1ub"]
-atlas = ExtResource("2_1tu8d")
+atlas = ExtResource("2_q3mia")
 region = Rect2(228, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1r37t"]
-atlas = ExtResource("2_1tu8d")
+atlas = ExtResource("2_q3mia")
 region = Rect2(285, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1x8qv"]
-atlas = ExtResource("2_1tu8d")
+atlas = ExtResource("2_q3mia")
 region = Rect2(342, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkh51"]
-atlas = ExtResource("2_1tu8d")
+atlas = ExtResource("2_q3mia")
 region = Rect2(399, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mcqal"]
-atlas = ExtResource("2_1tu8d")
+atlas = ExtResource("2_q3mia")
 region = Rect2(456, 0, 57, 56)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_666rp"]
-atlas = ExtResource("2_1tu8d")
+atlas = ExtResource("2_q3mia")
 region = Rect2(513, 0, 57, 56)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r2d48"]
@@ -107,13 +107,17 @@ properties/4/path = NodePath("AnimatedSprite2D:animation")
 properties/4/spawn = true
 properties/4/replication_mode = 2
 
-[node name="Pistol" type="Node2D" groups=["one-handed"]]
-script = ExtResource("1_xmxuh")
-bulletDamage = 25
+[node name="Smg" type="Node2D" groups=["one-handed"]]
+script = ExtResource("1_2n5i8")
+bps = 20.0
+bulletDamage = 5
 bulletSpread = 0.1
+magSize = 30
 reloadInterval = 0.8
+fullAuto = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.0862745, 0.247059, 1, 1)
 position = Vector2(10.5, -2)
 sprite_frames = SubResource("SpriteFrames_r2d48")
 animation = &"Fire"
@@ -130,7 +134,7 @@ position = Vector2(16.5, -12)
 position = Vector2(10.5, -2)
 collision_layer = 0
 collision_mask = 16252929
-script = ExtResource("3_s7v60")
+script = ExtResource("3_xw2wg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(11.145, -3.955)
