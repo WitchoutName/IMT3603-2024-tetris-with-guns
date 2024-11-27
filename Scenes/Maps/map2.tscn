@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dptlmhfegh2y2"]
+[gd_scene load_steps=13 format=4 uid="uid://dptlmhfegh2y2"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/map_2.gd" id="1_i38ol"]
 [ext_resource type="Texture2D" uid="uid://bkjnpo24brtbh" path="res://Assets/Vector/vector_complete.svg" id="2_cvsm6"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dbsw503oi27ec" path="res://Entities/Items/granade.tscn" id="7_v1hfj"]
 [ext_resource type="PackedScene" uid="uid://derfnsuaimarv" path="res://Components/EntitySpawner/TetramonoSpawner.tscn" id="8_4j77c"]
 [ext_resource type="PackedScene" uid="uid://cuhmqofx28i4u" path="res://Entities/Melee/spear.tscn" id="8_jg5o5"]
+[ext_resource type="PackedScene" uid="uid://dr0jwc76kw1rl" path="res://Entities/Melee/shield.tscn" id="9_csjqh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_68a15"]
 
@@ -601,3 +602,6 @@ position = Vector2(-358, -116)
 
 [node name="Spear" parent="." instance=ExtResource("8_jg5o5")]
 position = Vector2(-752, -121)
+
+[node name="Shield" parent="." instance=ExtResource("9_csjqh")]
+position = Vector2(-531, -188)

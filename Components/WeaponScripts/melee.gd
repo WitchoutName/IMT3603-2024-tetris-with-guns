@@ -16,7 +16,6 @@ func _init():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("halo2")
 	interaction_area.interact = Callable(self, "_on_interact")
 	start_orientation = rotation
 	add_child(destructionTimer)
@@ -42,6 +41,7 @@ func change_parent(location: Node2D = null):
 
 #On player interaction
 func _on_interact(interacted_player: Player):
+	print("halo")
 	destructionTimer.stop()
 	if GameManager.my_player.player_peer.id == 1:
 		print("host setting multiplayer authority", interacted_player.player_peer.id)

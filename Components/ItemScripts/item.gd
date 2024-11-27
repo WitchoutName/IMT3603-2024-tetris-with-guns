@@ -21,7 +21,10 @@ func _use():
 	pass
 
 func _input(event):
-	if event.is_action_pressed("useItem"):
+	if not is_multiplayer_authority():
+		return
+	
+	if active && event.is_action_pressed("useItem"):
 		_use()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

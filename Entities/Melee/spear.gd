@@ -22,6 +22,7 @@ func _shoot():
 	fly_vel = direction * 700
 	fly = true
 	_active_unequip.rpc()
+	hitbox.set_damage(50)
 	tipcol.monitoring = true
 	tipcol.monitorable = true
 
@@ -42,7 +43,6 @@ func _on_interact(interacted_player: Player):
 	#Activating hitbox
 	hitbox.monitoring = true
 	hitbox.monitorable = true
-	print(hitbox.monitoring)
 
 @rpc("authority", "call_local")
 func _drop():

@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr0jwc76kw1rl"]
+
+[ext_resource type="Script" path="res://Entities/Melee/shield.gd" id="1_5o0mm"]
+[ext_resource type="Texture2D" uid="uid://dvt5d2hb3ea8c" path="res://Assets/MeleeAssets/shield/shield.png" id="2_30r3a"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_n5rjl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rtk0x"]
+radius = 6.0
+height = 54.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7gopn"]
+radius = 100.005
+
+[node name="Shield" type="Node2D" groups=["one-handed"]]
+script = ExtResource("1_5o0mm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_30r3a")
+
+[node name="ShieldBox" type="Area2D" parent="."]
+collision_layer = 16252929
+collision_mask = 16252929
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldBox"]
+position = Vector2(50, 0)
+shape = SubResource("CapsuleShape2D_rtk0x")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 16252929
+script = ExtResource("3_n5rjl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_7gopn")
+
+[connection signal="body_entered" from="ShieldBox" to="." method="_on_shield_box_body_entered"]
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]
