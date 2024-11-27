@@ -38,6 +38,8 @@ var prev_state = null
 @onready var inventory = $Inventory
 @onready var Camera: Camera2D = $Camera2D
 
+var looking_right = true
+
 #Respawn handling
 const RESPAWN_TIME = 5
 var spawned = true 
@@ -105,8 +107,14 @@ func player_input():
 	movement_input = Vector2.ZERO
 	if Input.is_action_pressed("MoveRight"):
 		movement_input.x += 1
+		if not looking_right:
+			inventory.scale.x *= -1
+			looking_right = true
 	if Input.is_action_pressed("MoveLeft"):
 		movement_input.x -= 1
+		if looking_right:
+			inventory.scale.x *= -1
+			looking_right = false
 	#if Input.is_action_pressed("MoveUp"):
 		#movement_input.y -= 1
 	#if Input.is_action_pressed("MoveDown"):

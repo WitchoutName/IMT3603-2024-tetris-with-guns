@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://cuhmqofx28i4u"]
+
+[ext_resource type="Script" path="res://Entities/Melee/spear.gd" id="1_yvj23"]
+[ext_resource type="Texture2D" uid="uid://bonjdhye8obj3" path="res://Assets/MeleeAssets/spear/spear_23.png" id="2_nhkax"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_833d0"]
+[ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="4_k4b2d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ot1ky"]
+radius = 96.0833
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lvpwt"]
+height = 26.0
+
+[node name="Spear" type="Node2D" groups=["interact", "two-handed"]]
+script = ExtResource("1_yvj23")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1.78814e-07)
+rotation = -0.785398
+scale = Vector2(3, 3)
+texture = ExtResource("2_nhkax")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 16252929
+script = ExtResource("3_833d0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_ot1ky")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_mask = 16252929
+monitoring = false
+monitorable = false
+script = ExtResource("4_k4b2d")
+hitbox_damage = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(58, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lvpwt")
+
+[node name="TipCollision" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TipCollision"]
+position = Vector2(58, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lvpwt")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]
+[connection signal="body_entered" from="TipCollision" to="." method="_on_tip_collision_body_entered"]

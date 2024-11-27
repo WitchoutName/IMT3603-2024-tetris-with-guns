@@ -12,11 +12,13 @@ func _ready():
 func _on_timer_timeout():
 	for body in overlapping:
 		if body.is_in_group("players"):
+
 			body.health.take_damage(damage)
 	queue_free()
 
 
 func _on_area_2d_body_entered(body):
+	print(body)
 	if body.is_in_group("players"):
 		overlapping.append(body)
 

@@ -32,6 +32,7 @@ func _process(delta):
 #On player interaction
 func _on_interact(interacted_player: Player):
 	if interacted_player:
+		set_multiplayer_authority(interacted_player.player_peer.id)
 		player = interacted_player
 		player.health.connect("death", Callable(self, "_drop")) #Connecting drop to death signal
 		active = true
@@ -40,15 +41,29 @@ func _on_interact(interacted_player: Player):
 		interaction_area.enabled = false 
 		interaction_area.force_remove() #We have to force remove it from the manager
 
+func call_drop():
+	_drop.rpc()
+	player = null
+
 #Handles the weapon drop
+@rpc("authority", "call_local")
 func _drop():
 	active = false
 	#Disconnecting from death signal
 	if player && player.health.is_connected("death", Callable(self, "_respawn_player")):
 			player.health.disconnect("death", Callable(self, "_respawn_player"))
-	if player && player.spawned: #If the player is spawned we make the gun interactble again 
+	if player && player.spawned: #If the player is spawned we make the item interactble again 
 		interaction_area.force_add()
 	player.inventory.clear_slot_item()
 	player = null
 	sprite.show()
 	interaction_area.enabled = true
+	set_multiplayer_authority(1)
+
+func change_parent(location: Node2D = null):
+	if location:
+		reparent(location)
+		position = Vector2.ZERO
+	else:
+		var root = get_tree().root
+		reparent(GameManager.map.item_group)
