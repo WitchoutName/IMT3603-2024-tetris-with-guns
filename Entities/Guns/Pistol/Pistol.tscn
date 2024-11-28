@@ -111,6 +111,7 @@ properties/4/replication_mode = 2
 script = ExtResource("1_xmxuh")
 bulletDamage = 25
 bulletSpread = 0.1
+ammoReserve = 21
 reloadInterval = 0.8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

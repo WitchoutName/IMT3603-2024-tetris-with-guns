@@ -107,13 +107,18 @@ properties/4/path = NodePath("AnimatedSprite2D:animation")
 properties/4/spawn = true
 properties/4/replication_mode = 2
 
-[node name="Pistol" type="Node2D" groups=["one-handed"]]
+[node name="Pistol" type="Node2D" groups=["two-handed"]]
 script = ExtResource("1_rfc7x")
+bps = 14.0
 bulletDamage = 25
 bulletSpread = 0.1
-reloadInterval = 0.8
+magSize = 100
+ammoReserve = 300
+reloadInterval = 2.0
+fullAuto = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.0941176, 1, 0.196078, 1)
 position = Vector2(10.5, -2)
 sprite_frames = SubResource("SpriteFrames_r2d48")
 animation = &"Fire"

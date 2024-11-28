@@ -35,8 +35,11 @@ properties/4/path = NodePath("AnimatedSprite2D:animation")
 properties/4/spawn = true
 properties/4/replication_mode = 2
 
-[node name="Shotgun" type="Node2D" groups=["one-handed"]]
+[node name="Shotgun" type="Node2D" groups=["two-handed"]]
 script = ExtResource("1_h0sph")
+bps = 2.0
+magSize = 6
+ammoReserve = 18
 bulletAmount = 5
 arc = 10.0
 

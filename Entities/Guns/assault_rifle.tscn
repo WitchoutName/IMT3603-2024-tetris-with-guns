@@ -98,6 +98,7 @@ ammoReserve = 90
 fullAuto = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.243137, 1, 1)
 sprite_frames = SubResource("SpriteFrames_r2d48")
 animation = &"Fire"
 autoplay = "Default"

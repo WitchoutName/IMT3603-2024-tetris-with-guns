@@ -113,6 +113,7 @@ bps = 20.0
 bulletDamage = 5
 bulletSpread = 0.1
 magSize = 30
+ammoReserve = 90
 reloadInterval = 0.8
 fullAuto = true
 
