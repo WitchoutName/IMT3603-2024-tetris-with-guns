@@ -9,6 +9,7 @@ var grid: GridClass
 var piece_queue: Array[Tetramino2]
 
 signal win()
+signal progress_change(percentage: float)
 
 func _ready():
 	grid = GridClass.new(tower_dimensions, petrify_width)
@@ -39,6 +40,7 @@ func ap_rotate():
 func steal(piece: Tetramino2):
 	grid.remove_piece(piece)
 	piece.tower = null
+	progress_change.emit(grid.get_progress())
 
 func _on_move_down_timer_timeout() -> void:
 	if active_piece:
@@ -50,10 +52,12 @@ func _on_move_down_timer_timeout() -> void:
 				active_piece.interaction_area.enabled = false
 				grid.attach_piece(active_piece)
 			else: active_piece = null
-			if  grid.is_win_state():
+			progress_change.emit(grid.get_progress())
+			if grid.is_win_state():
 				_on_win()
 				return
 			grid.petrify_complete_row()
+			
 
 func _on_win():
 	_emit_win.rpc()

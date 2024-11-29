@@ -32,6 +32,8 @@ func get_my_player() -> Player:
 
 func get_my_team_index() -> int:
 	return _players[my_id].team - 1
+func get_my_team_index() -> int:
+	return _players[my_id].team - 1
 
 @rpc("authority", "call_local", "reliable")
 func add_player(id: int, name: String):
@@ -62,6 +64,17 @@ func player_change_team(player_id: int, team: int):
 		_players[player_id].team = team
 	else:
 		push_error("Failed switching teams. Player id {}" % player_id + "not found")
+		
+@rpc("any_peer", "call_local", "reliable")
+func player_set_ready(player_id: int, ready: bool):
+	if _players[player_id]:
+		_players[player_id].is_ready = ready
+		print("setting player {} ready to true")
+		if players.all(func(p): return p.is_ready):
+			print("all ready, satring")
+			anounce_game_start.rpc()
+	else:
+		push_error("Setting is_ready failed. Player id {}" % player_id + "not found")
 
 func sync_players():
 	print(players.map(func(p): return p.id), players.map(func(p): return p.username))
@@ -87,15 +100,32 @@ func _sync_players_fake():
 		#add_player(id, names[i])
 
 @rpc("call_local", "reliable")
-func start_game():
-	game_state = GameState.PLAYING
-	map = load("res://Scenes/Maps/map2.tscn").instantiate()
-	get_tree().root.add_child(map)
-	lobby.hide()
+func init_map():
+	var mapHolder = get_node("/root/Base/MapHolder")
+	var mapScene = mapHolder.get_children()[0]
+	map = mapScene
 	map.init()
 	for team in map.teams:
-		team.tower.win.connect(_on_team_win)
+		team.tower.win.connect(GameManager._on_team_win)
+	player_set_ready.rpc_id(1, my_id, true)
+	
+
+@rpc("authority", "call_local")
+func anounce_game_start():
+	print("anounce_game_start")
 	game_started.emit()
+
+
+@rpc("call_local", "reliable")
+func start_game():
+	if multiplayer.is_server():
+		map = load("res://Scenes/Maps/map2.tscn").instantiate()
+		var mapHolder = get_node("/root/Base/MapHolder")
+		mapHolder.add_child(map)
+		await get_tree().create_timer(0.20).timeout
+		init_map.rpc()
+	lobby.hide()
+	game_state = GameState.PLAYING
 
 func _on_team_win(tower):
 	for team in map.teams:
@@ -111,3 +141,6 @@ func _on_team_win(tower):
 				lobby.show()
 				
 				game_state = GameState.CONNECTION_LOBBY
+
+	for player in players:
+		player.is_ready = false

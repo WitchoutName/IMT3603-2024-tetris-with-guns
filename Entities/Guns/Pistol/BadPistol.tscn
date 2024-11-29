@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://xdw8ei5us03r"]
+[gd_scene load_steps=18 format=3 uid="uid://xdw8ei5us03r"]
 
 [ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_xmxuh"]
-[ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/gun-sheet.png" id="2_1tu8d"]
+[ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/Pistol/gun-sheet.png" id="2_1tu8d"]
+[ext_resource type="PackedScene" uid="uid://fkmem7bj1ru6" path="res://Entities/Guns/Pistol/BadPistolPreview.tscn" id="2_hflb0"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_s7v60"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f75oi"]
@@ -23,6 +24,12 @@ properties/3/replication_mode = 2
 properties/4/path = NodePath("AnimatedSprite2D:animation")
 properties/4/spawn = true
 properties/4/replication_mode = 2
+properties/5/path = NodePath(".:ammoReserve")
+properties/5/spawn = true
+properties/5/replication_mode = 2
+properties/6/path = NodePath(".:bulletAmount")
+properties/6/spawn = true
+properties/6/replication_mode = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awig3"]
 atlas = ExtResource("2_1tu8d")
@@ -112,7 +119,10 @@ script = ExtResource("1_xmxuh")
 bulletSpeed = 700
 bulletDamage = 20
 bulletSpread = 0.15
+magSize = 4
+ammoReserve = 8
 reloadInterval = 1.2
+Preview = ExtResource("2_hflb0")
 
 [node name="Barrel" type="Node2D" parent="."]
 position = Vector2(41.5, -9)

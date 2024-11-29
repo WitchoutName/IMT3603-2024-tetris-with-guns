@@ -21,6 +21,10 @@ InteractionManager="*res://Components/Interaction/interaction_manager.tscn"
 GameManager="*res://Components/State/game_manager.gd"
 RigidBodyAutoScaler="*res://addons/rigidbody_auto_scaler/RigidBodyAutoScaler.gd"
 
+[display]
+
+window/size/viewport_width=900
+
 [dotnet]
 
 project/assembly_name="TetrisWithGuns"

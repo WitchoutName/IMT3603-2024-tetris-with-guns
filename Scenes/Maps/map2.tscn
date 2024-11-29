@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://dgve8sg6don5a"]
+[gd_scene load_steps=12 format=4 uid="uid://dgve8sg6don5a"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/map_2.gd" id="1_i38ol"]
 [ext_resource type="Texture2D" uid="uid://bkjnpo24brtbh" path="res://Assets/Vector/vector_complete.svg" id="2_cvsm6"]
 [ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="3_42k6x"]
 [ext_resource type="PackedScene" uid="uid://bic5nels0gapo" path="res://Scenes/HUD/HUD.tscn" id="5_b5fao"]
+[ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="7_5koef"]
 [ext_resource type="PackedScene" uid="uid://loey4c42d453" path="res://Components/EntitySpawner/WeaponSpawner.tscn" id="7_hb1cl"]
 [ext_resource type="PackedScene" uid="uid://derfnsuaimarv" path="res://Components/EntitySpawner/TetramonoSpawner.tscn" id="8_4j77c"]
 
@@ -524,6 +525,9 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_68a15")
 sources/0 = SubResource("TileSetAtlasSource_dlu6o")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53iov"]
+size = Vector2(6065, 24)
+
 [node name="Map2" type="Node2D"]
 script = ExtResource("1_i38ol")
 
@@ -573,6 +577,10 @@ _spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
 spawn_path = NodePath("../TetraminoGroup")
 spawn_limit = 10000
 
+[node name="ItemMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Entities/Guns/Pistol/BadPistol.tscn", "res://Entities/Guns/Pistol/Pistol.tscn", "res://Entities/Guns/assault_rifle.tscn", "res://Entities/Guns/shotgun.tscn")
+spawn_limit = 10000
+
 [node name="Spawners" type="Node2D" parent="."]
 position = Vector2(-13, -440)
 
@@ -591,5 +599,18 @@ position = Vector2(-535, -492)
 [node name="WeaponSpawner4" parent="Spawners" instance=ExtResource("7_hb1cl")]
 position = Vector2(9, 148)
 
-[node name="EntitySpawner" parent="Spawners" instance=ExtResource("8_4j77c")]
-position = Vector2(14, -739)
+[node name="TetraminoSpawner" parent="Spawners" instance=ExtResource("8_4j77c")]
+position = Vector2(12, -748)
+
+[node name="TetraminoSpawner2" parent="Spawners" instance=ExtResource("8_4j77c")]
+position = Vector2(-1057, 370)
+
+[node name="Death" type="Area2D" parent="."]
+position = Vector2(-922, 954)
+script = ExtResource("7_5koef")
+hitbox_damage = 9999
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
+position = Vector2(1105.5, -14)
+shape = SubResource("RectangleShape2D_53iov")

@@ -183,6 +183,14 @@ func petrify_complete_row():
 				if not piece.is_petrified: piece.is_petrified = true
 
 
+func get_progress():
+	var min_y = size.y
+	for y in range(size.y):  # Start from the last row to the first
+		for x in range(size.x):  # Iterate through each column in the row
+			if matrix[x][y] and y < min_y:
+				min_y = y
+	return (size.y - min_y) / size.y
+
 func is_win_state() -> bool:
 	for x in range(size.x):
 		if matrix[x][0]: return true

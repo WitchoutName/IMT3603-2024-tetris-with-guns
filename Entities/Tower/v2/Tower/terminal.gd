@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var interaction_area: InteractionArea = $InteractionArea
+@export var player_camera_shift = -500
 var tower: Tower2 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,10 +15,11 @@ func _process(delta):
 		pass
 
 func _on_interact(player: Player):
+	if not player == GameManager.my_player: return
 	if player.tower:
 		if not player.is_controlling_tower:
 			player.is_controlling_tower = true
-			player.Camera.position.y = -300
+			if player.Camera: player.Camera.position.y = player_camera_shift
 			if player.piece_catied:
 				var piece = player.piece_catied
 				piece.release()
@@ -28,7 +30,7 @@ func _on_interact(player: Player):
 				tower.ap_insert(piece)
 		else: 
 			player.is_controlling_tower = false
-			player.Camera.position.y = 0;
+			if player.Camera: player.Camera.position.y = 0
 
 func release():
 	while true:
@@ -44,11 +46,13 @@ func wait_for_no_input():
 func _on_interaction_area_body_entered(body: Node2D) -> void:
 	if is_instance_of(body, Player):
 		var player = body as Player
+		if not player == GameManager.my_player: return
 		player.tower = tower
 
 func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if is_instance_of(body, Player):
 		var player = body as Player
+		if not player == GameManager.my_player: return
 		player.tower = null
 		player.is_controlling_tower = false
-		player.Camera.position.y = 0;
+		if player.Camera: player.Camera.position.y = 0;

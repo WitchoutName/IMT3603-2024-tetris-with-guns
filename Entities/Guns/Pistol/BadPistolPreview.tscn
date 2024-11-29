@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://fkmem7bj1ru6"]
+
+[ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/Pistol/gun-sheet.png" id="1_71lfm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awig3"]
+atlas = ExtResource("1_71lfm")
+region = Rect2(0, 0, 57, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3vbd"]
+atlas = ExtResource("1_71lfm")
+region = Rect2(57, 0, 57, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thsm6"]
+atlas = ExtResource("1_71lfm")
+region = Rect2(114, 0, 57, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvfps"]
+atlas = ExtResource("1_71lfm")
+region = Rect2(171, 0, 57, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rg1ub"]
+atlas = ExtResource("1_71lfm")
+region = Rect2(228, 0, 57, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r37t"]
+atlas = ExtResource("1_71lfm")
+region = Rect2(285, 0, 57, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x8qv"]
+atlas = ExtResource("1_71lfm")
+region = Rect2(342, 0, 57, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkh51"]
+atlas = ExtResource("1_71lfm")
+region = Rect2(399, 0, 57, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcqal"]
+atlas = ExtResource("1_71lfm")
+region = Rect2(456, 0, 57, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_666rp"]
+atlas = ExtResource("1_71lfm")
+region = Rect2(513, 0, 57, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5erfn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awig3")
+}],
+"loop": false,
+"name": &"Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_a3vbd")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_thsm6")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_bvfps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rg1ub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r37t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x8qv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkh51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcqal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_666rp")
+}],
+"loop": false,
+"name": &"Fire",
+"speed": 35.0
+}]
+
+[node name="PistolPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.466428, 0.17901, 0, 1)
+position = Vector2(1, -1)
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_5erfn")
+animation = &"Fire"
+autoplay = "Default"
+offset = Vector2(11, 2)

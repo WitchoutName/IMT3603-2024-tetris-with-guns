@@ -2,11 +2,11 @@ extends RigidBody2D
 class_name Tetramino2
 
 # Declare the picked_up signal
-signal piece_picked_up  
+signal picked_up  
 
 # RigidBody mode
 @onready var interaction_area: InteractionArea = $InteractionArea
-var picked_up: bool = false
+var is_picked_up: bool = false
 var player: Player:
 	set = _set__player
 var tower: Tower2:
@@ -91,28 +91,7 @@ func _on_interact(_player: Player):
 	else: 
 		attach(_player)
 		#This is for spawning pieces
-		emit_signal("piece_picked_up")
-	##Awaiting release in order to avoid triggering release
-	#await _wait_for_no_input()
-	#
-	#await _wait_for_no_release()
-	
-	
-	
-	
-
-
-func _wait_for_no_release():
-	while true:
-		if Input.is_action_just_pressed("interact"): #We wait for interaction again to release
-			picked_up = false
-			print("released")
-			break
-		await get_tree().process_frame #Otherwise we wait for next frame (pause)
-
-func _wait_for_no_input():
-	while Input.is_action_pressed("interact"):
-		await get_tree().process_frame
+		emit_signal("picked_up")
 
 func scale(factor: Vector2):
 	"""
@@ -128,7 +107,7 @@ func attach(_player: Player):
 	if _player:
 		$CollisionPolygon2D.disabled = true
 		freeze = true
-		picked_up = true
+		is_picked_up = true
 		player = _player
 		player.piece_catied = self
 
@@ -136,7 +115,7 @@ func release():
 	if player:
 		$CollisionPolygon2D.disabled = false
 		player.piece_catied = null
-		picked_up = true
+		is_picked_up = true
 		player = null
 		is_tetris_mode = false
 		

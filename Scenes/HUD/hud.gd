@@ -16,59 +16,52 @@ var health: Health
 #@export var health: Health
 
 func _ready():
-
 	if not is_instance_valid(health_bar):
-		print("Error: HealthBar is not valid!")
+		push_error("Error: HealthBar is not valid!")
 		return
-
-	var map = get_map()
-	if map == null:
-		print("Error: Map node not found!")
-		return
-
-
-	#var map = GameManager.map
-
-	map.connect("map_setup_finished", Callable(self, "get_references"))
-	
-func get_map():
-	var current_node = self
-	while current_node:
-		if current_node.is_in_group("maps"):
-			return current_node
-		current_node = current_node.get_parent()
-	return null  # Return null if no "map" node is found
+	GameManager.game_started.connect(get_references)
 
 func get_references():
 	player = GameManager.get_my_player()
 	if player == null:
-		print("Player not found!")
+		push_error("Player not found!")
 		return
 	
 	health = player.get_node("Health") 
 	if health == null:
-		print("Health node not found!")
+		push_error("Health node not found!")
 		return
 	
 	#Connecting player signals to health
 	player.health.connect("health_changed", Callable(self, "_on_health_change"))
 	player.health.connect("death", Callable(self, "_on_health_change"))
 	player.connect("respawned", Callable(self, "_on_health_change"))
+	player.inventory.slot_change.connect(_on_inventory_slot_change)
+	player.inventory.slot_state_change.connect(_on_inventory_slot_state_change)
+	GameManager.map.teams[0].tower.progress_change.connect(func(x: float): update_team_score("blue", x))
+	GameManager.map.teams[1].tower.progress_change.connect(func(x: float): update_team_score("red", x))
 	
 	initialize()
 
 # Function to update team scores
+var team_blue_score = 0
+var team_red_score = 0
+func update_team_score(team: String, value: float):
+	if team == "blue": team_blue_score = int(value*100)
+	if team == "red": team_red_score = int(value*100)
+	update_team_scores(team_blue_score, team_red_score)
+
 func update_team_scores(blue_score: int, red_score: int):
 	if team_score_blue != null:
-		team_score_blue.value = blue_score
+		team_score_blue.value = blue_score/10
 		if team_score_blue.get_child_count() > 0 and team_score_blue.get_child(0) is Label:
 			var blue_label_node = team_score_blue.get_child(0)
-			blue_label_node.text = str(blue_score)
+			blue_label_node.text = str(blue_score)+"%"
 	if team_score_red != null:
-		team_score_red.value = red_score
+		team_score_red.value = red_score/10
 		if team_score_red.get_child_count() > 0 and team_score_red.get_child(0) is Label:
 			var red_label_node = team_score_red.get_child(0)
-			red_label_node.text = str(red_score)
+			red_label_node.text = str(red_score)+"%"
 
 # Function to update the timer
 func update_timer(time_left: int):
@@ -137,6 +130,52 @@ func _on_gun_picked_up(gun_node: Node):
 	else:
 		print("Error: Weapon node is neither Sprite2D nor has AnimatedSprite2D")
 
+func _on_inventory_slot_change(slot: Inventory.ItemSlot):
+	match slot:
+		Inventory.ItemSlot.RIGHT_HAND:
+			$Display/Inventory/Hands/Hands0.hide()
+			$Display/Inventory/Hands/Hands1.hide()
+			$Display/Inventory/Hands/Hands2.show()			
+		Inventory.ItemSlot.LEFT_HAND:
+			$Display/Inventory/Hands/Hands0.hide()
+			$Display/Inventory/Hands/Hands1.show()
+			$Display/Inventory/Hands/Hands2.hide()
+		Inventory.ItemSlot.ITEM_SLOT:
+			$Display/Inventory/Hands/Hands0.show()
+			$Display/Inventory/Hands/Hands1.hide()
+			$Display/Inventory/Hands/Hands2.hide()
+
+func _update_slot_preview(slot: Control, item: BaseItem):
+	for child in slot.get_children():
+		child.queue_free()
+
+	if item != null:
+		var preview = (item.Preview if item.Preview else load("res://Entities/Guns/Pistol/PistolPreview.tscn")).instantiate()
+		slot.add_child(preview)
+
+
+var has_two_handed_item: bool = false
+func _on_inventory_slot_state_change(slot: Inventory.ItemSlot, item: BaseItem):
+	if has_two_handed_item and not item:
+		_update_slot_preview($Display/Inventory/Slots/Dual, null)
+		has_two_handed_item = false
+		return
+	
+	if item and item.is_in_group("two-handed"):
+		_update_slot_preview($Display/Inventory/Slots/LeftHand, null)
+		_update_slot_preview($Display/Inventory/Slots/RightHand, null)
+		_update_slot_preview($Display/Inventory/Slots/Dual, item)
+		has_two_handed_item = true
+		return
+		
+	match slot:
+		Inventory.ItemSlot.RIGHT_HAND:
+			_update_slot_preview($Display/Inventory/Slots/RightHand, item)
+		Inventory.ItemSlot.LEFT_HAND:
+			_update_slot_preview($Display/Inventory/Slots/LeftHand, item)
+		Inventory.ItemSlot.ITEM_SLOT:
+			pass
+			_update_slot_preview($Display/Inventory/Slots/RightHand, item)
 
 # Function to handle updates based on game state (e.g. health decrease, ammo usage)
 func _process(delta):
@@ -144,7 +183,7 @@ func _process(delta):
 
 # Function to set dummy values for testing
 func initialize():
-	update_team_scores(8, 6)
+	update_team_scores(0, 0)
 	update_timer(300)
 	if health != null:
 		update_health(health.get_current_health())
