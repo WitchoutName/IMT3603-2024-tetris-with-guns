@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cou6xrivhvyvs" path="res://Scenes/Menu/settings_tab_container.tscn" id="2_586vm"]
 
 [node name="Options_Menu" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
