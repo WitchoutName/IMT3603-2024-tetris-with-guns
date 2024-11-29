@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 InteractionManager="*res://Components/Interaction/interaction_manager.tscn"
 GameManager="*res://Components/State/game_manager.gd"
-RigidBodyAutoScaler="*res://addons/rigidbody_auto_scaler/RigidBodyAutoScaler.gd"
+OptionsManager="*res://Scenes/Menu/options_menu.tscn"
 
 [display]
 
@@ -31,7 +31,7 @@ project/assembly_name="TetrisWithGuns"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/rigidbody_auto_scaler/plugin.cfg", "res://addons/test/plugin.cfg")
+enabled=PackedStringArray("res://addons/test/plugin.cfg")
 
 [global_group]
 

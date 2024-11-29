@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://knn8t2r4u8ht"]
+
+[ext_resource type="Script" path="res://Scenes/Menu/escape_menu.gd" id="1_jpqe4"]
+
+[node name="EscapeMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jpqe4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = -176.0
+offset_right = 149.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.389
+offset_right = 3.0
+offset_bottom = 7.61198
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "= Escape Menu ="
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="OptionsButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Exit_to_Lobby_Button" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Exit to Lobby"
+
+[connection signal="pressed" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Exit_to_Lobby_Button" to="." method="_on_exit_to_lobby_button_pressed"]

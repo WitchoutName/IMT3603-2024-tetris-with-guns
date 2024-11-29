@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ccqcnw8132xn3"]
+[gd_scene load_steps=25 format=3 uid="uid://ccqcnw8132xn3"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_6ark4"]
 [ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_qk4a2"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://caiga5uv5evtk" path="res://Entities/Player/DASH.tscn" id="13_gbmsj"]
 [ext_resource type="Script" path="res://Entities/Player/SLIDE.gd" id="13_w270y"]
 [ext_resource type="PackedScene" uid="uid://ct16ftajdtqby" path="res://Entities/Player/SLIDE.tscn" id="14_o0klo"]
+[ext_resource type="PackedScene" uid="uid://knn8t2r4u8ht" path="res://Scenes/Menu/escape_menu.tscn" id="14_r5g4j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io1p0"]
 atlas = ExtResource("3_dasr1")
@@ -76,6 +77,7 @@ properties/0/replication_mode = 2
 font_size = 14
 
 [node name="Player" type="CharacterBody2D" groups=["players"]]
+process_mode = 1
 script = ExtResource("1_6ark4")
 SPEED = 600.0
 
@@ -165,5 +167,10 @@ text = "username"
 label_settings = SubResource("LabelSettings_uxlqq")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EscapeMenu" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("14_r5g4j")]
+player = NodePath("../..")
 
 [connection signal="death" from="Health" to="." method="_on_health_death"]

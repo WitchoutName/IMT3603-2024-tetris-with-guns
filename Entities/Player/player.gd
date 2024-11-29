@@ -31,6 +31,20 @@ var player_peer: PlayerPeer
 var current_state = null
 var prev_state = null
 
+#signals
+signal toggle_player_paused(is_paused: bool)
+
+
+
+#GameManaging
+var player_paused: bool = false:
+	get:
+		return player_paused
+	set(value):
+		player_paused = value
+		get_tree().paused = !player_paused
+		emit_signal("toggle_player_paused",player_paused)
+	
 #nodes
 @onready var STATES = $STATES
 @onready var Raycasts = $Raycasts
@@ -45,8 +59,15 @@ var should_respawn = true
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
+	
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):  # 'ui_cancel' is the default for ESC
+		#var escape_menu = $CanvasLayer/EscapeMenu
+		player_paused = !player_paused
+		#escape_menu.visible = !escape_menu.visible
 
 func _ready():
+	var escape_menu = $"CanvasLayer/EscapeMenu"
 	for state in STATES.get_children():
 		state.STATES = STATES
 		state.Player = self
@@ -54,6 +75,9 @@ func _ready():
 		current_state = STATES.IDLE
 	if player_peer:
 		$Username.text = player_peer.username
+	
+	#if escape_menu:
+		#escape_menu.exit_to_lobby.connect(_on_exit_to_lobby)
 
 func _physics_process(delta):
 	if not is_multiplayer_authority() and player_peer: return
@@ -159,3 +183,22 @@ func unequip_gun():
 	pass
 	#equiped_gun.set_multiplayer_authority(1)
 	#equiped_gun = null
+
+
+
+# Transition to the lobby scene
+func _on_exit_to_lobby():
+	# Optional: Handle multiplayer cleanup or save progress
+	print("Exiting to lobby...")
+	#cleanup_multiplayer()
+	get_tree().change_scene("res://Scenes/Menu/lobby/connection_lobby.tscn")
+
+#func cleanup_multiplayer():
+	#if Multiplayer.is_server():
+		#print("Stopping server...")
+		#Multiplayer.stop()
+	#elif Multiplayer.is_client():
+		#print("Disconnecting from server...")
+		#Multiplayer.disconnect()
+	## Optional: Clear the Multiplayer API
+	#Multiplayer.clear_peers()
