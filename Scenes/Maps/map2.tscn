@@ -528,7 +528,7 @@ sources/0 = SubResource("TileSetAtlasSource_dlu6o")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_53iov"]
 size = Vector2(6065, 24)
 
-[node name="Map2" type="Node2D"]
+[node name="Map3" type="Node2D"]
 script = ExtResource("1_i38ol")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -584,26 +584,27 @@ spawn_limit = 10000
 [node name="Spawners" type="Node2D" parent="."]
 position = Vector2(-13, -440)
 
-[node name="WeaponSpawner" parent="Spawners" instance=ExtResource("7_hb1cl")]
-position = Vector2(557, -493)
-
-[node name="WeaponSpawner2" parent="Spawners" instance=ExtResource("7_hb1cl")]
-position = Vector2(2, -104)
-
-[node name="WeaponSpawner5" parent="Spawners" instance=ExtResource("7_hb1cl")]
-position = Vector2(2, -424)
-
-[node name="WeaponSpawner3" parent="Spawners" instance=ExtResource("7_hb1cl")]
-position = Vector2(-535, -492)
-
-[node name="WeaponSpawner4" parent="Spawners" instance=ExtResource("7_hb1cl")]
-position = Vector2(9, 148)
-
 [node name="TetraminoSpawner" parent="Spawners" instance=ExtResource("8_4j77c")]
 position = Vector2(12, -748)
+weights = Array[int]([1, 1, 1, 1, 1, 1, 1])
 
-[node name="TetraminoSpawner2" parent="Spawners" instance=ExtResource("8_4j77c")]
-position = Vector2(-1057, 370)
+[node name="WeaponSpawner3" parent="Spawners" instance=ExtResource("7_hb1cl")]
+position = Vector2(558, -491)
+
+[node name="WeaponSpawner4" parent="Spawners" instance=ExtResource("7_hb1cl")]
+position = Vector2(11, -432)
+
+[node name="WeaponSpawner2" parent="Spawners" instance=ExtResource("7_hb1cl")]
+position = Vector2(-531, -496)
+
+[node name="WeaponSpawner" parent="Spawners" instance=ExtResource("7_hb1cl")]
+position = Vector2(9, -108)
+
+[node name="WeaponSpawner5" parent="Spawners" instance=ExtResource("7_hb1cl")]
+position = Vector2(9, 146)
+
+[node name="WeaponSpawner6" parent="Spawners" instance=ExtResource("7_hb1cl")]
+position = Vector2(9, 146)
 
 [node name="Death" type="Area2D" parent="."]
 position = Vector2(-922, 954)

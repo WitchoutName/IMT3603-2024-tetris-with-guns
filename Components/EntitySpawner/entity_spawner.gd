@@ -11,6 +11,7 @@ var weighted_entities: Array[PackedScene]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(len(entities))
 	for i in range(len(entities)):
 		var weight = 1 if len(weights)-1 < i else weights[i]
 		for n in range(weight):
@@ -46,7 +47,8 @@ func spawn_logic():
 
 func spawn():
 	if multiplayer.is_server():
-		var index = RandomNumberGenerator.new().randi_range(0, len(weighted_entities)-1)	
+		var index = RandomNumberGenerator.new().randi_range(0, len(weighted_entities)-1)
+		print(len(weighted_entities)-1, index)
 		var id = RandomNumberGenerator.new().randi_range(100000000, 999999999)	
 		_sync_spawn.rpc(index, id)
 			

@@ -32,8 +32,6 @@ func get_my_player() -> Player:
 
 func get_my_team_index() -> int:
 	return _players[my_id].team - 1
-func get_my_team_index() -> int:
-	return _players[my_id].team - 1
 
 @rpc("authority", "call_local", "reliable")
 func add_player(id: int, name: String):
