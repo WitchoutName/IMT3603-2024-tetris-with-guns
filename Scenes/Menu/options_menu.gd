@@ -1,7 +1,7 @@
 class_name OptionsMenu
 extends Control
 
-@onready var back_button = $MarginContainer/VBoxContainer/Back as Button
+#@onready var back_button = $MarginContainer/VBoxContainer/Back as Button
 #@export var option_menu_scene = preload("res://Scenes/Menu/options_menu.tscn")
 var instance: Control = null  # Tracks the active instance of the Option Menu
 
