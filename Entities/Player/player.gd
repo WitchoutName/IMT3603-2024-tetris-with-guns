@@ -127,9 +127,9 @@ func get_next_to_wall() -> Vector2:
 
 func player_input():
 	movement_input = Vector2.ZERO
-	if Input.is_action_pressed("MoveRight"):
+	if Input.is_action_pressed("move_right"):
 		movement_input.x += 1
-	if Input.is_action_pressed("MoveLeft"):
+	if Input.is_action_pressed("move_left"):
 		movement_input.x -= 1
 	#if Input.is_action_pressed("MoveUp"):
 		#movement_input.y -= 1
@@ -137,11 +137,11 @@ func player_input():
 		#movement_input.y += 1
 		
 	# Jumps
-	if Input.is_action_pressed("Jump"):
+	if Input.is_action_pressed("jump"):
 		jump_input = true
 	else: 
 		jump_input = false
-	if Input.is_action_just_pressed("Jump"):
+	if Input.is_action_just_pressed("jump"):
 		jump_input_actuation = true
 	else:
 		jump_input_actuation = false
@@ -153,7 +153,7 @@ func player_input():
 		#climb_input = false	
 		
 	#dash
-	if Input.is_action_just_pressed("Dash"):
+	if Input.is_action_just_pressed("dash"):
 		dash_input = true
 	else: 
 		dash_input = false 
