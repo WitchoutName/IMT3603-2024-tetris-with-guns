@@ -21,6 +21,7 @@ func _shoot():
 	var direction = (get_global_mouse_position() - global_position).normalized()
 	fly_vel = direction * 700
 	fly = true
+	player.inventory.clear_slot_right()
 	_active_unequip.rpc()
 	hitbox.set_damage(50)
 	tipcol.monitoring = true

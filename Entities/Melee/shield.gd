@@ -3,6 +3,10 @@ extends Melee
 @onready var shieldbox = $ShieldBox
 @onready var sprite = $Sprite2D
 
+func _ready():
+	super._ready()
+	$Health.set_max_health(75)
+
 func _process(delta):
 	if active:
 		var mouse_pos = get_global_mouse_position()
@@ -25,4 +29,10 @@ func _drop():
 
 
 func _on_shield_box_body_entered(body):
-	print("HALO KTOŚ JEST WE MNIE AAAAA")
+	pass
+
+
+func _on_health_death():
+	_drop()
+	$InteractionArea.force_remove()
+	queue_free()

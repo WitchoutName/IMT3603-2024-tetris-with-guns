@@ -80,7 +80,8 @@ func _drop():
 	destructionTimer.start(destructionInterval)
 	set_multiplayer_authority(1)
 	
-#Unequips, but does not deactivate the weapon
+#Unequips, but does not deactivate the weapon.
+#IMPORTANT - Needs to also clear inventory slot
 @rpc("authority", "call_local")
 func _active_unequip():
 	change_parent()
