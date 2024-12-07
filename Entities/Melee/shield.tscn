@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvt5d2hb3ea8c" path="res://Assets/MeleeAssets/shield/shield.png" id="2_30r3a"]
 [ext_resource type="Script" path="res://Components/Health/health.gd" id="2_a6s5d"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_n5rjl"]
-[ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="5_1fp4o"]
+[ext_resource type="Script" path="res://Components/Boxes/hurtbox.gd" id="5_4ltme"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rtk0x"]
 radius = 6.0
@@ -44,10 +44,11 @@ script = ExtResource("3_n5rjl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_7gopn")
 
-[node name="HitBox" type="Area2D" parent="."]
-script = ExtResource("5_1fp4o")
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("5_4ltme")
+health = NodePath("../Health")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(50, 0)
 shape = SubResource("CapsuleShape2D_ncuc4")
 

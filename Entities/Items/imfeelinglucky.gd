@@ -28,10 +28,26 @@ func spawn_weapon():
 		player.heal_over_max_health(50)
 	if index == (len(weapons) + 2): #Damage
 		player.damage(35)
-
+	if index == (len(weapons) + 3): #Teleports to random player
+		player.global_poisition = get_random_player_pos()
+	
 	#Nothing
 	
 	_drop()
 	$InteractionArea.force_remove()
 	queue_free()
 	
+
+func get_random_player_pos() -> Vector2:
+	var positions = []
+	for p in GameManager.players:
+		if p != player:
+			positions.append(p.entity.global_position)
+	
+	#If no other players, we return player's position, i.e. de facto do nothing
+	if positions.size() <= 0: 
+		return player.global_position
+	
+	#Returning position of random player
+	var random_index = randi() % positions.size()  
+	return positions[random_index]

@@ -29,15 +29,14 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if player:
-		global_position = player.global_position
+	pass
 
 #On player interaction
 func _on_interact(interacted_player: Player):
 	if interacted_player:
 		set_multiplayer_authority(interacted_player.player_peer.id)
 		player = interacted_player
-		player.health.connect("death", Callable(self, "_drop")) #Connecting drop to death signal
+		player.health.connect("death", Callable(self, "call_drop")) #Connecting drop to death signal
 		active = true
 		player.inventory.equip_item(self)
 		sprite.hide()
@@ -46,15 +45,15 @@ func _on_interact(interacted_player: Player):
 
 func call_drop():
 	_drop.rpc()
-	player = null
 
 #Handles the weapon drop
 @rpc("authority", "call_local")
 func _drop():
+	change_parent()
 	active = false
 	#Disconnecting from death signal
-	if player && player.health.is_connected("death", Callable(self, "_respawn_player")):
-			player.health.disconnect("death", Callable(self, "_respawn_player"))
+	if player && player.health.is_connected("call_drop", Callable(self, "_respawn_player")):
+			player.health.disconnect("call_drop", Callable(self, "_respawn_player"))
 	if player && player.spawned: #If the player is spawned we make the item interactble again 
 		interaction_area.force_add()
 	player.inventory.clear_slot_item()

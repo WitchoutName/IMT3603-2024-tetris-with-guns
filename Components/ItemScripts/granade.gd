@@ -3,7 +3,6 @@ extends Item_Script
 @export var granade_obj: PackedScene
 var throw_speed = 600 #TODO: Make it grow when holding down the button
 
-
 func _use():
 	throw.rpc(get_global_mouse_position())
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dptlmhfegh2y2"]
+[gd_scene load_steps=16 format=4 uid="uid://dptlmhfegh2y2"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/map_2.gd" id="1_i38ol"]
 [ext_resource type="Texture2D" uid="uid://bkjnpo24brtbh" path="res://Assets/Vector/vector_complete.svg" id="2_cvsm6"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dr0jwc76kw1rl" path="res://Entities/Melee/shield.tscn" id="9_csjqh"]
 [ext_resource type="PackedScene" uid="uid://dswjpgeno3480" path="res://Entities/Items/imfeelinglucky.tscn" id="10_hwcfs"]
 [ext_resource type="PackedScene" uid="uid://bneov2hp4sla3" path="res://Entities/Items/holy_bible.tscn" id="11_y28em"]
+[ext_resource type="PackedScene" uid="uid://bkabdgq325wuv" path="res://Entities/Items/portable_barrier_object.tscn" id="12_sraul"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_68a15"]
 
@@ -613,3 +614,6 @@ position = Vector2(-239, -167)
 
 [node name="HolyBible" parent="." instance=ExtResource("11_y28em")]
 position = Vector2(197, -174)
+
+[node name="PortableBarrierObject" parent="." instance=ExtResource("12_sraul")]
+position = Vector2(361, -130)

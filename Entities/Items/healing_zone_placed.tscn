@@ -82,7 +82,7 @@ script = ExtResource("1_ynynp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_qmyyf")
-frame_progress = 0.740221
+frame_progress = 0.540774
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 16252929
