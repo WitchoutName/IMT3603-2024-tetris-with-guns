@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://co1ly1lq3npki"]
+
+[ext_resource type="Texture2D" uid="uid://dkag2wy4qhxsm" path="res://Assets/GunAssets/shotgun.png" id="1_33wkg"]
+
+[node name="PistolPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Shotgun" type="Sprite2D" parent="."]
+position = Vector2(12, -1)
+texture = ExtResource("1_33wkg")

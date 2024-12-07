@@ -35,7 +35,7 @@ var prev_state = null
 @onready var STATES = $STATES
 @onready var Raycasts = $Raycasts
 @onready var health = $Health
-@onready var inventory = $Inventory
+@onready var inventory: Inventory = $Inventory
 @onready var Camera: Camera2D = $Camera2D
 
 var looking_right = true
@@ -75,11 +75,14 @@ func _physics_process(delta):
 func _handle_tower_input():
 	if tower and tower.active_piece:
 		if Input.is_action_just_pressed("tower_move_left"):
-			tower.ap_move_left()
+			print("calling moveleft")
+			tower.ap_move_left.rpc_id(1)
 		if Input.is_action_just_pressed("tower_move_right"):
-			tower.ap_move_right()
+			print("calling move right")
+			tower.ap_move_right.rpc_id(1)
 		if Input.is_action_just_pressed("tower_rotate"):
-			tower.ap_rotate()
+			print("calling roatate")
+			tower.ap_rotate.rpc_id(1)
 
 func gravity(delta):
 	if not is_on_floor():

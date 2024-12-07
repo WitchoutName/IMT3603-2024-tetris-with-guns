@@ -90,9 +90,12 @@ animation = &"Idle"
 script = ExtResource("3_tef5q")
 
 [node name="LeftHand" type="Node2D" parent="Inventory"]
-position = Vector2(-7, -7)
+position = Vector2(-7, -10)
 
 [node name="RightHand" type="Node2D" parent="Inventory"]
+position = Vector2(7, -4)
+
+[node name="ItemSlot" type="Node2D" parent="Inventory"]
 position = Vector2(7, -7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -103,7 +106,6 @@ script = ExtResource("4_0vliq")
 health = NodePath("../Health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(-2, 3)
 shape = SubResource("CapsuleShape2D_3eljs")
 
 [node name="Camera2D" type="Camera2D" parent="."]

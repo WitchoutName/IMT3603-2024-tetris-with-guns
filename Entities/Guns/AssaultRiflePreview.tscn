@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1qekx2e3yi7p"]
+
+[ext_resource type="Texture2D" uid="uid://4rvsov3j3gp5" path="res://Assets/GunAssets/ak.png" id="1_ufnqw"]
+
+[node name="PistolPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Ak" type="Sprite2D" parent="."]
+position = Vector2(7, 2)
+texture = ExtResource("1_ufnqw")
