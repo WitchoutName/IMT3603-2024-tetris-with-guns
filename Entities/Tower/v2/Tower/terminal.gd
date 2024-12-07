@@ -55,4 +55,5 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 		if not player == GameManager.my_player: return
 		player.tower = null
 		player.is_controlling_tower = false
-		if player.Camera: player.Camera.position.y = 0;
+		if is_instance_valid(player.Camera) && player.Camera:
+			player.Camera.position.y = 0;

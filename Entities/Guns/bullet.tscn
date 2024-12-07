@@ -11,7 +11,7 @@ size = Vector2(26.7162, 7.16234)
 size = Vector2(10, 4)
 
 [node name="bullet" type="RigidBody2D"]
-collision_layer = 0
+collision_layer = 2147483648
 mass = 0.4
 gravity_scale = 0.3
 script = ExtResource("1_ff0um")
