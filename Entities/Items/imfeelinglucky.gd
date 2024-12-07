@@ -4,13 +4,13 @@ extends Item_Script
 @export var granade: PackedScene
 
 func _use():
-	spawn_weapon.rpc()
-
-@rpc("any_peer", "call_local")
-func spawn_weapon():
 	#Random number determines the outcome
 	var index = RandomNumberGenerator.new().randi_range(0, len(weapons) * 3)
 	
+	spawn_weapon.rpc(index)
+
+@rpc("any_peer", "call_local")
+func spawn_weapon(index):
 	#1/3 to create a weapon
 	if index <= len(weapons):
 		var weapon: Node2D
@@ -25,9 +25,9 @@ func spawn_weapon():
 	
 	#Some other effects (preferebly keep below 1/3)
 	if index == (len(weapons) + 1): #Heal
-		player.heal_over_max_health(50)
+		player.health.heal_over_max_health(50)
 	if index == (len(weapons) + 2): #Damage
-		player.damage(35)
+		player.health.take_damage(35)
 	if index == (len(weapons) + 3): #Teleports to random player
 		player.global_poisition = get_random_player_pos()
 	

@@ -29,7 +29,7 @@ texture = ExtResource("2_30r3a")
 
 [node name="ShieldBox" type="Area2D" parent="."]
 collision_layer = 16252929
-collision_mask = 16252928
+collision_mask = 2163736576
 monitoring = false
 monitorable = false
 

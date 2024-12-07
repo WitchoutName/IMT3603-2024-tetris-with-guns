@@ -12,13 +12,12 @@ func _process(delta):
 	if not is_multiplayer_authority(): return
 	
 	if active && not fly:
-		look_at(get_global_mouse_position())
+		_look_at.rpc(get_global_mouse_position())
 		if Input.is_action_just_pressed(fire_mode):
-			_shoot.rpc_id(1)
+			_shoot.rpc((get_global_mouse_position() - global_position).normalized())
 
 @rpc("any_peer", "call_local")
-func _shoot():
-	var direction = (get_global_mouse_position() - global_position).normalized()
+func _shoot(direction):
 	fly_vel = direction * 700
 	fly = true
 	player.inventory.clear_slot_right()

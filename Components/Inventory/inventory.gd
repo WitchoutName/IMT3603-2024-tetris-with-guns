@@ -124,15 +124,19 @@ func unequip_everything():
 	left_hand = null
 	item_slot = null
 
+func remove(item):
+	if right_hand == item:
+		right_hand = null
+	elif left_hand == item:
+		left_hand = null
+	elif item_slot == item:
+		item_slot = null
 
 func clear_slot_right():
-	if right_hand:
-		right_hand = null
+	right_hand = null
 
 func clear_slot_left():
-	if left_hand:
-		left_hand = null 
+	left_hand = null 
 
 func clear_slot_item():
-	if item_slot:
-		item_slot = null
+	item_slot = null

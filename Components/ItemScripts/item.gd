@@ -27,10 +27,6 @@ func _input(event):
 	if active && event.is_action_pressed("useItem"):
 		_use()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 #On player interaction
 func _on_interact(interacted_player: Player):
 	if interacted_player:

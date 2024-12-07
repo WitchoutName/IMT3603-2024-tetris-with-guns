@@ -11,9 +11,6 @@ var player: Player
 var start_orientation
 var fire_mode = "click"
 
-func _init():
-	print("Is in tree:", is_inside_tree())
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	interaction_area.interact = Callable(self, "_on_interact")
@@ -75,13 +72,14 @@ func _drop():
 			player.health.disconnect("death", call_drop)
 	#if player && player.spawned: #If the player is spawned we make the gun interactble again 
 		#interaction_area.force_add()
+	player.inventory.remove(self)
 	player = null
 	interaction_area.enabled = true
 	destructionTimer.start(destructionInterval)
 	set_multiplayer_authority(1)
 	
 #Unequips, but does not deactivate the weapon.
-#IMPORTANT - Needs to also clear inventory slot
+#IMPORTANT - Needs to also clear inventory slot after use
 @rpc("authority", "call_local")
 func _active_unequip():
 	change_parent()
@@ -93,6 +91,10 @@ func _active_unequip():
 	player = null
 	destructionTimer.start(destructionInterval)
 	set_multiplayer_authority(1)
+
+@rpc("any_peer", "call_local")
+func _look_at(mouse_pos):
+	look_at(mouse_pos)
 
 func _on_destruction_timer_timeout():
 	queue_free()

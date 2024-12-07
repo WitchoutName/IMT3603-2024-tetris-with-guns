@@ -8,9 +8,9 @@ func _ready():
 	$Health.set_max_health(75)
 
 func _process(delta):
-	if active:
+	if active && is_multiplayer_authority():
 		var mouse_pos = get_global_mouse_position()
-		look_at(mouse_pos)
+		_look_at.rpc(mouse_pos)
 		
 		var direction = (mouse_pos - player.global_position).normalized()
 
@@ -29,10 +29,14 @@ func _drop():
 
 
 func _on_shield_box_body_entered(body):
-	pass
+	if body.is_in_group("players"):
+		body.health.take_damage(1)
+	if body.name == "bullet":
+		print("bullet")
+		body.queue_free()
 
 
 func _on_health_death():
-	_drop()
+	call_drop()
 	$InteractionArea.force_remove()
 	queue_free()
