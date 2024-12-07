@@ -574,7 +574,6 @@ spawn_limit = 10000
 
 [node name="TertraminoMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
-spawn_path = NodePath("../TetraminoGroup")
 spawn_limit = 10000
 
 [node name="ItemMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
@@ -586,6 +585,10 @@ position = Vector2(-13, -440)
 
 [node name="TetraminoSpawner" parent="Spawners" instance=ExtResource("8_4j77c")]
 position = Vector2(12, -748)
+weights = Array[int]([1, 1, 1, 1, 1, 1, 1])
+
+[node name="TetraminoSpawner2" parent="Spawners" instance=ExtResource("8_4j77c")]
+position = Vector2(-1074, 284)
 weights = Array[int]([1, 1, 1, 1, 1, 1, 1])
 
 [node name="WeaponSpawner3" parent="Spawners" instance=ExtResource("7_hb1cl")]

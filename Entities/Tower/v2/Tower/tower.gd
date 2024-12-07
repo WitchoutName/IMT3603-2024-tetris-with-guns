@@ -20,7 +20,10 @@ func _ready():
 func _process(delta: float) -> void:
 	pass
 
-func ap_insert(piece: Tetramino2):
+@rpc("any_peer", "call_local")
+func ap_insert(piece_path):
+	if not multiplayer.is_server(): return
+	var piece: Tetramino2 = get_node(piece_path)
 	if active_piece or len(piece_queue) > 0:
 		piece_queue.append(piece)
 	else:
@@ -28,13 +31,22 @@ func ap_insert(piece: Tetramino2):
 		piece.interaction_area.enabled = false
 		grid.attach_piece(piece)
 
+@rpc("any_peer", "call_local")
 func ap_move_left(): # ap -> active piece
+	if not multiplayer.is_server(): return
+	print("ap_move_left")
 	grid.move_left()
-	
+
+@rpc("any_peer", "call_local")	
 func ap_move_right():
+	if not multiplayer.is_server(): return
+	print("ap_move_RIGHT")
 	grid.move_right()
 
+@rpc("any_peer", "call_local")
 func ap_rotate():
+	if not multiplayer.is_server(): return
+	print("ap_rotate")
 	grid.rotate()
 
 func steal(piece: Tetramino2):
@@ -43,6 +55,7 @@ func steal(piece: Tetramino2):
 	progress_change.emit(grid.get_progress())
 
 func _on_move_down_timer_timeout() -> void:
+	if not multiplayer.is_server(): return
 	if active_piece:
 		if not grid.move_down():
 			grid.dettach_piece()
@@ -68,6 +81,7 @@ func _emit_win():
 	emit_signal(win.get_name(), self)
 
 func reset():
+	
 	if active_piece:
 		active_piece.queue_free()
 	active_piece = null

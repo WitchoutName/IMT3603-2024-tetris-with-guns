@@ -55,11 +55,12 @@ func sync(grid_size: Vector2):
 
 
 func _set__is_petrified(value: bool):
-	is_petrified = value
-	var material = preload("res://Shaders/GrayScale/GrayScaleMaterial.tres")
-	$Sprite2D.material = material if value else null
-	interaction_area.enabled = not value
-	if value: InteractionManager.remove_area(interaction_area)
+	if self:
+		is_petrified = value
+		var material = preload("res://Shaders/GrayScale/GrayScaleMaterial.tres")
+		$Sprite2D.material = material if value else null
+		interaction_area.enabled = not value
+		if value: InteractionManager.remove_area(interaction_area)
 
 func _set__is_tetris_mode(value: bool):
 	is_tetris_mode = value

@@ -1,21 +1,62 @@
-[gd_scene load_steps=11 format=3 uid="uid://derfnsuaimarv"]
+[gd_scene load_steps=16 format=3 uid="uid://derfnsuaimarv"]
 
 [ext_resource type="Script" path="res://Components/EntitySpawner/tetramino_spawner.gd" id="1_4c1f7"]
 [ext_resource type="PackedScene" uid="uid://ra0u50w7gahs" path="res://Entities/Tower/v2/Tetraminos/shape_i.tscn" id="2_7j761"]
 [ext_resource type="Texture2D" uid="uid://wmh4spdlq5fj" path="res://Assets/Spawner/spawner.webp" id="2_skbjc"]
 [ext_resource type="PackedScene" uid="uid://3wfb2f4sa68f" path="res://Entities/Tower/v2/Tetraminos/shape_j.tscn" id="3_slwx7"]
 [ext_resource type="PackedScene" uid="uid://bjuwxo57a2sgx" path="res://Entities/Tower/v2/Tetraminos/shape_l.tscn" id="4_2k7qa"]
-[ext_resource type="PackedScene" uid="uid://b62gaquce8rnp" path="res://Entities/Tower/v2/Tetraminos/shape_o.tscn" id="5_rlpj0"]
+[ext_resource type="Script" path="res://Entities/Tower/v2/Tetraminos/tetramino.gd" id="5_48v47"]
+[ext_resource type="Texture2D" uid="uid://bguuj01b7tamu" path="res://Assets/Tower/tetraminos.png" id="6_c0cyu"]
 [ext_resource type="PackedScene" uid="uid://4et6a2esjn17" path="res://Entities/Tower/v2/Tetraminos/shape_s.tscn" id="6_lf7ew"]
+[ext_resource type="PackedScene" uid="uid://d1573xume3rwr" path="res://Components/Interaction/Interaction_area/interaction_area.tscn" id="7_evdd7"]
 [ext_resource type="PackedScene" uid="uid://ch3qi5k4wkwd0" path="res://Entities/Tower/v2/Tetraminos/shape_t.tscn" id="7_ybyyc"]
 [ext_resource type="PackedScene" uid="uid://cm8tbcww1ot3j" path="res://Entities/Tower/v2/Tetraminos/shape_z.tscn" id="8_4mkg4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3rjgb"]
+size = Vector2(128, 128)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7uxk4"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:freeze")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath(".:is_tetris_mode")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+properties/4/path = NodePath(".:is_petrified")
+properties/4/spawn = true
+properties/4/replication_mode = 2
+properties/5/path = NodePath("Sprite2D:scale")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("CollisionPolygon2D:scale")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+
+[sub_resource type="PackedScene" id="PackedScene_mtvhx"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("ShapeO", "RigidBody2D", "script", "shape", "metadata/_edit_group_", "Sprite2D", "Sprite2D", "position", "scale", "texture", "region_enabled", "region_rect", "InteractionArea", "CollisionShape2D", "CollisionShape2D", "position", "shape", "CollisionPolygon2D", "CollisionPolygon2D", "position", "rotation", "polygon", "MultiplayerSynchronizer", "MultiplayerSynchronizer", "replication_config"),
+"node_count": 6,
+"node_paths": [NodePath("."), NodePath("."), NodePath("./InteractionArea"), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 1073741824, 0, 6, 5, -1, 5, 7, 3, 8, 4, 9, 5, 10, 6, 11, 7, 0, 1073741825, 0, 2147483647, 12, 8, 0, 0, 1073741826, 0, 14, 13, -1, 2, 15, 9, 16, 10, 0, 1073741827, 0, 18, 17, -1, 3, 19, 11, 20, 12, 21, 13, 0, 1073741828, 0, 23, 22, -1, 1, 24, 14, 0),
+"variants": [ExtResource("5_48v47"), 3, true, Vector2(25, 25), Vector2(0.374532, 0.374532), ExtResource("6_c0cyu"), true, Rect2(400, 1733, 267, 267), ExtResource("7_evdd7"), Vector2(24, 24), SubResource("RectangleShape2D_3rjgb"), Vector2(25, 25), -3.14159, PackedVector2Array(-50, -50, -50, 50, 50, 50, 50, -50), SubResource("SceneReplicationConfig_7uxk4")],
+"version": 3
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfyqv"]
 size = Vector2(47, 46)
 
 [node name="TetraminoSpawner" type="Area2D"]
 script = ExtResource("1_4c1f7")
-entities = Array[PackedScene]([ExtResource("2_7j761"), ExtResource("3_slwx7"), ExtResource("4_2k7qa"), ExtResource("5_rlpj0"), ExtResource("6_lf7ew"), ExtResource("7_ybyyc"), ExtResource("8_4mkg4")])
+entities = Array[PackedScene]([ExtResource("2_7j761"), ExtResource("3_slwx7"), ExtResource("4_2k7qa"), SubResource("PackedScene_mtvhx"), ExtResource("6_lf7ew"), ExtResource("7_ybyyc"), ExtResource("8_4mkg4")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
