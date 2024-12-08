@@ -7,7 +7,7 @@ enum ItemSlot { RIGHT_HAND, LEFT_HAND, ITEM_SLOT }
 signal slot_change(current_slot: ItemSlot)
 signal slot_state_change(current_slot: ItemSlot, slot: BaseItem)
 
-var current_slot = ItemSlot.LEFT_HAND
+@export var current_slot = ItemSlot.LEFT_HAND
 
 @onready var player: Player = get_parent()
 
