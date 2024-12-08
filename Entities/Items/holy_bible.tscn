@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_yc4ps"]
 radius = 72.111
 
-[node name="HolyBible" type="Node2D"]
+[node name="HolyBible" type="Node2D" groups=["item"]]
 script = ExtResource("1_2h6vt")
 healing_zone = ExtResource("2_j40d1")
 

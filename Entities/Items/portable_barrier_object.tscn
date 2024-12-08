@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_cmgyd"]
 radius = 63.1269
 
-[node name="PortableBarrierObject" type="Node2D"]
+[node name="PortableBarrierObject" type="Node2D" groups=["item"]]
 script = ExtResource("1_4unsr")
 barrier = ExtResource("2_3ws1g")
 
