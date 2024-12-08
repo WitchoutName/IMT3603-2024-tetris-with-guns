@@ -33,20 +33,17 @@ func ap_insert(piece_path):
 
 @rpc("any_peer", "call_local")
 func ap_move_left(): # ap -> active piece
-	if not multiplayer.is_server(): return
-	print("ap_move_left")
+	if not (multiplayer.is_server() and self.active_piece): return
 	grid.move_left()
 
 @rpc("any_peer", "call_local")	
 func ap_move_right():
-	if not multiplayer.is_server(): return
-	print("ap_move_RIGHT")
+	if not (multiplayer.is_server() and self.active_piece): return
 	grid.move_right()
 
 @rpc("any_peer", "call_local")
 func ap_rotate():
-	if not multiplayer.is_server(): return
-	print("ap_rotate")
+	if not (multiplayer.is_server() and self.active_piece): return
 	grid.rotate()
 
 func steal(piece: Tetramino2):

@@ -29,6 +29,9 @@ properties/5/replication_mode = 2
 properties/6/path = NodePath(".:freeze")
 properties/6/spawn = true
 properties/6/replication_mode = 2
+properties/7/path = NodePath(".:is_picked_up")
+properties/7/spawn = true
+properties/7/replication_mode = 2
 
 [node name="ShapeJ" type="RigidBody2D"]
 script = ExtResource("1_aauq5")

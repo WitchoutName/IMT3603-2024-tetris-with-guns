@@ -71,15 +71,12 @@ func _physics_process(delta):
 			$AnimatedSprite2D.visible = false
 
 func _handle_tower_input():
-	if tower and tower.active_piece:
+	if tower:
 		if Input.is_action_just_pressed("tower_move_left"):
-			print("calling moveleft")
 			tower.ap_move_left.rpc_id(1)
 		if Input.is_action_just_pressed("tower_move_right"):
-			print("calling move right")
 			tower.ap_move_right.rpc_id(1)
 		if Input.is_action_just_pressed("tower_rotate"):
-			print("calling roatate")
 			tower.ap_rotate.rpc_id(1)
 
 func gravity(delta):

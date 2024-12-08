@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yws4f"]
 size = Vector2(80, 224)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_15qfb"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_sqsj8"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 2
@@ -29,6 +29,9 @@ properties/5/replication_mode = 2
 properties/6/path = NodePath(".:freeze")
 properties/6/spawn = true
 properties/6/replication_mode = 2
+properties/7/path = NodePath(".:is_picked_up")
+properties/7/spawn = true
+properties/7/replication_mode = 2
 
 [node name="ShapeI" type="RigidBody2D"]
 mass = 0.25
@@ -55,4 +58,4 @@ polygon = PackedVector2Array(-25, -100, 25, -100, 25, 100, -25, 100)
 one_way_collision_margin = 0.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_15qfb")
+replication_config = SubResource("SceneReplicationConfig_sqsj8")
