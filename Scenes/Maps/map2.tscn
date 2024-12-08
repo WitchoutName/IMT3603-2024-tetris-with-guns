@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dptlmhfegh2y2"]
+[gd_scene load_steps=12 format=4 uid="uid://dptlmhfegh2y2"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/map_2.gd" id="1_i38ol"]
 [ext_resource type="Texture2D" uid="uid://bkjnpo24brtbh" path="res://Assets/Vector/vector_complete.svg" id="2_cvsm6"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="7_5koef"]
 [ext_resource type="PackedScene" uid="uid://loey4c42d453" path="res://Components/EntitySpawner/WeaponSpawner.tscn" id="7_hb1cl"]
 [ext_resource type="PackedScene" uid="uid://derfnsuaimarv" path="res://Components/EntitySpawner/TetramonoSpawner.tscn" id="8_4j77c"]
-[ext_resource type="PackedScene" uid="uid://dbsw503oi27ec" path="res://Entities/Items/granade.tscn" id="8_pepgk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_68a15"]
 
@@ -619,6 +618,3 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
 position = Vector2(1105.5, -14)
 shape = SubResource("RectangleShape2D_53iov")
-
-[node name="Granade" parent="." instance=ExtResource("8_pepgk")]
-position = Vector2(-1316, -54)

@@ -33,9 +33,7 @@ func spawn_weapon(index):
 	
 	#Nothing
 	
-	_drop()
-	$InteractionArea.force_remove()
-	queue_free()
+	destruct()
 	
 
 func get_random_player_pos() -> Vector2:

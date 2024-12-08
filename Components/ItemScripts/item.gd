@@ -60,3 +60,12 @@ func _drop():
 	dupe.call_deferred("_show")
 	dupe.destructionTimer.start(destructionInterval)
 	dupe.set_multiplayer_authority(1)
+
+#Drops from inventory and destroys
+func destruct():
+	#Disconnecting from death signal
+	if player && player.health.is_connected("death", call_drop):
+			player.health.disconnect("death", call_drop)
+	player.inventory.clear_slot_item()
+	player = null
+	queue_free()

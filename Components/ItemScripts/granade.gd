@@ -20,6 +20,4 @@ func throw(mouse_pos: Vector2):
 	granade.set_multiplayer_authority(multiplayer.get_unique_id())
 	
 	
-	_drop()
-	$InteractionArea.force_remove()
-	queue_free()
+	destruct()

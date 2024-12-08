@@ -181,8 +181,7 @@ func _on_inventory_slot_state_change(slot: Inventory.ItemSlot, item: BaseItem):
 		Inventory.ItemSlot.LEFT_HAND:
 			_update_slot_preview($Display/Inventory/Slots/LeftHand, item)
 		Inventory.ItemSlot.ITEM_SLOT:
-			pass
-			_update_slot_preview($Display/Inventory/Slots/RightHand, item)
+			_update_slot_preview($Display/Inventory/Slots/ItemHand, item)
 
 # Function to handle updates based on game state (e.g. health decrease, ammo usage)
 func _process(delta):

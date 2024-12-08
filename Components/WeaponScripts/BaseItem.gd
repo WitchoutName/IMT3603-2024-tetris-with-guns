@@ -54,7 +54,6 @@ func change_parent(location: Node2D = null):
 		dupe.interaction_area.enabled = interaction_area.enabled 
 		interaction_area.force_remove() #We have to force remove it from the manager
 	else:
-		var root = get_tree().root
 		GameManager.map.item_group.add_child(dupe)
 		dupe.name = name
 		dupe.position = global_position

@@ -15,6 +15,4 @@ func create_healing():
 	heal_zone.set_multiplayer_authority(multiplayer.get_unique_id())
 	
 	
-	_drop()
-	$InteractionArea.force_remove()
-	queue_free()
+	destruct()

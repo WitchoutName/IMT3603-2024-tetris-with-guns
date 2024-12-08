@@ -140,10 +140,13 @@ func remove(item):
 		item_slot = null
 
 func clear_slot_right():
+	slot_state_change.emit(ItemSlot.RIGHT_HAND, null)
 	right_hand = null
 
 func clear_slot_left():
+	slot_state_change.emit(ItemSlot.LEFT_HAND, null)
 	left_hand = null 
 
 func clear_slot_item():
+	slot_state_change.emit(ItemSlot.ITEM_SLOT, null)
 	item_slot = null
