@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dgve8sg6don5a"]
+[gd_scene load_steps=14 format=4 uid="uid://dptlmhfegh2y2"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/map_2.gd" id="1_i38ol"]
 [ext_resource type="Texture2D" uid="uid://bkjnpo24brtbh" path="res://Assets/Vector/vector_complete.svg" id="2_cvsm6"]
@@ -6,13 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bic5nels0gapo" path="res://Scenes/HUD/HUD.tscn" id="5_b5fao"]
 [ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="7_5koef"]
 [ext_resource type="PackedScene" uid="uid://loey4c42d453" path="res://Components/EntitySpawner/WeaponSpawner.tscn" id="7_hb1cl"]
-[ext_resource type="PackedScene" uid="uid://dbsw503oi27ec" path="res://Entities/Items/granade.tscn" id="7_v1hfj"]
 [ext_resource type="PackedScene" uid="uid://derfnsuaimarv" path="res://Components/EntitySpawner/TetramonoSpawner.tscn" id="8_4j77c"]
-[ext_resource type="PackedScene" uid="uid://cuhmqofx28i4u" path="res://Entities/Melee/spear.tscn" id="8_jg5o5"]
-[ext_resource type="PackedScene" uid="uid://dr0jwc76kw1rl" path="res://Entities/Melee/shield.tscn" id="9_csjqh"]
-[ext_resource type="PackedScene" uid="uid://dswjpgeno3480" path="res://Entities/Items/imfeelinglucky.tscn" id="10_hwcfs"]
-[ext_resource type="PackedScene" uid="uid://bneov2hp4sla3" path="res://Entities/Items/holy_bible.tscn" id="11_y28em"]
-[ext_resource type="PackedScene" uid="uid://bkabdgq325wuv" path="res://Entities/Items/portable_barrier_object.tscn" id="12_sraul"]
+[ext_resource type="PackedScene" uid="uid://cuhmqofx28i4u" path="res://Entities/Melee/spear.tscn" id="8_bt2nd"]
+[ext_resource type="PackedScene" uid="uid://dr0jwc76kw1rl" path="res://Entities/Melee/shield.tscn" id="8_ktxdb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_68a15"]
 
@@ -624,3 +620,9 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
 position = Vector2(1105.5, -14)
 shape = SubResource("RectangleShape2D_53iov")
+
+[node name="Shield" parent="." instance=ExtResource("8_ktxdb")]
+position = Vector2(-1320, -72)
+
+[node name="Spear" parent="." instance=ExtResource("8_bt2nd")]
+position = Vector2(-1116, -34)

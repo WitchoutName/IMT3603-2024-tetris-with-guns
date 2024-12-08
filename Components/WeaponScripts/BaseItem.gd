@@ -24,8 +24,6 @@ func init():
 func _ready() -> void:
 	interaction_area.interact = Callable(self, "_on_interact")
 	start_orientation = rotation
-	interaction_area.interact = Callable(self, "_on_interact")
-	start_orientation = rotation
 	add_child(destructionTimer)
 	destructionTimer.timeout.connect(_on_destruction_timer_timeout)
 	init()

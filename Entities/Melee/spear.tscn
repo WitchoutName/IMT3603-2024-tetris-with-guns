@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuhmqofx28i4u"]
+[gd_scene load_steps=8 format=3 uid="uid://cuhmqofx28i4u"]
 
 [ext_resource type="Script" path="res://Entities/Melee/spear.gd" id="1_yvj23"]
 [ext_resource type="Texture2D" uid="uid://bonjdhye8obj3" path="res://Assets/MeleeAssets/spear/spear_23.png" id="2_nhkax"]
+[ext_resource type="PackedScene" uid="uid://dde7s7hbxj0fm" path="res://Entities/Melee/spear_preview.tscn" id="2_xx8yb"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_833d0"]
 [ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="4_k4b2d"]
 
@@ -13,6 +14,7 @@ height = 26.0
 
 [node name="Spear" type="Node2D" groups=["interact", "two-handed"]]
 script = ExtResource("1_yvj23")
+Preview = ExtResource("2_xx8yb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1.78814e-07)

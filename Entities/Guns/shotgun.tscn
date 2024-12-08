@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_h0sph"]
 [ext_resource type="Texture2D" uid="uid://dkag2wy4qhxsm" path="res://Assets/GunAssets/shotgun.png" id="2_2yykd"]
-[ext_resource type="PackedScene" uid="uid://co1ly1lq3npki" path="res://Entities/Guns/ShotgunPreview.tscn" id="2_4u8md"]
+[ext_resource type="PackedScene" uid="uid://dov0ro2e0rbat" path="res://Entities/Guns/ShotgunPreview.tscn" id="2_4u8md"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_t2dhk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r2d48"]

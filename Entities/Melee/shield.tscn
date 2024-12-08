@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dr0jwc76kw1rl"]
+[gd_scene load_steps=10 format=3 uid="uid://dr0jwc76kw1rl"]
 
 [ext_resource type="Script" path="res://Entities/Melee/shield.gd" id="1_5o0mm"]
 [ext_resource type="Texture2D" uid="uid://dvt5d2hb3ea8c" path="res://Assets/MeleeAssets/shield/shield.png" id="2_30r3a"]
 [ext_resource type="Script" path="res://Components/Health/health.gd" id="2_a6s5d"]
+[ext_resource type="PackedScene" uid="uid://bd17u83vd0050" path="res://Entities/Melee/shield_preview.tscn" id="2_tnv0x"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_n5rjl"]
 [ext_resource type="Script" path="res://Components/Boxes/hurtbox.gd" id="5_4ltme"]
 
@@ -19,6 +20,7 @@ height = 54.0
 
 [node name="Shield" type="Node2D" groups=["one-handed"]]
 script = ExtResource("1_5o0mm")
+Preview = ExtResource("2_tnv0x")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_a6s5d")
