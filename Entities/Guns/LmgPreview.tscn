@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://l0lb4emp6eb"]
+
+[ext_resource type="Texture2D" uid="uid://dc2v3btchltiu" path="res://Assets/GunAssets/lmg.png" id="1_4uw7n"]
+
+[node name="PistolPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Lmg" type="Sprite2D" parent="."]
+position = Vector2(9.375, -3.125)
+scale = Vector2(1.98684, 1.98684)
+texture = ExtResource("1_4uw7n")

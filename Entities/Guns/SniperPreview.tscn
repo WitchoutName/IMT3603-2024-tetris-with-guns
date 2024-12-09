@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgyvy0i6eb5f8"]
+
+[ext_resource type="Texture2D" uid="uid://7amiijgpiijf" path="res://Assets/GunAssets/sniper.png" id="1_ff1ng"]
+
+[node name="PistolPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sniper" type="Sprite2D" parent="."]
+position = Vector2(7, 2)
+texture = ExtResource("1_ff1ng")
