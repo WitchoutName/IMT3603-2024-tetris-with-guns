@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://djjs5uqduv8ij"]
+[gd_scene load_steps=8 format=3 uid="uid://djjs5uqduv8ij"]
 
 [ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_h0sph"]
 [ext_resource type="Texture2D" uid="uid://dkag2wy4qhxsm" path="res://Assets/GunAssets/shotgun.png" id="2_2yykd"]
+[ext_resource type="PackedScene" uid="uid://co1ly1lq3npki" path="res://Entities/Guns/ShotgunPreview.tscn" id="2_4u8md"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_t2dhk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r2d48"]
@@ -11,7 +12,7 @@ animations = [{
 "texture": ExtResource("2_2yykd")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"Fire",
 "speed": 5.0
 }]
 
@@ -35,26 +36,33 @@ properties/4/path = NodePath("AnimatedSprite2D:animation")
 properties/4/spawn = true
 properties/4/replication_mode = 2
 
-[node name="Shotgun" type="Node2D" groups=["two-handed"]]
+[node name="Shotgun" type="Node2D" groups=["one-handed"]]
 script = ExtResource("1_h0sph")
-bps = 2.0
-magSize = 6
-ammoReserve = 18
+bulletSpeed = 800
+bps = 20.0
+bulletDamage = 16
+bulletSpread = 0.8
+magSize = 2
+ammoReserve = 16
+reloadInterval = 0.8
 bulletAmount = 5
-arc = 10.0
+arc = 7.0
+Preview = ExtResource("2_4u8md")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(18.5, -3)
 sprite_frames = SubResource("SpriteFrames_r2d48")
-animation = &"new_animation"
+animation = &"Fire"
 offset = Vector2(11, 2)
 
 [node name="Barrel" type="Node2D" parent="."]
-position = Vector2(54, -3)
+position = Vector2(72.5, -6)
 
 [node name="Eject" type="Node2D" parent="."]
-position = Vector2(14, -3)
+position = Vector2(32.5, -6)
 
 [node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(18.5, -3)
 collision_layer = 0
 collision_mask = 16252929
 script = ExtResource("3_t2dhk")

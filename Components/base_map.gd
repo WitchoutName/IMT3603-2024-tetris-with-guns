@@ -44,7 +44,6 @@ func init() -> void:
 			player.Camera.queue_free()
 		
 		#player.synchroniser.set_multiplayer_authority(player_peer.id)
-
 	map_setup_finished.emit()
 
 

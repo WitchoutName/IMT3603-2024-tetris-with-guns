@@ -1,16 +1,20 @@
 extends Node
 class_name Inventory
 
+
 enum ItemSlot { RIGHT_HAND, LEFT_HAND, ITEM_SLOT }
+
+signal slot_change(current_slot: ItemSlot)
+signal slot_state_change(current_slot: ItemSlot, slot: BaseItem)
 
 var current_slot = ItemSlot.LEFT_HAND
 
 @onready var player: Player = get_parent()
 
 #The inventory slots
-var right_hand = null
-var left_hand = null
-var item_slot = null
+var right_hand: Node2D = null
+var left_hand: Node2D = null
+var item_slot: Node2D = null
 
 func _input(event):
 	if not is_multiplayer_authority(): return
@@ -29,26 +33,26 @@ func _process(delta):
 
 func switch_slot(slot: ItemSlot):
 	current_slot = slot
+	slot_change.emit(current_slot)
 
 
 func equip_item(item: Node2D):
+	slot_state_change.emit(current_slot, item)
 	if item.is_in_group("one-handed"):
 		#No matter the slot, if current weapon is two handed, it needs to be dropped
-		if right_hand && right_hand.is_in_group("two-handed"):
+		if right_hand != null && right_hand.is_in_group("two-handed") and not right_hand.is_queued_for_deletion():
 			right_hand.call_drop()
 			right_hand = null
 		match current_slot:
 			ItemSlot.RIGHT_HAND:
-				if right_hand:
+				if right_hand != null and not right_hand.is_queued_for_deletion():
 					right_hand.call_drop()
-				right_hand = item
-				item.change_parent($RightHand)
+				right_hand = item.change_parent($RightHand)
 			ItemSlot.LEFT_HAND:
-				if left_hand:
+				if left_hand != null and not left_hand.is_queued_for_deletion():
 					left_hand.call_drop()
-				left_hand = item
-				print(item.get_path())
-				item.change_parent($LeftHand)
+				left_hand = item.change_parent($LeftHand)
+				print(left_hand.get_path())
 			ItemSlot.ITEM_SLOT:
 				pass
 			_:
@@ -58,34 +62,33 @@ func equip_item(item: Node2D):
 				print("ERROR: Unknown item slot selected, reverting to default")
 	elif item.is_in_group("two-handed"):
 		#Drop both weapons
-		if right_hand:
+		if right_hand != null and not right_hand.is_queued_for_deletion():
 			right_hand.call_drop()
-		if left_hand:
+		if left_hand != null and not left_hand.is_queued_for_deletion():
 			left_hand.call_drop()
 		left_hand = null
-		right_hand = item
-		item.change_parent($RightHand)
+		right_hand = item.change_parent($RightHand)
 	elif item.is_in_group("item"):
 		if item_slot:
 			item_slot.call_drop()
-		item_slot = item
-		item.change_parent(player)
+		item_slot = item.change_parent($ItemSlot)
 
 func unequip_item():
+	slot_state_change.emit(current_slot, null)
 	match current_slot:
 		ItemSlot.RIGHT_HAND:
-			if right_hand:
+			if right_hand != null and not right_hand.is_queued_for_deletion():
 				right_hand.call_drop()
 				right_hand = null
 		ItemSlot.LEFT_HAND:
-			if right_hand && right_hand.is_in_group("two-handed"): #Allowing for weapon switch when two handing
+			if right_hand && right_hand.is_in_group("two-handed") && not right_hand.is_queued_for_deletion(): #Allowing for weapon switch when two handing
 				right_hand.call_drop()
 				right_hand = null
-			elif left_hand:
+			if left_hand != null and not left_hand.is_queued_for_deletion():
 				left_hand.call_drop()
 				left_hand = null 
 		ItemSlot.ITEM_SLOT:
-			if item_slot:
+			if item_slot != null and not item_slot.is_queued_for_deletion():
 				item_slot.call_drop()
 				item_slot = null
 		_:
@@ -104,7 +107,7 @@ func get_current_slot():
 
 #Returns firemode for item
 func get_fire_mode():
-	if right_hand && right_hand.is_in_group("two-handed"):
+	if right_hand != null && right_hand.is_in_group("two-handed"):
 		return "click3"
 	match current_slot:
 		ItemSlot.RIGHT_HAND:
@@ -120,19 +123,27 @@ func unequip_everything():
 		if slot:
 			slot.call_drop()
 			slot.set_multiplayer_authority(1)
+			
+	slot_state_change.emit(ItemSlot.RIGHT_HAND, null)
+	slot_state_change.emit(ItemSlot.LEFT_HAND, null)
+	slot_state_change.emit(ItemSlot.ITEM_SLOT, null)
 	right_hand = null
 	left_hand = null
 	item_slot = null
 
+func remove(item):
+	if right_hand == item:
+		right_hand = null
+	elif left_hand == item:
+		left_hand = null
+	elif item_slot == item:
+		item_slot = null
 
 func clear_slot_right():
-	if right_hand:
-		right_hand = null
+	right_hand = null
 
 func clear_slot_left():
-	if left_hand:
-		left_hand = null 
+	left_hand = null 
 
 func clear_slot_item():
-	if item_slot:
-		item_slot = null
+	item_slot = null

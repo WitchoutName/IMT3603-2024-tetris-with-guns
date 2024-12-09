@@ -40,7 +40,7 @@ func spawn_random_piece() -> void:
 		add_child(current_piece)
 
 		# Connect the signal from tetramino.gd
-		current_piece.connect("piece_picked_up", Callable(_on_piece_picked_up))
+		current_piece.connect("picked_up", Callable(_on_picked_up))
 		is_piece_active = true
 	else:
 		print("No item was selected.")
@@ -63,7 +63,7 @@ func select_random_weighted_item() -> PackedScene:
 	return null
 
 # Called when a piece is picked up
-func _on_piece_picked_up() -> void:
+func _on_picked_up() -> void:
 	spawn_timer.start(randi_range(1,10))  
 	is_piece_active = true  
 

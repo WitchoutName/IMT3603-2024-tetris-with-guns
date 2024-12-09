@@ -1,44 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://pd6fogovrp7n"]
+[gd_scene load_steps=6 format=3 uid="uid://pd6fogovrp7n"]
 
 [ext_resource type="Script" path="res://Scenes/Menu/lobby/connection_lobby.gd" id="1_fqcfp"]
 [ext_resource type="Texture2D" uid="uid://cvbjttx1oldam" path="res://Assets/Background/LobbyMenu.webp" id="2_m76tm"]
 [ext_resource type="Texture2D" uid="uid://bu7sni7uwk607" path="res://Assets/Common/white.png" id="3_a7i2s"]
+[ext_resource type="Script" path="res://Scenes/Menu/lobby/map_multiplayer_spawner.gd" id="4_o13iw"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fmdio"]
-properties/0/path = NodePath("TeamsGroup/Team2Text:text")
+properties/0/path = NodePath("Control/LogDisplay:text")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath("TeamsGroup/Team1Text:text")
+properties/1/path = NodePath("Control/TeamsGroup/Team1Text:text")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("LogDisplay:text")
+properties/2/path = NodePath("Control/TeamsGroup/Team2Text:text")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Control" type="Control"]
+[node name="Base" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 904.0
+offset_bottom = 646.0
 script = ExtResource("1_fqcfp")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Control"]
+root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_fmdio")
 
-[node name="LobbyMenu" type="Sprite2D" parent="."]
-position = Vector2(5.27402, 1.5625)
+[node name="LobbyMenu" type="Sprite2D" parent="Control"]
+position = Vector2(433.726, 327.437)
 scale = Vector2(0.645899, 0.63562)
 texture = ExtResource("2_m76tm")
 
-[node name="StartGroup" type="Node2D" parent="."]
+[node name="StartGroup" type="Node2D" parent="Control"]
 visible = false
-position = Vector2(3, 515)
+position = Vector2(429, 832)
+metadata/_edit_group_ = true
 
-[node name="TextureRect2" type="TextureRect" parent="StartGroup"]
+[node name="TextureRect2" type="TextureRect" parent="Control/StartGroup"]
 modulate = Color(0.534361, 0.534361, 0.534361, 1)
 offset_left = -440.0
 offset_top = -307.0
@@ -46,16 +47,17 @@ offset_right = -113.0
 offset_bottom = -201.0
 texture = ExtResource("3_a7i2s")
 
-[node name="StartGameButton" type="Button" parent="StartGroup"]
+[node name="StartGameButton" type="Button" parent="Control/StartGroup"]
 offset_left = -386.0
 offset_top = -276.0
 offset_right = -168.0
 offset_bottom = -234.0
 text = "Start game"
 
-[node name="NameGroup" type="Node2D" parent="."]
+[node name="NameGroup" type="Node2D" parent="Control"]
+position = Vector2(428.452, 325.875)
 
-[node name="TextureRect2" type="TextureRect" parent="NameGroup"]
+[node name="TextureRect2" type="TextureRect" parent="Control/NameGroup"]
 modulate = Color(0.534361, 0.534361, 0.534361, 1)
 offset_left = -440.0
 offset_top = -300.0
@@ -63,24 +65,24 @@ offset_right = -113.0
 offset_bottom = -219.0
 texture = ExtResource("3_a7i2s")
 
-[node name="TextEdit3" type="TextEdit" parent="NameGroup"]
+[node name="TextEdit3" type="TextEdit" parent="Control/NameGroup"]
 offset_left = -425.0
 offset_top = -269.0
 offset_right = -135.0
 offset_bottom = -234.0
 placeholder_text = "username"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="NameGroup"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="Control/NameGroup"]
 offset_left = -422.0
 offset_top = -294.0
 offset_right = -289.0
 offset_bottom = -267.0
 text = "Username"
 
-[node name="JoinGroup" type="Node2D" parent="."]
-position = Vector2(-502, -284)
+[node name="JoinGroup" type="Node2D" parent="Control"]
+position = Vector2(-73.5485, 41.8749)
 
-[node name="TextureRect" type="TextureRect" parent="JoinGroup"]
+[node name="TextureRect" type="TextureRect" parent="Control/JoinGroup"]
 modulate = Color(0.534361, 0.534361, 0.534361, 1)
 offset_left = 62.0
 offset_top = 104.0
@@ -88,21 +90,21 @@ offset_right = 389.0
 offset_bottom = 268.0
 texture = ExtResource("3_a7i2s")
 
-[node name="TextIP" type="TextEdit" parent="JoinGroup"]
+[node name="TextIP" type="TextEdit" parent="Control/JoinGroup"]
 offset_left = 72.0
 offset_top = 143.0
 offset_right = 210.0
 offset_bottom = 178.0
 placeholder_text = "129.168.0.1"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="JoinGroup"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/JoinGroup"]
 offset_left = 74.0
 offset_top = 112.0
 offset_right = 207.0
 offset_bottom = 139.0
 text = "IP address"
 
-[node name="TextPort" type="TextEdit" parent="JoinGroup"]
+[node name="TextPort" type="TextEdit" parent="Control/JoinGroup"]
 offset_left = 237.0
 offset_top = 143.0
 offset_right = 375.0
@@ -110,81 +112,82 @@ offset_bottom = 178.0
 text = "45454"
 placeholder_text = "12345"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="JoinGroup"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/JoinGroup"]
 offset_left = 239.0
 offset_top = 112.0
 offset_right = 372.0
 offset_bottom = 139.0
 text = "Port"
 
-[node name="JoinButton" type="Button" parent="JoinGroup"]
+[node name="JoinButton" type="Button" parent="Control/JoinGroup"]
 offset_left = 118.0
 offset_top = 207.0
 offset_right = 336.0
 offset_bottom = 249.0
 text = "Join"
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="Control"]
 modulate = Color(0.534361, 0.534361, 0.534361, 1)
 layout_mode = 0
-offset_left = -440.0
-offset_top = 12.0
-offset_right = -113.0
-offset_bottom = 176.0
+offset_left = -11.5485
+offset_top = 337.875
+offset_right = 315.452
+offset_bottom = 501.875
 texture = ExtResource("3_a7i2s")
 
-[node name="HostButton" type="Button" parent="."]
+[node name="HostButton" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = -388.0
-offset_top = 38.0
-offset_right = -170.0
-offset_bottom = 80.0
+offset_left = 40.4515
+offset_top = 363.875
+offset_right = 258.452
+offset_bottom = 405.875
 text = "Host"
 
-[node name="LeaveButton" type="Button" parent="."]
+[node name="LeaveButton" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = -387.0
-offset_top = 108.0
-offset_right = -169.0
-offset_bottom = 150.0
+offset_left = 41.4515
+offset_top = 433.875
+offset_right = 259.452
+offset_bottom = 475.875
 text = "Leave"
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="Control"]
 modulate = Color(0.270588, 0.270588, 0.270588, 0.784314)
 layout_mode = 0
-offset_left = 24.0
-offset_top = -268.0
-offset_right = 486.0
-offset_bottom = 279.0
+offset_left = 452.452
+offset_top = 57.8749
+offset_right = 914.452
+offset_bottom = 604.875
 texture = ExtResource("3_a7i2s")
 
-[node name="LogDisplay" type="TextEdit" parent="."]
+[node name="LogDisplay" type="TextEdit" parent="Control"]
 layout_mode = 0
-offset_left = 32.0
-offset_top = -260.0
-offset_right = 480.0
-offset_bottom = 76.0
+offset_left = 460.452
+offset_top = 65.8749
+offset_right = 908.452
+offset_bottom = 401.875
 editable = false
 
-[node name="TeamsGroup" type="Node2D" parent="."]
+[node name="TeamsGroup" type="Node2D" parent="Control"]
 visible = false
-position = Vector2(8, 52)
+position = Vector2(438, 380)
+metadata/_edit_group_ = true
 
-[node name="Team2Text" type="RichTextLabel" parent="TeamsGroup"]
+[node name="Team2Text" type="RichTextLabel" parent="Control/TeamsGroup"]
 offset_left = 320.0
 offset_top = 76.0
 offset_right = 480.0
 offset_bottom = 244.0
 text = "Team 2"
 
-[node name="Team1Text" type="RichTextLabel" parent="TeamsGroup"]
+[node name="Team1Text" type="RichTextLabel" parent="Control/TeamsGroup"]
 offset_left = 88.0
 offset_top = 76.0
 offset_right = 248.0
 offset_bottom = 244.0
 text = "Team 1"
 
-[node name="JoinTeam1Button" type="Button" parent="TeamsGroup"]
+[node name="JoinTeam1Button" type="Button" parent="Control/TeamsGroup"]
 offset_left = 88.0
 offset_top = 36.0
 offset_right = 155.0
@@ -192,16 +195,24 @@ offset_bottom = 71.0
 disabled = true
 text = "Join"
 
-[node name="JoinTeam2Button" type="Button" parent="TeamsGroup"]
+[node name="JoinTeam2Button" type="Button" parent="Control/TeamsGroup"]
 offset_left = 320.0
 offset_top = 36.0
 offset_right = 387.0
 offset_bottom = 71.0
 text = "Join"
 
-[connection signal="button_down" from="StartGroup/StartGameButton" to="." method="_on_start_game_button_button_down"]
-[connection signal="button_down" from="JoinGroup/JoinButton" to="." method="_on_join_button_button_down"]
-[connection signal="button_down" from="HostButton" to="." method="_on_host_button_button_down"]
-[connection signal="button_down" from="LeaveButton" to="." method="_on_leave_button_button_down"]
-[connection signal="button_down" from="TeamsGroup/JoinTeam1Button" to="." method="_on_join_team_1_button_button_down"]
-[connection signal="button_down" from="TeamsGroup/JoinTeam2Button" to="." method="_on_join_team_2_button_button_down"]
+[node name="MapHolder" type="Node2D" parent="."]
+
+[node name="MapMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/Maps/map1.tscn", "res://Scenes/Maps/map2.tscn")
+spawn_path = NodePath("../MapHolder")
+spawn_limit = 1
+script = ExtResource("4_o13iw")
+
+[connection signal="button_down" from="Control/StartGroup/StartGameButton" to="Control" method="_on_start_game_button_button_down"]
+[connection signal="button_down" from="Control/JoinGroup/JoinButton" to="Control" method="_on_join_button_button_down"]
+[connection signal="button_down" from="Control/HostButton" to="Control" method="_on_host_button_button_down"]
+[connection signal="button_down" from="Control/LeaveButton" to="Control" method="_on_leave_button_button_down"]
+[connection signal="button_down" from="Control/TeamsGroup/JoinTeam1Button" to="Control" method="_on_join_team_1_button_button_down"]
+[connection signal="button_down" from="Control/TeamsGroup/JoinTeam2Button" to="Control" method="_on_join_team_2_button_button_down"]

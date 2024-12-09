@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bdneyo7mpey32"]
+[gd_scene load_steps=18 format=3 uid="uid://bdneyo7mpey32"]
 
 [ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_xmxuh"]
 [ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/gun-sheet.png" id="2_1tu8d"]
+[ext_resource type="PackedScene" uid="uid://f6rb22migaph" path="res://Entities/Guns/Pistol/PistolPreview.tscn" id="2_l24ge"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_s7v60"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_awig3"]
@@ -106,13 +107,23 @@ properties/3/replication_mode = 2
 properties/4/path = NodePath("AnimatedSprite2D:animation")
 properties/4/spawn = true
 properties/4/replication_mode = 2
+properties/5/path = NodePath(".:bulletAmount")
+properties/5/spawn = true
+properties/5/replication_mode = 2
+properties/6/path = NodePath(".:ammoReserve")
+properties/6/spawn = true
+properties/6/replication_mode = 2
 
 [node name="Pistol" type="Node2D" groups=["one-handed"]]
 script = ExtResource("1_xmxuh")
+bps = 10.0
 bulletDamage = 25
 bulletSpread = 0.1
+magSize = 7
 ammoReserve = 21
 reloadInterval = 0.8
+fullAuto = true
+Preview = ExtResource("2_l24ge")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(10.5, -2)

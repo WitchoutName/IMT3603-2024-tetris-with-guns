@@ -418,6 +418,11 @@ _spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
 spawn_path = NodePath("../BulletsGroup")
 spawn_limit = 10000
 
+[node name="ItemMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Entities/Guns/Pistol/Pistol.tscn", "res://Entities/Guns/Pistol/Pistol.tscn", "res://Entities/Guns/shotgun.tscn", "res://Entities/Guns/assault_rifle.tscn")
+spawn_path = NodePath("../ItemsGroup")
+spawn_limit = 10000
+
 [node name="TertraminoMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
 spawn_path = NodePath("../TetraminoGroup")

@@ -1,120 +1,77 @@
-[gd_scene load_steps=16 format=3 uid="uid://ba7jl2dq2bfc4"]
+[gd_scene load_steps=8 format=3 uid="uid://ba7jl2dq2bfc4"]
 
-[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_u2y1v"]
-[ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/gun-sheet.png" id="2_s728a"]
+[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_j2v1e"]
+[ext_resource type="PackedScene" uid="uid://b1qekx2e3yi7p" path="res://Entities/Guns/AssaultRiflePreview.tscn" id="2_3ncyw"]
+[ext_resource type="Texture2D" uid="uid://4rvsov3j3gp5" path="res://Assets/GunAssets/ak.png" id="2_8shol"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_ggxhp"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_awig3"]
-atlas = ExtResource("2_s728a")
-region = Rect2(0, 0, 57, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a3vbd"]
-atlas = ExtResource("2_s728a")
-region = Rect2(57, 0, 57, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_thsm6"]
-atlas = ExtResource("2_s728a")
-region = Rect2(114, 0, 57, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bvfps"]
-atlas = ExtResource("2_s728a")
-region = Rect2(171, 0, 57, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rg1ub"]
-atlas = ExtResource("2_s728a")
-region = Rect2(228, 0, 57, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1r37t"]
-atlas = ExtResource("2_s728a")
-region = Rect2(285, 0, 57, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1x8qv"]
-atlas = ExtResource("2_s728a")
-region = Rect2(342, 0, 57, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hkh51"]
-atlas = ExtResource("2_s728a")
-region = Rect2(399, 0, 57, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mcqal"]
-atlas = ExtResource("2_s728a")
-region = Rect2(456, 0, 57, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_666rp"]
-atlas = ExtResource("2_s728a")
-region = Rect2(513, 0, 57, 56)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_r2d48"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_02xbq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_awig3")
+"texture": ExtResource("2_8shol")
 }],
-"loop": false,
-"name": &"Default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_a3vbd")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_thsm6")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_bvfps")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rg1ub")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1r37t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1x8qv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hkh51")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mcqal")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_666rp")
-}],
-"loop": false,
+"loop": true,
 "name": &"Fire",
-"speed": 35.0
+"speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e6ygm"]
-radius = 65.0308
+[sub_resource type="CircleShape2D" id="CircleShape2D_76wxr"]
+radius = 59.0085
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_huiqq"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath("AnimatedSprite2D:frame")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+properties/4/path = NodePath("AnimatedSprite2D:animation")
+properties/4/spawn = true
+properties/4/replication_mode = 2
 
 [node name="assault_rifle" type="Node2D" groups=["two-handed"]]
-script = ExtResource("1_u2y1v")
+script = ExtResource("1_j2v1e")
+bulletSpeed = 1500
 bps = 10.0
-magSize = 30
-ammoReserve = 90
+bulletDamage = 25
+bulletSpread = 0.1
+magSize = 20
+ammoReserve = 40
+reloadInterval = 0.8
+arc = 31.836
 fullAuto = true
+Preview = ExtResource("2_3ncyw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.243137, 1, 1)
-sprite_frames = SubResource("SpriteFrames_r2d48")
+position = Vector2(18, -2)
+sprite_frames = SubResource("SpriteFrames_02xbq")
 animation = &"Fire"
-autoplay = "Default"
 offset = Vector2(11, 2)
 
 [node name="Barrel" type="Node2D" parent="."]
-position = Vector2(31, -7)
+position = Vector2(49, -9)
 
 [node name="Eject" type="Node2D" parent="."]
-position = Vector2(6, -10)
+position = Vector2(24, -12)
 
 [node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(18.5, -3)
+collision_layer = 0
+collision_mask = 16252929
 script = ExtResource("3_ggxhp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("CircleShape2D_e6ygm")
+shape = SubResource("CircleShape2D_76wxr")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_huiqq")
 
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

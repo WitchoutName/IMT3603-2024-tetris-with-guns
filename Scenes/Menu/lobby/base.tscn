@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk3h4npl1ui00"]
+
+[ext_resource type="PackedScene" uid="uid://pd6fogovrp7n" path="res://Scenes/Menu/lobby/connection_lobby.tscn" id="1_7habl"]
+
+[node name="Base" type="Node2D"]
+
+[node name="Control" parent="." instance=ExtResource("1_7habl")]
+offset_left = 573.0
+offset_top = 326.0
+offset_right = 573.0
+offset_bottom = 326.0
+
+[node name="MapHolder" type="Node2D" parent="."]
+
+[node name="MapMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/Maps/map1.tscn")
+spawn_path = NodePath("../MapHolder")
+spawn_limit = 1
