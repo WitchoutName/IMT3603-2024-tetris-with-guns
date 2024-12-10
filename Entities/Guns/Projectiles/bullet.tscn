@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bykosir8bm52c"]
+[gd_scene load_steps=7 format=3 uid="uid://bykosir8bm52c"]
 
-[ext_resource type="Script" path="res://Entities/Guns/bullet.gd" id="1_ff0um"]
+[ext_resource type="Script" path="res://Entities/Guns/Projectiles/bullet.gd" id="1_ff0um"]
 [ext_resource type="Texture2D" uid="uid://4tugic2ssxpi" path="res://Assets/GunAssets/bullet.png" id="1_lxvfp"]
+[ext_resource type="PackedScene" uid="uid://nkpxdrf303ry" path="res://Entities/Effects/Blood/BloodSplatter.tscn" id="2_e06b3"]
 [ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="3_xqk65"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1nx0a"]
@@ -12,9 +13,11 @@ size = Vector2(10, 4)
 
 [node name="bullet" type="RigidBody2D"]
 collision_layer = 2147483648
+collision_mask = 15728641
 mass = 0.4
 gravity_scale = 0.3
 script = ExtResource("1_ff0um")
+blood_splatter = ExtResource("2_e06b3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
@@ -33,6 +36,12 @@ hitbox_damage = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("RectangleShape2D_02bnr")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-8, 0)
+target_position = Vector2(15, 0)
+collision_mask = 15728641
+hit_from_inside = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timeout"]

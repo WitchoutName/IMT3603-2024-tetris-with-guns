@@ -120,7 +120,7 @@ func get_fire_mode():
 #Unequips everything
 func unequip_everything():
 	for slot in [right_hand, left_hand, item_slot]:
-		if slot:
+		if slot != null and not slot.is_queued_for_deletion():
 			slot.call_drop()
 			slot.set_multiplayer_authority(1)
 			
