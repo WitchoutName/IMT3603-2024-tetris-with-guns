@@ -11,14 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://d1573xume3rwr" path="res://Components/Interaction/Interaction_area/interaction_area.tscn" id="4_vu7ru"]
 [ext_resource type="PackedScene" uid="uid://3wfb2f4sa68f" path="res://Entities/Tower/v2/Tetraminos/shape_j.tscn" id="5_xuhv1"]
 [ext_resource type="PackedScene" uid="uid://bjuwxo57a2sgx" path="res://Entities/Tower/v2/Tetraminos/shape_l.tscn" id="6_dahiv"]
-[ext_resource type="PackedScene" uid="uid://b62gaquce8rnp" path="res://Entities/Tower/v2/Tetraminos/shape_o.tscn" id="7_c6njf"]
+[ext_resource type="PackedScene" uid="uid://d0kkk4frtlkho" path="res://Entities/Tower/v2/Tetraminos/shape_o.tscn" id="7_c6njf"]
 [ext_resource type="PackedScene" uid="uid://4et6a2esjn17" path="res://Entities/Tower/v2/Tetraminos/shape_s.tscn" id="8_yipkm"]
 [ext_resource type="PackedScene" uid="uid://ch3qi5k4wkwd0" path="res://Entities/Tower/v2/Tetraminos/shape_t.tscn" id="9_g4e60"]
 [ext_resource type="PackedScene" uid="uid://cm8tbcww1ot3j" path="res://Entities/Tower/v2/Tetraminos/shape_z.tscn" id="10_4eg7w"]
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tower/tower_controller.gd" id="11_rfkfq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xm1jy"]
-size = Vector2(512, 1044)
+size = Vector2(512, 1387)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pydoe"]
 size = Vector2(502, 40)
@@ -72,7 +72,7 @@ force = Vector2(225, -600)
 max_velocity = 700.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TetraminoRepulsor"]
-position = Vector2(-2, -506.735)
+position = Vector2(-2, -678.235)
 shape = SubResource("RectangleShape2D_xm1jy")
 
 [node name="TowerBase" type="StaticBody2D" parent="."]

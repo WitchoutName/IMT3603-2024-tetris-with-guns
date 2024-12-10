@@ -1,0 +1,32 @@
+[gd_scene load_steps=10 format=3 uid="uid://dswjpgeno3480"]
+
+[ext_resource type="Script" path="res://Entities/Items/imfeelinglucky.gd" id="1_1sw1o"]
+[ext_resource type="PackedScene" uid="uid://dr0jwc76kw1rl" path="res://Entities/Melee/shield.tscn" id="2_lt61y"]
+[ext_resource type="PackedScene" uid="uid://cuhmqofx28i4u" path="res://Entities/Melee/spear.tscn" id="3_u8iew"]
+[ext_resource type="PackedScene" uid="uid://ba7jl2dq2bfc4" path="res://Entities/Guns/assault_rifle.tscn" id="4_e2im4"]
+[ext_resource type="PackedScene" uid="uid://djjs5uqduv8ij" path="res://Entities/Guns/shotgun.tscn" id="5_se4a0"]
+[ext_resource type="PackedScene" uid="uid://ca84xeumpvio6" path="res://Entities/Items/granade-thrown.tscn" id="6_l5cva"]
+[ext_resource type="Texture2D" uid="uid://6ihxqf1kluc0" path="res://Assets/ItemAssets/luckyblock.png" id="7_jili4"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="8_r23nd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a5c2u"]
+radius = 57.0
+
+[node name="Imfeelinglucky" type="Node2D" groups=["item"]]
+script = ExtResource("1_1sw1o")
+weapons = Array[PackedScene]([ExtResource("2_lt61y"), ExtResource("3_u8iew"), ExtResource("4_e2im4"), ExtResource("5_se4a0")])
+granade = ExtResource("6_l5cva")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_jili4")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 16252929
+script = ExtResource("8_r23nd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_a5c2u")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

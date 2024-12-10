@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b62gaquce8rnp"]
+[gd_scene load_steps=6 format=3 uid="uid://d0kkk4frtlkho"]
 
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tetraminos/tetramino.gd" id="1_trqd3"]
 [ext_resource type="Texture2D" uid="uid://bguuj01b7tamu" path="res://Assets/Tower/tetraminos.png" id="2_2wowj"]
@@ -7,28 +7,28 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rjgb"]
 size = Vector2(128, 128)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7uxk4"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vsw6x"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 2
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 2
-properties/2/path = NodePath(".:freeze")
+properties/2/path = NodePath(".:is_tetris_mode")
 properties/2/spawn = true
 properties/2/replication_mode = 2
-properties/3/path = NodePath(".:is_tetris_mode")
+properties/3/path = NodePath(".:is_petrified")
 properties/3/spawn = true
 properties/3/replication_mode = 2
-properties/4/path = NodePath(".:is_petrified")
+properties/4/path = NodePath("Sprite2D:scale")
 properties/4/spawn = true
 properties/4/replication_mode = 2
-properties/5/path = NodePath("Sprite2D:scale")
+properties/5/path = NodePath("CollisionPolygon2D:scale")
 properties/5/spawn = true
-properties/5/replication_mode = 1
-properties/6/path = NodePath("CollisionPolygon2D:scale")
+properties/5/replication_mode = 2
+properties/6/path = NodePath(".:freeze")
 properties/6/spawn = true
-properties/6/replication_mode = 1
+properties/6/replication_mode = 2
 
 [node name="ShapeO" type="RigidBody2D"]
 script = ExtResource("1_trqd3")
@@ -54,4 +54,4 @@ rotation = -3.14159
 polygon = PackedVector2Array(-50, -50, -50, 50, 50, 50, 50, -50)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_7uxk4")
+replication_config = SubResource("SceneReplicationConfig_vsw6x")
