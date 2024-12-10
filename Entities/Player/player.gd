@@ -40,6 +40,8 @@ var prev_state = null
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var inventory: Inventory = $Inventory
 @onready var Camera: Camera2D = $Camera2D
+@onready var EffectsGroup: Node2D = $EffectsGroup
+@onready var Username: Label = $Username
 
 
 #Respawn handling
@@ -148,6 +150,9 @@ func _on_health_death():
 	inventory.unequip_everything()
 	spawned = false
 	for effect in effects:
+		if effect != null:
+			effect.queue_free()
+	for effect in EffectsGroup.get_children():
 		if effect != null:
 			effect.queue_free()
 

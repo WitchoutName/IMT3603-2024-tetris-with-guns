@@ -2,7 +2,7 @@ extends BaseItem
 class_name Gun
 
 @export var bulletScene = load("res://Entities/Guns/Projectiles/bullet.gd")
-@export var casingScene = load("res://Entities/Guns/casing.tscn")
+@export var casingScene: PackedScene
 
 @export var bulletSpeed = 1000
 

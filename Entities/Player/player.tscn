@@ -161,8 +161,9 @@ rotation = 1.0472
 target_position = Vector2(-1.99999, 3.4641)
 hit_from_inside = true
 
+[node name="EffectsGroup" type="Node2D" parent="."]
+
 [node name="HealthBar" parent="." instance=ExtResource("14_veipe")]
-script = null
 
 [node name="Username" type="Label" parent="."]
 offset_left = -46.0

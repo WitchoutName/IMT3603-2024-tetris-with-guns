@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://bcbma4losr4xm"]
+
+[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_cst3k"]
+[ext_resource type="PackedScene" uid="uid://cjbsjybhyerha" path="res://Entities/Guns/Projectiles/tshirt_projectile.tscn" id="2_mr7ls"]
+[ext_resource type="PackedScene" uid="uid://ss7pw7pyo2ow" path="res://Entities/Guns/TshirtCannon/TshirtCannonPreview.tscn" id="3_47eq4"]
+[ext_resource type="Texture2D" uid="uid://clagfs6ffgcol" path="res://Assets/GunAssets/Tshirt_cannon/tshirt_cannon.png" id="4_x605h"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="5_2jny1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f75oi"]
+radius = 59.0085
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r2d48"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_x605h")
+}],
+"loop": true,
+"name": &"Fire",
+"speed": 5.0
+}]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tvqak"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath("AnimatedSprite2D:frame")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+properties/4/path = NodePath("AnimatedSprite2D:animation")
+properties/4/spawn = true
+properties/4/replication_mode = 2
+
+[node name="TshirtCannon" type="Node2D" groups=["one-handed"]]
+script = ExtResource("1_cst3k")
+bulletScene = ExtResource("2_mr7ls")
+bulletSpeed = 800
+bps = 20.0
+bulletDamage = 2
+bulletSpread = 0.8
+magSize = 1
+ammoReserve = 10
+reloadInterval = 0.8
+arc = 7.0
+Preview = ExtResource("3_47eq4")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(18.5, -3)
+collision_layer = 0
+collision_mask = 16252929
+script = ExtResource("5_2jny1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_f75oi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(34, 0)
+scale = Vector2(-0.0754621, 0.108048)
+sprite_frames = SubResource("SpriteFrames_r2d48")
+animation = &"Fire"
+offset = Vector2(1.53, 1.625)
+
+[node name="Barrel" type="Node2D" parent="."]
+position = Vector2(44, -6)
+
+[node name="Eject" type="Node2D" parent="."]
+position = Vector2(32.5, -6)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_tvqak")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

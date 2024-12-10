@@ -7,6 +7,7 @@ var teams: Array[Team]
 @onready var player_group: Node2D = $PlayersGroup
 @onready var item_group: Node2D = $ItemsGroup
 @onready var tetramino_group: Node2D = $TetraminoGroup
+@onready var HUD: Node2D = $HUD
 signal map_setup_finished
 
 var SPAWN_POINT = preload("res://Entities/Player/SpawnPoint/spawn_point.tscn")

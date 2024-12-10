@@ -15,7 +15,7 @@ func _on_body_entered(body: Node) -> void:
 		player.create_wound(self)
 		var bleeding: Bleeding = bleeding_scene.instantiate()
 		bleeding.rotation = collision_rot
-		player.add_child(bleeding) 	
+		player.EffectsGroup.add_child(bleeding) 	
 		bleeding.position = player.to_local(global_position)
 		player.effects.append(bleeding)
 		bleeding.target = player.health

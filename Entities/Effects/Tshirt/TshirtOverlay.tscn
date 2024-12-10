@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqmw0atcldri2"]
+
+[ext_resource type="Texture2D" uid="uid://b2p2hstv5yin1" path="res://Assets/GunAssets/Tshirt_cannon/tshirt_overlay_trans.png" id="1_vkqg5"]
+
+[node name="TshirtOverlay" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vkqg5")

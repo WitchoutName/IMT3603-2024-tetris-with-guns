@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ss7pw7pyo2ow"]
+
+[ext_resource type="Texture2D" uid="uid://clagfs6ffgcol" path="res://Assets/GunAssets/Tshirt_cannon/tshirt_cannon.png" id="1_nio2c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bog08"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nio2c")
+}],
+"loop": true,
+"name": &"Fire",
+"speed": 5.0
+}]
+
+[node name="PistolPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(29, 5)
+scale = Vector2(-0.210148, 0.300894)
+sprite_frames = SubResource("SpriteFrames_bog08")
+animation = &"Fire"
+offset = Vector2(1.53, 1.625)
