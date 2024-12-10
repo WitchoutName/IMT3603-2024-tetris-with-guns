@@ -26,6 +26,8 @@ func set_action_name() -> void:
 			label.text = "Move Right"
 		"jump":
 			label.text = "Jump"
+		"dash":
+			label.text = "Dash"
 		"shoot":
 			label.text = "Shoot"
 		"tower_move_left":

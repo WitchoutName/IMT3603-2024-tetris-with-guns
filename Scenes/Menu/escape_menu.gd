@@ -52,12 +52,16 @@ func _on_options_button_pressed():
 
 func _on_exit_to_lobby_button_pressed():
 	print("Exit to Lobby pressed!")
+	hide()
 	emit_signal("exit_to_lobby")
 	
 	#Close the Optionsmenu if open
 	if OptionsManager:
 		OptionsManager.close()
 		OptionsManager.hide()
+	if player:
+		player.player_paused = true
+		
 	# Change the scene to the lobby
 	get_tree().change_scene("res://Scenes/Menu/lobby/connection_lobby.tscn")
 
@@ -70,7 +74,7 @@ func _gui_input(event):
 #func _on_exit_to_lobby_pressed() -> void:
 	#pass # Replace with function body.
 func _on_player_toggle_player_paused(is_paused: bool):
-	if is_paused:
+	if (is_paused):
 		show()
 	else:
 		hide()

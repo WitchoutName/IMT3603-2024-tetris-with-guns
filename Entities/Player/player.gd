@@ -60,14 +60,15 @@ var should_respawn = true
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 	
-func _input(event):
-	if event.is_action_pressed("ui_cancel"):  # 'ui_cancel' is the default for ESC
+func _input(event: InputEvent):
+	if (event.is_action_pressed("ui_cancel")):  # 'ui_cancel' is the default for ESC
 		#var escape_menu = $CanvasLayer/EscapeMenu
 		player_paused = !player_paused
 		#escape_menu.visible = !escape_menu.visible
 
 func _ready():
-	var escape_menu = $"CanvasLayer/EscapeMenu"
+	#var escape_menu = $"CanvasLayer/EscapeMenu"
+	print("Game paused state at start: ", get_tree().paused)
 	for state in STATES.get_children():
 		state.STATES = STATES
 		state.Player = self
