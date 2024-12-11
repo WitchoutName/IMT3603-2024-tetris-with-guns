@@ -30,7 +30,7 @@ func open(parent_node: Node):
 	# Instantiate the Option Menu scene and add it as a child
 	#instance = option_menu_scene.instantiate()
 	OptionsManager.show()
-	parent_node.add_child(instance)
+	#parent_node.add_child(instance)
 	print("Options Menu opened!")
 
 func close():

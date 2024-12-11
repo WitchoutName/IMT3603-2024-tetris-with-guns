@@ -43,7 +43,7 @@ func _on_options_button_pressed():
 		OptionsManager.open(self)
 		OptionsManager.show()
 		vbox_container.visible = false
-		#options_menu.set_process(true)
+		OptionsManager.set_process_input(true)
 		OptionsManager.visible = true
 	
 	else:
@@ -63,7 +63,16 @@ func _on_exit_to_lobby_button_pressed():
 		player.player_paused = true
 		
 	# Change the scene to the lobby
-	get_tree().change_scene("res://Scenes/Menu/lobby/connection_lobby.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Menu/lobby/connection_lobby.tscn")
+	
+	#Use yield to ensure scene change is complete
+	#await get_tree().process_frame
+	
+	#Ensure the game is not paused
+	#get_tree().paused = false
+	
+	# Ensure input is processing
+	set_process_input(false)
 
 
 func _gui_input(event):

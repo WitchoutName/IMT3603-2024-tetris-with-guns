@@ -42,7 +42,7 @@ var player_paused: bool = false:
 		return player_paused
 	set(value):
 		player_paused = value
-		get_tree().paused = !player_paused
+		get_tree().paused = player_paused
 		emit_signal("toggle_player_paused",player_paused)
 	
 #nodes
