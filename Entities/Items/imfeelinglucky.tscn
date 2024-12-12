@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dswjpgeno3480"]
+[gd_scene load_steps=11 format=3 uid="uid://dswjpgeno3480"]
 
 [ext_resource type="Script" path="res://Entities/Items/imfeelinglucky.gd" id="1_1sw1o"]
 [ext_resource type="PackedScene" uid="uid://dr0jwc76kw1rl" path="res://Entities/Melee/shield.tscn" id="2_lt61y"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ba7jl2dq2bfc4" path="res://Entities/Guns/assault_rifle.tscn" id="4_e2im4"]
 [ext_resource type="PackedScene" uid="uid://djjs5uqduv8ij" path="res://Entities/Guns/shotgun.tscn" id="5_se4a0"]
 [ext_resource type="PackedScene" uid="uid://ca84xeumpvio6" path="res://Entities/Items/granade-thrown.tscn" id="6_l5cva"]
+[ext_resource type="PackedScene" uid="uid://cdwjq8rxmouo" path="res://Entities/Items/imfeelinglucky_preview.tscn" id="7_cydol"]
 [ext_resource type="Texture2D" uid="uid://6ihxqf1kluc0" path="res://Assets/ItemAssets/luckyblock.png" id="7_jili4"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="8_r23nd"]
 
@@ -16,6 +17,7 @@ radius = 57.0
 script = ExtResource("1_1sw1o")
 weapons = Array[PackedScene]([ExtResource("2_lt61y"), ExtResource("3_u8iew"), ExtResource("4_e2im4"), ExtResource("5_se4a0")])
 granade = ExtResource("6_l5cva")
+Preview = ExtResource("7_cydol")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)

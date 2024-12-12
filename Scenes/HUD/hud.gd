@@ -135,15 +135,18 @@ func _on_inventory_slot_change(slot: Inventory.ItemSlot):
 		Inventory.ItemSlot.RIGHT_HAND:
 			$Display/Inventory/Hands/Hands0.hide()
 			$Display/Inventory/Hands/Hands1.hide()
-			$Display/Inventory/Hands/Hands2.show()			
+			$Display/Inventory/Hands/Hands2.show()
+			$Display/Inventory/Hands/Hands3.hide()			
 		Inventory.ItemSlot.LEFT_HAND:
 			$Display/Inventory/Hands/Hands0.hide()
 			$Display/Inventory/Hands/Hands1.show()
 			$Display/Inventory/Hands/Hands2.hide()
+			$Display/Inventory/Hands/Hands3.hide()
 		Inventory.ItemSlot.ITEM_SLOT:
-			$Display/Inventory/Hands/Hands0.show()
+			$Display/Inventory/Hands/Hands0.hide()
 			$Display/Inventory/Hands/Hands1.hide()
 			$Display/Inventory/Hands/Hands2.hide()
+			$Display/Inventory/Hands/Hands3.show()
 
 func _update_slot_preview(slot: Control, item: BaseItem):
 	for child in slot.get_children():
@@ -167,15 +170,18 @@ func _on_inventory_slot_state_change(slot: Inventory.ItemSlot, item: BaseItem):
 		_update_slot_preview($Display/Inventory/Slots/Dual, item)
 		has_two_handed_item = true
 		return
-		
+	
+	if item and item.is_in_group("item"):
+		_update_slot_preview($Display/Inventory/Slots/ItemHand, item)
+		return
+
 	match slot:
 		Inventory.ItemSlot.RIGHT_HAND:
 			_update_slot_preview($Display/Inventory/Slots/RightHand, item)
 		Inventory.ItemSlot.LEFT_HAND:
 			_update_slot_preview($Display/Inventory/Slots/LeftHand, item)
 		Inventory.ItemSlot.ITEM_SLOT:
-			pass
-			_update_slot_preview($Display/Inventory/Slots/RightHand, item)
+			_update_slot_preview($Display/Inventory/Slots/ItemHand, item)
 
 # Function to handle updates based on game state (e.g. health decrease, ammo usage)
 func _process(delta):

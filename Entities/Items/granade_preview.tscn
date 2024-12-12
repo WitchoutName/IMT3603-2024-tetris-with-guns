@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpsdpqih03xu2"]
+
+[ext_resource type="Texture2D" uid="uid://dd1173e46enyk" path="res://Assets/ItemAssets/grenades_by_mtk.png" id="1_nd30n"]
+
+[node name="GranadePreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_nd30n")
+region_enabled = true
+region_rect = Rect2(17.8137, 0, 12.8599, 15.3349)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bic5nels0gapo"]
+[gd_scene load_steps=14 format=3 uid="uid://bic5nels0gapo"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/hud.gd" id="1_rhw4k"]
 [ext_resource type="Texture2D" uid="uid://buomwnmy7mmgf" path="res://Assets/GUI/Hands/hands0.png" id="2_1y2nm"]
 [ext_resource type="Texture2D" uid="uid://crpmlcatypqw3" path="res://Assets/GUI/Hands/hands1.png" id="3_rvbi8"]
 [ext_resource type="Texture2D" uid="uid://b7g3bksj1t0w5" path="res://Assets/GUI/Hands/hands2.png" id="4_u45yp"]
+[ext_resource type="Texture2D" uid="uid://dypaeievcao3x" path="res://Assets/GUI/Hands/hands3.png" id="5_7ey41"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jay7v"]
 bg_color = Color(0.18359, 0.18359, 0.18359, 1)
@@ -228,8 +229,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -28.0
-offset_bottom = -28.0
+offset_left = 73.0
+offset_top = -26.0
+offset_right = 73.0
+offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_group_ = true
@@ -247,6 +250,11 @@ texture = ExtResource("3_rvbi8")
 visible = false
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_u45yp")
+
+[node name="Hands3" type="Sprite2D" parent="Display/Inventory/Hands"]
+visible = false
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_7ey41")
 
 [node name="Slots" type="Control" parent="Display/Inventory"]
 layout_mode = 1
@@ -286,3 +294,10 @@ offset_right = 1.0
 rotation = 0.785398
 scale = Vector2(-1, 1)
 metadata/_edit_group_ = true
+
+[node name="ItemHand" type="Control" parent="Display/Inventory/Slots"]
+anchors_preset = 0
+offset_left = 119.0
+offset_top = -1.0
+offset_right = 159.0
+offset_bottom = 39.0

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://daaddpky1j74i"]
+
+[ext_resource type="Texture2D" uid="uid://dfdp2sf3am57n" path="res://Assets/ItemAssets/books_byBatuhan.png" id="1_n7oih"]
+
+[node name="HolyBiblePreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_n7oih")
+region_enabled = true
+region_rect = Rect2(325.835, 2.50732, 21.8068, 28.816)
