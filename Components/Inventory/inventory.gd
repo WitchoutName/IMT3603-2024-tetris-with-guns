@@ -150,3 +150,17 @@ func clear_slot_left():
 func clear_slot_item():
 	slot_state_change.emit(ItemSlot.ITEM_SLOT, null)
 	item_slot = null
+
+func delete_inventory():
+	if right_hand:
+		slot_state_change.emit(ItemSlot.RIGHT_HAND, null)
+		right_hand.destroy.rpc()
+		right_hand = null
+	if left_hand:
+		slot_state_change.emit(ItemSlot.LEFT_HAND, null)
+		left_hand.destroy.rpc()
+		left_hand = null
+	if item_slot:
+		slot_state_change.emit(ItemSlot.ITEM_SLOT, null)
+		item_slot.destroy.rpc()
+		item_slot = null

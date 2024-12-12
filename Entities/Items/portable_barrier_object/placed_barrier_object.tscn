@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://0n2cx18ofc3y"]
 
-[ext_resource type="Script" path="res://Entities/Items/placed_barrier_object.gd" id="1_q7d8s"]
+[ext_resource type="Script" path="res://Entities/Items/portable_barrier_object/placed_barrier_object.gd" id="1_q7d8s"]
 [ext_resource type="Script" path="res://Components/Health/health.gd" id="2_6k1eh"]
 [ext_resource type="Texture2D" uid="uid://dhnrvkhryag64" path="res://Assets/ItemAssets/barrier.png" id="3_hijur"]
 [ext_resource type="Script" path="res://Components/Boxes/hurtbox.gd" id="4_7bni4"]

@@ -67,6 +67,9 @@ func change_parent(location: Node2D = null):
 
 #On player interaction
 func _on_interact(interacted_player: Player):
+	if !interacted_player.can_interact:
+		return
+	
 	destructionTimer.stop()
 	if GameManager.my_player.player_peer.id == 1:
 		print("host setting multiplayer authority", interacted_player.player_peer.id)

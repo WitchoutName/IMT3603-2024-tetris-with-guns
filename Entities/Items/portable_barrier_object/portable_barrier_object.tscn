@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bkabdgq325wuv"]
 
-[ext_resource type="Script" path="res://Entities/Items/portable_barrier_object.gd" id="1_4unsr"]
-[ext_resource type="PackedScene" uid="uid://0n2cx18ofc3y" path="res://Entities/Items/placed_barrier_object.tscn" id="2_3ws1g"]
+[ext_resource type="Script" path="res://Entities/Items/portable_barrier_object/portable_barrier_object.gd" id="1_4unsr"]
+[ext_resource type="PackedScene" uid="uid://0n2cx18ofc3y" path="res://Entities/Items/portable_barrier_object/placed_barrier_object.tscn" id="2_3ws1g"]
 [ext_resource type="Texture2D" uid="uid://dhnrvkhryag64" path="res://Assets/ItemAssets/barrier.png" id="3_wsoo8"]
-[ext_resource type="PackedScene" uid="uid://stom21y0oua2" path="res://Entities/Items/portable_barrier_object_preview.tscn" id="3_y5n7q"]
+[ext_resource type="PackedScene" uid="uid://stom21y0oua2" path="res://Entities/Items/portable_barrier_object/portable_barrier_object_preview.tscn" id="3_y5n7q"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="4_r00gl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cmgyd"]

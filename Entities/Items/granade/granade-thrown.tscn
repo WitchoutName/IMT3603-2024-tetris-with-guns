@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://ca84xeumpvio6"]
 
 [ext_resource type="Texture2D" uid="uid://dd1173e46enyk" path="res://Assets/ItemAssets/grenades_by_mtk.png" id="1_3epi7"]
-[ext_resource type="Script" path="res://Entities/Items/granade_thrown.gd" id="1_ueg0p"]
+[ext_resource type="Script" path="res://Entities/Items/granade/granade_thrown.gd" id="1_ueg0p"]
 [ext_resource type="Texture2D" uid="uid://cb4ql7u44832i" path="res://Assets/ItemAssets/granade_exp.png" id="3_j0cre"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcaps"]

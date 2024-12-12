@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8if410gdpfna"]
+
+[ext_resource type="Script" path="res://Entities/Items/tactical_retreat/tactical_retreat.gd" id="1_4ayr6"]
+[ext_resource type="PackedScene" uid="uid://c8ofprjdbrwob" path="res://Entities/Items/tactical_retreat/tactical_retreat_preview.tscn" id="2_an8wt"]
+[ext_resource type="Texture2D" uid="uid://ca7bkpiay5p23" path="res://Assets/ItemAssets/truce_flag.png" id="2_kgiug"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_qbsmr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ksrqh"]
+radius = 72.0069
+
+[node name="TacticalRetreat" type="Node2D" groups=["item"]]
+script = ExtResource("1_4ayr6")
+Preview = ExtResource("2_an8wt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_kgiug")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 16252929
+script = ExtResource("3_qbsmr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_ksrqh")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

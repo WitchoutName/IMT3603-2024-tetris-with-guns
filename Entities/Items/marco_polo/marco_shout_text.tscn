@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpu5boj6nwtea"]
+
+[ext_resource type="Script" path="res://Entities/Items/marco_polo/marco_shout.gd" id="1_c3ea6"]
+
+[node name="Marco-shout-effect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = -23.0
+offset_right = 54.0
+text = "Marco!"
+script = ExtResource("1_c3ea6")
