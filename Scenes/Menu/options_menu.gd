@@ -22,19 +22,23 @@ func _ready() -> void:
 func on_back_pressed() -> void:
 	exit_options_menu.emit()
 	set_process(false)
+	close()
 	
 func open(parent_node: Node):
 	if instance:  # Prevent multiple instances
-		print("Options Menu is already open!")
+		print("Option Instance is Valid!")
 		return
 	# Instantiate the Option Menu scene and add it as a child
 	#instance = option_menu_scene.instantiate()
-	OptionsManager.show()
+	parent_node.add_child(self) if !get_parent() else null
+	self.show()
 	#parent_node.add_child(instance)
 	print("Options Menu opened!")
 
 func close():
-	if instance:
-		instance.queue_free()
-		instance = null
+	hide()
+	if is_instance_valid(self.get_parent()):
+		get_parent().remove_child(self)
+		#instance.queue_free()
+		#instance = null
 		print("Options Menu closed!")

@@ -15,40 +15,33 @@ func _ready():
 		player.connect("toggle_player_paused", _on_player_toggle_player_paused )
 	set_process_input(true)
 	
-	#if not $Panel/VBoxContainer/OptionsButton.pressed.connect(_on_options_button_pressed):
-		#$Panel/VBoxContainer/OptionsButton.pressed.connect(_on_options_button_pressed)
-		#print("Options button pressed!")
-	#if not $Panel/VBoxContainer/Exit_to_Lobby_Button.pressed.connect(_on_exit_to_lobby_button_pressed):
-		#$Panel/VBoxContainer/Exit_to_Lobby_Button.pressed.connect(_on_exit_to_lobby_button_pressed)
-		#print("Exit button pressed!")
+	#$Panel/VBoxContainer/OptionsButton.pressed.connect(_on_options_button_pressed)
+	
 
 func _on_menu_opened():
 	set_process_input(true)
 
 func _on_menu_closed():
 	set_process_input(false)
-	 # Use shorthand if Menu is a child of the current node
-	#var option_button = $Panel/VBoxContainer/Options  # Adjust to your node structure
-	#var menu_node = $"."
-	#if menu_node:
-		# Connect the OptionButton's pressed signal to the menu's _on_options_button_pressed function
-		#option_button.connect("pressed", Callable(menu_node, "_on_options_button_pressed"))
-	#else:
-		#print("Menu node not found!")
+	
 
 
 func _on_options_button_pressed():
 	print("Options button pressed!")
 	if OptionsManager:
-		OptionsManager.open(self)
-		OptionsManager.show()
 		vbox_container.visible = false
-		OptionsManager.set_process_input(true)
+		OptionsManager.set_process(true)
 		OptionsManager.visible = true
+		OptionsManager.open(self)
 	
 	else:
 		print ("OptionsManager (autoload) is not available")
 # Signal to notify the player script or main game script
+func on_exit_options_menu() -> void:	
+	vbox_container.visible = true
+	OptionsManager.visible = false
+	
+
 
 func _on_exit_to_lobby_button_pressed():
 	print("Exit to Lobby pressed!")
@@ -83,7 +76,7 @@ func _gui_input(event):
 #func _on_exit_to_lobby_pressed() -> void:
 	#pass # Replace with function body.
 func _on_player_toggle_player_paused(is_paused: bool):
-	if (is_paused):
+	if(is_paused):
 		show()
 	else:
 		hide()
@@ -92,3 +85,4 @@ func _on_player_toggle_player_paused(is_paused: bool):
 func _on_resume_pressed() -> void:
 	get_tree().paused = false
 	player.player_paused = false
+	print(player.player_paused)

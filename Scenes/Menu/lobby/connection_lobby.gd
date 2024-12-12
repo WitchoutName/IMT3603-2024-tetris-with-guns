@@ -22,8 +22,6 @@ func _ready():
 	if "--server" in OS.get_cmdline_args():
 		host_game()
 	
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

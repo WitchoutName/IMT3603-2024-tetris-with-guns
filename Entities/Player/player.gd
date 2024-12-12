@@ -64,6 +64,7 @@ func _input(event: InputEvent):
 	if (event.is_action_pressed("ui_cancel")):  # 'ui_cancel' is the default for ESC
 		#var escape_menu = $CanvasLayer/EscapeMenu
 		player_paused = !player_paused
+		print(player_paused)
 		#escape_menu.visible = !escape_menu.visible
 
 func _ready():
@@ -76,7 +77,10 @@ func _ready():
 		current_state = STATES.IDLE
 	if player_peer:
 		$Username.text = player_peer.username
-	
+		
+	await get_tree().create_timer(2).timeout
+	for action_name in InputMap.get_actions():
+		print(action_name, ": ", ", ".join(InputMap.action_get_events(action_name)))
 	#if escape_menu:
 		#escape_menu.exit_to_lobby.connect(_on_exit_to_lobby)
 
@@ -131,7 +135,9 @@ func get_next_to_wall() -> Vector2:
 
 func player_input():
 	movement_input = Vector2.ZERO
+	print("input")
 	if Input.is_action_pressed("move_right"):
+		print("right")
 		movement_input.x += 1
 	if Input.is_action_pressed("move_left"):
 		movement_input.x -= 1
