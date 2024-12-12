@@ -1,0 +1,29 @@
+[gd_scene load_steps=13 format=3 uid="uid://syg2ti8846fm"]
+
+[ext_resource type="Script" path="res://Components/EntitySpawner/item_spawner.gd" id="1_7b5ys"]
+[ext_resource type="Texture2D" uid="uid://wmh4spdlq5fj" path="res://Assets/Spawner/spawner.webp" id="2_7sgsh"]
+[ext_resource type="PackedScene" uid="uid://dbsw503oi27ec" path="res://Entities/Items/granade/granade.tscn" id="2_e78ia"]
+[ext_resource type="PackedScene" uid="uid://dswjpgeno3480" path="res://Entities/Items/imfeelinglucky/imfeelinglucky.tscn" id="3_du73o"]
+[ext_resource type="PackedScene" uid="uid://bneov2hp4sla3" path="res://Entities/Items/holy_bible/holy_bible.tscn" id="3_g077h"]
+[ext_resource type="PackedScene" uid="uid://bf3ftwwwt0ojd" path="res://Entities/Items/invisibility_cloak/invisibility_cloak.tscn" id="4_0k8pp"]
+[ext_resource type="PackedScene" uid="uid://mph0nr6cmpab" path="res://Entities/Items/marco_polo/marco_polo.tscn" id="6_ptimb"]
+[ext_resource type="PackedScene" uid="uid://b3rgb1t3q07eo" path="res://Entities/Items/medkit/medkit.tscn" id="7_cwqev"]
+[ext_resource type="PackedScene" uid="uid://bkabdgq325wuv" path="res://Entities/Items/portable_barrier_object/portable_barrier_object.tscn" id="8_tchul"]
+[ext_resource type="PackedScene" uid="uid://b8if410gdpfna" path="res://Entities/Items/tactical_retreat/tactical_retreat.tscn" id="9_rfpo3"]
+[ext_resource type="PackedScene" uid="uid://dyodkx7sh128e" path="res://Entities/Items/TeaServant/tea_servant.tscn" id="10_nt3sk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fisxg"]
+size = Vector2(47, 46)
+
+[node name="ItemSpawner" type="Area2D"]
+script = ExtResource("1_7b5ys")
+entities = Array[PackedScene]([ExtResource("2_e78ia"), ExtResource("3_du73o"), ExtResource("4_0k8pp"), ExtResource("3_g077h"), ExtResource("6_ptimb"), ExtResource("7_cwqev"), ExtResource("8_tchul"), ExtResource("9_rfpo3"), ExtResource("10_nt3sk")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_fisxg")
+
+[node name="Spawner" type="Sprite2D" parent="."]
+position = Vector2(-2.38419e-07, -3.57628e-07)
+scale = Vector2(0.10125, 0.10125)
+texture = ExtResource("2_7sgsh")

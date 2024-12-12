@@ -1,16 +1,9 @@
 extends Area2D
 
-@export var weapons: Array[PackedScene]
-@export var weaponWeights: Array[int]
-@export var items: Array[PackedScene]
-@export var itemWeights: Array[int]
+@export var entities: Array[PackedScene]
+@export var weights: Array[int]
 @export var interval: float = 10
 @export var parent: Node2D
-@export var spawn_weapons = true
-@export var spawn_items = true
-
-var entities: Array[PackedScene]
-var weights: Array[int]
 
 var timer: Timer = Timer.new()
 var init_timer: Timer = Timer.new()
@@ -18,14 +11,6 @@ var weighted_entities: Array[PackedScene]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if spawn_weapons:
-		entities.append(weapons)
-		weights.append(weaponWeights)
-	
-	if spawn_items:
-		entities.append(items)
-		weights.append(itemWeights)
-	
 	print(len(entities))
 	for i in range(len(entities)):
 		var weight = 1 if len(weights)-1 < i else weights[i]
