@@ -17,7 +17,7 @@ var last_direction = Vector2.RIGHT
 
 #mechanics
 var can_dash = true
-var effects: Array[Node2D] = []
+var effects: Array[Effect] = []
 var can_suicide: bool = true
 var invis = false
 
@@ -41,6 +41,7 @@ var prev_state = null
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var inventory: Inventory = $Inventory
 @onready var Camera: Camera2D = $Camera2D
+@onready var AudioListener: AudioListener2D = $AudioListener2D
 @onready var EffectsGroup: Node2D = $EffectsGroup
 @onready var Username: Label = $Username
 @onready var ASprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -48,7 +49,7 @@ var prev_state = null
 
 #Respawn handling
 const RESPAWN_TIME = 5
-var spawned = true 
+var is_frosen = false
 var should_respawn = true
 
 func _enter_tree() -> void:
@@ -67,7 +68,7 @@ func _ready():
 
 func _physics_process(delta):
 	if not is_multiplayer_authority() and player_peer: return
-	if spawned:
+	if not is_frosen:
 		if not ASprite.visible and not invis:
 			ASprite.show()
 		if is_controlling_tower: _handle_tower_input()
@@ -150,16 +151,20 @@ func player_input():
 
 func _on_health_death():
 	inventory.unequip_everything()
-	spawned = false
+	is_frosen = false
 	for effect in effects:
 		if effect != null:
-			effect.queue_free()
+			effect.remove()
+			if effect != null:
+				effect.queue_free()
 	for effect in EffectsGroup.get_children():
 		if effect != null:
-			effect.queue_free()
+			effect.remove()
+			if effect != null:
+				effect.queue_free()
 
 func spawn():
-	spawned = true
+	is_frosen = true
 
 func respawn():
 	if not should_respawn:

@@ -6,9 +6,9 @@
 [node name="Bleeding" type="Node2D"]
 script = ExtResource("1_g054f")
 blood_particle = ExtResource("2_rjk0g")
-bleeding_interval = 3.0
 dps = 5.0
 particle_speed = 300.0
+despawn_interval = 2.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 	if isReloading: _reaload_animation()
 	
 	if not is_multiplayer_authority(): return
-	if active:
+	if active and not player.is_frosen:
 		look_at(get_global_mouse_position())
 	
 		if get_global_mouse_position().x < global_position.x:

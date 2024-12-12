@@ -27,7 +27,5 @@ func _on_body_entered(body: Node) -> void:
 		var player = body as Player
 		var effect: Effect = effect_scene.instantiate()
 		effect.color = color
-		player.EffectsGroup.add_child(effect)
 		effect.apply(player)
-		
 		queue_free()
