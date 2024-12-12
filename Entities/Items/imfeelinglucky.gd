@@ -12,7 +12,7 @@ func _use():
 @rpc("any_peer", "call_local")
 func spawn_weapon(index):
 	#1/3 to create a weapon
-	if index <= len(weapons):
+	if index <= len(weapons) || index == len(weapons):
 		var weapon: Node2D
 		if index == len(weapons): #a chance for it to be a active granade
 			weapon = granade.instantiate()

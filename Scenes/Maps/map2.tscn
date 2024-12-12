@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dgve8sg6don5a"]
+[gd_scene load_steps=14 format=4 uid="uid://dgve8sg6don5a"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/map_2.gd" id="1_i38ol"]
 [ext_resource type="Texture2D" uid="uid://bkjnpo24brtbh" path="res://Assets/Vector/vector_complete.svg" id="2_cvsm6"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://loey4c42d453" path="res://Components/EntitySpawner/WeaponSpawner.tscn" id="7_hb1cl"]
 [ext_resource type="PackedScene" uid="uid://derfnsuaimarv" path="res://Components/EntitySpawner/TetramonoSpawner.tscn" id="8_4j77c"]
 [ext_resource type="PackedScene" uid="uid://bcbma4losr4xm" path="res://Entities/Guns/TshirtCannon/TshirtCannon.tscn" id="8_dimto"]
+[ext_resource type="PackedScene" uid="uid://b3rgb1t3q07eo" path="res://Entities/Items/medkit.tscn" id="9_ujdjp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_68a15"]
 
@@ -605,3 +606,6 @@ shape = SubResource("RectangleShape2D_53iov")
 
 [node name="TshirtCannon" parent="." instance=ExtResource("8_dimto")]
 position = Vector2(-1086, -59)
+
+[node name="Medkit" parent="." instance=ExtResource("9_ujdjp")]
+position = Vector2(-677, -111)

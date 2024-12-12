@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3rgb1t3q07eo"]
+
+[ext_resource type="Script" path="res://Entities/Items/medkit.gd" id="1_ipbyu"]
+[ext_resource type="Texture2D" uid="uid://e4cscfdducrh" path="res://Assets/ItemAssets/health-red.png" id="2_4jj2l"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_hoyfe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mi501"]
+radius = 68.0
+
+[node name="Medkit" type="Node2D" groups=["item"]]
+script = ExtResource("1_ipbyu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_4jj2l")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 16252929
+script = ExtResource("3_hoyfe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_mi501")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

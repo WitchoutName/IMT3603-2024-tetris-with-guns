@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf3ftwwwt0ojd"]
+
+[ext_resource type="Script" path="res://Entities/Items/invisibility_cloak.gd" id="1_q4xdw"]
+[ext_resource type="Texture2D" uid="uid://b5weq8eop4sx5" path="res://Assets/ItemAssets/invis_cloak.png" id="2_8186o"]
+[ext_resource type="PackedScene" uid="uid://1m3ydpr1u03f" path="res://Entities/Items/invisibility_cloak_preview.tscn" id="2_gckyh"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_di577"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_80ul8"]
+radius = 68.0074
+
+[node name="InvisibilityCloak" type="Node2D" groups=["item"]]
+script = ExtResource("1_q4xdw")
+Preview = ExtResource("2_gckyh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_8186o")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 16252929
+script = ExtResource("3_di577")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_80ul8")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

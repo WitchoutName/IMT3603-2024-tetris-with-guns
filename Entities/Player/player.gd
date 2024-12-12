@@ -19,6 +19,7 @@ var last_direction = Vector2.RIGHT
 var can_dash = true
 var effects: Array[Node2D] = []
 var can_suicide: bool = true
+var invis = false
 
 #tetris
 var tower: Tower2
@@ -42,6 +43,7 @@ var prev_state = null
 @onready var Camera: Camera2D = $Camera2D
 @onready var EffectsGroup: Node2D = $EffectsGroup
 @onready var Username: Label = $Username
+@onready var ASprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
 #Respawn handling
@@ -66,8 +68,8 @@ func _ready():
 func _physics_process(delta):
 	if not is_multiplayer_authority() and player_peer: return
 	if spawned:
-		if not $AnimatedSprite2D.visible:
-			$AnimatedSprite2D.visible = true
+		if not ASprite.visible and not invis:
+			ASprite.show()
 		if is_controlling_tower: _handle_tower_input()
 		else: player_input()
 	
@@ -75,8 +77,8 @@ func _physics_process(delta):
 		move_and_slide()
 		#default_move(delta)
 	else:
-		if $AnimatedSprite2D.visible:
-			$AnimatedSprite2D.visible = false
+		if ASprite.visible:
+			ASprite.hide()
 
 func _handle_tower_input():
 	if tower:
@@ -192,3 +194,16 @@ func create_wound(bullet: Bullet):
 		splatter.rotate(_rotation)
 		splatter.emitting = true
 		print(_rotation, to_local(location), location)
+
+func invisibility(length: float):
+	ASprite.hide()
+	Username.hide()
+	health_bar.hide()
+	invis = true
+
+	await get_tree().create_timer(length).timeout
+
+	ASprite.show()
+	Username.show()
+	health_bar.show()
+	invis = false
