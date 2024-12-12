@@ -1,0 +1,185 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfpjkbk1wc60y"]
+
+[ext_resource type="Script" path="res://Entities/Effects/TeaTime/tea_time.gd" id="1_fh6kl"]
+[ext_resource type="AudioStream" uid="uid://bu3cj0m3yhsss" path="res://Assets/ItemAssets/TeaTime/320139__owlstorm__drink-sip-and-swallow.mp3" id="2_8fheq"]
+[ext_resource type="Texture2D" uid="uid://d3jkx6l8rdwg" path="res://Assets/ItemAssets/TeaTime/tea_time_body_2.png" id="2_p8vmv"]
+[ext_resource type="AudioStream" uid="uid://ds6gi74gw072c" path="res://Assets/ItemAssets/TeaTime/348645__redafs__slurping-sipping-and-gulp-4.mp3" id="3_f16ub"]
+[ext_resource type="Texture2D" uid="uid://b11lieu8yqsgs" path="res://Assets/ItemAssets/TeaTime/tea_time_hand.png" id="3_xsh2f"]
+[ext_resource type="AudioStream" uid="uid://dm1y6neqwuils" path="res://Assets/ItemAssets/TeaTime/613616__ryankingart__drinking-tea.mp3" id="4_yej6f"]
+
+[sub_resource type="Animation" id="Animation_uy7dc"]
+resource_name = "sip"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/TeaTimeHand:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(232, -0.25, 0, 0.25, 0, 236, -0.25, 0, 0.25, 0, 236, -0.25, 0, 0.25, 0, 232, -0.25, 0, 0.25, 0, 232, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.566667, 0.833333, 1.43333, 1.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/TeaTimeHand:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(308, -0.25, 0, 0.25, 0, 296, -0.25, 0, 0.25, 0, 296, -0.25, 0, 0.25, 0, 308, -0.25, 0, 0.25, 0, 308, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.533333, 0.833333, 1.43333, 1.5)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/TeaTimeHand:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 3.12239, -0.25, 0, 0.25, 0, 3.12239, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6, 0.833333, 1.43333, 1.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/TeaTimeHand:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.34, -0.25, 0, 0.25, 0, 1.34, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.533333, 0.833333, 1.43333, 1.5)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/TeaTimeHand:scale:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.34, -0.25, 0, 0.25, 0, 1.34, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.6, 0.833333, 1.43333, 1.5)
+}
+
+[sub_resource type="Animation" id="Animation_18tbd"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/TeaTimeHand:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(232, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/TeaTimeHand:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(308, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/TeaTimeHand:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visuals/TeaTimeHand:scale:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.34, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/TeaTimeHand:scale:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.34, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_v0if6"]
+resource_name = "sip2"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/TeaTimeHand:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(232, -0.25, 0, 0.25, 0, 232, -0.25, 0, 0.25, 0, 232, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.666667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/TeaTimeHand:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(308, -0.25, 0, 0.25, 0, 284, -0.25, 0, 0.25, 0, 284, -0.25, 0, 0.25, 0, 308, -0.25, 0, 0.25, 0, 308, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4, 0.666667, 0.933333, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pg5uo"]
+_data = {
+"RESET": SubResource("Animation_18tbd"),
+"sip": SubResource("Animation_uy7dc"),
+"sip2": SubResource("Animation_v0if6")
+}
+
+[node name="TeaTime" type="Node2D"]
+script = ExtResource("1_fh6kl")
+sounds = Array[AudioStreamMP3]([ExtResource("2_8fheq"), ExtResource("3_f16ub"), ExtResource("4_yej6f")])
+is_stackable = false
+despawn_interval = 5.0
+
+[node name="Visuals" type="Node2D" parent="."]
+position = Vector2(-234, -318)
+
+[node name="TeaTimeBody" type="Sprite2D" parent="Visuals"]
+position = Vector2(233, 307.5)
+texture = ExtResource("2_p8vmv")
+
+[node name="TeaTimeHand" type="Sprite2D" parent="Visuals"]
+position = Vector2(232, 308)
+scale = Vector2(1.34, 1.34)
+texture = ExtResource("3_xsh2f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pg5uo")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

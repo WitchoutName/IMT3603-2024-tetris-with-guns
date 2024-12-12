@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcik88mcjabyp"]
+
+[ext_resource type="Texture2D" uid="uid://pl8xmet17ddc" path="res://Assets/ItemAssets/TeaTime/servant.png" id="1_naddr"]
+
+[node name="TeaServantPreview" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("1_naddr")

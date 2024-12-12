@@ -15,7 +15,8 @@ func _input(event):
 		return
 	
 	if active && event.is_action_pressed("useItem"):
-		_use()
+		if not player.is_frosen:
+			_use()
 
 #On player interaction
 func _on_interact(interacted_player: Player):

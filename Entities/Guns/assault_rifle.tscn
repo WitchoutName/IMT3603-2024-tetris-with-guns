@@ -60,7 +60,7 @@ animation = &"Fire"
 offset = Vector2(11, 2)
 
 [node name="Barrel" type="Node2D" parent="."]
-position = Vector2(49, -9)
+position = Vector2(65, -9)
 
 [node name="Eject" type="Node2D" parent="."]
 position = Vector2(24, -12)
@@ -72,6 +72,7 @@ collision_mask = 16252929
 script = ExtResource("3_ggxhp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(5.5, 0)
 shape = SubResource("CircleShape2D_76wxr")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

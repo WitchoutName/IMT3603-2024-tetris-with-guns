@@ -14,11 +14,9 @@ func _on_body_entered(body: Node) -> void:
 		var player = body as Player
 		player.create_wound(self)
 		var bleeding: Bleeding = bleeding_scene.instantiate()
+		bleeding.apply(player)
 		bleeding.rotation = collision_rot
-		player.EffectsGroup.add_child(bleeding) 	
-		bleeding.position = player.to_local(global_position)
-		player.effects.append(bleeding)
-		bleeding.target = player.health
+		
 		
 		
 	call_deferred("set_freeze_enabled", true)

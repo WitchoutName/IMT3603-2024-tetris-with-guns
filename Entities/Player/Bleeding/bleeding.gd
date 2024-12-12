@@ -1,22 +1,17 @@
-extends Node2D
+extends Effect
 
 class_name Bleeding
 
 @export var blood_particle: PackedScene
-@export var bleeding_interval: float
 @export var dps: float  # demage per second
 @export var particle_speed: float = 200
 var target: Health
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	await get_tree().create_timer(bleeding_interval).timeout
-	queue_free()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func apply(player: Player):
+	super.apply(player)
+	position = player.to_local(global_position)
+	target = player.health
 
 
 func _on_timer_timeout() -> void:

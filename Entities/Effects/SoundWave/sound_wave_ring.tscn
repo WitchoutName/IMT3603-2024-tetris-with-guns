@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://q4dxknhqbp5v"]
+
+[ext_resource type="Texture2D" uid="uid://bsn4tuc0xb76v" path="res://Assets/ItemAssets/TeaTime/soundWave_ring.png" id="1_opxmj"]
+[ext_resource type="Script" path="res://Entities/Effects/SoundWave/sound_wave_ring.gd" id="2_ksloa"]
+
+[node name="SoundWaveRing" type="Sprite2D"]
+scale = Vector2(0.312269, 0.312269)
+texture = ExtResource("1_opxmj")
+script = ExtResource("2_ksloa")

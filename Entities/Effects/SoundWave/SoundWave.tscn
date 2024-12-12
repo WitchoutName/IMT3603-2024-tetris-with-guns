@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://b334ryimea08g"]
+
+[ext_resource type="Script" path="res://Entities/Effects/SoundWave/SoundWaveRingEmitor.gd" id="1_iw5oe"]
+[ext_resource type="Script" path="res://Entities/Effects/SoundWave/sound_wave.gd" id="1_voxkp"]
+[ext_resource type="PackedScene" uid="uid://q4dxknhqbp5v" path="res://Entities/Effects/SoundWave/sound_wave_ring.tscn" id="2_ecbm3"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_irik3"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[node name="SoundWave" type="Area2D"]
+collision_mask = 15728640
+script = ExtResource("1_voxkp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+scale = Vector2(1, 0.75)
+polygon = PackedVector2Array(0, -170.667, 328, -245.333, 352, -213.333, 368, -170.667, 384, -86.7086, 384, 84.4288, 368, 170.667, 352, 213.333, 327.719, 243.493, 0, 170.667, -48, 160, -72, 149.333, -96, 128, -112, 96, -120, 74.6667, -128, 21.3333, -128, 0, -128, -21.3333, -120, -74.6667, -112, -96, -96, -128, -72, -149.333, -48, -160)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+clip_children = 1
+light_mask = 2
+visibility_layer = 2
+scale = Vector2(1, 0.75)
+polygon = PackedVector2Array(0, -170.667, 328, -245.333, 352, -213.333, 368, -170.667, 384, -86.7086, 384, 84.4288, 368, 170.667, 352, 213.333, 327.719, 243.493, 0, 170.667, -48, 160, -72, 149.333, -96, 128, -112, 96, -120, 74.6667, -128, 21.3333, -128, 0, -128, -21.3333, -120, -74.6667, -112, -96, -96, -128, -72, -149.333, -48, -160)
+
+[node name="Node2D" type="Node2D" parent="Polygon2D"]
+clip_children = 1
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, 8)
+script = ExtResource("1_iw5oe")
+ring_scene = ExtResource("2_ecbm3")
+
+[node name="Timer" type="Timer" parent="Polygon2D/Node2D"]
+wait_time = 0.25
+autostart = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_irik3")
+
+[connection signal="timeout" from="Polygon2D/Node2D/Timer" to="Polygon2D/Node2D" method="_on_timer_timeout"]
