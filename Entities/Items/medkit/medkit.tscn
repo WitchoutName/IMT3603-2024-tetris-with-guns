@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3rgb1t3q07eo"]
+[gd_scene load_steps=6 format=3 uid="uid://b3rgb1t3q07eo"]
 
-[ext_resource type="Script" path="res://Entities/Items/medkit.gd" id="1_ipbyu"]
+[ext_resource type="Script" path="res://Entities/Items/medkit/medkit.gd" id="1_ipbyu"]
 [ext_resource type="Texture2D" uid="uid://e4cscfdducrh" path="res://Assets/ItemAssets/health-red.png" id="2_4jj2l"]
+[ext_resource type="PackedScene" uid="uid://cxipmuwsmm5eg" path="res://Entities/Items/medkit/medkit_preview.tscn" id="2_nudn2"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_hoyfe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mi501"]
@@ -9,6 +10,7 @@ radius = 68.0
 
 [node name="Medkit" type="Node2D" groups=["item"]]
 script = ExtResource("1_ipbyu")
+Preview = ExtResource("2_nudn2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.5, 1.5)

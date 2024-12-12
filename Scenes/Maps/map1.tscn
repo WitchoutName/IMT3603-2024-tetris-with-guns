@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="2_u7lpa"]
 [ext_resource type="PackedScene" uid="uid://sla3csh23s6w" path="res://Entities/SpawnPieces.tscn" id="3_0erxw"]
 [ext_resource type="PackedScene" uid="uid://bic5nels0gapo" path="res://Scenes/HUD/HUD.tscn" id="4_eoxln"]
-[ext_resource type="PackedScene" uid="uid://dbsw503oi27ec" path="res://Entities/Items/granade.tscn" id="5_8q08b"]
+[ext_resource type="PackedScene" uid="uid://dbsw503oi27ec" path="res://Entities/Items/granade/granade.tscn" id="5_8q08b"]
 [ext_resource type="PackedScene" uid="uid://loey4c42d453" path="res://Components/EntitySpawner/WeaponSpawner.tscn" id="6_on5uq"]
 [ext_resource type="PackedScene" uid="uid://derfnsuaimarv" path="res://Components/EntitySpawner/TetramonoSpawner.tscn" id="7_65p13"]
 

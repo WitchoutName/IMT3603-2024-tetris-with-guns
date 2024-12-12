@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://c456ff71jnda7"]
 
-[ext_resource type="Script" path="res://Entities/Items/healing_zone_placed.gd" id="1_ynynp"]
+[ext_resource type="Script" path="res://Entities/Items/holy_bible/healing_zone_placed.gd" id="1_ynynp"]
 [ext_resource type="Texture2D" uid="uid://dr8e5c6bpxxfd" path="res://Assets/ItemAssets/magic_effects.png" id="2_ytn8u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m657x"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bf3ftwwwt0ojd"]
 
-[ext_resource type="Script" path="res://Entities/Items/invisibility_cloak.gd" id="1_q4xdw"]
+[ext_resource type="Script" path="res://Entities/Items/invisibility_cloak/invisibility_cloak.gd" id="1_q4xdw"]
 [ext_resource type="Texture2D" uid="uid://b5weq8eop4sx5" path="res://Assets/ItemAssets/invis_cloak.png" id="2_8186o"]
-[ext_resource type="PackedScene" uid="uid://1m3ydpr1u03f" path="res://Entities/Items/invisibility_cloak_preview.tscn" id="2_gckyh"]
+[ext_resource type="PackedScene" uid="uid://1m3ydpr1u03f" path="res://Entities/Items/invisibility_cloak/invisibility_cloak_preview.tscn" id="2_gckyh"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_di577"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_80ul8"]
