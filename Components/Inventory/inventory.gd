@@ -7,7 +7,7 @@ enum ItemSlot { RIGHT_HAND, LEFT_HAND, ITEM_SLOT }
 signal slot_change(current_slot: ItemSlot)
 signal slot_state_change(current_slot: ItemSlot, slot: BaseItem)
 
-var current_slot = ItemSlot.LEFT_HAND
+@export var current_slot = ItemSlot.LEFT_HAND
 
 @onready var player: Player = get_parent()
 
@@ -120,7 +120,7 @@ func get_fire_mode():
 #Unequips everything
 func unequip_everything():
 	for slot in [right_hand, left_hand, item_slot]:
-		if slot:
+		if slot != null and not slot.is_queued_for_deletion():
 			slot.call_drop()
 			slot.set_multiplayer_authority(1)
 			

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dptlmhfegh2y2"]
+[gd_scene load_steps=13 format=4 uid="uid://dgve8sg6don5a"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/map_2.gd" id="1_i38ol"]
 [ext_resource type="Texture2D" uid="uid://bkjnpo24brtbh" path="res://Assets/Vector/vector_complete.svg" id="2_cvsm6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="7_5koef"]
 [ext_resource type="PackedScene" uid="uid://loey4c42d453" path="res://Components/EntitySpawner/WeaponSpawner.tscn" id="7_hb1cl"]
 [ext_resource type="PackedScene" uid="uid://derfnsuaimarv" path="res://Components/EntitySpawner/TetramonoSpawner.tscn" id="8_4j77c"]
+[ext_resource type="PackedScene" uid="uid://bcbma4losr4xm" path="res://Entities/Guns/TshirtCannon/TshirtCannon.tscn" id="8_dimto"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_68a15"]
 
@@ -567,28 +568,11 @@ position = Vector2(1, 1)
 [node name="TetraminoGroup" type="Node2D" parent="."]
 position = Vector2(1, 3)
 
-[node name="BulletMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
-spawn_path = NodePath("../BulletsGroup")
-spawn_limit = 10000
-
-[node name="TertraminoMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
-spawn_limit = 10000
-
-[node name="ItemMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Entities/Guns/Pistol/BadPistol.tscn", "res://Entities/Guns/Pistol/Pistol.tscn", "res://Entities/Guns/assault_rifle.tscn", "res://Entities/Guns/shotgun.tscn")
-spawn_limit = 10000
-
 [node name="Spawners" type="Node2D" parent="."]
 position = Vector2(-13, -440)
 
 [node name="TetraminoSpawner" parent="Spawners" instance=ExtResource("8_4j77c")]
 position = Vector2(12, -748)
-weights = Array[int]([1, 1, 1, 1, 1, 1, 1])
-
-[node name="TetraminoSpawner2" parent="Spawners" instance=ExtResource("8_4j77c")]
-position = Vector2(-1074, 284)
 weights = Array[int]([1, 1, 1, 1, 1, 1, 1])
 
 [node name="WeaponSpawner3" parent="Spawners" instance=ExtResource("7_hb1cl")]
@@ -607,7 +591,7 @@ position = Vector2(9, -108)
 position = Vector2(9, 146)
 
 [node name="WeaponSpawner6" parent="Spawners" instance=ExtResource("7_hb1cl")]
-position = Vector2(9, 146)
+position = Vector2(-996, 305)
 
 [node name="Death" type="Area2D" parent="."]
 position = Vector2(-922, 954)
@@ -618,3 +602,6 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
 position = Vector2(1105.5, -14)
 shape = SubResource("RectangleShape2D_53iov")
+
+[node name="TshirtCannon" parent="." instance=ExtResource("8_dimto")]
+position = Vector2(-1086, -59)

@@ -1,8 +1,8 @@
 extends BaseItem
 class_name Gun
 
-@export var bulletScene = load("res://Entities/Guns/bullet.tscn")
-@export var casingScene = load("res://Entities/Guns/casing.tscn")
+@export var bulletScene = load("res://Entities/Guns/Projectiles/bullet.gd")
+@export var casingScene: PackedScene
 
 @export var bulletSpeed = 1000
 
@@ -117,7 +117,6 @@ func _reaload_animation():
 func shoot(seed: int):
 	
 	var bullet: Node2D
-	var casing = casingScene.instantiate()
 	if $AnimatedSprite2D.is_playing():
 		$AnimatedSprite2D.stop()
 		
@@ -127,7 +126,7 @@ func shoot(seed: int):
 		bullet = bulletScene.instantiate()
 		bullet.set_multiplayer_authority(get_multiplayer_authority())
 		GameManager.map.bullet_group.add_child(bullet, true)
-		print(bullet.get_path(), multiplayer.is_server(), bullet.get_multiplayer_authority())
+		bullet.hitbox.set_damage(bulletDamage)
 		
 		var random = rng.randi_range(-100, 100) * bulletSpread / 1000	
 		if bulletAmount == 1:
@@ -139,13 +138,14 @@ func shoot(seed: int):
 			
 		bullet.position = $Barrel.global_position
 		bullet.linear_velocity = bullet.transform.x * bulletSpeed
-		bullet.hitbox.set_damage(bulletDamage)
 
 	$AnimatedSprite2D.play("Fire")
-	GameManager.map.add_child(casing)
-	casing.rotation = $Eject.global_rotation + randf_range(-0.25, 0)
-	casing.position = $Eject.global_position
-	casing.linear_velocity = casing.transform.y * -150
+	if casingScene:
+		var casing = casingScene.instantiate()
+		GameManager.map.add_child(casing)
+		casing.rotation = $Eject.global_rotation + randf_range(-0.25, 0)
+		casing.position = $Eject.global_position
+		casing.linear_velocity = casing.transform.y * -150
 	timeSinceFired = 0
 	currentAmmo -= 1
 	currentRecoil = clamp(currentRecoil + recoilIncrement, 0.0, maxRecoil)

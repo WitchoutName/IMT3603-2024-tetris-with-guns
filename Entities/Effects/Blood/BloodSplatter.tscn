@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://nkpxdrf303ry"]
+
+[ext_resource type="Script" path="res://Entities/Effects/Blood/blood_splatter.gd" id="1_31esh"]
+
+[sub_resource type="Curve" id="Curve_6rr14"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.842988, 1), 0.0, 0.0, 0, 0, Vector2(0.885671, 0), 0.0, 0.0, 0, 0, Vector2(0.989329, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_hqc8c"]
+colors = PackedColorArray(0.372549, 0, 0, 0.952941, 0.882353, 0, 0.152941, 0.870588)
+
+[node name="BloodSplatter" type="CPUParticles2D"]
+position = Vector2(-54, 0)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+speed_scale = 5.47
+explosiveness = 1.0
+randomness = 1.0
+local_coords = true
+spread = 10.66
+gravity = Vector2(0, 0)
+initial_velocity_min = 331.4
+initial_velocity_max = 412.79
+scale_amount_min = 4.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_6rr14")
+color_ramp = SubResource("Gradient_hqc8c")
+script = ExtResource("1_31esh")

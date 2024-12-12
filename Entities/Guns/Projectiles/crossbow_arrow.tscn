@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cond24l6hag1p"]
+
+[ext_resource type="PackedScene" uid="uid://bykosir8bm52c" path="res://Entities/Guns/Projectiles/bullet.tscn" id="1_mi2yd"]
+[ext_resource type="Texture2D" uid="uid://hemjuof0ui07" path="res://Assets/GunAssets/minecraft_arrow-removebg-preview.png" id="2_6cug8"]
+[ext_resource type="Script" path="res://Entities/Guns/Projectiles/crossbow_arrow.gd" id="2_adcxj"]
+[ext_resource type="PackedScene" uid="uid://bgy1uxpbmf7es" path="res://Entities/Player/Bleeding/Bleeding.tscn" id="3_adoh0"]
+
+[node name="Crossbow_arrow" instance=ExtResource("1_mi2yd")]
+script = ExtResource("2_adcxj")
+bleeding_scene = ExtResource("3_adoh0")
+blood_splatter = null
+
+[node name="MinecraftArrow-removebg-preview" type="Sprite2D" parent="." index="0"]
+position = Vector2(-19, 1)
+rotation = 0.781907
+scale = Vector2(0.0923913, 0.0923913)
+texture = ExtResource("2_6cug8")
+
+[node name="Sprite2D" parent="." index="1"]
+visible = false

@@ -34,8 +34,8 @@ func get_references():
 	
 	#Connecting player signals to health
 	player.health.connect("health_changed", Callable(self, "_on_health_change"))
-	player.health.connect("death", Callable(self, "_on_health_change"))
-	player.connect("respawned", Callable(self, "_on_health_change"))
+	player.health.connect("death", func(): _on_health_change(0))
+	#player.connect("respawned", Callable(self, "_on_health_change"))
 	player.inventory.slot_change.connect(_on_inventory_slot_change)
 	player.inventory.slot_state_change.connect(_on_inventory_slot_state_change)
 	GameManager.map.teams[0].tower.progress_change.connect(func(x: float): update_team_score("blue", x))
@@ -70,7 +70,7 @@ func update_timer(time_left: int):
 	if timer_label != null:
 		timer_label.text = "%02d:%02d" % [minutes, seconds]
 
-func _on_health_change():
+func _on_health_change(h):
 	if health != null:
 		update_health(health.get_current_health())
 

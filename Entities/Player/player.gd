@@ -17,6 +17,8 @@ var last_direction = Vector2.RIGHT
 
 #mechanics
 var can_dash = true
+var effects: Array[Node2D] = []
+var can_suicide: bool = true
 
 #tetris
 var tower: Tower2
@@ -34,9 +36,13 @@ var prev_state = null
 #nodes
 @onready var STATES = $STATES
 @onready var Raycasts = $Raycasts
-@onready var health = $Health
+@onready var health: Health = $Health
+@onready var health_bar: ProgressBar = $HealthBar
 @onready var inventory: Inventory = $Inventory
 @onready var Camera: Camera2D = $Camera2D
+@onready var EffectsGroup: Node2D = $EffectsGroup
+@onready var Username: Label = $Username
+
 
 #Respawn handling
 const RESPAWN_TIME = 5
@@ -47,6 +53,8 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
+	health.set_multiplayer_authority(1)
+	health_bar.set_multiplayer_authority(1)
 	for state in STATES.get_children():
 		state.STATES = STATES
 		state.Player = self
@@ -71,15 +79,12 @@ func _physics_process(delta):
 			$AnimatedSprite2D.visible = false
 
 func _handle_tower_input():
-	if tower and tower.active_piece:
+	if tower:
 		if Input.is_action_just_pressed("tower_move_left"):
-			print("calling moveleft")
 			tower.ap_move_left.rpc_id(1)
 		if Input.is_action_just_pressed("tower_move_right"):
-			print("calling move right")
 			tower.ap_move_right.rpc_id(1)
 		if Input.is_action_just_pressed("tower_rotate"):
-			print("calling roatate")
 			tower.ap_rotate.rpc_id(1)
 
 func gravity(delta):
@@ -136,10 +141,20 @@ func player_input():
 		dash_input = true
 	else: 
 		dash_input = false 
+		
+
+	if Input.is_action_just_pressed("Suicide") and can_suicide:
+		health.take_damage(999)
 
 func _on_health_death():
 	inventory.unequip_everything()
 	spawned = false
+	for effect in effects:
+		if effect != null:
+			effect.queue_free()
+	for effect in EffectsGroup.get_children():
+		if effect != null:
+			effect.queue_free()
 
 func spawn():
 	spawned = true
@@ -147,9 +162,11 @@ func spawn():
 func respawn():
 	if not should_respawn:
 		return
+	hide()
 	#Wait five seconds
 	await get_tree().create_timer(5).timeout
 	health.set_health(health.max_health)
+	show()
 	spawn()
 
 func equip_gun(gun):
@@ -162,3 +179,16 @@ func unequip_gun():
 	pass
 	#equiped_gun.set_multiplayer_authority(1)
 	#equiped_gun = null
+
+
+func create_wound(bullet: Bullet):
+	var splatter_scene: PackedScene = bullet.blood_splatter
+	var location: Vector2 = bullet.collision_pos
+	var _rotation: float = bullet.collision_rot
+	if splatter_scene:
+		var splatter: CPUParticles2D = splatter_scene.instantiate()
+		add_child(splatter)
+		splatter.position = to_local(location)
+		splatter.rotate(_rotation)
+		splatter.emitting = true
+		print(_rotation, to_local(location), location)
