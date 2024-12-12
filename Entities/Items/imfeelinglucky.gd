@@ -29,7 +29,7 @@ func spawn_weapon(index):
 	if index == (len(weapons) + 2): #Damage
 		player.health.take_damage(35)
 	if index == (len(weapons) + 3): #Teleports to random player
-		player.global_poisition = get_random_player_pos()
+		player.global_position = get_random_player_pos()
 	
 	#Nothing
 	

@@ -24,10 +24,10 @@ func _on_interact(interacted_player: Player):
 	player = interacted_player
 	player.health.connect("death", Callable(self, "call_drop")) #Connecting drop to death signal
 	active = true
-	player.inventory.equip_item(self)
 	sprite.hide()
 	interaction_area.enabled = false 
 	interaction_area.force_remove() #We have to force remove it from the manager
+	player.inventory.equip_item(self)
 
 func _clone_custom(dupe):
 	dupe.call_deferred("_hide")
