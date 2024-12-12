@@ -19,7 +19,7 @@ var complete = {
 func _ready():
 	player = GameManager.my_player
 	if player:
-		player.connect("death", Callable(self, "_on_player_death"))
+		player.health.connect("death", Callable(self, "_on_player_death"))
 		get_tree().create_timer(time_to_complete).connect("timeout", Callable(self, "_on_time_end"))
 		player.can_suicide = false
 		P.modulate.a = 0.5

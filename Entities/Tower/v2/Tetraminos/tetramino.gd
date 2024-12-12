@@ -84,11 +84,15 @@ func _set__player(value: Player):
 
 	
 func _on_interact(_player: Player):
-	if tower: 
-		tower.steal(self)
-		
 	if is_picked_up:
 		release()
+	
+	if !_player.can_interact:
+		return
+	
+	if tower: 
+		tower.steal(self)
+
 	else: 
 		attach(_player)
 		#This is for spawning pieces

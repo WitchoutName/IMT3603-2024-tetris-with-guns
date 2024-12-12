@@ -115,7 +115,10 @@ func _reaload_animation():
 
 @rpc("any_peer", "call_local")
 func shoot(seed: int):
-	
+	if !player.can_shoot:
+		return
+
+
 	var bullet: Node2D
 	if $AnimatedSprite2D.is_playing():
 		$AnimatedSprite2D.stop()

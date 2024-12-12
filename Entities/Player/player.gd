@@ -20,6 +20,8 @@ var can_dash = true
 var effects: Array[Effect] = []
 var can_suicide: bool = true
 var invis = false
+var can_shoot = true
+var can_interact = true
 
 #tetris
 var tower: Tower2

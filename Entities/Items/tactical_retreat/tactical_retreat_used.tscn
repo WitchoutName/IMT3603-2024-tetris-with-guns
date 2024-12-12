@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxdoc5hoau32p"]
+
+[ext_resource type="Script" path="res://Entities/Items/tactical_retreat/tactical_retreat_used.gd" id="1_jfr10"]
+[ext_resource type="Texture2D" uid="uid://ca7bkpiay5p23" path="res://Assets/ItemAssets/truce_flag.png" id="2_svnbn"]
+
+[node name="TacticalRetreatUsed" type="Node2D"]
+z_index = -1
+script = ExtResource("1_jfr10")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_svnbn")

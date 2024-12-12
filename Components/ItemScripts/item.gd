@@ -20,6 +20,9 @@ func _input(event):
 
 #On player interaction
 func _on_interact(interacted_player: Player):
+	if !interacted_player.can_interact:
+		return
+	
 	destructionTimer.stop()
 	set_multiplayer_authority(interacted_player.player_peer.id)
 	player = interacted_player
