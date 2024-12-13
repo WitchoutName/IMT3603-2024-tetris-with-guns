@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://xdw8ei5us03r" path="res://Entities/Guns/Pistol/BadPistol.tscn" id="2_hew55"]
 [ext_resource type="Texture2D" uid="uid://wmh4spdlq5fj" path="res://Assets/Spawner/spawner.webp" id="2_pde0s"]
 [ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol/Pistol.tscn" id="3_5nu36"]
-[ext_resource type="PackedScene" uid="uid://ba7jl2dq2bfc4" path="res://Entities/Guns/assault_rifle.tscn" id="4_fsus8"]
-[ext_resource type="PackedScene" uid="uid://djjs5uqduv8ij" path="res://Entities/Guns/shotgun.tscn" id="5_vjlc5"]
+[ext_resource type="PackedScene" uid="uid://ba7jl2dq2bfc4" path="res://Entities/Guns/AssaultRifle/assault_rifle.tscn" id="4_fsus8"]
+[ext_resource type="PackedScene" uid="uid://djjs5uqduv8ij" path="res://Entities/Guns/Shotgun/shotgun.tscn" id="5_vjlc5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfyqv"]
 size = Vector2(47, 46)

@@ -1,23 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0w3c6u7dxcsq"]
+[gd_scene load_steps=8 format=3 uid="uid://clv3ue6mqmcmx"]
 
-[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_2n5i8"]
-[ext_resource type="Texture2D" uid="uid://cok7kwgrrbk7i" path="res://Assets/GunAssets/smg.png" id="2_utavp"]
-[ext_resource type="PackedScene" uid="uid://bpuetai3ji2i1" path="res://Entities/Guns/SmgPreview.tscn" id="2_w78pd"]
-[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_xw2wg"]
+[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_oq4i5"]
+[ext_resource type="PackedScene" uid="uid://c1o18qetfne14" path="res://Entities/Guns/AutoShotgun/AutoShotgunPreview.tscn" id="2_81ucn"]
+[ext_resource type="Texture2D" uid="uid://ltm1llnopv61" path="res://Assets/GunAssets/auto_shotgun.png" id="3_c1bij"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="4_mao4q"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r2d48"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_utavp")
+"texture": ExtResource("3_c1bij")
 }],
-"loop": false,
-"name": &"Default",
+"loop": true,
+"name": &"Fire",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f75oi"]
-radius = 65.0286
+radius = 59.0085
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tvqak"]
 properties/0/path = NodePath(".:position")
@@ -36,40 +36,37 @@ properties/4/path = NodePath("AnimatedSprite2D:animation")
 properties/4/spawn = true
 properties/4/replication_mode = 2
 
-[node name="Smg" type="Node2D" groups=["one-handed"]]
-script = ExtResource("1_2n5i8")
-bps = 13.0
-bulletDamage = 5
-bulletSpread = 0.1
-magSize = 30
-ammoReserve = 90
-reloadInterval = 0.8
+[node name="Shotgun" type="Node2D" groups=["two-handed"]]
+script = ExtResource("1_oq4i5")
+bulletSpeed = 800
+bulletDamage = 16
+bulletSpread = 0.8
+magSize = 20
+ammoReserve = 60
+bulletAmount = 5
+arc = 7.0
 fullAuto = true
-Preview = ExtResource("2_w78pd")
+Preview = ExtResource("2_81ucn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-13.1471, -4.63235)
-scale = Vector2(1.44118, 1.44118)
+position = Vector2(6.5, -7.5)
 sprite_frames = SubResource("SpriteFrames_r2d48")
-animation = &"Default"
-autoplay = "Default"
+animation = &"Fire"
 offset = Vector2(11, 2)
 
 [node name="Barrel" type="Node2D" parent="."]
-position = Vector2(35, -9)
+position = Vector2(72, -13)
 
 [node name="Eject" type="Node2D" parent="."]
-position = Vector2(8, -9)
+position = Vector2(14, -13)
 
 [node name="InteractionArea" type="Area2D" parent="."]
-position = Vector2(-18, 0)
+position = Vector2(16, -8.5)
 collision_layer = 0
 collision_mask = 16252929
-script = ExtResource("3_xw2wg")
+script = ExtResource("4_mao4q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(19.5, -5)
-scale = Vector2(0.59, 0.59)
 shape = SubResource("CircleShape2D_f75oi")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
