@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd17u83vd0050"]
+
+[ext_resource type="Texture2D" uid="uid://dvt5d2hb3ea8c" path="res://Assets/MeleeAssets/shield/shield.png" id="1_rf5hk"]
+
+[node name="ShieldPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_rf5hk")

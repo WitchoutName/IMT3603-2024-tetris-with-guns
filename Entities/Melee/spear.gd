@@ -8,7 +8,7 @@ var fly = false
 var fly_vel:Vector2
 var gravity = Vector2(0, 500)
 
-func _process(delta):
+func _process(_delta):
 	if not is_multiplayer_authority(): return
 	
 	if active && not fly:
@@ -22,7 +22,7 @@ func _shoot(direction):
 	fly = true
 	player.inventory.clear_slot_right()
 	_active_unequip.rpc()
-	hitbox.set_damage(50)
+	hitbox.set_damage(70)
 	tipcol.monitoring = true
 	tipcol.monitorable = true
 
@@ -36,20 +36,17 @@ func _physics_process(delta):
 	if fly_vel.length() > 0:
 		rotation = fly_vel.angle()
 
-func _on_interact(interacted_player: Player):
-	super._on_interact(interacted_player)
+func _apply_properties():
 	#Moving the spear sprite so that it follows the mouse
 	sprite.rotation = deg_to_rad(45)
 	#Activating hitbox
 	hitbox.monitoring = true
 	hitbox.monitorable = true
 
-@rpc("authority", "call_local")
-func _drop():
-	super._drop()
+func _reset_properties():
 	hitbox.monitoring = false
 	hitbox.monitorable = false
 	sprite.rotation = deg_to_rad(-45)
 
-func _on_tip_collision_body_entered(body):
+func _on_tip_collision_body_entered(_body):
 	queue_free()

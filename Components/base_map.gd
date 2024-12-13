@@ -2,10 +2,12 @@ extends Node2D
 class_name BaseMap
 
 var teams: Array[Team]
+@export var team_colors: Array[Color] = [Color.MEDIUM_BLUE, Color.RED, Color.YELLOW, Color.WEB_GREEN]
 @onready var bullet_group: Node2D = $BulletsGroup
 @onready var player_group: Node2D = $PlayersGroup
 @onready var item_group: Node2D = $ItemsGroup
 @onready var tetramino_group: Node2D = $TetraminoGroup
+@onready var HUD: Node2D = $HUD
 signal map_setup_finished
 
 var SPAWN_POINT = preload("res://Entities/Player/SpawnPoint/spawn_point.tscn")
@@ -31,6 +33,7 @@ func init() -> void:
 		player.global_position = team.spawn_point.global_position
 		team.spawn_point.add_child(spawn_point)
 		spawn_point.assign_player(player)
+		player.health_bar.modulate = team_colors[player_peer.team-1]
 
 		player.collision_layer = int(pow(2, 20+player_peer.team-1))
 		player.collision_mask = 1
@@ -42,6 +45,7 @@ func init() -> void:
 			InteractionManager.player = player
 		else:
 			player.Camera.queue_free()
+			player.AudioListener.queue_free()
 		
 		#player.synchroniser.set_multiplayer_authority(player_peer.id)
 	map_setup_finished.emit()

@@ -34,8 +34,8 @@ func get_references():
 	
 	#Connecting player signals to health
 	player.health.connect("health_changed", Callable(self, "_on_health_change"))
-	player.health.connect("death", Callable(self, "_on_health_change"))
-	player.connect("respawned", Callable(self, "_on_health_change"))
+	player.health.connect("death", func(): _on_health_change(0))
+	#player.connect("respawned", Callable(self, "_on_health_change"))
 	player.inventory.slot_change.connect(_on_inventory_slot_change)
 	player.inventory.slot_state_change.connect(_on_inventory_slot_state_change)
 	GameManager.map.teams[0].tower.progress_change.connect(func(x: float): update_team_score("blue", x))
@@ -70,7 +70,7 @@ func update_timer(time_left: int):
 	if timer_label != null:
 		timer_label.text = "%02d:%02d" % [minutes, seconds]
 
-func _on_health_change():
+func _on_health_change(h):
 	if health != null:
 		update_health(health.get_current_health())
 
@@ -135,15 +135,18 @@ func _on_inventory_slot_change(slot: Inventory.ItemSlot):
 		Inventory.ItemSlot.RIGHT_HAND:
 			$Display/Inventory/Hands/Hands0.hide()
 			$Display/Inventory/Hands/Hands1.hide()
-			$Display/Inventory/Hands/Hands2.show()			
+			$Display/Inventory/Hands/Hands2.show()
+			$Display/Inventory/Hands/Hands3.hide()			
 		Inventory.ItemSlot.LEFT_HAND:
 			$Display/Inventory/Hands/Hands0.hide()
 			$Display/Inventory/Hands/Hands1.show()
 			$Display/Inventory/Hands/Hands2.hide()
+			$Display/Inventory/Hands/Hands3.hide()
 		Inventory.ItemSlot.ITEM_SLOT:
-			$Display/Inventory/Hands/Hands0.show()
+			$Display/Inventory/Hands/Hands0.hide()
 			$Display/Inventory/Hands/Hands1.hide()
 			$Display/Inventory/Hands/Hands2.hide()
+			$Display/Inventory/Hands/Hands3.show()
 
 func _update_slot_preview(slot: Control, item: BaseItem):
 	for child in slot.get_children():
@@ -167,15 +170,18 @@ func _on_inventory_slot_state_change(slot: Inventory.ItemSlot, item: BaseItem):
 		_update_slot_preview($Display/Inventory/Slots/Dual, item)
 		has_two_handed_item = true
 		return
-		
+	
+	if item and item.is_in_group("item"):
+		_update_slot_preview($Display/Inventory/Slots/ItemHand, item)
+		return
+
 	match slot:
 		Inventory.ItemSlot.RIGHT_HAND:
 			_update_slot_preview($Display/Inventory/Slots/RightHand, item)
 		Inventory.ItemSlot.LEFT_HAND:
 			_update_slot_preview($Display/Inventory/Slots/LeftHand, item)
 		Inventory.ItemSlot.ITEM_SLOT:
-			pass
-			_update_slot_preview($Display/Inventory/Slots/RightHand, item)
+			_update_slot_preview($Display/Inventory/Slots/ItemHand, item)
 
 # Function to handle updates based on game state (e.g. health decrease, ammo usage)
 func _process(delta):

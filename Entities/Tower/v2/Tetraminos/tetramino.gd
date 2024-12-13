@@ -6,7 +6,7 @@ signal picked_up
 
 # RigidBody mode
 @onready var interaction_area: InteractionArea = $InteractionArea
-var is_picked_up: bool = false
+@export var is_picked_up: bool = false
 var player: Player:
 	set = _set__player
 var tower: Tower2:
@@ -84,11 +84,15 @@ func _set__player(value: Player):
 
 	
 func _on_interact(_player: Player):
+	if is_picked_up:
+		release()
+	
+	if !_player.can_interact:
+		return
+	
 	if tower: 
 		tower.steal(self)
-		
-	if player:
-		release()
+
 	else: 
 		attach(_player)
 		#This is for spawning pieces
@@ -116,7 +120,7 @@ func release():
 	if player:
 		$CollisionPolygon2D.disabled = false
 		player.piece_catied = null
-		is_picked_up = true
+		is_picked_up = false
 		player = null
 		is_tetris_mode = false
 		
@@ -124,7 +128,6 @@ func release():
 
 func _set__tower(value: Tower2):
 	if not value:
-		print(self)
 		for piece in data.pieces_above:
 			piece.data.pieces_below.erase(self)
 			if len(piece.data.pieces_below) == 0:

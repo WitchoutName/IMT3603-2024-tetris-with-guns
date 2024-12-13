@@ -47,8 +47,8 @@ func spawn_logic():
 
 func spawn():
 	if multiplayer.is_server():
-		var index = RandomNumberGenerator.new().randi_range(0, len(weighted_entities)-1)
-		print(len(weighted_entities)-1, index)
+		var w_index = RandomNumberGenerator.new().randi_range(0, len(weighted_entities)-1)
+		var index = entities.find(weighted_entities[w_index])
 		var id = RandomNumberGenerator.new().randi_range(100000000, 999999999)	
 		_sync_spawn.rpc(index, id)
 			

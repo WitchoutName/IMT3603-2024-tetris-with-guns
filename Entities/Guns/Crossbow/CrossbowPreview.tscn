@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca2sg2llkbdjm"]
+
+[ext_resource type="Texture2D" uid="uid://csytpvpchpf46" path="res://Assets/GunAssets/crossbow.png" id="1_7p2l1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_feoyt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7p2l1")
+}],
+"loop": true,
+"name": &"Fire",
+"speed": 5.0
+}]
+
+[node name="PistolPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(13, -3)
+rotation = 0.781907
+scale = Vector2(3.214, 3.214)
+sprite_frames = SubResource("SpriteFrames_feoyt")
+animation = &"Fire"
+offset = Vector2(1.53, 1.625)

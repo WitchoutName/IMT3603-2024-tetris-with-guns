@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyodkx7sh128e"]
+
+[ext_resource type="Script" path="res://Entities/Items/TeaServant/tea_servant.gd" id="1_705vi"]
+[ext_resource type="PackedScene" uid="uid://8lrxjxsgmf03" path="res://Entities/Effects/TeaServant/tea_servant_wearable.tscn" id="2_dgbsc"]
+[ext_resource type="PackedScene" uid="uid://dcik88mcjabyp" path="res://Entities/Items/TeaServant/tea_servant_preview.tscn" id="3_wucuo"]
+[ext_resource type="Texture2D" uid="uid://pl8xmet17ddc" path="res://Assets/ItemAssets/TeaTime/servant.png" id="4_qaq51"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="5_wjeng"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nvi1s"]
+radius = 59.0
+
+[node name="TeaServant" type="Node2D" groups=["item"]]
+script = ExtResource("1_705vi")
+effect_scene = ExtResource("2_dgbsc")
+Preview = ExtResource("3_wucuo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_qaq51")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 16252929
+script = ExtResource("5_wjeng")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_nvi1s")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

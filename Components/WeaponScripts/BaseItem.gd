@@ -24,8 +24,6 @@ func init():
 func _ready() -> void:
 	interaction_area.interact = Callable(self, "_on_interact")
 	start_orientation = rotation
-	interaction_area.interact = Callable(self, "_on_interact")
-	start_orientation = rotation
 	add_child(destructionTimer)
 	destructionTimer.timeout.connect(_on_destruction_timer_timeout)
 	init()
@@ -56,7 +54,6 @@ func change_parent(location: Node2D = null):
 		dupe.interaction_area.enabled = interaction_area.enabled 
 		interaction_area.force_remove() #We have to force remove it from the manager
 	else:
-		var root = get_tree().root
 		GameManager.map.item_group.add_child(dupe)
 		dupe.name = name
 		dupe.position = global_position
@@ -70,6 +67,9 @@ func change_parent(location: Node2D = null):
 
 #On player interaction
 func _on_interact(interacted_player: Player):
+	if !interacted_player.can_interact:
+		return
+	
 	destructionTimer.stop()
 	if GameManager.my_player.player_peer.id == 1:
 		print("host setting multiplayer authority", interacted_player.player_peer.id)

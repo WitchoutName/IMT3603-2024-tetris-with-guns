@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://biaggj5nvvbn"]
+[gd_scene load_steps=3 format=3 uid="uid://biaggj5nvvbn"]
 
 [ext_resource type="Script" path="res://Components/Health/health.gd" id="1_10okf"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7oaw0"]
+properties/0/path = NodePath(".:health")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="Health" type="Node"]
 script = ExtResource("1_10okf")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_7oaw0")
+
+[connection signal="synchronized" from="MultiplayerSynchronizer" to="." method="_on_multiplayer_synchronizer_synchronized"]

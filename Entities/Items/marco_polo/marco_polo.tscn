@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://mph0nr6cmpab"]
+
+[ext_resource type="Script" path="res://Entities/Items/marco_polo/marco_polo.gd" id="1_ydewf"]
+[ext_resource type="PackedScene" uid="uid://euxce0el1chv" path="res://Entities/Items/marco_polo/marco_polo_preview.tscn" id="2_n7mvn"]
+[ext_resource type="Texture2D" uid="uid://d1nws0quobe24" path="res://Assets/ItemAssets/marco.png" id="2_wo82y"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_3y74q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r3n8g"]
+radius = 72.111
+
+[node name="MarcoPolo" type="Node2D" groups=["item"]]
+script = ExtResource("1_ydewf")
+Preview = ExtResource("2_n7mvn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_wo82y")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 16252929
+script = ExtResource("3_3y74q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_r3n8g")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

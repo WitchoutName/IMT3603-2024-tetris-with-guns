@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://djjs5uqduv8ij"]
+[gd_scene load_steps=10 format=3 uid="uid://djjs5uqduv8ij"]
 
 [ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_h0sph"]
 [ext_resource type="Texture2D" uid="uid://dkag2wy4qhxsm" path="res://Assets/GunAssets/shotgun.png" id="2_2yykd"]
 [ext_resource type="PackedScene" uid="uid://co1ly1lq3npki" path="res://Entities/Guns/ShotgunPreview.tscn" id="2_4u8md"]
+[ext_resource type="PackedScene" uid="uid://bykosir8bm52c" path="res://Entities/Guns/Projectiles/bullet.tscn" id="2_ijhf7"]
+[ext_resource type="PackedScene" uid="uid://bpn3shiiv2u8l" path="res://Entities/Guns/casing.tscn" id="3_p7y1j"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_t2dhk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r2d48"]
@@ -38,6 +40,8 @@ properties/4/replication_mode = 2
 
 [node name="Shotgun" type="Node2D" groups=["two-handed"]]
 script = ExtResource("1_h0sph")
+bulletScene = ExtResource("2_ijhf7")
+casingScene = ExtResource("3_p7y1j")
 bulletSpeed = 800
 bps = 2.0
 bulletDamage = 16

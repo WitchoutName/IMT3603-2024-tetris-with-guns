@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://bneov2hp4sla3"]
+
+[ext_resource type="Script" path="res://Entities/Items/holy_bible/holy_bible.gd" id="1_2h6vt"]
+[ext_resource type="Texture2D" uid="uid://dfdp2sf3am57n" path="res://Assets/ItemAssets/books_byBatuhan.png" id="2_bab73"]
+[ext_resource type="PackedScene" uid="uid://c456ff71jnda7" path="res://Entities/Items/holy_bible/healing_zone_placed.tscn" id="2_j40d1"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_kvlt3"]
+[ext_resource type="PackedScene" uid="uid://daaddpky1j74i" path="res://Entities/Items/holy_bible/holy_bible_preview.tscn" id="3_t1h51"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yc4ps"]
+radius = 72.111
+
+[node name="HolyBible" type="Node2D" groups=["item"]]
+script = ExtResource("1_2h6vt")
+healing_zone = ExtResource("2_j40d1")
+Preview = ExtResource("3_t1h51")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_bab73")
+region_enabled = true
+region_rect = Rect2(326.441, 3.55285, 19.9359, 27.8734)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 16252929
+script = ExtResource("3_kvlt3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_yc4ps")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

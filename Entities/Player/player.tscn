@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ccqcnw8132xn3"]
+[gd_scene load_steps=25 format=3 uid="uid://ccqcnw8132xn3"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_6ark4"]
 [ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_qk4a2"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://caiga5uv5evtk" path="res://Entities/Player/DASH.tscn" id="13_gbmsj"]
 [ext_resource type="Script" path="res://Entities/Player/SLIDE.gd" id="13_w270y"]
 [ext_resource type="PackedScene" uid="uid://ct16ftajdtqby" path="res://Entities/Player/SLIDE.tscn" id="14_o0klo"]
+[ext_resource type="PackedScene" uid="uid://bd7l3x8sgu4wc" path="res://Components/Health/health_bar.tscn" id="14_veipe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_io1p0"]
 atlas = ExtResource("3_dasr1")
@@ -67,24 +68,33 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3eljs"]
 height = 54.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_uxlqq"]
+font_size = 14
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g1lb6"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 2
-
-[sub_resource type="LabelSettings" id="LabelSettings_uxlqq"]
-font_size = 14
+properties/1/path = NodePath("Inventory:current_slot")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath("HealthBar:value")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" groups=["players"]]
 script = ExtResource("1_6ark4")
 SPEED = 600.0
 
-[node name="Health" parent="." instance=ExtResource("2_qk4a2")]
+[node name="Health" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_qk4a2")]
+health_bar = NodePath("../HealthBar")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1.935, -3.28)
 sprite_frames = SubResource("SpriteFrames_pwkaw")
 animation = &"Idle"
+
+[node name="EffectsGroup" type="Node2D" parent="."]
 
 [node name="Inventory" type="Node2D" parent="."]
 script = ExtResource("3_tef5q")
@@ -110,6 +120,9 @@ shape = SubResource("CapsuleShape2D_3eljs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
 
 [node name="STATES" type="Node2D" parent="."]
 script = ExtResource("5_4wxoe")
@@ -153,8 +166,7 @@ rotation = 1.0472
 target_position = Vector2(-1.99999, 3.4641)
 hit_from_inside = true
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_g1lb6")
+[node name="HealthBar" parent="." instance=ExtResource("14_veipe")]
 
 [node name="Username" type="Label" parent="."]
 offset_left = -46.0
@@ -165,5 +177,8 @@ text = "username"
 label_settings = SubResource("LabelSettings_uxlqq")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_g1lb6")
 
 [connection signal="death" from="Health" to="." method="_on_health_death"]

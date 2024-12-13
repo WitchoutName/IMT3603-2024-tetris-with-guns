@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://0n2cx18ofc3y"]
+
+[ext_resource type="Script" path="res://Entities/Items/portable_barrier_object/placed_barrier_object.gd" id="1_q7d8s"]
+[ext_resource type="Script" path="res://Components/Health/health.gd" id="2_6k1eh"]
+[ext_resource type="Texture2D" uid="uid://dhnrvkhryag64" path="res://Assets/ItemAssets/barrier.png" id="3_hijur"]
+[ext_resource type="Script" path="res://Components/Boxes/hurtbox.gd" id="4_7bni4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0oi08"]
+size = Vector2(12, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q45mb"]
+size = Vector2(26, 93)
+
+[node name="PlacedBarrierObject" type="RigidBody2D"]
+script = ExtResource("1_q7d8s")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_6k1eh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = ExtResource("3_hijur")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_0oi08")
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("4_7bni4")
+health = NodePath("../Health")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_q45mb")
+
+[connection signal="death" from="Health" to="." method="_on_health_death"]

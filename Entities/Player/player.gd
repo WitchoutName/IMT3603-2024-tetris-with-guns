@@ -17,6 +17,11 @@ var last_direction = Vector2.RIGHT
 
 #mechanics
 var can_dash = true
+var effects: Array[Effect] = []
+var can_suicide: bool = true
+var invis = false
+var can_shoot = true
+var can_interact = true
 
 #tetris
 var tower: Tower2
@@ -34,19 +39,27 @@ var prev_state = null
 #nodes
 @onready var STATES = $STATES
 @onready var Raycasts = $Raycasts
-@onready var health = $Health
+@onready var health: Health = $Health
+@onready var health_bar: ProgressBar = $HealthBar
 @onready var inventory: Inventory = $Inventory
 @onready var Camera: Camera2D = $Camera2D
+@onready var AudioListener: AudioListener2D = $AudioListener2D
+@onready var EffectsGroup: Node2D = $EffectsGroup
+@onready var Username: Label = $Username
+@onready var ASprite: AnimatedSprite2D = $AnimatedSprite2D
+
 
 #Respawn handling
 const RESPAWN_TIME = 5
-var spawned = true 
+var is_frosen = false
 var should_respawn = true
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
+	health.set_multiplayer_authority(1)
+	health_bar.set_multiplayer_authority(1)
 	for state in STATES.get_children():
 		state.STATES = STATES
 		state.Player = self
@@ -57,9 +70,9 @@ func _ready():
 
 func _physics_process(delta):
 	if not is_multiplayer_authority() and player_peer: return
-	if spawned:
-		if not $AnimatedSprite2D.visible:
-			$AnimatedSprite2D.visible = true
+	if not is_frosen:
+		if not ASprite.visible and not invis:
+			ASprite.show()
 		if is_controlling_tower: _handle_tower_input()
 		else: player_input()
 	
@@ -67,19 +80,16 @@ func _physics_process(delta):
 		move_and_slide()
 		#default_move(delta)
 	else:
-		if $AnimatedSprite2D.visible:
-			$AnimatedSprite2D.visible = false
+		if ASprite.visible:
+			ASprite.hide()
 
 func _handle_tower_input():
-	if tower and tower.active_piece:
+	if tower:
 		if Input.is_action_just_pressed("tower_move_left"):
-			print("calling moveleft")
 			tower.ap_move_left.rpc_id(1)
 		if Input.is_action_just_pressed("tower_move_right"):
-			print("calling move right")
 			tower.ap_move_right.rpc_id(1)
 		if Input.is_action_just_pressed("tower_rotate"):
-			print("calling roatate")
 			tower.ap_rotate.rpc_id(1)
 
 func gravity(delta):
@@ -136,20 +146,36 @@ func player_input():
 		dash_input = true
 	else: 
 		dash_input = false 
+		
+
+	if Input.is_action_just_pressed("Suicide") and can_suicide:
+		health.take_damage(999)
 
 func _on_health_death():
 	inventory.unequip_everything()
-	spawned = false
+	is_frosen = false
+	for effect in effects:
+		if effect != null:
+			effect.remove()
+			if effect != null:
+				effect.queue_free()
+	for effect in EffectsGroup.get_children():
+		if effect != null:
+			effect.remove()
+			if effect != null:
+				effect.queue_free()
 
 func spawn():
-	spawned = true
+	is_frosen = true
 
 func respawn():
 	if not should_respawn:
 		return
+	hide()
 	#Wait five seconds
 	await get_tree().create_timer(5).timeout
 	health.set_health(health.max_health)
+	show()
 	spawn()
 
 func equip_gun(gun):
@@ -162,3 +188,29 @@ func unequip_gun():
 	pass
 	#equiped_gun.set_multiplayer_authority(1)
 	#equiped_gun = null
+
+
+func create_wound(bullet: Bullet):
+	var splatter_scene: PackedScene = bullet.blood_splatter
+	var location: Vector2 = bullet.collision_pos
+	var _rotation: float = bullet.collision_rot
+	if splatter_scene:
+		var splatter: CPUParticles2D = splatter_scene.instantiate()
+		add_child(splatter)
+		splatter.position = to_local(location)
+		splatter.rotate(_rotation)
+		splatter.emitting = true
+		print(_rotation, to_local(location), location)
+
+func invisibility(length: float):
+	ASprite.hide()
+	Username.hide()
+	health_bar.hide()
+	invis = true
+
+	await get_tree().create_timer(length).timeout
+
+	ASprite.show()
+	Username.show()
+	health_bar.show()
+	invis = false
