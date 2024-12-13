@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://bdneyo7mpey32"]
 
 [ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_xmxuh"]
-[ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/Pistol/gun-sheet.png" id="2_1tu8d"]
+[ext_resource type="Texture2D" uid="uid://cf0cu6mjdhr0q" path="res://Assets/GunAssets/gun-sheet.png" id="2_1tu8d"]
 [ext_resource type="PackedScene" uid="uid://f6rb22migaph" path="res://Entities/Guns/Pistol/PistolPreview.tscn" id="2_l24ge"]
 [ext_resource type="PackedScene" uid="uid://bykosir8bm52c" path="res://Entities/Guns/Projectiles/bullet.tscn" id="2_n78lo"]
 [ext_resource type="PackedScene" uid="uid://bpn3shiiv2u8l" path="res://Entities/Guns/casing.tscn" id="3_7qcyu"]

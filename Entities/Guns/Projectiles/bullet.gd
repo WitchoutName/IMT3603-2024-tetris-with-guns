@@ -5,13 +5,13 @@ class_name Bullet
 @onready var hitbox: HitBox = $HitBox
 @onready var raycast: RayCast2D = $RayCast2D
 @export var blood_splatter: PackedScene
+@export var airTime : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 1
-	await get_tree().create_timer(5.0).timeout
-	queue_free()
+	$Timer.start()
 	
 	
 var collision_rot: float = 0
@@ -32,3 +32,7 @@ var collision_pos : Vector2 = Vector2(0.0, 0.0)
 func _integrate_forces(state : PhysicsDirectBodyState2D) -> void:
 	if state.get_contact_count() > 0:
 		collision_pos = state.get_contact_local_position(0)
+		
+		
+func _on_timer_timeout() -> void:
+	queue_free()

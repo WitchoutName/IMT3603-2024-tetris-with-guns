@@ -1,15 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://fx2rnanndy4t"]
+[gd_scene load_steps=10 format=3 uid="uid://ba7jl2dq2bfc4"]
 
-[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_0wpmv"]
-[ext_resource type="PackedScene" uid="uid://cgyvy0i6eb5f8" path="res://Entities/Guns/SniperPreview.tscn" id="2_aox1g"]
-[ext_resource type="Texture2D" uid="uid://7amiijgpiijf" path="res://Assets/GunAssets/sniper.png" id="3_70j4q"]
-[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="4_1hsdn"]
+[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_j2v1e"]
+[ext_resource type="PackedScene" uid="uid://b1qekx2e3yi7p" path="res://Entities/Guns/AssaultRifle/AssaultRiflePreview.tscn" id="2_3ncyw"]
+[ext_resource type="Texture2D" uid="uid://4rvsov3j3gp5" path="res://Assets/GunAssets/ak.png" id="2_8shol"]
+[ext_resource type="PackedScene" uid="uid://bykosir8bm52c" path="res://Entities/Guns/Projectiles/bullet.tscn" id="2_a5thi"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_ggxhp"]
+[ext_resource type="PackedScene" uid="uid://bpn3shiiv2u8l" path="res://Entities/Guns/casing.tscn" id="3_jr64x"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_02xbq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_70j4q")
+"texture": ExtResource("2_8shol")
 }],
 "loop": true,
 "name": &"Fire",
@@ -17,7 +19,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_76wxr"]
-radius = 66.5
+radius = 59.0085
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_huiqq"]
 properties/0/path = NodePath(".:position")
@@ -36,38 +38,41 @@ properties/4/path = NodePath("AnimatedSprite2D:animation")
 properties/4/spawn = true
 properties/4/replication_mode = 2
 
-[node name="sniper" type="Node2D" groups=["two-handed"]]
-script = ExtResource("1_0wpmv")
-bulletSpeed = 5000
-bps = 12.0
-bulletDamage = 70
+[node name="assault_rifle" type="Node2D" groups=["two-handed"]]
+script = ExtResource("1_j2v1e")
+bulletScene = ExtResource("2_a5thi")
+casingScene = ExtResource("3_jr64x")
+bulletSpeed = 1500
+bps = 10.0
+bulletDamage = 25
 bulletSpread = 0.1
-magSize = 10
-ammoReserve = 30
-maxRecoil = 100.0
+magSize = 20
+ammoReserve = 40
+reloadInterval = 0.8
 arc = 31.836
-Preview = ExtResource("2_aox1g")
+fullAuto = true
+Preview = ExtResource("2_3ncyw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(16.5, -4.5)
+position = Vector2(18, -2)
 sprite_frames = SubResource("SpriteFrames_02xbq")
 animation = &"Fire"
 offset = Vector2(11, 2)
 
 [node name="Barrel" type="Node2D" parent="."]
-position = Vector2(90, -9)
+position = Vector2(65, -9)
 
 [node name="Eject" type="Node2D" parent="."]
-position = Vector2(15, -9)
+position = Vector2(24, -12)
 
 [node name="InteractionArea" type="Area2D" parent="."]
-position = Vector2(17, -5.5)
+position = Vector2(18.5, -3)
 collision_layer = 0
 collision_mask = 16252929
-script = ExtResource("4_1hsdn")
+script = ExtResource("3_ggxhp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(9.5, -1)
+position = Vector2(5.5, 0)
 shape = SubResource("CircleShape2D_76wxr")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

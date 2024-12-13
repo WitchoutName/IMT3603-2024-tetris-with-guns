@@ -1,23 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpsek40aup00a"]
+[gd_scene load_steps=10 format=3 uid="uid://blmctjk328bhw"]
 
-[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_4kgq4"]
-[ext_resource type="PackedScene" uid="uid://ba7r2nmqtcdei" path="res://Entities/Guns/SawedOffPreview.tscn" id="2_gfu5w"]
-[ext_resource type="Texture2D" uid="uid://25fl82sjqifv" path="res://Assets/GunAssets/sawed-off.png" id="3_um4q1"]
-[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="4_aatag"]
+[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_xdn58"]
+[ext_resource type="PackedScene" uid="uid://dyaj72s66y3oj" path="res://Entities/Guns/Projectiles/grenade_projectile.tscn" id="2_algc7"]
+[ext_resource type="PackedScene" uid="uid://bpn3shiiv2u8l" path="res://Entities/Guns/casing.tscn" id="3_6k0qk"]
+[ext_resource type="PackedScene" uid="uid://f6rb22migaph" path="res://Entities/Guns/Pistol/PistolPreview.tscn" id="4_2k1qo"]
+[ext_resource type="Texture2D" uid="uid://wyhhknss7s0e" path="res://Assets/GunAssets/grenade_launcher.png" id="5_oqevo"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="6_umm0v"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r2d48"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_um4q1")
+"texture": ExtResource("5_oqevo")
 }],
-"loop": true,
-"name": &"Fire",
+"loop": false,
+"name": &"Default",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f75oi"]
-radius = 29.0172
+radius = 59.0085
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tvqak"]
 properties/0/path = NodePath(".:position")
@@ -35,40 +37,46 @@ properties/3/replication_mode = 2
 properties/4/path = NodePath("AnimatedSprite2D:animation")
 properties/4/spawn = true
 properties/4/replication_mode = 2
+properties/5/path = NodePath(".:bulletAmount")
+properties/5/spawn = true
+properties/5/replication_mode = 2
+properties/6/path = NodePath(".:ammoReserve")
+properties/6/spawn = true
+properties/6/replication_mode = 2
 
-[node name="Sawed Off Shotgun" type="Node2D" groups=["one-handed"]]
-script = ExtResource("1_4kgq4")
-bulletSpeed = 800
-bps = 20.0
-bulletDamage = 16
-bulletSpread = 1.0
-magSize = 2
-ammoReserve = 16
-reloadInterval = 0.8
-bulletAmount = 5
-arc = 7.0
-Preview = ExtResource("2_gfu5w")
+[node name="GrenadeLauncher" type="Node2D" groups=["two-handed"]]
+script = ExtResource("1_xdn58")
+bulletScene = ExtResource("2_algc7")
+casingScene = ExtResource("3_6k0qk")
+bps = 2.0
+bulletSpread = 0.1
+magSize = 6
+ammoReserve = 12
+reloadInterval = 2.0
+Preview = ExtResource("4_2k1qo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(8.5, -3)
+position = Vector2(1, -4)
+scale = Vector2(0.627551, 0.627551)
 sprite_frames = SubResource("SpriteFrames_r2d48")
-animation = &"Fire"
+animation = &"Default"
+autoplay = "Default"
 offset = Vector2(11, 2)
 
 [node name="Barrel" type="Node2D" parent="."]
-position = Vector2(45.5, -7)
+position = Vector2(34, -6)
 
 [node name="Eject" type="Node2D" parent="."]
-position = Vector2(13, -9)
+position = Vector2(8, -11)
 
 [node name="InteractionArea" type="Area2D" parent="."]
-position = Vector2(22, -5)
+position = Vector2(5, -4)
 collision_layer = 0
 collision_mask = 16252929
-script = ExtResource("4_aatag")
+script = ExtResource("6_umm0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(-3, 0)
+scale = Vector2(0.59, 0.59)
 shape = SubResource("CircleShape2D_f75oi")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

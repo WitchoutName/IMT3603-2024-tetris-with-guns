@@ -1,0 +1,127 @@
+[gd_scene load_steps=17 format=3 uid="uid://dyaj72s66y3oj"]
+
+[ext_resource type="Script" path="res://Entities/Guns/Projectiles/grenade_projectile.gd" id="1_s0umj"]
+[ext_resource type="Texture2D" uid="uid://hr38cvfdotya" path="res://Assets/GunAssets/40mm.png" id="2_l8lgy"]
+[ext_resource type="Texture2D" uid="uid://cb4ql7u44832i" path="res://Assets/ItemAssets/granade_exp.png" id="3_47utp"]
+[ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="4_pq5gj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wx86d"]
+radius = 5.99954
+height = 19.9985
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iwu1c"]
+radius = 105.005
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dlgh"]
+atlas = ExtResource("3_47utp")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vneeg"]
+atlas = ExtResource("3_47utp")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjwmh"]
+atlas = ExtResource("3_47utp")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffotk"]
+atlas = ExtResource("3_47utp")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rhth"]
+atlas = ExtResource("3_47utp")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_248jw"]
+atlas = ExtResource("3_47utp")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py60i"]
+atlas = ExtResource("3_47utp")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6nyn"]
+atlas = ExtResource("3_47utp")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3nwea"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dlgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vneeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjwmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffotk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rhth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_248jw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_py60i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6nyn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 17.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_divpu"]
+radius = 5.99999
+height = 20.0
+
+[node name="GrenadeProjectile" type="RigidBody2D"]
+collision_layer = 0
+script = ExtResource("1_s0umj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.38419e-07, -5.96046e-08)
+scale = Vector2(1.35119, 1.35119)
+texture = ExtResource("2_l8lgy")
+
+[node name="ProjectileCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+rotation = -1.58313
+shape = SubResource("CapsuleShape2D_wx86d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 16252929
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_iwu1c")
+
+[node name="ExplosionAni" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_3nwea")
+frame = 7
+frame_progress = 1.0
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("4_pq5gj")
+hitbox_damage = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(2, 0)
+rotation = -1.57237
+shape = SubResource("CapsuleShape2D_divpu")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-8, 0)
+target_position = Vector2(15, 0)
+collision_mask = 15728641
+hit_from_inside = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
