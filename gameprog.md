@@ -65,23 +65,25 @@ When working we created our own branches for committing changes, it was then mer
 
 | | # claim |Others| All	| Most | Half | Some | Touched |
 |----|----|-|----|----|----|----|----|
-| Networking	      | 1 || T | 0 | 0 | 0 | M |
-| Map               | 1 || S | 0 | 0 | N | N |
-| Guns              | 2 || 0 | 0 | 1 | N | N |
-| Tower             | N || 0 | 1 | 1 | N | N |
-| Hitboxes          | N || 1 | 1 | 2 | N | N |
-| Inventory         | N || 1 | 1 | 2 | N | N |
-| Item script       | N || 1 | 1 | 2 | N | N |
-| Items             | N || 1 | 1 | 2 | N | N |
-| Player movement   | N || 1 | 1 | 2 | N | N |
-| Player            | N || 1 | 1 | 2 | N | N |
-| Health system     | N || 1 | 1 | 2 | N | N |
-| Melee Weapons     | N || 1 | 1 | 2 | N | N |
-| Interaction system | N || 1 | 1 | 2 | N | N |
-| HUD               | N || 1 | 1 | 2 | N | N |
-| Menu              | N || 1 | 1 | 2 | N | N |
-| Spawners          | N || 1 | 1 | 2 | N | N |
-| Animations        | N || 1 | 1 | 2 | N | N |
+| Networking	      | 0 || T | 0 | 0 | 0 | M |
+| Map               | 0 || S | 0 | 0 | 0 | 0 |
+| Tower             | 0 || T | 0 | 1 | 0 | 0 |
+| Pieces            | 0 || 0 | T | 0 | M,S | 0 |
+| Hitboxes          | 0 || M | 0 | 0 | 0 | 0 |
+| Item script       | 0 || M | 0 | 0 | 0 | 0 |
+| Items             | 0 || 0 | M | 0 | 0 | 0 |
+| Player movement   | 0 || R | 0 | 0 | 0 | T |
+| Player            | 0 || 0 | 0 | 0 | H,T,M,R,E,S | 0 |
+| Health system     | 0 || 0 | M | 0 | H | 0 |
+| Melee Weapons     | 0 || M | 0 | 0 | 0 | 0 |
+| Projectile Weapon | 0 || E | 0 | 0 | 0 | T |
+| Interaction system | 0 || 0 | 0 | M,T | 0 | S |
+| HUD               | 0 || 0 | H | 0 | M | T |
+| Main Menu         | 0 || H | 0 | 0 | 0 | R |
+| Lobby Menu        | 0 || 0 | T | 0 | 0 | T |
+| Options Menu      | 0 || 0 | H | 0 | R | 0 |
+| Spawners          | 0 || 0 | 0 | S | T | M |
+| Animations        | 0 || 0 | H | 0 | M | 0 |
 
 
 
