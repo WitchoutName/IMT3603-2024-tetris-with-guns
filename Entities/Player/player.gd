@@ -206,16 +206,3 @@ func create_wound(bullet: Bullet):
 		splatter.rotate(_rotation)
 		splatter.emitting = true
 		print(_rotation, to_local(location), location)
-
-func invisibility(length: float):
-	ASprite.hide()
-	Username.hide()
-	health_bar.hide()
-	invis = true
-
-	await get_tree().create_timer(length).timeout
-
-	ASprite.show()
-	Username.show()
-	health_bar.show()
-	invis = false
