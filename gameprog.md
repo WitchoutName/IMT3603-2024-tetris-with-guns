@@ -65,23 +65,23 @@ When working we created our own branches for committing changes, it was then mer
 
 | | # claim |Others| All	| Most | Half | Some | Touched |
 |----|----|-|----|----|----|----|----|
-| Networking	    | 1 || T | 0 | 0 | 0 | M |
-| Map             | 1 || S | 0 | 0 | N | N |
-| Guns            | 2 || 0 | 0 | 1 | N | N |
-| Tower           | N || 0 | 1 | 1 | N | N |
-| Hitboxes        | N || 1 | 1 | 2 | N | N |
-| Inventory       | N || 1 | 1 | 2 | N | N |
-| Item script     | N || 1 | 1 | 2 | N | N |
-| Items           | N || 1 | 1 | 2 | N | N |
-| Player movement | N || 1 | 1 | 2 | N | N |
-| Player | N || 1 | 1 | 2 | N | N |
-| Health system | N || 1 | 1 | 2 | N | N |
-| Melee Weapons | N || 1 | 1 | 2 | N | N |
+| Networking	      | 1 || T | 0 | 0 | 0 | M |
+| Map               | 1 || S | 0 | 0 | N | N |
+| Guns              | 2 || 0 | 0 | 1 | N | N |
+| Tower             | N || 0 | 1 | 1 | N | N |
+| Hitboxes          | N || 1 | 1 | 2 | N | N |
+| Inventory         | N || 1 | 1 | 2 | N | N |
+| Item script       | N || 1 | 1 | 2 | N | N |
+| Items             | N || 1 | 1 | 2 | N | N |
+| Player movement   | N || 1 | 1 | 2 | N | N |
+| Player            | N || 1 | 1 | 2 | N | N |
+| Health system     | N || 1 | 1 | 2 | N | N |
+| Melee Weapons     | N || 1 | 1 | 2 | N | N |
 | Interaction system | N || 1 | 1 | 2 | N | N |
-| HUD | N || 1 | 1 | 2 | N | N |
-| Menu | N || 1 | 1 | 2 | N | N |
-| Spawners | N || 1 | 1 | 2 | N | N |
-| Animations | N || 1 | 1 | 2 | N | N |
+| HUD               | N || 1 | 1 | 2 | N | N |
+| Menu              | N || 1 | 1 | 2 | N | N |
+| Spawners          | N || 1 | 1 | 2 | N | N |
+| Animations        | N || 1 | 1 | 2 | N | N |
 
 
 
