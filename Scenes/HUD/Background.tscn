@@ -10,6 +10,7 @@ z_as_relative = false
 layer = -128
 
 [node name="TextureRect" type="TextureRect" parent="Display"]
+modulate = Color(0.289741, 0.289741, 0.289741, 1)
 z_index = -3484
 z_as_relative = false
 anchors_preset = 15

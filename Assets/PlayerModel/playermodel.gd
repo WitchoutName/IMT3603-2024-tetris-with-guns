@@ -21,12 +21,12 @@ func _ready():
 func _process(delta):
 	# Handle player input
 	var velocity = Vector2()
-	if Input.is_action_pressed("MoveRight"):
+	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
-	elif Input.is_action_pressed("MoveLeft"):
+	elif Input.is_action_pressed("move_left"):
 		velocity.x -= 1
 
-	if Input.is_action_just_pressed("Jump"):
+	if Input.is_action_just_pressed("jump"):
 		_jump()
 
 	# Flip character based on direction

@@ -20,7 +20,7 @@ func _on_start_button_pressed() -> void:
 func _on_options_button_pressed() -> void:
 	vbox_container.visible = false
 	options_menu.set_process(true)
-	options_menu.visible = true
+	options_menu.open()
 
 
 func _on_exit_button_pressed() -> void:

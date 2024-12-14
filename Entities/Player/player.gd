@@ -36,6 +36,14 @@ var player_peer: PlayerPeer
 var current_state = null
 var prev_state = null
 
+#signals
+signal toggle_player_paused(is_paused: bool)
+
+
+
+#GameManaging
+var player_paused: bool = false
+	
 #nodes
 @onready var STATES = $STATES
 @onready var Raycasts = $Raycasts
@@ -56,10 +64,21 @@ var should_respawn = true
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
+	
+func _input(event: InputEvent):
+	if event.is_action_pressed("ui_cancel"):  # 'ui_cancel' is the default for ESC
+		print("ui_cancel")
+		player_paused = !player_paused
+		print(player_paused)
+		if player_paused:
+			GameManager.options_menu.open()
+		else:
+			GameManager.options_menu.close()
 
 func _ready():
 	health.set_multiplayer_authority(1)
 	health_bar.set_multiplayer_authority(1)
+	GameManager.options_menu.exit_options_menu.connect(func(): player_paused = false)
 	for state in STATES.get_children():
 		state.STATES = STATES
 		state.Player = self
@@ -67,21 +86,23 @@ func _ready():
 		current_state = STATES.IDLE
 	if player_peer:
 		$Username.text = player_peer.username
+		
+	#if escape_menu:
+		#escape_menu.exit_to_lobby.connect(_on_exit_to_lobby)
 
 func _physics_process(delta):
 	if not is_multiplayer_authority() and player_peer: return
-	if not is_frosen:
+	if not (is_frosen or player_paused):
 		if not ASprite.visible and not invis:
 			ASprite.show()
 		if is_controlling_tower: _handle_tower_input()
 		else: player_input()
-	
-		change_state(current_state.update(delta))
-		move_and_slide()
-		#default_move(delta)
 	else:
 		if ASprite.visible:
 			ASprite.hide()
+			
+	change_state(current_state.update(delta))
+	move_and_slide()
 
 func _handle_tower_input():
 	if tower:
@@ -116,9 +137,9 @@ func get_next_to_wall() -> Vector2:
 
 func player_input():
 	movement_input = Vector2.ZERO
-	if Input.is_action_pressed("MoveRight"):
+	if Input.is_action_pressed("move_right"):
 		movement_input.x += 1
-	if Input.is_action_pressed("MoveLeft"):
+	if Input.is_action_pressed("move_left"):
 		movement_input.x -= 1
 	#if Input.is_action_pressed("MoveUp"):
 		#movement_input.y -= 1
@@ -126,11 +147,11 @@ func player_input():
 		#movement_input.y += 1
 		
 	# Jumps
-	if Input.is_action_pressed("Jump"):
+	if Input.is_action_pressed("jump"):
 		jump_input = true
 	else: 
 		jump_input = false
-	if Input.is_action_just_pressed("Jump"):
+	if Input.is_action_just_pressed("jump"):
 		jump_input_actuation = true
 	else:
 		jump_input_actuation = false
@@ -142,7 +163,7 @@ func player_input():
 		#climb_input = false	
 		
 	#dash
-	if Input.is_action_just_pressed("Dash"):
+	if Input.is_action_just_pressed("dash"):
 		dash_input = true
 	else: 
 		dash_input = false 
@@ -206,3 +227,33 @@ func create_wound(bullet: Bullet):
 		splatter.rotate(_rotation)
 		splatter.emitting = true
 		print(_rotation, to_local(location), location)
+
+func invisibility(length: float):
+	ASprite.hide()
+	Username.hide()
+	health_bar.hide()
+	invis = true
+
+	await get_tree().create_timer(length).timeout
+
+	ASprite.show()
+	Username.show()
+	health_bar.show()
+	invis = false
+
+# Transition to the lobby scene
+func _on_exit_to_lobby():
+	# Optional: Handle multiplayer cleanup or save progress
+	print("Exiting to lobby...")
+	#cleanup_multiplayer()
+	get_tree().change_scene("res://Scenes/Menu/lobby/connection_lobby.tscn")
+
+#func cleanup_multiplayer():
+	#if Multiplayer.is_server():
+		#print("Stopping server...")
+		#Multiplayer.stop()
+	#elif Multiplayer.is_client():
+		#print("Disconnecting from server...")
+		#Multiplayer.disconnect()
+	## Optional: Clear the Multiplayer API
+	#Multiplayer.clear_peers()

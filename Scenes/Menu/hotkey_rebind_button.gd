@@ -12,6 +12,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process_unhandled_input(false)
+	set_process_unhandled_key_input(false)
 	set_action_name()
 	set_text_for_key()
 
@@ -26,6 +27,10 @@ func set_action_name() -> void:
 			label.text = "Move Right"
 		"Jump":
 			label.text = "Jump"
+		"dash":
+			label.text = "Dash"
+		"shoot":
+			label.text = "Shoot"
 		"tower_move_left":
 			label.text = "Tower Move Left"
 		"tower_move_right":
