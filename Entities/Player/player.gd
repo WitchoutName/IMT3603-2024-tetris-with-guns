@@ -176,9 +176,11 @@ func respawn():
 		return
 	hide()
 	#Wait five seconds
+	is_frosen = true
 	await get_tree().create_timer(5).timeout
 	health.set_health(health.max_health)
 	show()
+	is_frosen = false
 	#spawn()
 
 func equip_gun(gun):
