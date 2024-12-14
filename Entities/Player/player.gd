@@ -46,7 +46,7 @@ var prev_state = null
 @onready var AudioListener: AudioListener2D = $AudioListener2D
 @onready var EffectsGroup: Node2D = $EffectsGroup
 @onready var Username: Label = $Username
-@onready var ASprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var ASprite: Node = $Animation
 
 
 #Respawn handling
