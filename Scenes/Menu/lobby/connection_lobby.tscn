@@ -17,6 +17,7 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 
 [node name="Base" type="Node2D"]
+position = Vector2(9.5485, 0)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -24,6 +25,7 @@ anchors_preset = 0
 offset_right = 904.0
 offset_bottom = 646.0
 script = ExtResource("1_fqcfp")
+metadata/_edit_use_anchors_ = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Control"]
 root_path = NodePath("../..")
@@ -59,114 +61,177 @@ position = Vector2(428.452, 325.875)
 
 [node name="TextureRect2" type="TextureRect" parent="Control/NameGroup"]
 modulate = Color(0.534361, 0.534361, 0.534361, 1)
-offset_left = -440.0
+offset_left = -430.452
 offset_top = -300.0
-offset_right = -113.0
+offset_right = -103.452
 offset_bottom = -219.0
 texture = ExtResource("3_a7i2s")
+metadata/_edit_use_anchors_ = true
 
 [node name="TextEdit3" type="TextEdit" parent="Control/NameGroup"]
-offset_left = -425.0
+offset_left = -415.452
 offset_top = -269.0
-offset_right = -135.0
+offset_right = -125.452
 offset_bottom = -234.0
 placeholder_text = "username"
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="Control/NameGroup"]
-offset_left = -422.0
+offset_left = -412.452
 offset_top = -294.0
-offset_right = -289.0
+offset_right = -279.452
 offset_bottom = -267.0
 text = "Username"
+metadata/_edit_use_anchors_ = true
 
 [node name="JoinGroup" type="Node2D" parent="Control"]
 position = Vector2(-73.5485, 41.8749)
 
 [node name="TextureRect" type="TextureRect" parent="Control/JoinGroup"]
 modulate = Color(0.534361, 0.534361, 0.534361, 1)
-offset_left = 62.0
+offset_left = 71.5485
 offset_top = 104.0
-offset_right = 389.0
+offset_right = 398.548
 offset_bottom = 268.0
 texture = ExtResource("3_a7i2s")
+metadata/_edit_use_anchors_ = true
 
 [node name="TextIP" type="TextEdit" parent="Control/JoinGroup"]
-offset_left = 72.0
+offset_left = 81.5485
 offset_top = 143.0
-offset_right = 210.0
+offset_right = 219.548
 offset_bottom = 178.0
 placeholder_text = "129.168.0.1"
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/JoinGroup"]
-offset_left = 74.0
+offset_left = 83.5485
 offset_top = 112.0
-offset_right = 207.0
+offset_right = 216.548
 offset_bottom = 139.0
 text = "IP address"
+metadata/_edit_use_anchors_ = true
 
 [node name="TextPort" type="TextEdit" parent="Control/JoinGroup"]
-offset_left = 237.0
+offset_left = 246.548
 offset_top = 143.0
-offset_right = 375.0
+offset_right = 384.548
 offset_bottom = 178.0
 text = "45454"
 placeholder_text = "12345"
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="Control/JoinGroup"]
-offset_left = 239.0
+offset_left = 248.548
 offset_top = 112.0
-offset_right = 372.0
+offset_right = 381.548
 offset_bottom = 139.0
 text = "Port"
+metadata/_edit_use_anchors_ = true
 
 [node name="JoinButton" type="Button" parent="Control/JoinGroup"]
-offset_left = 118.0
+offset_left = 127.549
 offset_top = 207.0
-offset_right = 336.0
+offset_right = 345.548
 offset_bottom = 249.0
 text = "Join"
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 modulate = Color(0.534361, 0.534361, 0.534361, 1)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0105625
+anchor_right = 0.0105625
 offset_left = -11.5485
 offset_top = 337.875
 offset_right = 315.452
 offset_bottom = 501.875
 texture = ExtResource("3_a7i2s")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect4" type="TextureRect" parent="Control"]
+modulate = Color(0.534361, 0.534361, 0.534361, 1)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -253.0
+offset_top = -58.0
+offset_right = -12.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_a7i2s")
 
 [node name="HostButton" type="Button" parent="Control"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0105625
+anchor_right = 0.0105625
 offset_left = 40.4515
 offset_top = 363.875
 offset_right = 258.452
 offset_bottom = 405.875
 text = "Host"
+metadata/_edit_use_anchors_ = true
 
 [node name="LeaveButton" type="Button" parent="Control"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0105625
+anchor_right = 0.0105625
 offset_left = 41.4515
 offset_top = 433.875
 offset_right = 259.452
 offset_bottom = 475.875
 text = "Leave"
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.688053
+anchor_top = 0.255611
+anchor_right = 0.688053
+anchor_bottom = 0.255611
+offset_left = 41.4515
+offset_top = 433.875
+offset_right = 259.452
+offset_bottom = 475.875
+text = "Back to Main"
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect2" type="TextureRect" parent="Control"]
 modulate = Color(0.270588, 0.270588, 0.270588, 0.784314)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.036505
+anchor_top = -0.0508899
+anchor_right = -0.036505
+anchor_bottom = -0.0508899
 offset_left = 452.452
 offset_top = 57.8749
 offset_right = 914.452
 offset_bottom = 604.875
 texture = ExtResource("3_a7i2s")
+metadata/_edit_use_anchors_ = true
 
 [node name="LogDisplay" type="TextEdit" parent="Control"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.036505
+anchor_top = -0.0508899
+anchor_right = -0.036505
+anchor_bottom = -0.05089
 offset_left = 460.452
 offset_top = 65.8749
 offset_right = 908.452
 offset_bottom = 401.875
 editable = false
+metadata/_edit_use_anchors_ = true
 
 [node name="TeamsGroup" type="Node2D" parent="Control"]
 visible = false
@@ -214,5 +279,6 @@ script = ExtResource("4_o13iw")
 [connection signal="button_down" from="Control/JoinGroup/JoinButton" to="Control" method="_on_join_button_button_down"]
 [connection signal="button_down" from="Control/HostButton" to="Control" method="_on_host_button_button_down"]
 [connection signal="button_down" from="Control/LeaveButton" to="Control" method="_on_leave_button_button_down"]
+[connection signal="button_down" from="Control/BackButton" to="Control" method="_on_back_button_button_down"]
 [connection signal="button_down" from="Control/TeamsGroup/JoinTeam1Button" to="Control" method="_on_join_team_1_button_button_down"]
 [connection signal="button_down" from="Control/TeamsGroup/JoinTeam2Button" to="Control" method="_on_join_team_2_button_button_down"]
