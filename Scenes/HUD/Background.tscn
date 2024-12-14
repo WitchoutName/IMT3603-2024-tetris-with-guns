@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://diwuhsn8giqab"]
+
+[ext_resource type="Texture2D" uid="uid://gg7jp310mio7" path="res://Assets/Background/gameBackground.webp" id="2_64jc2"]
+
+[node name="background" type="Node2D"]
+z_index = -4096
+z_as_relative = false
+
+[node name="Display" type="CanvasLayer" parent="."]
+layer = -128
+
+[node name="TextureRect" type="TextureRect" parent="Display"]
+z_index = -3484
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_64jc2")
+expand_mode = 1
+stretch_mode = 6
