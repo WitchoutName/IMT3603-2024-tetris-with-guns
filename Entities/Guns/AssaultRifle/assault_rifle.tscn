@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ba7jl2dq2bfc4"]
 
 [ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_j2v1e"]
-[ext_resource type="PackedScene" uid="uid://b1qekx2e3yi7p" path="res://Entities/Guns/AssaultRiflePreview.tscn" id="2_3ncyw"]
+[ext_resource type="PackedScene" uid="uid://b1qekx2e3yi7p" path="res://Entities/Guns/AssaultRifle/AssaultRiflePreview.tscn" id="2_3ncyw"]
 [ext_resource type="Texture2D" uid="uid://4rvsov3j3gp5" path="res://Assets/GunAssets/ak.png" id="2_8shol"]
 [ext_resource type="PackedScene" uid="uid://bykosir8bm52c" path="res://Entities/Guns/Projectiles/bullet.tscn" id="2_a5thi"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_ggxhp"]

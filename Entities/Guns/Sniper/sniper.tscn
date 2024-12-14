@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://fx2rnanndy4t"]
+
+[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_0wpmv"]
+[ext_resource type="PackedScene" uid="uid://cgyvy0i6eb5f8" path="res://Entities/Guns/Sniper/SniperPreview.tscn" id="2_aox1g"]
+[ext_resource type="Texture2D" uid="uid://7amiijgpiijf" path="res://Assets/GunAssets/sniper.png" id="3_70j4q"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="4_1hsdn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_02xbq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_70j4q")
+}],
+"loop": true,
+"name": &"Fire",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_76wxr"]
+radius = 66.5
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_huiqq"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath("AnimatedSprite2D:frame")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+properties/4/path = NodePath("AnimatedSprite2D:animation")
+properties/4/spawn = true
+properties/4/replication_mode = 2
+
+[node name="sniper" type="Node2D" groups=["two-handed"]]
+script = ExtResource("1_0wpmv")
+bulletSpeed = 5000
+bps = 12.0
+bulletDamage = 70
+bulletSpread = 0.1
+magSize = 10
+ammoReserve = 30
+maxRecoil = 100.0
+arc = 31.836
+Preview = ExtResource("2_aox1g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(16.5, -4.5)
+sprite_frames = SubResource("SpriteFrames_02xbq")
+animation = &"Fire"
+offset = Vector2(11, 2)
+
+[node name="Barrel" type="Node2D" parent="."]
+position = Vector2(90, -9)
+
+[node name="Eject" type="Node2D" parent="."]
+position = Vector2(15, -9)
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(17, -5.5)
+collision_layer = 0
+collision_mask = 16252929
+script = ExtResource("4_1hsdn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(9.5, -1)
+shape = SubResource("CircleShape2D_76wxr")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_huiqq")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

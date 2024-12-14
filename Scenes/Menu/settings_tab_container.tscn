@@ -17,9 +17,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 200.0
+offset_left = 122.0
 offset_top = 50.0
-offset_right = -200.0
+offset_right = -121.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -96,32 +96,84 @@ layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_orxw8")
 
-[node name="Hotkey_Rebind_Button" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+[node name="moveUp" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
-action_name = "move_left"
+action_name = "MoveUp"
 
-[node name="Hotkey_Rebind_Button2" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+[node name="MoveLeft" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
-action_name = "move_right"
+action_name = "MoveLeft"
 
-[node name="Hotkey_Rebind_Button3" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+[node name="moveDown" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
-action_name = "jump"
+action_name = "MoveDown"
 
-[node name="Hotkey_Rebind_Button4" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+[node name="MoveRight" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
-action_name = "shoot"
+action_name = "MoveRight"
 
-[node name="Hotkey_Rebind_Button5" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+[node name="Jump" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "Jump"
+
+[node name="interact" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "interact"
+
+[node name="dash" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "Dash"
+
+[node name="reload" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "reload"
+
+[node name="drop" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "drop"
+
+[node name="slot1" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "switch_to_slot_1"
+
+[node name="slot2" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "switch_to_slot_2"
+
+[node name="slot3" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "switch_to_slot_3"
+
+[node name="click" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "click"
+
+[node name="click2" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "click2"
+
+[node name="click3" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "click3"
+
+[node name="useItem" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "useItem"
+
+[node name="towerLeft" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
 
-[node name="Hotkey_Rebind_Button6" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+[node name="towerRight" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
 action_name = "tower_move_right"
 
-[node name="Hotkey_Rebind_Button7" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+[node name="towerRotate" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
 action_name = "tower_rotate"
+
+[node name="suicide" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
+layout_mode = 2
+action_name = "Suicide"
 
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1o18qetfne14"]
+
+[ext_resource type="Texture2D" uid="uid://ltm1llnopv61" path="res://Assets/GunAssets/auto_shotgun.png" id="1_ktaxi"]
+
+[node name="PistolPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="AutoShotgun" type="Sprite2D" parent="."]
+position = Vector2(7, 1.25)
+scale = Vector2(1, 1.04545)
+texture = ExtResource("1_ktaxi")

@@ -170,3 +170,7 @@ func _on_join_team_2_button_button_down() -> void:
 	$TeamsGroup/JoinTeam1Button.disabled = false
 	$TeamsGroup/JoinTeam2Button.disabled = true
 	player_change_team.rpc_id(1, peer.get_unique_id(), 2)
+
+
+func _on_back_button_button_down() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Menu/main.tscn")

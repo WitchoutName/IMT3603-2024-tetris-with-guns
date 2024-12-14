@@ -1,25 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://djjs5uqduv8ij"]
+[gd_scene load_steps=9 format=3 uid="uid://blmctjk328bhw"]
 
-[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_h0sph"]
-[ext_resource type="Texture2D" uid="uid://dkag2wy4qhxsm" path="res://Assets/GunAssets/shotgun.png" id="2_2yykd"]
-[ext_resource type="PackedScene" uid="uid://co1ly1lq3npki" path="res://Entities/Guns/ShotgunPreview.tscn" id="2_4u8md"]
-[ext_resource type="PackedScene" uid="uid://bykosir8bm52c" path="res://Entities/Guns/Projectiles/bullet.tscn" id="2_ijhf7"]
-[ext_resource type="PackedScene" uid="uid://bpn3shiiv2u8l" path="res://Entities/Guns/casing.tscn" id="3_p7y1j"]
-[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_t2dhk"]
+[ext_resource type="Script" path="res://Components/WeaponScripts/gun.gd" id="1_xdn58"]
+[ext_resource type="PackedScene" uid="uid://dyaj72s66y3oj" path="res://Entities/Guns/Projectiles/grenade_projectile.tscn" id="2_algc7"]
+[ext_resource type="PackedScene" uid="uid://ddw6udf6n8qeb" path="res://Entities/Guns/GrenadeLauncher/GrenadeLauncherPreview.tscn" id="3_tq3n8"]
+[ext_resource type="Texture2D" uid="uid://wyhhknss7s0e" path="res://Assets/GunAssets/grenade_launcher.png" id="5_oqevo"]
+[ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="6_umm0v"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r2d48"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_2yykd")
+"texture": ExtResource("5_oqevo")
 }],
-"loop": true,
-"name": &"Fire",
+"loop": false,
+"name": &"Default",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f75oi"]
-radius = 59.0085
+radius = 67.8178
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_tvqak"]
 properties/0/path = NodePath(".:position")
@@ -37,41 +36,46 @@ properties/3/replication_mode = 2
 properties/4/path = NodePath("AnimatedSprite2D:animation")
 properties/4/spawn = true
 properties/4/replication_mode = 2
+properties/5/path = NodePath(".:bulletAmount")
+properties/5/spawn = true
+properties/5/replication_mode = 2
+properties/6/path = NodePath(".:ammoReserve")
+properties/6/spawn = true
+properties/6/replication_mode = 2
 
-[node name="Shotgun" type="Node2D" groups=["one-handed"]]
-script = ExtResource("1_h0sph")
-bulletScene = ExtResource("2_ijhf7")
-casingScene = ExtResource("3_p7y1j")
-bulletSpeed = 800
-bps = 20.0
-bulletDamage = 16
-bulletSpread = 0.8
-magSize = 2
-ammoReserve = 16
-reloadInterval = 0.8
-bulletAmount = 5
-arc = 7.0
-Preview = ExtResource("2_4u8md")
+[node name="GrenadeLauncher" type="Node2D" groups=["two-handed"]]
+script = ExtResource("1_xdn58")
+bulletScene = ExtResource("2_algc7")
+bps = 2.0
+bulletSpread = 0.1
+magSize = 6
+ammoReserve = 12
+reloadInterval = 2.0
+Preview = ExtResource("3_tq3n8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(18.5, -3)
+position = Vector2(2, -5)
+scale = Vector2(0.786547, 0.786547)
 sprite_frames = SubResource("SpriteFrames_r2d48")
-animation = &"Fire"
+animation = &"Default"
+autoplay = "Default"
 offset = Vector2(11, 2)
 
 [node name="Barrel" type="Node2D" parent="."]
-position = Vector2(72.5, -6)
+position = Vector2(50, -10)
 
 [node name="Eject" type="Node2D" parent="."]
-position = Vector2(32.5, -6)
+position = Vector2(9, -16)
 
 [node name="InteractionArea" type="Area2D" parent="."]
-position = Vector2(18.5, -3)
+position = Vector2(5, -4)
 collision_layer = 0
 collision_mask = 16252929
-script = ExtResource("3_t2dhk")
+script = ExtResource("6_umm0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(6, 0)
+scale = Vector2(0.59, 0.59)
 shape = SubResource("CircleShape2D_f75oi")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
