@@ -463,17 +463,15 @@ position = Vector2(1, 1)
 position = Vector2(1, 3)
 
 [node name="BulletMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
 spawn_path = NodePath("../BulletsGroup")
 spawn_limit = 10000
 
 [node name="TertraminoMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Entities/Guns/bullet.tscn")
 spawn_path = NodePath("../TetraminoGroup")
 spawn_limit = 10000
 
 [node name="ItemMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Entities/Guns/Pistol/BadPistol.tscn", "res://Entities/Guns/Pistol/Pistol.tscn", "res://Entities/Guns/assault_rifle.tscn", "res://Entities/Guns/shotgun.tscn")
+_spawnable_scenes = PackedStringArray("res://Entities/Guns/Pistol/BadPistol.tscn", "res://Entities/Guns/Pistol/Pistol.tscn")
 spawn_limit = 10000
 
 [node name="Spawners" type="Node2D" parent="."]
