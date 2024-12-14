@@ -18,4 +18,6 @@ func _ready():
 
 func _disable():
 	player.health.invunerability = false
+	player.can_shoot = true
+	player.can_interact = true
 	queue_free()

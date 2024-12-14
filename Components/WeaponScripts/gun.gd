@@ -143,6 +143,7 @@ func shoot(seed: int):
 		bullet.linear_velocity = bullet.transform.x * bulletSpeed
 
 	$AnimatedSprite2D.play("Fire")
+	
 	if casingScene:
 		var casing = casingScene.instantiate()
 		GameManager.map.add_child(casing)

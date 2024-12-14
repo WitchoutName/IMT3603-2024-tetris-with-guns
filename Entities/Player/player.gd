@@ -150,8 +150,11 @@ func player_input():
 
 	if Input.is_action_just_pressed("Suicide") and can_suicide:
 		health.take_damage(999)
+		
 
 func _on_health_death():
+	if piece_catied:
+		piece_catied.release()
 	inventory.unequip_everything()
 	is_frosen = false
 	for effect in effects:
@@ -166,17 +169,19 @@ func _on_health_death():
 				effect.queue_free()
 
 func spawn():
-	is_frosen = true
+	is_frosen = false
 
 func respawn():
 	if not should_respawn:
 		return
 	hide()
 	#Wait five seconds
+	is_frosen = true
 	await get_tree().create_timer(5).timeout
 	health.set_health(health.max_health)
 	show()
-	spawn()
+	is_frosen = false
+	#spawn()
 
 func equip_gun(gun):
 	pass

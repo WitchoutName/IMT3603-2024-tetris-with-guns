@@ -84,8 +84,13 @@ func _set__player(value: Player):
 
 	
 func _on_interact(_player: Player):
-	if is_picked_up:
+	if  is_picked_up == true:
+		
 		release()
+	else: 
+		attach(_player)
+		#This is for spawning pieces
+		emit_signal("picked_up")
 	
 	if !_player.can_interact:
 		return
@@ -93,10 +98,7 @@ func _on_interact(_player: Player):
 	if tower: 
 		tower.steal(self)
 
-	else: 
-		attach(_player)
-		#This is for spawning pieces
-		emit_signal("picked_up")
+	
 
 func scale(factor: Vector2):
 	"""
@@ -109,15 +111,20 @@ func scale(factor: Vector2):
 			child.transform.origin = base_scales[child][1] * factor
 
 func attach(_player: Player):
+	#print("CollisionPolygon2D exists:", $CollisionPolygon2D != null)
 	if _player:
 		$CollisionPolygon2D.disabled = true
 		freeze = true
 		is_picked_up = true
 		player = _player
 		player.piece_catied = self
+		print("attach() completed, player:", player)
+		print(is_picked_up)
 
 func release():
+	#print("CollisionPolygon2D exists:", $CollisionPolygon2D != null)
 	if player:
+		print("releasing piece")
 		$CollisionPolygon2D.disabled = false
 		player.piece_catied = null
 		is_picked_up = false
