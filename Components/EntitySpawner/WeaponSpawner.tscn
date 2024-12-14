@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://loey4c42d453"]
+[gd_scene load_steps=16 format=3 uid="uid://loey4c42d453"]
 
 [ext_resource type="Script" path="res://Components/EntitySpawner/weapon_spawner.gd" id="1_46clb"]
 [ext_resource type="PackedScene" uid="uid://xdw8ei5us03r" path="res://Entities/Guns/Pistol/BadPistol.tscn" id="2_hew55"]
@@ -6,13 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://bdneyo7mpey32" path="res://Entities/Guns/Pistol/Pistol.tscn" id="3_5nu36"]
 [ext_resource type="PackedScene" uid="uid://ba7jl2dq2bfc4" path="res://Entities/Guns/AssaultRifle/assault_rifle.tscn" id="4_fsus8"]
 [ext_resource type="PackedScene" uid="uid://djjs5uqduv8ij" path="res://Entities/Guns/Shotgun/shotgun.tscn" id="5_vjlc5"]
+[ext_resource type="PackedScene" uid="uid://clv3ue6mqmcmx" path="res://Entities/Guns/AutoShotgun/auto_shotgun.tscn" id="6_7ylpq"]
+[ext_resource type="PackedScene" uid="uid://b0cb1yx66gtme" path="res://Entities/Guns/Crossbow/Crossbow.tscn" id="7_gbpom"]
+[ext_resource type="PackedScene" uid="uid://blmctjk328bhw" path="res://Entities/Guns/GrenadeLauncher/GrenadeLauncher.tscn" id="8_g2xx4"]
+[ext_resource type="PackedScene" uid="uid://ctvy35atoo4jd" path="res://Entities/Guns/LMG/Lmg.tscn" id="9_5xtol"]
+[ext_resource type="PackedScene" uid="uid://d0w3c6u7dxcsq" path="res://Entities/Guns/SMG/smg.tscn" id="11_aebkd"]
+[ext_resource type="PackedScene" uid="uid://fx2rnanndy4t" path="res://Entities/Guns/Sniper/sniper.tscn" id="12_j3fqw"]
+[ext_resource type="PackedScene" uid="uid://dpsek40aup00a" path="res://Entities/Guns/SawedOff/sawed_off_shotgun.tscn" id="13_6bl02"]
+[ext_resource type="PackedScene" uid="uid://bcbma4losr4xm" path="res://Entities/Guns/TshirtCannon/TshirtCannon.tscn" id="13_wbdj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfyqv"]
 size = Vector2(47, 46)
 
 [node name="WeaponSpawner" type="Area2D"]
 script = ExtResource("1_46clb")
-entities = Array[PackedScene]([ExtResource("2_hew55"), ExtResource("3_5nu36"), ExtResource("4_fsus8"), ExtResource("5_vjlc5")])
+entities = Array[PackedScene]([ExtResource("2_hew55"), ExtResource("3_5nu36"), ExtResource("4_fsus8"), ExtResource("5_vjlc5"), ExtResource("6_7ylpq"), ExtResource("7_gbpom"), ExtResource("8_g2xx4"), ExtResource("9_5xtol"), ExtResource("11_aebkd"), ExtResource("12_j3fqw"), ExtResource("13_wbdj5"), ExtResource("13_6bl02")])
 weights = Array[int]([1, 1, 1, 1])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
