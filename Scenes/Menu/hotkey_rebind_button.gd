@@ -20,31 +20,74 @@ func set_action_name() -> void:
 	label.text = "Unassigned"
 	
 	match action_name:
-		"move_left":
+		"MoveLeft":
 			label.text = "Move Left"
-		"move_right":
+		"MoveRight":
 			label.text = "Move Right"
-		"jump":
+		"Jump":
 			label.text = "Jump"
-		"shoot":
-			label.text = "Shoot"
 		"tower_move_left":
 			label.text = "Tower Move Left"
 		"tower_move_right":
 			label.text = "Tower Move Right"
 		"tower_rotate":
 			label.text = "Tower Rotate"
-
+		"Dash":
+			label.text = "Dash"
+		"MoveUp":
+			label.text = "Move Up"
+		"MoveDown":
+			label.text = "Move Down"
+		"reload":
+			label.text = "Reload"
+		"drop":
+			label.text = "Drop"
+		"switch_to_slot_1":
+			label.text = "Slot 1"
+		"switch_to_slot_2":
+			label.text = "Slot 2"
+		"switch_to_slot_3":
+			label.text = "Slot 3"
+		"Suicide":
+			label.text = "Suicide"
+		"interact":
+			label.text = "Interact"
+		"click":
+			label.text = "Shoot"
+		"click2":
+			label.text = "Click 2"
+		"click3":
+			label.text = "Click 3"
+		"useItem":
+			label.text = "Use Item"
 
 func set_text_for_key() -> void:
 	var action_events = InputMap.action_get_events(action_name)
 	if action_events.size() > 0:
 		var action_event = action_events[0]
-		var action_keycode = OS.get_keycode_string(action_event.physical_keycode)
-		button.text = "%s" % action_keycode
+		
+		if action_event is InputEventKey:
+			var action_keycode = OS.get_keycode_string(action_event.physical_keycode)
+			button.text = "%s" % action_keycode
+		elif action_event is InputEventMouseButton:
+			var mouse_button_name = get_mouse_button_name(action_event.button_index)
+			button.text = "%s" % mouse_button_name
+		else:
+			button.text = "Unsupported Input"
 	else:
 		button.text = "Unassigned"
 
+func get_mouse_button_name(button_index: int) -> String:
+	match button_index:
+		1: return "Left Mouse Button"
+		2: return "Right Mouse Button"
+		3: return "Middle Mouse Button"
+		4: return "Mouse Button 4"
+		5: return "Mouse Button 5"
+		6: return "Mouse Button 6"
+		7: return "Mouse Button 7"
+		8: return "Mouse Button 8"
+		_: return "Unknown Mouse Button"
 
 
 
