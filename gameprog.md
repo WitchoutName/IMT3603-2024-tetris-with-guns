@@ -1,12 +1,12 @@
 # Submission
 
 ## Team members:
-Mateusz Tomasz Kaczmarek
-Elias Eide Kjellman
-Snorre Hareide Hansen
-Ruben Singer
-Henrik Guthormsen
-Tomáš Foltyn
+1. Mateusz Tomasz Kaczmarek
+2. Elias Eide Kjellman
+3. Snorre Hareide Hansen
+4. Ruben Singer
+5. Henrik Guthormsen
+6. Tomáš Foltyn
 
 ## Github repo: 
 https://github.com/WitchoutName/IMT3603-2024-tetris-with-guns
