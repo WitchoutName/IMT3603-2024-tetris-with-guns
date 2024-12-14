@@ -55,7 +55,13 @@ When working we created our own branches for committing changes, it was then mer
 
 # Rubric:
 
-## Networking:
+## 
+1. M - Mateusz Tomasz Kaczmarek
+2. E - Elias Eide Kjellman
+3. S - Snorre Hareide Hansen
+4. R - Ruben Singer
+5. H - Henrik Guthormsen
+6. T - Tomáš Foltyn
 | | # claim |Others| All	| Most | Half | Some | Touched |
 |----|----|-|----|----|----|----|----|
 | Networking	| 1 || 0 | 0 | 0 | 0 | N |
