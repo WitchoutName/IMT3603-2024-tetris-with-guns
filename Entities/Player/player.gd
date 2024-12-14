@@ -15,6 +15,9 @@ var dash_input = false
 @export var JUMP_VELOCITY = -400.0
 var last_direction = Vector2.RIGHT
 
+var last_animation_state = false
+var last_flip_state = false
+
 #mechanics
 var can_dash = true
 var effects: Array[Effect] = []
@@ -54,7 +57,7 @@ var player_paused: bool = false
 @onready var AudioListener: AudioListener2D = $AudioListener2D
 @onready var EffectsGroup: Node2D = $EffectsGroup
 @onready var Username: Label = $Username
-@onready var ASprite: Node = $Animation
+@onready var ASprite: Node = $AnimatedSprite2D
 
 
 #Respawn handling
@@ -90,8 +93,36 @@ func _ready():
 	#if escape_menu:
 		#escape_menu.exit_to_lobby.connect(_on_exit_to_lobby)
 
+func _process(delta):
+	# Movement and animation logic
+	var is_moving = abs(movement_input.x) > 0.1  # Threshold for movement
+
+	# Handle animation synchronization
+	if is_moving != last_animation_state:
+		_sync_animation.rpc(is_moving)
+		last_animation_state = is_moving
+
+	# Handle flipping synchronization
+	if is_moving:  # Only flip when moving
+		var flip_h = movement_input.x < 0
+		if flip_h != last_flip_state:
+			_sync_flip.rpc(flip_h)
+			last_flip_state = flip_h
+
+@rpc("any_peer", "call_local")
+func _sync_animation(play: bool):
+	if play:
+		ASprite.play()
+	else:
+		ASprite.stop()
+
+@rpc("any_peer", "call_local")
+func _sync_flip(flip: bool):
+	ASprite.flip_h = flip
+
 func _physics_process(delta):
 	if not is_multiplayer_authority() and player_peer: return
+	
 	if not (is_frosen or player_paused):
 		if not ASprite.visible and not invis:
 			ASprite.show()

@@ -1,18 +1,14 @@
-[gd_scene load_steps=18 format=4 uid="uid://dgve8sg6don5a"]
+[gd_scene load_steps=14 format=4 uid="uid://dgve8sg6don5a"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/map_2.gd" id="1_i38ol"]
 [ext_resource type="Texture2D" uid="uid://bkjnpo24brtbh" path="res://Assets/Vector/vector_complete.svg" id="2_cvsm6"]
 [ext_resource type="PackedScene" uid="uid://byif3328hr2c6" path="res://Entities/Tower/v2/Tower/tower.tscn" id="3_42k6x"]
 [ext_resource type="PackedScene" uid="uid://bic5nels0gapo" path="res://Scenes/HUD/HUD.tscn" id="5_b5fao"]
-[ext_resource type="PackedScene" path="res://Scenes/HUD/Background.tscn" id="5_exig5"]
+[ext_resource type="PackedScene" uid="uid://diwuhsn8giqab" path="res://Scenes/HUD/Background.tscn" id="5_exig5"]
 [ext_resource type="Script" path="res://Components/Boxes/hitbox.gd" id="7_5koef"]
 [ext_resource type="PackedScene" uid="uid://loey4c42d453" path="res://Components/EntitySpawner/WeaponSpawner.tscn" id="7_hb1cl"]
 [ext_resource type="PackedScene" uid="uid://derfnsuaimarv" path="res://Components/EntitySpawner/TetramonoSpawner.tscn" id="8_4j77c"]
-[ext_resource type="PackedScene" uid="uid://dyodkx7sh128e" path="res://Entities/Items/TeaServant/tea_servant.tscn" id="8_tfamr"]
-[ext_resource type="PackedScene" uid="uid://bcbma4losr4xm" path="res://Entities/Guns/TshirtCannon/TshirtCannon.tscn" id="9_vch0r"]
-[ext_resource type="PackedScene" uid="uid://b0cb1yx66gtme" path="res://Entities/Guns/Crossbow/Crossbow.tscn" id="10_853bt"]
-[ext_resource type="PackedScene" uid="uid://bkabdgq325wuv" path="res://Entities/Items/portable_barrier_object/portable_barrier_object.tscn" id="11_2js7o"]
-[ext_resource type="PackedScene" uid="uid://bf3ftwwwt0ojd" path="res://Entities/Items/invisibility_cloak/invisibility_cloak.tscn" id="12_ghebd"]
+[ext_resource type="PackedScene" uid="uid://syg2ti8846fm" path="res://Components/EntitySpawner/ItemSpawner.tscn" id="8_sb564"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_68a15"]
 
@@ -599,6 +595,12 @@ position = Vector2(9, 146)
 [node name="WeaponSpawner6" parent="Spawners" instance=ExtResource("7_hb1cl")]
 position = Vector2(-996, 305)
 
+[node name="ItemSpawner" parent="Spawners" instance=ExtResource("8_sb564")]
+position = Vector2(-1170, -945)
+
+[node name="ItemSpawner2" parent="Spawners" instance=ExtResource("8_sb564")]
+position = Vector2(1170, -945)
+
 [node name="Death" type="Area2D" parent="."]
 position = Vector2(-922, 954)
 script = ExtResource("7_5koef")
@@ -608,33 +610,3 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
 position = Vector2(1105.5, -14)
 shape = SubResource("RectangleShape2D_53iov")
-
-[node name="TeaServant" parent="." instance=ExtResource("8_tfamr")]
-position = Vector2(-816, -195)
-
-[node name="TeaServant2" parent="." instance=ExtResource("8_tfamr")]
-position = Vector2(-826, -192)
-
-[node name="TeaServant3" parent="." instance=ExtResource("8_tfamr")]
-position = Vector2(-827, -188)
-
-[node name="TeaServant4" parent="." instance=ExtResource("8_tfamr")]
-position = Vector2(-831, -188)
-
-[node name="TeaServant5" parent="." instance=ExtResource("8_tfamr")]
-position = Vector2(-820, -195)
-
-[node name="TeaServant6" parent="." instance=ExtResource("8_tfamr")]
-position = Vector2(-820, -195)
-
-[node name="TshirtCannon" parent="." instance=ExtResource("9_vch0r")]
-position = Vector2(-719, -115)
-
-[node name="Crowwbow" parent="." instance=ExtResource("10_853bt")]
-position = Vector2(-873, -94)
-
-[node name="PortableBarrierObject" parent="." instance=ExtResource("11_2js7o")]
-position = Vector2(-401, -97)
-
-[node name="InvisibilityCloak" parent="." instance=ExtResource("12_ghebd")]
-position = Vector2(-250, -157)
