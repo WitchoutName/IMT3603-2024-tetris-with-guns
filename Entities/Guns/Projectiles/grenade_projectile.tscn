@@ -97,10 +97,10 @@ shape = SubResource("CapsuleShape2D_wx86d")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ExplotionArea" type="Area2D" parent="."]
 collision_mask = 16252929
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplotionArea"]
 shape = SubResource("CircleShape2D_iwu1c")
 
 [node name="ExplosionAni" type="AnimatedSprite2D" parent="."]
@@ -125,3 +125,5 @@ collision_mask = 15728641
 hit_from_inside = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="ExplotionArea" to="." method="_on_explotion_area_body_entered"]
+[connection signal="body_exited" from="ExplotionArea" to="." method="_on_explotion_area_body_exited"]
