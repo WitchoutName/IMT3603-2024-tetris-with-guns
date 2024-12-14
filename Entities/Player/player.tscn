@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccqcnw8132xn3"]
+[gd_scene load_steps=25 format=3 uid="uid://ccqcnw8132xn3"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_6ark4"]
 [ext_resource type="PackedScene" uid="uid://biaggj5nvvbn" path="res://Components/Health/Health.tscn" id="2_qk4a2"]
@@ -14,6 +14,57 @@
 [ext_resource type="Script" path="res://Entities/Player/SLIDE.gd" id="13_w270y"]
 [ext_resource type="PackedScene" uid="uid://ct16ftajdtqby" path="res://Entities/Player/SLIDE.tscn" id="14_o0klo"]
 [ext_resource type="PackedScene" uid="uid://bd7l3x8sgu4wc" path="res://Components/Health/health_bar.tscn" id="14_veipe"]
+[ext_resource type="PackedScene" uid="uid://knn8t2r4u8ht" path="res://Scenes/Menu/escape_menu.tscn" id="14_r5g4j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io1p0"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwbe5"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmbvy"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jocim"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8qve"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iulah"]
+atlas = ExtResource("3_dasr1")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwkaw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io1p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwbe5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmbvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jocim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8qve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iulah")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3eljs"]
 height = 54.0
@@ -33,6 +84,7 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" groups=["players"]]
+process_mode = 1
 script = ExtResource("1_6ark4")
 SPEED = 600.0
 
@@ -129,5 +181,9 @@ vertical_alignment = 2
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_g1lb6")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EscapeMenu" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("14_r5g4j")]
+player = NodePath("../..")
 
 [connection signal="death" from="Health" to="." method="_on_health_death"]
