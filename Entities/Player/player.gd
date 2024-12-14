@@ -169,7 +169,7 @@ func _on_health_death():
 				effect.queue_free()
 
 func spawn():
-	is_frosen = true
+	is_frosen = false
 
 func respawn():
 	if not should_respawn:
