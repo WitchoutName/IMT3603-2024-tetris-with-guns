@@ -1,6 +1,6 @@
 extends Control
 
-var time_to_complete = 5
+var time_to_complete = 100
 var player: Player
 
 @onready var P = $P

@@ -7,6 +7,7 @@ var max_distance: int = 650
 
 func _use():
 	call_marco.rpc()
+	destruct()
 
 @rpc("any_peer", "call_local")
 func call_marco():
