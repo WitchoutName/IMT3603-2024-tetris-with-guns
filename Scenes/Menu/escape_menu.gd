@@ -12,10 +12,13 @@ signal exit_to_lobby
 func _ready():
 	hide()
 	if player:
-		player.connect("toggle_player_paused", _on_player_toggle_player_paused )
+		player.connect("toggle_player_paused", _on_player_toggle_player_paused)
 	set_process_input(true)
+	if OptionsManager:
+		OptionsManager.exit_options_menu.connect(on_exit_options_menu)
+	else:
+		print("OptionsManager is not available!")
 	
-	#$Panel/VBoxContainer/OptionsButton.pressed.connect(_on_options_button_pressed)
 	
 
 func _on_menu_opened():
@@ -29,19 +32,28 @@ func _on_menu_closed():
 func _on_options_button_pressed():
 	print("Options button pressed!")
 	if OptionsManager:
-		vbox_container.visible = false
-		OptionsManager.set_process(true)
-		OptionsManager.visible = true
 		OptionsManager.open(self)
+		OptionsManager.show()
+		vbox_container.visible = false
+		set_process_input(false)
+		OptionsManager.set_process_input(true)
+		OptionsManager.visible = true
+		
+		print("OptionsManager opned from EscapeMenu")
 	
 	else:
 		print ("OptionsManager (autoload) is not available")
 # Signal to notify the player script or main game script
 func on_exit_options_menu() -> void:	
 	vbox_container.visible = true
-	OptionsManager.visible = false
-	
-
+	set_process_input(true)
+	if OptionsManager:
+		OptionsManager.close()
+		OptionsManager.visible = false
+		print("OptionsMenu closed from EscapeMenu")
+	else:
+		print("OptionsManager is not available")
+		
 
 func _on_exit_to_lobby_button_pressed():
 	print("Exit to Lobby pressed!")

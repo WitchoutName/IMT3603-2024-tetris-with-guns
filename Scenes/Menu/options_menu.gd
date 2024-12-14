@@ -19,6 +19,10 @@ func _ready() -> void:
 	back_button.pressed.connect(on_back_pressed)
 	set_process(false)
 	
+func _process(delta):
+	if visible:
+		print("OptionsMenu is visible and active")
+	
 func on_back_pressed() -> void:
 	exit_options_menu.emit()
 	set_process(false)
@@ -30,9 +34,10 @@ func open(parent_node: Node):
 		return
 	# Instantiate the Option Menu scene and add it as a child
 	#instance = option_menu_scene.instantiate()
-	parent_node.add_child(self) if !get_parent() else null
-	self.show()
-	#parent_node.add_child(instance)
+	#parent_node.add_child(self) if !get_parent() else null
+	OptionsManager.show()
+	set_process_input(true)
+	parent_node.add_child(instance)
 	print("Options Menu opened!")
 
 func close():
