@@ -71,14 +71,13 @@ func _input(event: InputEvent):
 		player_paused = !player_paused
 		print(player_paused)
 		if player_paused:
-			GameManager.options_menu.open()
+			GameManager.escape_menu.open()
 		else:
-			GameManager.options_menu.close()
+			GameManager.escape_menu.close()
 
 func _ready():
 	health.set_multiplayer_authority(1)
 	health_bar.set_multiplayer_authority(1)
-	GameManager.options_menu.exit_options_menu.connect(func(): player_paused = false)
 	for state in STATES.get_children():
 		state.STATES = STATES
 		state.Player = self
