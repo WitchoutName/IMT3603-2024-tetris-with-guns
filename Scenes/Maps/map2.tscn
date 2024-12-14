@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dgve8sg6don5a"]
+[gd_scene load_steps=17 format=4 uid="uid://dgve8sg6don5a"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/map_2.gd" id="1_i38ol"]
 [ext_resource type="Texture2D" uid="uid://bkjnpo24brtbh" path="res://Assets/Vector/vector_complete.svg" id="2_cvsm6"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dyodkx7sh128e" path="res://Entities/Items/TeaServant/tea_servant.tscn" id="8_tfamr"]
 [ext_resource type="PackedScene" uid="uid://bcbma4losr4xm" path="res://Entities/Guns/TshirtCannon/TshirtCannon.tscn" id="9_vch0r"]
 [ext_resource type="PackedScene" uid="uid://b0cb1yx66gtme" path="res://Entities/Guns/Crossbow/Crossbow.tscn" id="10_853bt"]
+[ext_resource type="PackedScene" uid="uid://bkabdgq325wuv" path="res://Entities/Items/portable_barrier_object/portable_barrier_object.tscn" id="11_2js7o"]
+[ext_resource type="PackedScene" uid="uid://bf3ftwwwt0ojd" path="res://Entities/Items/invisibility_cloak/invisibility_cloak.tscn" id="12_ghebd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_68a15"]
 
@@ -627,3 +629,9 @@ position = Vector2(-719, -115)
 
 [node name="Crowwbow" parent="." instance=ExtResource("10_853bt")]
 position = Vector2(-873, -94)
+
+[node name="PortableBarrierObject" parent="." instance=ExtResource("11_2js7o")]
+position = Vector2(-401, -97)
+
+[node name="InvisibilityCloak" parent="." instance=ExtResource("12_ghebd")]
+position = Vector2(-250, -157)
