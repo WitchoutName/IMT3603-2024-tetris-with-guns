@@ -3,23 +3,33 @@ extends Control
 class_name EscapeMenu
 
 #@onready var options_menu = $Options_Menu as OptionsMenu
-@onready var vbox_container = $Panel/VBoxContainer as VBoxContainer
+@onready var vbox_container = $Display/Panel/VBoxContainer as VBoxContainer
+@onready var options_menu: OptionsMenu = $Display/Options_Menu
+@onready var display: CanvasLayer = $Display
 
-@export var player: Player
+@onready var player: Player
 
 signal exit_to_lobby
 
 func _ready():
-	hide()
-	if player:
-		player.connect("toggle_player_paused", _on_player_toggle_player_paused)
-	set_process_input(true)
-	if OptionsManager:
-		OptionsManager.exit_options_menu.connect(on_exit_options_menu)
+	close()
+	#if player:
+		#player.connect("toggle_player_paused", _on_player_toggle_player_paused)
+	#set_process_input(true)
+	if options_menu:
+		options_menu.exit_options_menu.connect(on_exit_options_menu)
 	else:
 		print("OptionsManager is not available!")
 	
 	
+func open():
+	display.show()
+	show()
+	
+func close():
+	display.hide()
+	hide()
+
 
 func _on_menu_opened():
 	set_process_input(true)
@@ -31,13 +41,11 @@ func _on_menu_closed():
 
 func _on_options_button_pressed():
 	print("Options button pressed!")
-	if OptionsManager:
-		OptionsManager.open(self)
-		OptionsManager.show()
-		vbox_container.visible = false
+	if options_menu:
+		vbox_container.hide()
+		options_menu.open()
 		set_process_input(false)
-		OptionsManager.set_process_input(true)
-		OptionsManager.visible = true
+		options_menu.set_process_input(true)
 		
 		print("OptionsManager opned from EscapeMenu")
 	
@@ -45,11 +53,11 @@ func _on_options_button_pressed():
 		print ("OptionsManager (autoload) is not available")
 # Signal to notify the player script or main game script
 func on_exit_options_menu() -> void:	
-	vbox_container.visible = true
+	show()
+	vbox_container.show()
 	set_process_input(true)
-	if OptionsManager:
-		OptionsManager.close()
-		OptionsManager.visible = false
+	if options_menu:
+		options_menu.close()
 		print("OptionsMenu closed from EscapeMenu")
 	else:
 		print("OptionsManager is not available")
@@ -61,9 +69,8 @@ func _on_exit_to_lobby_button_pressed():
 	emit_signal("exit_to_lobby")
 	
 	#Close the Optionsmenu if open
-	if OptionsManager:
-		OptionsManager.close()
-		OptionsManager.hide()
+	if options_menu:
+		options_menu.close()
 	if player:
 		player.player_paused = true
 		
@@ -95,6 +102,5 @@ func _on_player_toggle_player_paused(is_paused: bool):
 	
 
 func _on_resume_pressed() -> void:
-	get_tree().paused = false
+	close()
 	player.player_paused = false
-	print(player.player_paused)

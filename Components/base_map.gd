@@ -44,6 +44,7 @@ func init() -> void:
 			
 		if player_peer.id == multiplayer.get_unique_id():
 			InteractionManager.player = player
+			GameManager.escape_menu.player = player
 		else:
 			player.Camera.queue_free()
 			player.AudioListener.queue_free()

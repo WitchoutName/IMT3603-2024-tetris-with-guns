@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scenes/Menu/lobby/connection_lobby.gd" id="1_fqcfp"]
 [ext_resource type="Texture2D" uid="uid://cvbjttx1oldam" path="res://Assets/Background/LobbyMenu.webp" id="2_m76tm"]
 [ext_resource type="Texture2D" uid="uid://bu7sni7uwk607" path="res://Assets/Common/white.png" id="3_a7i2s"]
-[ext_resource type="PackedScene" uid="uid://diyf188ntlsjy" path="res://Scenes/Menu/options_menu.tscn" id="4_hpib4"]
 [ext_resource type="Script" path="res://Scenes/Menu/lobby/map_multiplayer_spawner.gd" id="4_o13iw"]
+[ext_resource type="PackedScene" uid="uid://knn8t2r4u8ht" path="res://Scenes/Menu/escape_menu.tscn" id="4_sxxhq"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fmdio"]
 properties/0/path = NodePath("Control/LogDisplay:text")
@@ -270,11 +270,7 @@ text = "Join"
 
 [node name="MapHolder" type="Node2D" parent="."]
 
-[node name="Options_Menu" parent="." instance=ExtResource("4_hpib4")]
-offset_left = 419.452
-offset_top = 351.0
-offset_right = 419.452
-offset_bottom = 351.0
+[node name="EscapeMenu" parent="." instance=ExtResource("4_sxxhq")]
 
 [node name="MapMultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Scenes/Maps/map1.tscn", "res://Scenes/Maps/map2.tscn")

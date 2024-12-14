@@ -13,7 +13,7 @@ signal game_started
 var game_state = GameState.CONNECTION_LOBBY
 var lobby: ConnectionLobby
 var map: BaseMap
-var options_menu: OptionsMenu
+var escape_menu: EscapeMenu
 var my_id: int
 var _players: Dictionary = {} # Dictionary[int, PLayerPeer]
 
@@ -100,7 +100,7 @@ func _sync_players_fake():
 
 @rpc("call_local", "reliable")
 func init_map():
-	options_menu = get_node("/root/Base/Options_Menu")
+	escape_menu = get_node("/root/Base/EscapeMenu")
 	var mapHolder = get_node("/root/Base/MapHolder")
 	var mapScene = mapHolder.get_children()[0]
 	map = mapScene
