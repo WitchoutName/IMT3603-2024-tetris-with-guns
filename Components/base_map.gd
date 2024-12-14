@@ -13,9 +13,6 @@ signal map_setup_finished
 var SPAWN_POINT = preload("res://Entities/Player/SpawnPoint/spawn_point.tscn")
 var PLAYER = preload("res://Entities/Player/player.tscn")
 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_pressed("move_right"):
-		print("right")
 
 func init() -> void:
 	var player_peers = GameManager.players

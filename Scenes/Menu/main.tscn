@@ -144,6 +144,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_8u2jr")
 text = "Exit"
 
 [node name="Options_Menu" parent="." instance=ExtResource("3_g4vtd")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

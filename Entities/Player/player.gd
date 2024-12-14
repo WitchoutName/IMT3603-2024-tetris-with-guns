@@ -42,13 +42,7 @@ signal toggle_player_paused(is_paused: bool)
 
 
 #GameManaging
-var player_paused: bool = false:
-	get:
-		return player_paused
-	set(value):
-		player_paused = value
-		get_tree().paused = player_paused
-		emit_signal("toggle_player_paused",player_paused)
+var player_paused: bool = false
 	
 #nodes
 @onready var STATES = $STATES
@@ -72,15 +66,19 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 	
 func _input(event: InputEvent):
-	if (event.is_action_pressed("ui_cancel")):  # 'ui_cancel' is the default for ESC
-		#var escape_menu = $CanvasLayer/EscapeMenu
+	if event.is_action_pressed("ui_cancel"):  # 'ui_cancel' is the default for ESC
+		print("ui_cancel")
 		player_paused = !player_paused
 		print(player_paused)
-		#escape_menu.visible = !escape_menu.visible
+		if player_paused:
+			GameManager.options_menu.open()
+		else:
+			GameManager.options_menu.close()
 
 func _ready():
 	health.set_multiplayer_authority(1)
 	health_bar.set_multiplayer_authority(1)
+	GameManager.options_menu.exit_options_menu.connect(func(): player_paused = false)
 	for state in STATES.get_children():
 		state.STATES = STATES
 		state.Player = self
@@ -89,26 +87,22 @@ func _ready():
 	if player_peer:
 		$Username.text = player_peer.username
 		
-	await get_tree().create_timer(2).timeout
-	for action_name in InputMap.get_actions():
-		print(action_name, ": ", ", ".join(InputMap.action_get_events(action_name)))
 	#if escape_menu:
 		#escape_menu.exit_to_lobby.connect(_on_exit_to_lobby)
 
 func _physics_process(delta):
 	if not is_multiplayer_authority() and player_peer: return
-	if not is_frosen:
+	if not (is_frosen or player_paused):
 		if not ASprite.visible and not invis:
 			ASprite.show()
 		if is_controlling_tower: _handle_tower_input()
 		else: player_input()
-	
-		change_state(current_state.update(delta))
-		move_and_slide()
-		#default_move(delta)
 	else:
 		if ASprite.visible:
 			ASprite.hide()
+			
+	change_state(current_state.update(delta))
+	move_and_slide()
 
 func _handle_tower_input():
 	if tower:
@@ -143,9 +137,7 @@ func get_next_to_wall() -> Vector2:
 
 func player_input():
 	movement_input = Vector2.ZERO
-	print("input")
 	if Input.is_action_pressed("move_right"):
-		print("right")
 		movement_input.x += 1
 	if Input.is_action_pressed("move_left"):
 		movement_input.x -= 1

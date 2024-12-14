@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 InteractionManager="*res://Components/Interaction/interaction_manager.tscn"
 GameManager="*res://Components/State/game_manager.gd"
-OptionsManager="*res://Scenes/Menu/options_menu.tscn"
 
 [display]
 
@@ -176,9 +175,6 @@ useItem={
 Suicide={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":112,"location":0,"echo":false,"script":null)
-shoot={
-"deadzone": 0.5,
-"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 
