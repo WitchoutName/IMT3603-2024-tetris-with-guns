@@ -43,25 +43,48 @@ func get_references():
 	
 	initialize()
 
-# Function to update team scores
+
+
+
+# Team scores
 var team_blue_score = 0
 var team_red_score = 0
-func update_team_score(team: String, value: float):
-	if team == "blue": team_blue_score = int(value*100)
-	if team == "red": team_red_score = int(value*100)
-	update_team_scores(team_blue_score, team_red_score)
 
-func update_team_scores(blue_score: int, red_score: int):
+# Function to update team scores locally and propagate via RPC
+func update_team_score(team: String, value: float):
+	if team == "blue":
+		team_blue_score = int(value * 100)
+	elif team == "red":
+		team_red_score = int(value * 100)
+
+	# Use an RPC to sync scores across all clients
+	rpc("sync_team_scores", team_blue_score, team_red_score)  # Broadcast to all peers
+
+	# Update UI locally for the host
+	if is_multiplayer_authority():
+		update_team_scores_ui(team_blue_score, team_red_score)
+
+# RPC function to synchronize team scores
+@rpc("any_peer", "reliable")
+func sync_team_scores(blue_score: int, red_score: int):
+	team_blue_score = blue_score
+	team_red_score = red_score
+	update_team_scores_ui(blue_score, red_score)
+
+# Function to update the UI for team scores
+func update_team_scores_ui(blue_score: int, red_score: int):
 	if team_score_blue != null:
-		team_score_blue.value = blue_score/10
+		team_score_blue.value = blue_score / 10
 		if team_score_blue.get_child_count() > 0 and team_score_blue.get_child(0) is Label:
 			var blue_label_node = team_score_blue.get_child(0)
-			blue_label_node.text = str(blue_score)+"%"
+			blue_label_node.text = str(blue_score) + "%"
 	if team_score_red != null:
-		team_score_red.value = red_score/10
+		team_score_red.value = red_score / 10
 		if team_score_red.get_child_count() > 0 and team_score_red.get_child(0) is Label:
 			var red_label_node = team_score_red.get_child(0)
-			red_label_node.text = str(red_score)+"%"
+			red_label_node.text = str(red_score) + "%"
+
+
 
 # Function to update the timer
 func update_timer(time_left: int):
@@ -189,7 +212,7 @@ func _process(delta):
 
 # Function to set dummy values for testing
 func initialize():
-	update_team_scores(0, 0)
+	update_team_scores_ui(0, 0)  
 	update_timer(300)
 	if health != null:
 		update_health(health.get_current_health())
