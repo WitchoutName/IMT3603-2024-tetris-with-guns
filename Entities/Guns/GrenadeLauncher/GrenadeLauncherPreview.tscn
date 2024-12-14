@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddw6udf6n8qeb"]
+
+[ext_resource type="Texture2D" uid="uid://wyhhknss7s0e" path="res://Assets/GunAssets/grenade_launcher.png" id="1_xvvey"]
+
+[node name="PistolPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xvvey")

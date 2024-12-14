@@ -17,8 +17,6 @@ func _on_body_entered(Node):
 	explode()
 	
 func explode():
-	
-	
 	for body in overlapping:
 		if body.is_in_group("players"):
 			body.health.take_damage(damage)
@@ -29,3 +27,13 @@ func explode():
 	$ExplosionAni.play()
 	await $ExplosionAni.animation_finished
 	queue_free()
+
+
+func _on_explotion_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("players"):
+		overlapping.append(body)
+
+
+func _on_explotion_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("players"):
+		overlapping.erase(body)
