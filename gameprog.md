@@ -23,12 +23,19 @@ Godot was recommended to us as a solid choice for 2D game development by the pro
 #### Strengths:
 A big appeal of Godot is that it is entirely free and Open Source. Everyone can contribute to the development of the engine which has been steadily growing over the years, with even faster growth in recent times.
 Godot is a very lightweight engine, being well under half a gigabyte. Compared to some other engines on the market, like for example the Unreal Engine, the size difference is very substantial. Its smaller size also means faster loading times. The projects made in Godot also take up minimal storage space. 
+
 On the more technical side, all entities and objects in Godot are Nodes. Nodes can be arranged together in a scene tree and there work together to provide an experience. This allows for a very modular implementation of objects, most of them being in separate nodes. Node’s scripts can additionally derive from other scripts. All this combined makes a smooth and easy development process where nodes can be implemented separately and later combined together in a scene. 
+
 Godot offers a functionality called “signals”. Signals can be emitted by a node to notify other listening nodes of anything. They allow parameter passage. Signals were simple to use and allowed for simple communication between different components of a scene. 
+
 Programming of scripts in Godot can be done either in C# or the engine native GDScript. For our project we used GDScript as it was the language with the most resources online for Godot context and due to many of our member having no previous experience with C#. GDScript proved to be easy to learn and use. Syntactically it is really similar to Python and thus pretty straight forward. The language also provided a lot of functionalities that proved very useful due to it being made especially for the engine and thus having a deep integration with it. 
+
 For our project we developed a 2D game, which Godot is very well suited for. While Godot’s tools provided for development of 3D games might be less attractive than its competitors, Godot allows for easy implementation of good 2D games. 
+
 We also believe that Godot was overall quite easy to learn and understand. The UI, although a bit clunky sometimes, is easily understandable and less “intimidating” than in some other engines. 
+
 Overall we believe that Godot was a good choice for our project and are happy with its use. 
+
 #### Weaknesses:
 During our time using Godot, we encountered a few issues. 
 
