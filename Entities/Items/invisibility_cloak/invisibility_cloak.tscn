@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bf3ftwwwt0ojd"]
+[gd_scene load_steps=7 format=3 uid="uid://bf3ftwwwt0ojd"]
 
 [ext_resource type="Script" path="res://Entities/Items/invisibility_cloak/invisibility_cloak.gd" id="1_q4xdw"]
+[ext_resource type="PackedScene" uid="uid://cipueexdko4ay" path="res://Entities/Effects/InvisCloak/invis_cloak_effect.tscn" id="2_7sg1u"]
 [ext_resource type="Texture2D" uid="uid://b5weq8eop4sx5" path="res://Assets/ItemAssets/invis_cloak.png" id="2_8186o"]
 [ext_resource type="PackedScene" uid="uid://1m3ydpr1u03f" path="res://Entities/Items/invisibility_cloak/invisibility_cloak_preview.tscn" id="2_gckyh"]
 [ext_resource type="Script" path="res://Components/Interaction/Interaction_area/interaction_area.gd" id="3_di577"]
@@ -10,6 +11,7 @@ radius = 68.0074
 
 [node name="InvisibilityCloak" type="Node2D" groups=["item"]]
 script = ExtResource("1_q4xdw")
+effect_scene = ExtResource("2_7sg1u")
 Preview = ExtResource("2_gckyh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
