@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bic5nels0gapo"]
+[gd_scene load_steps=12 format=3 uid="uid://bic5nels0gapo"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/hud.gd" id="1_rhw4k"]
 [ext_resource type="Texture2D" uid="uid://buomwnmy7mmgf" path="res://Assets/GUI/Hands/hands0.png" id="2_1y2nm"]
@@ -23,11 +23,6 @@ bg_color = Color(0.184314, 0.184314, 0.184314, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tj08e"]
 bg_color = Color(0.480387, 0.127849, 0.0803008, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_evfr4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0q4p"]
-bg_color = Color(0.381793, 0.618802, 0.858781, 1)
 
 [node name="HUD" type="Node2D"]
 script = ExtResource("1_rhw4k")
@@ -134,27 +129,6 @@ show_percentage = false
 layout_mode = 0
 offset_right = 70.0
 offset_bottom = 37.0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ShieldBar" type="ProgressBar" parent="Display/BottomLeft"]
-layout_mode = 2
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -101.5
-offset_top = 13.0
-offset_right = 47.5
-offset_bottom = 50.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-theme_override_styles/background = SubResource("StyleBoxEmpty_evfr4")
-theme_override_styles/fill = SubResource("StyleBoxFlat_y0q4p")
-show_percentage = false
-
-[node name="Label" type="Label" parent="Display/BottomLeft/ShieldBar"]
-layout_mode = 0
-offset_right = 30.0
-offset_bottom = 36.0
 horizontal_alignment = 1
 vertical_alignment = 1
 

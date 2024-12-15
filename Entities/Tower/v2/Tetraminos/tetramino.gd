@@ -88,12 +88,12 @@ func _on_interact(_player: Player):
 		
 		release()
 	else: 
+		if !_player.can_interact:
+			return
+		
 		attach(_player)
 		#This is for spawning pieces
 		emit_signal("picked_up")
-	
-	if !_player.can_interact:
-		return
 	
 	if tower: 
 		tower.steal(self)
