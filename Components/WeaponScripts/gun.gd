@@ -115,7 +115,7 @@ func _reaload_animation():
 
 @rpc("any_peer", "call_local")
 func shoot(seed: int):
-	if !player.can_shoot:
+	if player && !player.can_shoot:
 		return
 
 

@@ -54,7 +54,8 @@ func _drop():
 	#Disconnecting from death signal
 	if player && player.health.is_connected("death", call_drop):
 			player.health.disconnect("death", call_drop)
-	player.inventory.clear_slot_item()
+	if player:
+		player.inventory.clear_slot_item()
 	player = null
 	interaction_area.enabled = true
 	

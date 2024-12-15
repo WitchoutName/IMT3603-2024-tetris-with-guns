@@ -130,9 +130,10 @@ func _physics_process(delta):
 	else:
 		if ASprite.visible:
 			ASprite.hide()
-			
-	change_state(current_state.update(delta))
-	move_and_slide()
+	
+	if not is_frosen:
+		change_state(current_state.update(delta))
+		move_and_slide()
 
 func _handle_tower_input():
 	if tower:

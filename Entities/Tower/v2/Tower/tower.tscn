@@ -1,8 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://byif3328hr2c6"]
+[gd_scene load_steps=23 format=3 uid="uid://byif3328hr2c6"]
 
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tower/tower.gd" id="1_hx4cm"]
 [ext_resource type="Texture2D" uid="uid://c22t4f0l84tgo" path="res://icon.svg" id="2_3me5p"]
-[ext_resource type="PackedScene" uid="uid://my3rj42cgqey" path="res://Entities/Tower/v2/TetraminoRepulsor/tetramino_repulsor.tscn" id="2_8wlgw"]
 [ext_resource type="Texture2D" uid="uid://buiy4uqhk4c06" path="res://Assets/Tower/OldComps/oldComputerSptiresheet.png" id="3_8byfq"]
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tower/terminal.gd" id="3_px4sf"]
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tower/tetramino_spawner.gd" id="3_uw0xx"]
@@ -16,9 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://ch3qi5k4wkwd0" path="res://Entities/Tower/v2/Tetraminos/shape_t.tscn" id="9_g4e60"]
 [ext_resource type="PackedScene" uid="uid://cm8tbcww1ot3j" path="res://Entities/Tower/v2/Tetraminos/shape_z.tscn" id="10_4eg7w"]
 [ext_resource type="Script" path="res://Entities/Tower/v2/Tower/tower_controller.gd" id="11_rfkfq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xm1jy"]
-size = Vector2(512, 1387)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pydoe"]
 size = Vector2(502, 40)
@@ -66,14 +62,6 @@ size = Vector2(86, 55)
 position = Vector2(585, 646.735)
 script = ExtResource("1_hx4cm")
 fall_speed = 8.5
-
-[node name="TetraminoRepulsor" parent="." instance=ExtResource("2_8wlgw")]
-force = Vector2(225, -600)
-max_velocity = 700.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TetraminoRepulsor"]
-position = Vector2(-2, -678.235)
-shape = SubResource("RectangleShape2D_xm1jy")
 
 [node name="TowerBase" type="StaticBody2D" parent="."]
 scale = Vector2(1, 0.485)
