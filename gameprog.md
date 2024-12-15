@@ -88,7 +88,7 @@ When working we created our own branches for committing changes, it was then mer
 | HUD               | 0 || 0 | H | 0 | M | T |
 | Main Menu         | 0 || H | 0 | 0 | 0 | R |
 | Lobby Menu        | 0 || 0 | T | 0 | 0 | T |
-| Options Menu      | 0 || 0 | H | 0 | R | 0 |
+| Options Menu      | 0 || 0 | H | 0 | R | S |
 | Spawners          | 0 || 0 | 0 | S | T | M |
 | Animations        | 0 || 0 | H | 0 | M | 0 |
 
