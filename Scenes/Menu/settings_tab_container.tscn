@@ -98,23 +98,23 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_orxw8")
 
 [node name="moveUp" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
-action_name = "MoveUp"
+action_name = "move_up"
 
 [node name="MoveLeft" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
-action_name = "MoveLeft"
+action_name = "move_left"
 
 [node name="moveDown" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
-action_name = "MoveDown"
+action_name = "move_down"
 
 [node name="MoveRight" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
-action_name = "MoveRight"
+action_name = "move_right"
 
 [node name="Jump" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
-action_name = "Jump"
+action_name = "jump"
 
 [node name="interact" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
@@ -122,7 +122,7 @@ action_name = "interact"
 
 [node name="dash" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2
-action_name = "Dash"
+action_name = "dash"
 
 [node name="reload" parent="TabContainer/Controls/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_d2s8d")]
 layout_mode = 2

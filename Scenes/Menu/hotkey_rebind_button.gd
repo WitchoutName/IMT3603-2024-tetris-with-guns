@@ -21,11 +21,11 @@ func set_action_name() -> void:
 	label.text = "Unassigned"
 	
 	match action_name:
-		"MoveLeft":
+		"move_left":
 			label.text = "Move Left"
-		"MoveRight":
+		"move_right":
 			label.text = "Move Right"
-		"Jump":
+		"jump":
 			label.text = "Jump"
 		"dash":
 			label.text = "Dash"
@@ -39,9 +39,9 @@ func set_action_name() -> void:
 			label.text = "Tower Rotate"
 		"Dash":
 			label.text = "Dash"
-		"MoveUp":
+		"move_up":
 			label.text = "Move Up"
-		"MoveDown":
+		"move_down":
 			label.text = "Move Down"
 		"reload":
 			label.text = "Reload"

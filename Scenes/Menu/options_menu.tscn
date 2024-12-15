@@ -14,7 +14,6 @@ grow_vertical = 2
 script = ExtResource("1_fjsxb")
 
 [node name="Display" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Panel" type="Panel" parent="Display"]
 anchors_preset = 15
