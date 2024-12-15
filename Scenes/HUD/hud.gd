@@ -5,7 +5,6 @@ extends Node2D
 @onready var team_score_red = $Display/TopPanel/TeamScoreRed
 @onready var timer_label = $Display/TopPanel/Timer
 @onready var health_bar = $Display/BottomLeft/HealthBar
-@onready var shield_bar = $Display/BottomLeft/ShieldBar
 @onready var weapon_icon1 = $Display/BottomRight/WeaponIcon1
 @onready var weapon_icon2 = $Display/BottomRight/WeaponIcon2
 @onready var ammo_label = $Display/BottomRight/Ammo
@@ -104,14 +103,6 @@ func update_health(health: int):
 		if health_bar.get_child_count() > 0 and health_bar.get_child(0) is Label:
 			var health_label_node = health_bar.get_child(0)
 			health_label_node.text = str(health) + " / 100"
-
-# Function to update shield
-func update_shield(shield: int):
-	if shield_bar != null:
-		shield_bar.value = shield
-		if shield_bar.get_child_count() > 0 and shield_bar.get_child(0) is Label:
-			var shield_label_node = shield_bar.get_child(0)
-			shield_label_node.text = str(shield)
 
 # Function to update ammo
 func update_ammo(current_ammo: int, max_ammo: int):
@@ -216,6 +207,5 @@ func initialize():
 	update_timer(300)
 	if health != null:
 		update_health(health.get_current_health())
-	update_shield(44)
 	update_ammo(17, 30)
 	highlight_weapon(1)
