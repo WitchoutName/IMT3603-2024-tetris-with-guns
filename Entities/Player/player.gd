@@ -225,6 +225,7 @@ func spawn():
 func respawn():
 	if not should_respawn:
 		return
+	#print("respawning")
 	hide()
 	#Wait five seconds
 	is_frosen = true
@@ -232,6 +233,7 @@ func respawn():
 	health.set_health(health.max_health)
 	show()
 	is_frosen = false
+	#print("respawning unfrozen")
 	#spawn()
 
 func equip_gun(gun):

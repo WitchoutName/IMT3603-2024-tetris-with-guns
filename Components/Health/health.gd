@@ -43,6 +43,7 @@ func _take_demage_logic(demage: float):
 
 #Handles damage
 func take_damage(demage: float):
+	#print("Took damage")
 	_take_demage_logic.rpc_id(1, demage)
 	_health_changed()
 

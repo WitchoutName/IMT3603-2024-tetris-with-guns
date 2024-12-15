@@ -7,6 +7,8 @@ class_name EscapeMenu
 @onready var options_menu: OptionsMenu = $Display/Options_Menu
 @onready var display: CanvasLayer = $Display
 
+@onready var health: Health = $Health
+
 @onready var player: Player
 
 signal exit_to_lobby
@@ -85,6 +87,20 @@ func _on_exit_to_lobby_button_pressed():
 	
 	# Ensure input is processing
 	set_process_input(false)
+
+
+func _on_respawn_button_pressed():
+	#print("Respawn button pressed")
+	hide()
+	if player:
+		player.health.take_damage(999)
+		#print("Should be dead")
+	if options_menu:
+		options_menu.close()
+	#print("Done with loop")
+	display.hide()
+	player.player_paused = false
+	
 
 
 func _gui_input(event):
