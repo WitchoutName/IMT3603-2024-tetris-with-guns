@@ -11,8 +11,8 @@
 ## Github repo: 
 https://github.com/WitchoutName/IMT3603-2024-tetris-with-guns
 
-## Video link: 
-A video of the gameplay showing off the important parts of the game
+## Gameplay Video: 
+https://youtu.be/e_3tqUZhS6E
 
 ## Group Discussions on the development process:
 
